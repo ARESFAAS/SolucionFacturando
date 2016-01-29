@@ -1,0 +1,1341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FacturandoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="BillNumber" Type="bigint" Nullable="false" />
+          <Property Name="IdClient" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="BillDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdBill" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdProduct" Type="uniqueidentifier" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BillTaxes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdTax" Type="uniqueidentifier" />
+          <Property Name="IdBill" Type="uniqueidentifier" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdentificationType" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="IdentificationNumber" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="DisccountPercent" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdProduct" Type="uniqueidentifier" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InventoryClassification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="InventoryDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdInventory" Type="uniqueidentifier" />
+          <Property Name="IdInventoryType" Type="uniqueidentifier" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="EventDate" Type="date" Nullable="false" />
+          <Property Name="ConstructionDate" Type="date" />
+          <Property Name="DueDate" Type="date" />
+          <Property Name="BarCodeData" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdInventoryClassification" Type="uniqueidentifier" />
+          <Property Name="IdInventoryLocalization" Type="uniqueidentifier" />
+          <Property Name="PurchasePrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SalePrice" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="InventoryLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="InventoryType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sign" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="IdUnit" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Remission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RemissionNumber" Type="bigint" Nullable="false" />
+          <Property Name="IdClient" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="RemissionDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdRemission" Type="uniqueidentifier" />
+          <Property Name="IdProduct" Type="uniqueidentifier" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RolAction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdRol" Type="uniqueidentifier" />
+          <Property Name="IdAction" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="RolModule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdRol" Type="uniqueidentifier" />
+          <Property Name="IdModule" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Tax">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PercentageValue" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnitMeasure">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DateEvent" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdUser" Type="uniqueidentifier" />
+          <Property Name="IdRol" Type="uniqueidentifier" />
+        </EntityType>
+        <Association Name="FK_Bill_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillDetail_Bill">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
+          <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BillDetail">
+              <PropertyRef Name="IdBill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BillDetail">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillTaxes_Bill">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
+          <End Role="BillTaxes" Type="Self.BillTaxes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BillTaxes">
+              <PropertyRef Name="IdBill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillTaxes_Tax">
+          <End Role="Tax" Type="Self.Tax" Multiplicity="0..1" />
+          <End Role="BillTaxes" Type="Self.BillTaxes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tax">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BillTaxes">
+              <PropertyRef Name="IdTax" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryDetail_Inventory">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
+          <End Role="InventoryDetail" Type="Self.InventoryDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventoryDetail">
+              <PropertyRef Name="IdInventory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryDetail_InventoryClassification">
+          <End Role="InventoryClassification" Type="Self.InventoryClassification" Multiplicity="0..1" />
+          <End Role="InventoryDetail" Type="Self.InventoryDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryClassification">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventoryDetail">
+              <PropertyRef Name="IdInventoryClassification" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryDetail_InventoryLocation">
+          <End Role="InventoryLocation" Type="Self.InventoryLocation" Multiplicity="0..1" />
+          <End Role="InventoryDetail" Type="Self.InventoryDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventoryDetail">
+              <PropertyRef Name="IdInventoryLocalization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryDetail_InventoryType">
+          <End Role="InventoryType" Type="Self.InventoryType" Multiplicity="0..1" />
+          <End Role="InventoryDetail" Type="Self.InventoryDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventoryDetail">
+              <PropertyRef Name="IdInventoryType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_UnitMeasure">
+          <End Role="UnitMeasure" Type="Self.UnitMeasure" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitMeasure">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IdUnit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remission_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Remission" Type="Self.Remission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Remission">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RemissionDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="RemissionDetail" Type="Self.RemissionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RemissionDetail">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RemissionDetail_Remission">
+          <End Role="Remission" Type="Self.Remission" Multiplicity="0..1" />
+          <End Role="RemissionDetail" Type="Self.RemissionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Remission">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RemissionDetail">
+              <PropertyRef Name="IdRemission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolAction_Action">
+          <End Role="Action" Type="Self.Action" Multiplicity="0..1" />
+          <End Role="RolAction" Type="Self.RolAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolAction">
+              <PropertyRef Name="IdAction" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolAction_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="RolAction" Type="Self.RolAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolAction">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolModule_Module">
+          <End Role="Module" Type="Self.Module" Multiplicity="0..1" />
+          <End Role="RolModule" Type="Self.RolModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolModule">
+              <PropertyRef Name="IdModule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolModule_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="RolModule" Type="Self.RolModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolModule">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRol_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="UserRol" Type="Self.UserRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRol">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRol_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserRol" Type="Self.UserRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRol">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FacturandoModelStoreContainer">
+          <EntitySet Name="Action" EntityType="Self.Action" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillDetail" EntityType="Self.BillDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillTaxes" EntityType="Self.BillTaxes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryClassification" EntityType="Self.InventoryClassification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryDetail" EntityType="Self.InventoryDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryLocation" EntityType="Self.InventoryLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryType" EntityType="Self.InventoryType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Remission" EntityType="Self.Remission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RemissionDetail" EntityType="Self.RemissionDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolAction" EntityType="Self.RolAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolModule" EntityType="Self.RolModule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tax" EntityType="Self.Tax" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitMeasure" EntityType="Self.UnitMeasure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRol" EntityType="Self.UserRol" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bill_Client" Association="Self.FK_Bill_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillDetail_Bill" Association="Self.FK_BillDetail_Bill">
+            <End Role="Bill" EntitySet="Bill" />
+            <End Role="BillDetail" EntitySet="BillDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillDetail_Product" Association="Self.FK_BillDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="BillDetail" EntitySet="BillDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillTaxes_Bill" Association="Self.FK_BillTaxes_Bill">
+            <End Role="Bill" EntitySet="Bill" />
+            <End Role="BillTaxes" EntitySet="BillTaxes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillTaxes_Tax" Association="Self.FK_BillTaxes_Tax">
+            <End Role="Tax" EntitySet="Tax" />
+            <End Role="BillTaxes" EntitySet="BillTaxes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Product" Association="Self.FK_Inventory_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryDetail_Inventory" Association="Self.FK_InventoryDetail_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="InventoryDetail" EntitySet="InventoryDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryDetail_InventoryClassification" Association="Self.FK_InventoryDetail_InventoryClassification">
+            <End Role="InventoryClassification" EntitySet="InventoryClassification" />
+            <End Role="InventoryDetail" EntitySet="InventoryDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryDetail_InventoryLocation" Association="Self.FK_InventoryDetail_InventoryLocation">
+            <End Role="InventoryLocation" EntitySet="InventoryLocation" />
+            <End Role="InventoryDetail" EntitySet="InventoryDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryDetail_InventoryType" Association="Self.FK_InventoryDetail_InventoryType">
+            <End Role="InventoryType" EntitySet="InventoryType" />
+            <End Role="InventoryDetail" EntitySet="InventoryDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_UnitMeasure" Association="Self.FK_Product_UnitMeasure">
+            <End Role="UnitMeasure" EntitySet="UnitMeasure" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remission_Client" Association="Self.FK_Remission_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Remission" EntitySet="Remission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RemissionDetail_Product" Association="Self.FK_RemissionDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="RemissionDetail" EntitySet="RemissionDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RemissionDetail_Remission" Association="Self.FK_RemissionDetail_Remission">
+            <End Role="Remission" EntitySet="Remission" />
+            <End Role="RemissionDetail" EntitySet="RemissionDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolAction_Action" Association="Self.FK_RolAction_Action">
+            <End Role="Action" EntitySet="Action" />
+            <End Role="RolAction" EntitySet="RolAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolAction_Rol" Association="Self.FK_RolAction_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="RolAction" EntitySet="RolAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolModule_Module" Association="Self.FK_RolModule_Module">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="RolModule" EntitySet="RolModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolModule_Rol" Association="Self.FK_RolModule_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="RolModule" EntitySet="RolModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRol_Rol" Association="Self.FK_UserRol_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="UserRol" EntitySet="UserRol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRol_User" Association="Self.FK_UserRol_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRol" EntitySet="UserRol" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FacturandoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RolAction" Relationship="Self.FK_RolAction_Action" FromRole="Action" ToRole="RolAction" />
+        </EntityType>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="BillNumber" Type="Int64" Nullable="false" />
+          <Property Name="IdClient" Type="Guid" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Bill_Client" FromRole="Bill" ToRole="Client" />
+          <NavigationProperty Name="BillDetail" Relationship="Self.FK_BillDetail_Bill" FromRole="Bill" ToRole="BillDetail" />
+          <NavigationProperty Name="BillTaxes" Relationship="Self.FK_BillTaxes_Bill" FromRole="Bill" ToRole="BillTaxes" />
+        </EntityType>
+        <EntityType Name="BillDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="IdBill" Type="Guid" Nullable="false" />
+          <Property Name="IdProduct" Type="Guid" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK_BillDetail_Bill" FromRole="BillDetail" ToRole="Bill" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_BillDetail_Product" FromRole="BillDetail" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="BillTaxes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="IdTax" Type="Guid" />
+          <Property Name="IdBill" Type="Guid" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK_BillTaxes_Bill" FromRole="BillTaxes" ToRole="Bill" />
+          <NavigationProperty Name="Tax" Relationship="Self.FK_BillTaxes_Tax" FromRole="BillTaxes" ToRole="Tax" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="IdentificationType" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="IdentificationNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DisccountPercent" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK_Bill_Client" FromRole="Client" ToRole="Bill" />
+          <NavigationProperty Name="Remission" Relationship="Self.FK_Remission_Client" FromRole="Client" ToRole="Remission" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="IdProduct" Type="Guid" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Inventory_Product" FromRole="Inventory" ToRole="Product" />
+          <NavigationProperty Name="InventoryDetail" Relationship="Self.FK_InventoryDetail_Inventory" FromRole="Inventory" ToRole="InventoryDetail" />
+        </EntityType>
+        <EntityType Name="InventoryClassification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="InventoryDetail" Relationship="Self.FK_InventoryDetail_InventoryClassification" FromRole="InventoryClassification" ToRole="InventoryDetail" />
+        </EntityType>
+        <EntityType Name="InventoryDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="IdInventory" Type="Guid" />
+          <Property Name="IdInventoryType" Type="Guid" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ConstructionDate" Type="DateTime" Precision="0" />
+          <Property Name="DueDate" Type="DateTime" Precision="0" />
+          <Property Name="BarCodeData" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdInventoryClassification" Type="Guid" />
+          <Property Name="IdInventoryLocalization" Type="Guid" />
+          <Property Name="PurchasePrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SalePrice" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_InventoryDetail_Inventory" FromRole="InventoryDetail" ToRole="Inventory" />
+          <NavigationProperty Name="InventoryClassification" Relationship="Self.FK_InventoryDetail_InventoryClassification" FromRole="InventoryDetail" ToRole="InventoryClassification" />
+          <NavigationProperty Name="InventoryLocation" Relationship="Self.FK_InventoryDetail_InventoryLocation" FromRole="InventoryDetail" ToRole="InventoryLocation" />
+          <NavigationProperty Name="InventoryType" Relationship="Self.FK_InventoryDetail_InventoryType" FromRole="InventoryDetail" ToRole="InventoryType" />
+        </EntityType>
+        <EntityType Name="InventoryLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="InventoryDetail" Relationship="Self.FK_InventoryDetail_InventoryLocation" FromRole="InventoryLocation" ToRole="InventoryDetail" />
+        </EntityType>
+        <EntityType Name="InventoryType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Sign" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="InventoryDetail" Relationship="Self.FK_InventoryDetail_InventoryType" FromRole="InventoryType" ToRole="InventoryDetail" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RolModule" Relationship="Self.FK_RolModule_Module" FromRole="Module" ToRole="RolModule" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdUnit" Type="Guid" />
+          <NavigationProperty Name="BillDetail" Relationship="Self.FK_BillDetail_Product" FromRole="Product" ToRole="BillDetail" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_Product" FromRole="Product" ToRole="Inventory" />
+          <NavigationProperty Name="UnitMeasure" Relationship="Self.FK_Product_UnitMeasure" FromRole="Product" ToRole="UnitMeasure" />
+          <NavigationProperty Name="RemissionDetail" Relationship="Self.FK_RemissionDetail_Product" FromRole="Product" ToRole="RemissionDetail" />
+        </EntityType>
+        <EntityType Name="Remission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RemissionNumber" Type="Int64" Nullable="false" />
+          <Property Name="IdClient" Type="Guid" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Remission_Client" FromRole="Remission" ToRole="Client" />
+          <NavigationProperty Name="RemissionDetail" Relationship="Self.FK_RemissionDetail_Remission" FromRole="Remission" ToRole="RemissionDetail" />
+        </EntityType>
+        <EntityType Name="RemissionDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="IdRemission" Type="Guid" />
+          <Property Name="IdProduct" Type="Guid" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_RemissionDetail_Product" FromRole="RemissionDetail" ToRole="Product" />
+          <NavigationProperty Name="Remission" Relationship="Self.FK_RemissionDetail_Remission" FromRole="RemissionDetail" ToRole="Remission" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RolAction" Relationship="Self.FK_RolAction_Rol" FromRole="Rol" ToRole="RolAction" />
+          <NavigationProperty Name="RolModule" Relationship="Self.FK_RolModule_Rol" FromRole="Rol" ToRole="RolModule" />
+          <NavigationProperty Name="UserRol" Relationship="Self.FK_UserRol_Rol" FromRole="Rol" ToRole="UserRol" />
+        </EntityType>
+        <EntityType Name="RolAction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="IdRol" Type="Guid" />
+          <Property Name="IdAction" Type="Guid" />
+          <NavigationProperty Name="Action" Relationship="Self.FK_RolAction_Action" FromRole="RolAction" ToRole="Action" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK_RolAction_Rol" FromRole="RolAction" ToRole="Rol" />
+        </EntityType>
+        <EntityType Name="RolModule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="IdRol" Type="Guid" />
+          <Property Name="IdModule" Type="Guid" />
+          <NavigationProperty Name="Module" Relationship="Self.FK_RolModule_Module" FromRole="RolModule" ToRole="Module" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK_RolModule_Rol" FromRole="RolModule" ToRole="Rol" />
+        </EntityType>
+        <EntityType Name="Tax">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PercentageValue" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="BillTaxes" Relationship="Self.FK_BillTaxes_Tax" FromRole="Tax" ToRole="BillTaxes" />
+        </EntityType>
+        <EntityType Name="UnitMeasure">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_UnitMeasure" FromRole="UnitMeasure" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateEvent" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="UserRol" Relationship="Self.FK_UserRol_User" FromRole="User" ToRole="UserRol" />
+        </EntityType>
+        <EntityType Name="UserRol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="IdUser" Type="Guid" />
+          <Property Name="IdRol" Type="Guid" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK_UserRol_Rol" FromRole="UserRol" ToRole="Rol" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserRol_User" FromRole="UserRol" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_RolAction_Action">
+          <End Role="Action" Type="Self.Action" Multiplicity="0..1" />
+          <End Role="RolAction" Type="Self.RolAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Action">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolAction">
+              <PropertyRef Name="IdAction" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillDetail_Bill">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
+          <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BillDetail">
+              <PropertyRef Name="IdBill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillTaxes_Bill">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
+          <End Role="BillTaxes" Type="Self.BillTaxes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BillTaxes">
+              <PropertyRef Name="IdBill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BillDetail">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillTaxes_Tax">
+          <End Role="Tax" Type="Self.Tax" Multiplicity="0..1" />
+          <End Role="BillTaxes" Type="Self.BillTaxes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tax">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BillTaxes">
+              <PropertyRef Name="IdTax" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remission_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Remission" Type="Self.Remission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Remission">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryDetail_Inventory">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
+          <End Role="InventoryDetail" Type="Self.InventoryDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventoryDetail">
+              <PropertyRef Name="IdInventory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryDetail_InventoryClassification">
+          <End Role="InventoryClassification" Type="Self.InventoryClassification" Multiplicity="0..1" />
+          <End Role="InventoryDetail" Type="Self.InventoryDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryClassification">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventoryDetail">
+              <PropertyRef Name="IdInventoryClassification" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryDetail_InventoryLocation">
+          <End Role="InventoryLocation" Type="Self.InventoryLocation" Multiplicity="0..1" />
+          <End Role="InventoryDetail" Type="Self.InventoryDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventoryDetail">
+              <PropertyRef Name="IdInventoryLocalization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryDetail_InventoryType">
+          <End Role="InventoryType" Type="Self.InventoryType" Multiplicity="0..1" />
+          <End Role="InventoryDetail" Type="Self.InventoryDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventoryDetail">
+              <PropertyRef Name="IdInventoryType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolModule_Module">
+          <End Role="Module" Type="Self.Module" Multiplicity="0..1" />
+          <End Role="RolModule" Type="Self.RolModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolModule">
+              <PropertyRef Name="IdModule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_UnitMeasure">
+          <End Role="UnitMeasure" Type="Self.UnitMeasure" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitMeasure">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IdUnit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RemissionDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="RemissionDetail" Type="Self.RemissionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RemissionDetail">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RemissionDetail_Remission">
+          <End Role="Remission" Type="Self.Remission" Multiplicity="0..1" />
+          <End Role="RemissionDetail" Type="Self.RemissionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Remission">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RemissionDetail">
+              <PropertyRef Name="IdRemission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolAction_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="RolAction" Type="Self.RolAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolAction">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolModule_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="RolModule" Type="Self.RolModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolModule">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRol_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="UserRol" Type="Self.UserRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRol">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRol_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserRol" Type="Self.UserRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRol">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FacturandoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Action" EntityType="Self.Action" />
+          <EntitySet Name="Bill" EntityType="Self.Bill" />
+          <EntitySet Name="BillDetail" EntityType="Self.BillDetail" />
+          <EntitySet Name="BillTaxes" EntityType="Self.BillTaxes" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" />
+          <EntitySet Name="InventoryClassification" EntityType="Self.InventoryClassification" />
+          <EntitySet Name="InventoryDetail" EntityType="Self.InventoryDetail" />
+          <EntitySet Name="InventoryLocation" EntityType="Self.InventoryLocation" />
+          <EntitySet Name="InventoryType" EntityType="Self.InventoryType" />
+          <EntitySet Name="Module" EntityType="Self.Module" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="Remission" EntityType="Self.Remission" />
+          <EntitySet Name="RemissionDetail" EntityType="Self.RemissionDetail" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="RolAction" EntityType="Self.RolAction" />
+          <EntitySet Name="RolModule" EntityType="Self.RolModule" />
+          <EntitySet Name="Tax" EntityType="Self.Tax" />
+          <EntitySet Name="UnitMeasure" EntityType="Self.UnitMeasure" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="UserRol" EntityType="Self.UserRol" />
+          <AssociationSet Name="FK_RolAction_Action" Association="Self.FK_RolAction_Action">
+            <End Role="Action" EntitySet="Action" />
+            <End Role="RolAction" EntitySet="RolAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_Client" Association="Self.FK_Bill_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillDetail_Bill" Association="Self.FK_BillDetail_Bill">
+            <End Role="Bill" EntitySet="Bill" />
+            <End Role="BillDetail" EntitySet="BillDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillTaxes_Bill" Association="Self.FK_BillTaxes_Bill">
+            <End Role="Bill" EntitySet="Bill" />
+            <End Role="BillTaxes" EntitySet="BillTaxes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillDetail_Product" Association="Self.FK_BillDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="BillDetail" EntitySet="BillDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillTaxes_Tax" Association="Self.FK_BillTaxes_Tax">
+            <End Role="Tax" EntitySet="Tax" />
+            <End Role="BillTaxes" EntitySet="BillTaxes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remission_Client" Association="Self.FK_Remission_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Remission" EntitySet="Remission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Product" Association="Self.FK_Inventory_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryDetail_Inventory" Association="Self.FK_InventoryDetail_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="InventoryDetail" EntitySet="InventoryDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryDetail_InventoryClassification" Association="Self.FK_InventoryDetail_InventoryClassification">
+            <End Role="InventoryClassification" EntitySet="InventoryClassification" />
+            <End Role="InventoryDetail" EntitySet="InventoryDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryDetail_InventoryLocation" Association="Self.FK_InventoryDetail_InventoryLocation">
+            <End Role="InventoryLocation" EntitySet="InventoryLocation" />
+            <End Role="InventoryDetail" EntitySet="InventoryDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryDetail_InventoryType" Association="Self.FK_InventoryDetail_InventoryType">
+            <End Role="InventoryType" EntitySet="InventoryType" />
+            <End Role="InventoryDetail" EntitySet="InventoryDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolModule_Module" Association="Self.FK_RolModule_Module">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="RolModule" EntitySet="RolModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_UnitMeasure" Association="Self.FK_Product_UnitMeasure">
+            <End Role="UnitMeasure" EntitySet="UnitMeasure" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RemissionDetail_Product" Association="Self.FK_RemissionDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="RemissionDetail" EntitySet="RemissionDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RemissionDetail_Remission" Association="Self.FK_RemissionDetail_Remission">
+            <End Role="Remission" EntitySet="Remission" />
+            <End Role="RemissionDetail" EntitySet="RemissionDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolAction_Rol" Association="Self.FK_RolAction_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="RolAction" EntitySet="RolAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolModule_Rol" Association="Self.FK_RolModule_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="RolModule" EntitySet="RolModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRol_Rol" Association="Self.FK_UserRol_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="UserRol" EntitySet="UserRol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRol_User" Association="Self.FK_UserRol_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRol" EntitySet="UserRol" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FacturandoModelStoreContainer" CdmEntityContainer="FacturandoEntities">
+          <EntitySetMapping Name="Action">
+            <EntityTypeMapping TypeName="FacturandoModel.Action">
+              <MappingFragment StoreEntitySet="Action">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bill">
+            <EntityTypeMapping TypeName="FacturandoModel.Bill">
+              <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillDetail">
+            <EntityTypeMapping TypeName="FacturandoModel.BillDetail">
+              <MappingFragment StoreEntitySet="BillDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdBill" ColumnName="IdBill" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillTaxes">
+            <EntityTypeMapping TypeName="FacturandoModel.BillTaxes">
+              <MappingFragment StoreEntitySet="BillTaxes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdTax" ColumnName="IdTax" />
+                <ScalarProperty Name="IdBill" ColumnName="IdBill" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="FacturandoModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdentificationType" ColumnName="IdentificationType" />
+                <ScalarProperty Name="IdentificationNumber" ColumnName="IdentificationNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DisccountPercent" ColumnName="DisccountPercent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventory">
+            <EntityTypeMapping TypeName="FacturandoModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryClassification">
+            <EntityTypeMapping TypeName="FacturandoModel.InventoryClassification">
+              <MappingFragment StoreEntitySet="InventoryClassification">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryDetail">
+            <EntityTypeMapping TypeName="FacturandoModel.InventoryDetail">
+              <MappingFragment StoreEntitySet="InventoryDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdInventory" ColumnName="IdInventory" />
+                <ScalarProperty Name="IdInventoryType" ColumnName="IdInventoryType" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="ConstructionDate" ColumnName="ConstructionDate" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="BarCodeData" ColumnName="BarCodeData" />
+                <ScalarProperty Name="IdInventoryClassification" ColumnName="IdInventoryClassification" />
+                <ScalarProperty Name="IdInventoryLocalization" ColumnName="IdInventoryLocalization" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryLocation">
+            <EntityTypeMapping TypeName="FacturandoModel.InventoryLocation">
+              <MappingFragment StoreEntitySet="InventoryLocation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryType">
+            <EntityTypeMapping TypeName="FacturandoModel.InventoryType">
+              <MappingFragment StoreEntitySet="InventoryType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Sign" ColumnName="Sign" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Module">
+            <EntityTypeMapping TypeName="FacturandoModel.Module">
+              <MappingFragment StoreEntitySet="Module">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="FacturandoModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdUnit" ColumnName="IdUnit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Remission">
+            <EntityTypeMapping TypeName="FacturandoModel.Remission">
+              <MappingFragment StoreEntitySet="Remission">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="RemissionNumber" ColumnName="RemissionNumber" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RemissionDetail">
+            <EntityTypeMapping TypeName="FacturandoModel.RemissionDetail">
+              <MappingFragment StoreEntitySet="RemissionDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdRemission" ColumnName="IdRemission" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="FacturandoModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolAction">
+            <EntityTypeMapping TypeName="FacturandoModel.RolAction">
+              <MappingFragment StoreEntitySet="RolAction">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="IdAction" ColumnName="IdAction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolModule">
+            <EntityTypeMapping TypeName="FacturandoModel.RolModule">
+              <MappingFragment StoreEntitySet="RolModule">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="IdModule" ColumnName="IdModule" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tax">
+            <EntityTypeMapping TypeName="FacturandoModel.Tax">
+              <MappingFragment StoreEntitySet="Tax">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PercentageValue" ColumnName="PercentageValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitMeasure">
+            <EntityTypeMapping TypeName="FacturandoModel.UnitMeasure">
+              <MappingFragment StoreEntitySet="UnitMeasure">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="FacturandoModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="DateEvent" ColumnName="DateEvent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRol">
+            <EntityTypeMapping TypeName="FacturandoModel.UserRol">
+              <MappingFragment StoreEntitySet="UserRol">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

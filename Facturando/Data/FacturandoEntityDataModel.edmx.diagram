@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0f192e61a07d4796a329d064ad8451dc" Name="Diagram1">
+        <EntityTypeShape EntityType="FacturandoModel.Action" Width="1.5" PointX="9.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.Bill" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.BillDetail" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.BillTaxes" Width="1.5" PointX="11.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.Client" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.Inventory" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.InventoryClassification" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.InventoryDetail" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.InventoryLocation" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.InventoryType" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.Module" Width="1.5" PointX="9.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.Product" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.Remission" Width="1.5" PointX="6" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.RemissionDetail" Width="1.5" PointX="8.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.Rol" Width="1.5" PointX="9.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.RolAction" Width="1.5" PointX="12" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.RolModule" Width="1.5" PointX="12" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.Tax" Width="1.5" PointX="9" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.UnitMeasure" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.User" Width="1.5" PointX="9.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturandoModel.UserRol" Width="1.5" PointX="12" PointY="13.875" IsExpanded="true" />
+        <AssociationConnector Association="FacturandoModel.FK_RolAction_Action" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_Bill_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_BillDetail_Bill" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_BillTaxes_Bill" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_BillDetail_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_BillTaxes_Tax" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_Remission_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_Inventory_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_InventoryDetail_Inventory" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_InventoryDetail_InventoryClassification" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_InventoryDetail_InventoryLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_InventoryDetail_InventoryType" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_RolModule_Module" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_Product_UnitMeasure" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_RemissionDetail_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_RemissionDetail_Remission" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_RolAction_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_RolModule_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_UserRol_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturandoModel.FK_UserRol_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
