@@ -188,8 +188,7 @@
             // 
             // txtCantidad
             // 
-            this.txtCantidad.Location = new System.Drawing.Point(244, 367);
-            this.txtCantidad.Mask = "999999999";
+            this.txtCantidad.Location = new System.Drawing.Point(244, 368);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(208, 20);
             this.txtCantidad.TabIndex = 22;
@@ -197,7 +196,6 @@
             // txtPrecioCompra
             // 
             this.txtPrecioCompra.Location = new System.Drawing.Point(244, 755);
-            this.txtPrecioCompra.Mask = "999999999.99";
             this.txtPrecioCompra.Name = "txtPrecioCompra";
             this.txtPrecioCompra.Size = new System.Drawing.Size(208, 20);
             this.txtPrecioCompra.TabIndex = 25;
@@ -205,7 +203,6 @@
             // txtPrecioVenta
             // 
             this.txtPrecioVenta.Location = new System.Drawing.Point(244, 799);
-            this.txtPrecioVenta.Mask = "999999999.99";
             this.txtPrecioVenta.Name = "txtPrecioVenta";
             this.txtPrecioVenta.Size = new System.Drawing.Size(208, 20);
             this.txtPrecioVenta.TabIndex = 26;

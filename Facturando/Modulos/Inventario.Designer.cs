@@ -69,16 +69,18 @@
             // 
             // txtCodigoBarras
             // 
-            this.txtCodigoBarras.Location = new System.Drawing.Point(16, 31);
+            this.txtCodigoBarras.Location = new System.Drawing.Point(21, 73);
+            this.txtCodigoBarras.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCodigoBarras.Name = "txtCodigoBarras";
-            this.txtCodigoBarras.Size = new System.Drawing.Size(242, 20);
+            this.txtCodigoBarras.Size = new System.Drawing.Size(321, 23);
             this.txtCodigoBarras.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(16, 118);
+            this.button1.Location = new System.Drawing.Point(21, 181);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 1;
             this.button1.Text = "Buscar";
             this.button1.UseVisualStyleBackColor = true;
@@ -111,11 +113,12 @@
             this.PurchasePrice,
             this.SalePrice,
             this.Sign});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 299);
+            this.dataGridView1.Location = new System.Drawing.Point(21, 323);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1297, 493);
+            this.dataGridView1.Size = new System.Drawing.Size(1586, 604);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
             this.dataGridView1.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseDoubleClick);
@@ -158,7 +161,7 @@
             this.ProductDetail.HeaderText = "Producto";
             this.ProductDetail.Name = "ProductDetail";
             this.ProductDetail.ReadOnly = true;
-            this.ProductDetail.Width = 75;
+            this.ProductDetail.Width = 107;
             // 
             // InventoryDescription
             // 
@@ -166,7 +169,7 @@
             this.InventoryDescription.HeaderText = "Descripcion";
             this.InventoryDescription.Name = "InventoryDescription";
             this.InventoryDescription.ReadOnly = true;
-            this.InventoryDescription.Width = 88;
+            this.InventoryDescription.Width = 129;
             // 
             // QuantityDescription
             // 
@@ -174,7 +177,7 @@
             this.QuantityDescription.HeaderText = "Cantidad";
             this.QuantityDescription.Name = "QuantityDescription";
             this.QuantityDescription.ReadOnly = true;
-            this.QuantityDescription.Width = 74;
+            this.QuantityDescription.Width = 107;
             // 
             // EventDate
             // 
@@ -182,7 +185,7 @@
             this.EventDate.HeaderText = "Fecha Ingreso";
             this.EventDate.Name = "EventDate";
             this.EventDate.ReadOnly = true;
-            this.EventDate.Width = 92;
+            this.EventDate.Width = 136;
             // 
             // ConstructDate
             // 
@@ -190,7 +193,7 @@
             this.ConstructDate.HeaderText = "Fecha Fabricación";
             this.ConstructDate.Name = "ConstructDate";
             this.ConstructDate.ReadOnly = true;
-            this.ConstructDate.Width = 110;
+            this.ConstructDate.Width = 167;
             // 
             // DueDate
             // 
@@ -198,7 +201,7 @@
             this.DueDate.HeaderText = "Fecha Vencimiento";
             this.DueDate.Name = "DueDate";
             this.DueDate.ReadOnly = true;
-            this.DueDate.Width = 113;
+            this.DueDate.Width = 171;
             // 
             // BarCodeData
             // 
@@ -206,7 +209,7 @@
             this.BarCodeData.HeaderText = "Codigo Barras";
             this.BarCodeData.Name = "BarCodeData";
             this.BarCodeData.ReadOnly = true;
-            this.BarCodeData.Width = 90;
+            this.BarCodeData.Width = 137;
             // 
             // IdInventoryClassification
             // 
@@ -222,7 +225,7 @@
             this.ClassificationDescription.HeaderText = "Clasificacion";
             this.ClassificationDescription.Name = "ClassificationDescription";
             this.ClassificationDescription.ReadOnly = true;
-            this.ClassificationDescription.Width = 91;
+            this.ClassificationDescription.Width = 136;
             // 
             // IdInventoryLocalization
             // 
@@ -238,7 +241,7 @@
             this.LocalizationDescription.HeaderText = "Localización";
             this.LocalizationDescription.Name = "LocalizationDescription";
             this.LocalizationDescription.ReadOnly = true;
-            this.LocalizationDescription.Width = 91;
+            this.LocalizationDescription.Width = 133;
             // 
             // PurchasePrice
             // 
@@ -246,7 +249,7 @@
             this.PurchasePrice.HeaderText = "Precio Unitario Compra";
             this.PurchasePrice.Name = "PurchasePrice";
             this.PurchasePrice.ReadOnly = true;
-            this.PurchasePrice.Width = 128;
+            this.PurchasePrice.Width = 201;
             // 
             // SalePrice
             // 
@@ -254,7 +257,7 @@
             this.SalePrice.HeaderText = "Precio Unitario Venta";
             this.SalePrice.Name = "SalePrice";
             this.SalePrice.ReadOnly = true;
-            this.SalePrice.Width = 121;
+            this.SalePrice.Width = 186;
             // 
             // Sign
             // 
@@ -262,7 +265,7 @@
             this.Sign.HeaderText = "Signo";
             this.Sign.Name = "Sign";
             this.Sign.ReadOnly = true;
-            this.Sign.Width = 59;
+            this.Sign.Width = 81;
             // 
             // dataGridView2
             // 
@@ -277,12 +280,14 @@
             this.Id,
             this.IdProduct,
             this.Quantity});
-            this.dataGridView2.Location = new System.Drawing.Point(330, 39);
+            this.dataGridView2.Location = new System.Drawing.Point(353, 72);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(979, 140);
+            this.dataGridView2.Size = new System.Drawing.Size(1254, 135);
             this.dataGridView2.TabIndex = 4;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             this.dataGridView2.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_RowHeaderMouseClick);
             // 
             // Product
@@ -291,7 +296,7 @@
             this.Product.HeaderText = "Producto";
             this.Product.Name = "Product";
             this.Product.ReadOnly = true;
-            this.Product.Width = 75;
+            this.Product.Width = 107;
             // 
             // Id
             // 
@@ -315,72 +320,80 @@
             this.Quantity.HeaderText = "Cantidad";
             this.Quantity.Name = "Quantity";
             this.Quantity.ReadOnly = true;
-            this.Quantity.Width = 74;
+            this.Quantity.Width = 107;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 14);
+            this.label1.Location = new System.Drawing.Point(18, 53);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 13);
+            this.label1.Size = new System.Drawing.Size(181, 17);
             this.label1.TabIndex = 5;
             this.label1.Text = "Ingrese el codigo de barras";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 225);
+            this.label2.Location = new System.Drawing.Point(21, 244);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(266, 13);
+            this.label2.Size = new System.Drawing.Size(355, 17);
             this.label2.TabIndex = 6;
             this.label2.Text = "Ingrese el código de barras o deje el campo en blanco:";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 242);
+            this.textBox2.Location = new System.Drawing.Point(21, 263);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(260, 20);
+            this.textBox2.Size = new System.Drawing.Size(345, 23);
             this.textBox2.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 58);
+            this.label3.Location = new System.Drawing.Point(21, 106);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(146, 13);
+            this.label3.Size = new System.Drawing.Size(194, 17);
             this.label3.TabIndex = 10;
             this.label3.Text = "Ingrese Nombre de Producto:";
             // 
             // txtNombreProducto
             // 
-            this.txtNombreProducto.Location = new System.Drawing.Point(16, 75);
+            this.txtNombreProducto.Location = new System.Drawing.Point(21, 127);
+            this.txtNombreProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNombreProducto.Name = "txtNombreProducto";
-            this.txtNombreProducto.Size = new System.Drawing.Size(242, 20);
+            this.txtNombreProducto.Size = new System.Drawing.Size(321, 23);
             this.txtNombreProducto.TabIndex = 11;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(327, 14);
+            this.label4.Location = new System.Drawing.Point(359, 53);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(104, 13);
+            this.label4.Size = new System.Drawing.Size(136, 17);
             this.label4.TabIndex = 12;
             this.label4.Text = "Existencias Actuales";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 283);
+            this.label5.Location = new System.Drawing.Point(21, 303);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 13);
+            this.label5.Size = new System.Drawing.Size(154, 17);
             this.label5.TabIndex = 13;
             this.label5.Text = "Detalle de movimientos";
             // 
             // btnEntrada
             // 
-            this.btnEntrada.Location = new System.Drawing.Point(330, 239);
+            this.btnEntrada.Location = new System.Drawing.Point(391, 261);
+            this.btnEntrada.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEntrada.Name = "btnEntrada";
-            this.btnEntrada.Size = new System.Drawing.Size(118, 23);
+            this.btnEntrada.Size = new System.Drawing.Size(157, 28);
             this.btnEntrada.TabIndex = 2;
             this.btnEntrada.Text = "Entrada";
             this.btnEntrada.UseVisualStyleBackColor = true;
@@ -388,9 +401,10 @@
             // 
             // btnSalida
             // 
-            this.btnSalida.Location = new System.Drawing.Point(475, 239);
+            this.btnSalida.Location = new System.Drawing.Point(565, 261);
+            this.btnSalida.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSalida.Name = "btnSalida";
-            this.btnSalida.Size = new System.Drawing.Size(117, 23);
+            this.btnSalida.Size = new System.Drawing.Size(156, 28);
             this.btnSalida.TabIndex = 14;
             this.btnSalida.Text = "Salida";
             this.btnSalida.UseVisualStyleBackColor = true;
@@ -398,11 +412,12 @@
             // 
             // Inventario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Yellow;
-            this.ClientSize = new System.Drawing.Size(1321, 804);
+            this.ClientSize = new System.Drawing.Size(1620, 991);
             this.Controls.Add(this.btnSalida);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -416,9 +431,12 @@
             this.Controls.Add(this.btnEntrada);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtCodigoBarras);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Inventario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inventario";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Inventario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();

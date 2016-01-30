@@ -126,5 +126,10 @@ namespace Facturando
             dataGridView1.DataSource = _inventory.GetInventoryDetail(inventory.InventoryDetail.Id, true);
             dataGridView2.DataSource = _inventory.GetInventory(inventory.Inventory.Id);
         }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

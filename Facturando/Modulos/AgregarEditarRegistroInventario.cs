@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -119,8 +122,22 @@ namespace Facturando.Modulos
 
             try
             {
-                Inventory.InventoryDetail.PurchasePrice = decimal.Parse(txtPrecioCompra.Text);
-                Inventory.InventoryDetail.SalePrice = decimal.Parse(txtPrecioVenta.Text);
+                string decimalSeparator = Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+                Regex rex = new Regex(string.Concat("\\d+",decimalSeparator,"\\d+"));
+
+                var isValid = rex.IsMatch(txtPrecioCompra.Text);
+                var isValid2 = rex.IsMatch(txtPrecioVenta.Text);
+
+                if (isValid && isValid2)
+                {
+                    Inventory.InventoryDetail.PurchasePrice = decimal.Parse(txtPrecioCompra.Text);
+                    Inventory.InventoryDetail.SalePrice = decimal.Parse(txtPrecioVenta.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Al parecer hay un valor equivocado en la los datos de valor de compra o venta, revise nuevamente");
+                    return;
+                }
             }
             catch (Exception)
             {
