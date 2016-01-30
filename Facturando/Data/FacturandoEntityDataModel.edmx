@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FacturandoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FacturandoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Action">
           <Key>
             <PropertyRef Name="Id" />
@@ -82,8 +82,8 @@
           <Property Name="BarCodeData" Type="nvarchar" MaxLength="500" />
           <Property Name="IdInventoryClassification" Type="uniqueidentifier" />
           <Property Name="IdInventoryLocalization" Type="uniqueidentifier" />
-          <Property Name="PurchasePrice" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="SalePrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PurchasePrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SalePrice" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="InventoryLocation">
           <Key>
@@ -532,8 +532,7 @@
             <End Role="UserRol" EntitySet="UserRol" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FacturandoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -627,8 +626,8 @@
           <Property Name="BarCodeData" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IdInventoryClassification" Type="Guid" />
           <Property Name="IdInventoryLocalization" Type="Guid" />
-          <Property Name="PurchasePrice" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="SalePrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PurchasePrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SalePrice" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="Inventory" Relationship="Self.FK_InventoryDetail_Inventory" FromRole="InventoryDetail" ToRole="Inventory" />
           <NavigationProperty Name="InventoryClassification" Relationship="Self.FK_InventoryDetail_InventoryClassification" FromRole="InventoryDetail" ToRole="InventoryClassification" />
           <NavigationProperty Name="InventoryLocation" Relationship="Self.FK_InventoryDetail_InventoryLocation" FromRole="InventoryDetail" ToRole="InventoryLocation" />

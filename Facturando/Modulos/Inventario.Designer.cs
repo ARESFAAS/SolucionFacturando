@@ -31,20 +31,6 @@
             this.txtCodigoBarras = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtNombreProducto = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.btnEntrada = new System.Windows.Forms.Button();
-            this.btnSalida = new System.Windows.Forms.Button();
             this.IdDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdInventory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdInventoryType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,6 +49,20 @@
             this.PurchasePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SalePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sign = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtNombreProducto = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnEntrada = new System.Windows.Forms.Button();
+            this.btnSalida = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -88,6 +88,9 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.DarkOrange;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdDetalle,
@@ -117,10 +120,157 @@
             this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
             this.dataGridView1.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseDoubleClick);
             // 
+            // IdDetalle
+            // 
+            this.IdDetalle.DataPropertyName = "Id";
+            this.IdDetalle.HeaderText = "IdDetalle";
+            this.IdDetalle.Name = "IdDetalle";
+            this.IdDetalle.ReadOnly = true;
+            this.IdDetalle.Visible = false;
+            // 
+            // IdInventory
+            // 
+            this.IdInventory.DataPropertyName = "IdInventory";
+            this.IdInventory.HeaderText = "IdInventory";
+            this.IdInventory.Name = "IdInventory";
+            this.IdInventory.ReadOnly = true;
+            this.IdInventory.Visible = false;
+            // 
+            // IdInventoryType
+            // 
+            this.IdInventoryType.DataPropertyName = "IdInventoryType";
+            this.IdInventoryType.HeaderText = "IdInventoryType";
+            this.IdInventoryType.Name = "IdInventoryType";
+            this.IdInventoryType.ReadOnly = true;
+            this.IdInventoryType.Visible = false;
+            // 
+            // IdProductDetail
+            // 
+            this.IdProductDetail.DataPropertyName = "IdProduct";
+            this.IdProductDetail.HeaderText = "IdProductDetail";
+            this.IdProductDetail.Name = "IdProductDetail";
+            this.IdProductDetail.ReadOnly = true;
+            this.IdProductDetail.Visible = false;
+            // 
+            // ProductDetail
+            // 
+            this.ProductDetail.DataPropertyName = "Product";
+            this.ProductDetail.HeaderText = "Producto";
+            this.ProductDetail.Name = "ProductDetail";
+            this.ProductDetail.ReadOnly = true;
+            this.ProductDetail.Width = 75;
+            // 
+            // InventoryDescription
+            // 
+            this.InventoryDescription.DataPropertyName = "InventoryDescription";
+            this.InventoryDescription.HeaderText = "Descripcion";
+            this.InventoryDescription.Name = "InventoryDescription";
+            this.InventoryDescription.ReadOnly = true;
+            this.InventoryDescription.Width = 88;
+            // 
+            // QuantityDescription
+            // 
+            this.QuantityDescription.DataPropertyName = "Quantity";
+            this.QuantityDescription.HeaderText = "Cantidad";
+            this.QuantityDescription.Name = "QuantityDescription";
+            this.QuantityDescription.ReadOnly = true;
+            this.QuantityDescription.Width = 74;
+            // 
+            // EventDate
+            // 
+            this.EventDate.DataPropertyName = "EventDate";
+            this.EventDate.HeaderText = "Fecha Ingreso";
+            this.EventDate.Name = "EventDate";
+            this.EventDate.ReadOnly = true;
+            this.EventDate.Width = 92;
+            // 
+            // ConstructDate
+            // 
+            this.ConstructDate.DataPropertyName = "ConstructDate";
+            this.ConstructDate.HeaderText = "Fecha Fabricación";
+            this.ConstructDate.Name = "ConstructDate";
+            this.ConstructDate.ReadOnly = true;
+            this.ConstructDate.Width = 110;
+            // 
+            // DueDate
+            // 
+            this.DueDate.DataPropertyName = "DueDate";
+            this.DueDate.HeaderText = "Fecha Vencimiento";
+            this.DueDate.Name = "DueDate";
+            this.DueDate.ReadOnly = true;
+            this.DueDate.Width = 113;
+            // 
+            // BarCodeData
+            // 
+            this.BarCodeData.DataPropertyName = "BarCodeData";
+            this.BarCodeData.HeaderText = "Codigo Barras";
+            this.BarCodeData.Name = "BarCodeData";
+            this.BarCodeData.ReadOnly = true;
+            this.BarCodeData.Width = 90;
+            // 
+            // IdInventoryClassification
+            // 
+            this.IdInventoryClassification.DataPropertyName = "IdInventoryClassification";
+            this.IdInventoryClassification.HeaderText = "IdInventoryClassification";
+            this.IdInventoryClassification.Name = "IdInventoryClassification";
+            this.IdInventoryClassification.ReadOnly = true;
+            this.IdInventoryClassification.Visible = false;
+            // 
+            // ClassificationDescription
+            // 
+            this.ClassificationDescription.DataPropertyName = "ClassificationDescription";
+            this.ClassificationDescription.HeaderText = "Clasificacion";
+            this.ClassificationDescription.Name = "ClassificationDescription";
+            this.ClassificationDescription.ReadOnly = true;
+            this.ClassificationDescription.Width = 91;
+            // 
+            // IdInventoryLocalization
+            // 
+            this.IdInventoryLocalization.DataPropertyName = "IdInventoryLocalization";
+            this.IdInventoryLocalization.HeaderText = "IdInventoryLocation";
+            this.IdInventoryLocalization.Name = "IdInventoryLocalization";
+            this.IdInventoryLocalization.ReadOnly = true;
+            this.IdInventoryLocalization.Visible = false;
+            // 
+            // LocalizationDescription
+            // 
+            this.LocalizationDescription.DataPropertyName = "LocalizationDescription";
+            this.LocalizationDescription.HeaderText = "Localización";
+            this.LocalizationDescription.Name = "LocalizationDescription";
+            this.LocalizationDescription.ReadOnly = true;
+            this.LocalizationDescription.Width = 91;
+            // 
+            // PurchasePrice
+            // 
+            this.PurchasePrice.DataPropertyName = "PurchasePrice";
+            this.PurchasePrice.HeaderText = "Precio Unitario Compra";
+            this.PurchasePrice.Name = "PurchasePrice";
+            this.PurchasePrice.ReadOnly = true;
+            this.PurchasePrice.Width = 128;
+            // 
+            // SalePrice
+            // 
+            this.SalePrice.DataPropertyName = "SalePrice";
+            this.SalePrice.HeaderText = "Precio Unitario Venta";
+            this.SalePrice.Name = "SalePrice";
+            this.SalePrice.ReadOnly = true;
+            this.SalePrice.Width = 121;
+            // 
+            // Sign
+            // 
+            this.Sign.DataPropertyName = "Sign";
+            this.Sign.HeaderText = "Signo";
+            this.Sign.Name = "Sign";
+            this.Sign.ReadOnly = true;
+            this.Sign.Width = 59;
+            // 
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.DarkOrange;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Product,
@@ -141,6 +291,7 @@
             this.Product.HeaderText = "Producto";
             this.Product.Name = "Product";
             this.Product.ReadOnly = true;
+            this.Product.Width = 75;
             // 
             // Id
             // 
@@ -164,6 +315,7 @@
             this.Quantity.HeaderText = "Cantidad";
             this.Quantity.Name = "Quantity";
             this.Quantity.ReadOnly = true;
+            this.Quantity.Width = 74;
             // 
             // label1
             // 
@@ -244,142 +396,12 @@
             this.btnSalida.UseVisualStyleBackColor = true;
             this.btnSalida.Click += new System.EventHandler(this.btnSalida_Click);
             // 
-            // IdDetalle
-            // 
-            this.IdDetalle.DataPropertyName = "Id";
-            this.IdDetalle.HeaderText = "IdDetalle";
-            this.IdDetalle.Name = "IdDetalle";
-            this.IdDetalle.ReadOnly = true;
-            this.IdDetalle.Visible = false;
-            // 
-            // IdInventory
-            // 
-            this.IdInventory.DataPropertyName = "IdInventory";
-            this.IdInventory.HeaderText = "IdInventory";
-            this.IdInventory.Name = "IdInventory";
-            this.IdInventory.ReadOnly = true;
-            this.IdInventory.Visible = false;
-            // 
-            // IdInventoryType
-            // 
-            this.IdInventoryType.DataPropertyName = "IdInventoryType";
-            this.IdInventoryType.HeaderText = "IdInventoryType";
-            this.IdInventoryType.Name = "IdInventoryType";
-            this.IdInventoryType.ReadOnly = true;
-            this.IdInventoryType.Visible = false;
-            // 
-            // IdProductDetail
-            // 
-            this.IdProductDetail.DataPropertyName = "IdProduct";
-            this.IdProductDetail.HeaderText = "IdProductDetail";
-            this.IdProductDetail.Name = "IdProductDetail";
-            this.IdProductDetail.ReadOnly = true;
-            this.IdProductDetail.Visible = false;
-            // 
-            // ProductDetail
-            // 
-            this.ProductDetail.DataPropertyName = "Product";
-            this.ProductDetail.HeaderText = "Producto";
-            this.ProductDetail.Name = "ProductDetail";
-            this.ProductDetail.ReadOnly = true;
-            // 
-            // InventoryDescription
-            // 
-            this.InventoryDescription.DataPropertyName = "InventoryDescription";
-            this.InventoryDescription.HeaderText = "Descripcion";
-            this.InventoryDescription.Name = "InventoryDescription";
-            this.InventoryDescription.ReadOnly = true;
-            // 
-            // QuantityDescription
-            // 
-            this.QuantityDescription.DataPropertyName = "Quantity";
-            this.QuantityDescription.HeaderText = "Cantidad";
-            this.QuantityDescription.Name = "QuantityDescription";
-            this.QuantityDescription.ReadOnly = true;
-            // 
-            // EventDate
-            // 
-            this.EventDate.DataPropertyName = "EventDate";
-            this.EventDate.HeaderText = "Fecha Ingreso";
-            this.EventDate.Name = "EventDate";
-            this.EventDate.ReadOnly = true;
-            // 
-            // ConstructDate
-            // 
-            this.ConstructDate.DataPropertyName = "ConstructDate";
-            this.ConstructDate.HeaderText = "Fecha Fabricación";
-            this.ConstructDate.Name = "ConstructDate";
-            this.ConstructDate.ReadOnly = true;
-            // 
-            // DueDate
-            // 
-            this.DueDate.DataPropertyName = "DueDate";
-            this.DueDate.HeaderText = "Fecha Vencimiento";
-            this.DueDate.Name = "DueDate";
-            this.DueDate.ReadOnly = true;
-            // 
-            // BarCodeData
-            // 
-            this.BarCodeData.DataPropertyName = "BarCodeData";
-            this.BarCodeData.HeaderText = "Codigo Barras";
-            this.BarCodeData.Name = "BarCodeData";
-            this.BarCodeData.ReadOnly = true;
-            // 
-            // IdInventoryClassification
-            // 
-            this.IdInventoryClassification.DataPropertyName = "IdInventoryClassification";
-            this.IdInventoryClassification.HeaderText = "IdInventoryClassification";
-            this.IdInventoryClassification.Name = "IdInventoryClassification";
-            this.IdInventoryClassification.ReadOnly = true;
-            this.IdInventoryClassification.Visible = false;
-            // 
-            // ClassificationDescription
-            // 
-            this.ClassificationDescription.DataPropertyName = "ClassificationDescription";
-            this.ClassificationDescription.HeaderText = "Clasificacion";
-            this.ClassificationDescription.Name = "ClassificationDescription";
-            this.ClassificationDescription.ReadOnly = true;
-            // 
-            // IdInventoryLocalization
-            // 
-            this.IdInventoryLocalization.DataPropertyName = "IdInventoryLocalization";
-            this.IdInventoryLocalization.HeaderText = "IdInventoryLocation";
-            this.IdInventoryLocalization.Name = "IdInventoryLocalization";
-            this.IdInventoryLocalization.ReadOnly = true;
-            this.IdInventoryLocalization.Visible = false;
-            // 
-            // LocalizationDescription
-            // 
-            this.LocalizationDescription.DataPropertyName = "LocalizationDescription";
-            this.LocalizationDescription.HeaderText = "Localización";
-            this.LocalizationDescription.Name = "LocalizationDescription";
-            this.LocalizationDescription.ReadOnly = true;
-            // 
-            // PurchasePrice
-            // 
-            this.PurchasePrice.DataPropertyName = "PurchasePrice";
-            this.PurchasePrice.HeaderText = "Precio Unitario Compra";
-            this.PurchasePrice.Name = "PurchasePrice";
-            this.PurchasePrice.ReadOnly = true;
-            // 
-            // SalePrice
-            // 
-            this.SalePrice.DataPropertyName = "SalePrice";
-            this.SalePrice.HeaderText = "Precio Unitario Venta";
-            this.SalePrice.Name = "SalePrice";
-            this.SalePrice.ReadOnly = true;
-            // 
-            // Sign
-            // 
-            this.Sign.DataPropertyName = "Sign";
-            this.Sign.HeaderText = "Signo";
-            this.Sign.Name = "Sign";
-            this.Sign.ReadOnly = true;
-            // 
             // Inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.Yellow;
             this.ClientSize = new System.Drawing.Size(1321, 804);
             this.Controls.Add(this.btnSalida);
             this.Controls.Add(this.label5);
@@ -395,6 +417,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtCodigoBarras);
             this.Name = "Inventario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inventario";
             this.Load += new System.EventHandler(this.Inventario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

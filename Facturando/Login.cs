@@ -23,5 +23,10 @@ namespace Facturando
             Principal principal = new Principal();
             principal.Show();
         }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,9 +38,11 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -51,6 +54,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.button6);
@@ -67,11 +71,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(42, 9);
+            this.label2.Location = new System.Drawing.Point(20, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.Size = new System.Drawing.Size(117, 13);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Facturando";
+            this.label2.Text = "Facturando Versión 1.0";
             // 
             // label1
             // 
@@ -84,8 +88,8 @@
             // 
             // button6
             // 
-            this.button6.BackColor = System.Drawing.Color.Orange;
-            this.button6.Location = new System.Drawing.Point(34, 283);
+            this.button6.Enabled = false;
+            this.button6.Location = new System.Drawing.Point(34, 375);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(84, 23);
             this.button6.TabIndex = 5;
@@ -95,8 +99,8 @@
             // 
             // button5
             // 
-            this.button5.BackColor = System.Drawing.Color.Aquamarine;
-            this.button5.Location = new System.Drawing.Point(34, 243);
+            this.button5.Enabled = false;
+            this.button5.Location = new System.Drawing.Point(34, 335);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(84, 23);
             this.button5.TabIndex = 4;
@@ -107,7 +111,8 @@
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.Olive;
-            this.button4.Location = new System.Drawing.Point(34, 200);
+            this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button4.Location = new System.Drawing.Point(34, 292);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(84, 23);
             this.button4.TabIndex = 3;
@@ -118,7 +123,8 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.DarkRed;
-            this.button3.Location = new System.Drawing.Point(34, 158);
+            this.button3.ForeColor = System.Drawing.Color.GhostWhite;
+            this.button3.Location = new System.Drawing.Point(34, 250);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(84, 23);
             this.button3.TabIndex = 2;
@@ -129,7 +135,8 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button2.Location = new System.Drawing.Point(34, 117);
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button2.Location = new System.Drawing.Point(34, 209);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(84, 23);
             this.button2.TabIndex = 1;
@@ -140,13 +147,24 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Gold;
-            this.button1.Location = new System.Drawing.Point(34, 77);
+            this.button1.ForeColor = System.Drawing.Color.Blue;
+            this.button1.Location = new System.Drawing.Point(34, 169);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(84, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Inventario";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(23, 82);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
             // 
             // Principal
             // 
@@ -162,6 +180,7 @@
             this.splitContainer1.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -177,5 +196,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
