@@ -26,24 +26,51 @@ namespace Facturando
 
         private void Inventario_Load(object sender, EventArgs e)
         {
-            dataGridView2.DataSource = _inventory.GetInventory();            
+            
         }
 
         private void dataGridView2_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            dataGridView1.DataSource = _inventory.GetInventoryDetail();
+        {            
             if (dataGridView2.SelectedRows.Count > 0)
             {
                 DataGridViewRow row = dataGridView2.SelectedRows[0];
                 _inventoryModelTemp = (InventoryModel)row.DataBoundItem;
+                dataGridView1.DataSource = _inventory.GetInventoryDetail(_inventoryModelTemp.IdProduct);
             }
+
         }
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = dataGridView1.SelectedRows[0];
+                _inventoryDetailTemp = (InventoryDetailModel)row.DataBoundItem;
+            }
+            else {
+                _inventoryDetailTemp = null;                
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void dataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = dataGridView1.SelectedRows[0];
+                _inventoryDetailTemp = (InventoryDetailModel)row.DataBoundItem;
+                AgregarEditarRegistroInventario detalleInventario = new AgregarEditarRegistroInventario();
+                detalleInventario.Operation = "EDICION";
+                detalleInventario.Inventory = new InventorySaveModel
+                {
+                    Inventory = _inventoryModelTemp,
+                    InventoryDetail = _inventoryDetailTemp
+                };
+                detalleInventario.Text = "Editar Registro de Inventario";
+                detalleInventario.Show(this);
+            }
+        }
+
+        private void btnEntrada_Click(object sender, EventArgs e)
         {
             _inventoryDetailTemp = new InventoryDetailModel();
             _inventoryDetailTemp.BarCodeData = textBox2.Text;
@@ -51,7 +78,7 @@ namespace Facturando
             _inventoryDetailTemp.DueDate = DateTime.Now;
             _inventoryDetailTemp.EventDate = DateTime.Now;
             AgregarEditarRegistroInventario detalleInventario = new AgregarEditarRegistroInventario();
-            detalleInventario.IsUpdate = false;            
+            detalleInventario.Operation = "ENTRADA";
             detalleInventario.Inventory = new InventorySaveModel
             {
                 Inventory = _inventoryModelTemp,
@@ -61,24 +88,43 @@ namespace Facturando
             detalleInventario.Show(this);
         }
 
-        private void dataGridView1_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void btnSalida_Click(object sender, EventArgs e)
         {
-            if (dataGridView2.SelectedRows.Count > 0)
+            if (_inventoryDetailTemp == null)
             {
-                DataGridViewRow row = dataGridView1.SelectedRows[0];
-                _inventoryDetailTemp = (InventoryDetailModel)row.DataBoundItem;
-                AgregarEditarRegistroInventario detalleInventario = new AgregarEditarRegistroInventario();
-                detalleInventario.IsUpdate = true;
-                detalleInventario.Inventory.InventoryDetail = _inventoryDetailTemp;
-                detalleInventario.Text = "Editar Registro de Inventario";
-                detalleInventario.Show();
+                MessageBox.Show("No ha seleccionado ningun registro del detalle del inventario, seleccione un registro para grabar una salida");
             }
+            else
+            {
+                if (!string.IsNullOrEmpty(_inventoryDetailTemp.Sign) && _inventoryDetailTemp.Sign.Equals("+"))
+                {
+                    AgregarEditarRegistroInventario detalleInventario = new AgregarEditarRegistroInventario();
+                    detalleInventario.Operation = "SALIDA";
+                    detalleInventario.Inventory = new InventorySaveModel
+                    {
+                        Inventory = _inventoryModelTemp,
+                        InventoryDetail = _inventoryDetailTemp
+                    };
+                    detalleInventario.Text = "Agregar Registro de Inventario";
+                    detalleInventario.Show(this);
+                }
+                else
+                {
+                    MessageBox.Show("seleccione un registro del inventario con signo + para poder grabar una salida");
+                }
+            }            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dataGridView2.DataSource = _inventory.GetInventory(txtCodigoBarras.Text, txtNombreProducto.Text);
+            dataGridView1.DataSource = new List<InventoryDetailModel>();
         }
 
         public void UpdateInventoryInfo(InventorySaveModel inventory)
         {
-            dataGridView1.DataSource = _inventory.GetInventoryDetail();
-            dataGridView2.DataSource = _inventory.GetInventory();
+            dataGridView1.DataSource = _inventory.GetInventoryDetail(inventory.InventoryDetail.Id, true);
+            dataGridView2.DataSource = _inventory.GetInventory(inventory.Inventory.Id);
         }
     }
 }

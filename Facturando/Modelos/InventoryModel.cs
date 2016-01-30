@@ -18,8 +18,8 @@ namespace Facturando.Modelos
         public Guid IdInventory { get; set; }
         public Guid IdInventoryType { get; set; }
         public Guid IdProduct { get; set; }
-        public string Product { get; set; }        
-        public string InventoryDescription { get; set; }        
+        public string Product { get; set; }
+        public string InventoryDescription { get; set; }
         public int Quantity { get; set; }
         public DateTime EventDate { get; set; }
         public DateTime ConstructDate { get; set; }
@@ -31,6 +31,7 @@ namespace Facturando.Modelos
         public string LocalizationDescription { get; set; }
         public decimal PurchasePrice { get; set; }
         public decimal SalePrice { get; set; }
+        public string Sign { get; set; }
     }
     public class InventoryTypeModel {
         public Guid Id { get; set; }

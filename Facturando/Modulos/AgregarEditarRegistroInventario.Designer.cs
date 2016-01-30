@@ -189,7 +189,6 @@
             // txtCantidad
             // 
             this.txtCantidad.Location = new System.Drawing.Point(244, 367);
-            this.txtCantidad.Mask = "9999999";
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(208, 20);
             this.txtCantidad.TabIndex = 22;
@@ -243,7 +242,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(377, 847);
+            this.btnGuardar.Location = new System.Drawing.Point(377, 853);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 32;

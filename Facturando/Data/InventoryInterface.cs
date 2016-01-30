@@ -9,15 +9,16 @@ namespace Facturando.Data
 {
     interface InventoryInterface
     {
-        List<InventoryDetailModel> GetInventoryDetail();
-        List<InventoryModel> GetInventory();
+        List<InventoryDetailModel> GetInventoryDetail(Guid producId);
+        List<InventoryDetailModel> GetInventoryDetail(Guid id, bool byId);
+        List<InventoryModel> GetInventory(string barCode, string productName);
+        List<InventoryModel> GetInventory(Guid id);
+        List<InventoryTypeModel> GetInventoryType(string sign);
         List<InventoryTypeModel> GetInventoryType();
         List<InventoryClassificationModel> GetInventoryClassification();
         List<InventoryLocationModel> GetyInventoryLocation();
         List<ProductModel> GetProduct();
-
         InventorySaveModel SaveInventory(InventorySaveModel inventory);
         InventorySaveModel UpdateInventory(InventorySaveModel inventory);
-
     }
 }
