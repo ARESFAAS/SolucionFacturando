@@ -59,6 +59,7 @@
     <Compile Include="Data\Bill.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\BillData.cs" />
     <Compile Include="Data\BillDetail.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -82,6 +83,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FacturandoEntityDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\IBill.cs" />
+    <Compile Include="Data\IdentificacionType.cs">
+      <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Inventory.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
@@ -133,6 +138,7 @@
     <Compile Include="Data\UserRol.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\BillModel.cs" />
     <Compile Include="Modelos\InventoryModel.cs" />
     <Compile Include="Modulos\AgregarEditarRegistroInventario.cs">
       <SubType>Form</SubType>
@@ -192,6 +198,9 @@
     </Compile>
     <EmbeddedResource Include="Modulos\AgregarEditarRegistroInventario.resx">
       <DependentUpon>AgregarEditarRegistroInventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Facturacion.resx">
+      <DependentUpon>Facturacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Inventario.resx">
       <DependentUpon>Inventario.cs</DependentUpon>

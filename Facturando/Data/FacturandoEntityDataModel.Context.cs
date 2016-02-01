@@ -46,5 +46,6 @@ namespace Facturando.Data
         public DbSet<UnitMeasure> UnitMeasure { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<UserRol> UserRol { get; set; }
+        public DbSet<IdentificacionType> IdentificacionType { get; set; }
     }
 }

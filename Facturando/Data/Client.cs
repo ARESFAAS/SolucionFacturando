@@ -21,15 +21,16 @@ namespace Facturando.Data
         }
     
         public System.Guid Id { get; set; }
-        public string IdentificationType { get; set; }
         public string IdentificationNumber { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public decimal DisccountPercent { get; set; }
+        public Nullable<System.Guid> IdIdentificationType { get; set; }
     
         public virtual ICollection<Bill> Bill { get; set; }
         public virtual ICollection<Remission> Remission { get; set; }
+        public virtual IdentificacionType IdentificacionType { get; set; }
     }
 }

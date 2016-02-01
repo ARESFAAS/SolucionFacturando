@@ -17,7 +17,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="BillNumber" Type="bigint" Nullable="false" />
           <Property Name="IdClient" Type="uniqueidentifier" />
         </EntityType>
@@ -29,7 +29,7 @@
           <Property Name="IdBill" Type="uniqueidentifier" Nullable="false" />
           <Property Name="IdProduct" Type="uniqueidentifier" />
           <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="BillTaxes">
           <Key>
@@ -38,20 +38,27 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="IdTax" Type="uniqueidentifier" />
           <Property Name="IdBill" Type="uniqueidentifier" />
-          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="IdentificationType" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="IdIdentificationType" Type="uniqueidentifier" />
           <Property Name="IdentificationNumber" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="255" />
           <Property Name="Phone" Type="nvarchar" MaxLength="100" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
-          <Property Name="DisccountPercent" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DisccountPercent" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IdentificacionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
@@ -120,7 +127,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="RemissionNumber" Type="bigint" Nullable="false" />
           <Property Name="IdClient" Type="uniqueidentifier" />
         </EntityType>
@@ -132,7 +139,7 @@
           <Property Name="IdRemission" Type="uniqueidentifier" />
           <Property Name="IdProduct" Type="uniqueidentifier" />
           <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
@@ -163,7 +170,7 @@
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="PercentageValue" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PercentageValue" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="UnitMeasure">
           <Key>
@@ -246,6 +253,18 @@
             </Principal>
             <Dependent Role="BillTaxes">
               <PropertyRef Name="IdTax" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_IdentificacionType">
+          <End Role="IdentificacionType" Type="Self.IdentificacionType" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentificacionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdIdentificationType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -435,6 +454,7 @@
           <EntitySet Name="BillDetail" EntityType="Self.BillDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillTaxes" EntityType="Self.BillTaxes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentificacionType" EntityType="Self.IdentificacionType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InventoryClassification" EntityType="Self.InventoryClassification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InventoryDetail" EntityType="Self.InventoryDetail" Schema="dbo" store:Type="Tables" />
@@ -470,6 +490,10 @@
           <AssociationSet Name="FK_BillTaxes_Tax" Association="Self.FK_BillTaxes_Tax">
             <End Role="Tax" EntitySet="Tax" />
             <End Role="BillTaxes" EntitySet="BillTaxes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_IdentificacionType" Association="Self.FK_Client_IdentificacionType">
+            <End Role="IdentificacionType" EntitySet="IdentificacionType" />
+            <End Role="Client" EntitySet="Client" />
           </AssociationSet>
           <AssociationSet Name="FK_Inventory_Product" Association="Self.FK_Inventory_Product">
             <End Role="Product" EntitySet="Product" />
@@ -549,7 +573,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="BillNumber" Type="Int64" Nullable="false" />
           <Property Name="IdClient" Type="Guid" />
           <NavigationProperty Name="Client" Relationship="Self.FK_Bill_Client" FromRole="Bill" ToRole="Client" />
@@ -564,7 +588,7 @@
           <Property Name="IdBill" Type="Guid" Nullable="false" />
           <Property Name="IdProduct" Type="Guid" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <NavigationProperty Name="Bill" Relationship="Self.FK_BillDetail_Bill" FromRole="BillDetail" ToRole="Bill" />
           <NavigationProperty Name="Product" Relationship="Self.FK_BillDetail_Product" FromRole="BillDetail" ToRole="Product" />
         </EntityType>
@@ -575,7 +599,7 @@
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="IdTax" Type="Guid" />
           <Property Name="IdBill" Type="Guid" />
-          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <NavigationProperty Name="Bill" Relationship="Self.FK_BillTaxes_Bill" FromRole="BillTaxes" ToRole="Bill" />
           <NavigationProperty Name="Tax" Relationship="Self.FK_BillTaxes_Tax" FromRole="BillTaxes" ToRole="Tax" />
         </EntityType>
@@ -584,15 +608,16 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="IdentificationType" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="IdentificationNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DisccountPercent" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DisccountPercent" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <NavigationProperty Name="Bill" Relationship="Self.FK_Bill_Client" FromRole="Client" ToRole="Bill" />
           <NavigationProperty Name="Remission" Relationship="Self.FK_Remission_Client" FromRole="Client" ToRole="Remission" />
+          <Property Name="IdIdentificationType" Type="Guid" />
+          <NavigationProperty Name="IdentificacionType" Relationship="FacturandoModel.FK_Client_IdentificacionType" FromRole="Client" ToRole="IdentificacionType" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
@@ -675,7 +700,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="RemissionNumber" Type="Int64" Nullable="false" />
           <Property Name="IdClient" Type="Guid" />
           <NavigationProperty Name="Client" Relationship="Self.FK_Remission_Client" FromRole="Remission" ToRole="Client" />
@@ -689,7 +714,7 @@
           <Property Name="IdRemission" Type="Guid" />
           <Property Name="IdProduct" Type="Guid" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Self.FK_RemissionDetail_Product" FromRole="RemissionDetail" ToRole="Product" />
           <NavigationProperty Name="Remission" Relationship="Self.FK_RemissionDetail_Remission" FromRole="RemissionDetail" ToRole="Remission" />
         </EntityType>
@@ -729,7 +754,7 @@
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PercentageValue" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PercentageValue" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <NavigationProperty Name="BillTaxes" Relationship="Self.FK_BillTaxes_Tax" FromRole="Tax" ToRole="BillTaxes" />
         </EntityType>
         <EntityType Name="UnitMeasure">
@@ -1102,7 +1127,32 @@
             <End Role="User" EntitySet="User" />
             <End Role="UserRol" EntitySet="UserRol" />
           </AssociationSet>
+          <EntitySet Name="IdentificacionType" EntityType="FacturandoModel.IdentificacionType" />
+          <AssociationSet Name="FK_Client_IdentificacionType" Association="FacturandoModel.FK_Client_IdentificacionType">
+            <End Role="IdentificacionType" EntitySet="IdentificacionType" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="IdentificacionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="FacturandoModel.FK_Client_IdentificacionType" FromRole="IdentificacionType" ToRole="Client" />
+        </EntityType>
+        <Association Name="FK_Client_IdentificacionType">
+          <End Type="FacturandoModel.IdentificacionType" Role="IdentificacionType" Multiplicity="0..1" />
+          <End Type="FacturandoModel.Client" Role="Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentificacionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdIdentificationType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1151,8 +1201,8 @@
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="FacturandoModel.Client">
               <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="IdIdentificationType" ColumnName="IdIdentificationType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdentificationType" ColumnName="IdentificationType" />
                 <ScalarProperty Name="IdentificationNumber" ColumnName="IdentificationNumber" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -1311,6 +1361,14 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentificacionType">
+            <EntityTypeMapping TypeName="FacturandoModel.IdentificacionType">
+              <MappingFragment StoreEntitySet="IdentificacionType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -46,6 +46,8 @@
         <AssociationConnector Association="FacturandoModel.FK_RolModule_Rol" ManuallyRouted="false" />
         <AssociationConnector Association="FacturandoModel.FK_UserRol_Rol" ManuallyRouted="false" />
         <AssociationConnector Association="FacturandoModel.FK_UserRol_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FacturandoModel.IdentificacionType" Width="1.5" PointX="1.5" PointY="1.75" />
+        <AssociationConnector Association="FacturandoModel.FK_Client_IdentificacionType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
