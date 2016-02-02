@@ -30,6 +30,7 @@
           <Property Name="IdProduct" Type="uniqueidentifier" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="BillTaxes">
           <Key>
@@ -67,6 +68,7 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="IdProduct" Type="uniqueidentifier" />
           <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="LastSalePrice" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="InventoryClassification">
           <Key>
@@ -591,6 +593,7 @@
           <Property Name="Total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <NavigationProperty Name="Bill" Relationship="Self.FK_BillDetail_Bill" FromRole="BillDetail" ToRole="Bill" />
           <NavigationProperty Name="Product" Relationship="Self.FK_BillDetail_Product" FromRole="BillDetail" ToRole="Product" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="BillTaxes">
           <Key>
@@ -628,6 +631,7 @@
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Inventory_Product" FromRole="Inventory" ToRole="Product" />
           <NavigationProperty Name="InventoryDetail" Relationship="Self.FK_InventoryDetail_Inventory" FromRole="Inventory" ToRole="InventoryDetail" />
+          <Property Name="LastSalePrice" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="InventoryClassification">
           <Key>
@@ -1180,6 +1184,7 @@
           <EntitySetMapping Name="BillDetail">
             <EntityTypeMapping TypeName="FacturandoModel.BillDetail">
               <MappingFragment StoreEntitySet="BillDetail">
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdBill" ColumnName="IdBill" />
                 <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
@@ -1215,6 +1220,7 @@
           <EntitySetMapping Name="Inventory">
             <EntityTypeMapping TypeName="FacturandoModel.Inventory">
               <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="LastSalePrice" ColumnName="LastSalePrice" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />

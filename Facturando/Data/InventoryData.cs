@@ -33,6 +33,7 @@ namespace Facturando.Data
                                 IdProduct = inventoryTemp.IdProduct.Value,
                                 Product = string.Concat(inventoryTemp.Product.Description, " ", inventoryTemp.Product.UnitMeasure.Description),
                                 Quantity = inventoryTemp.Quantity,
+                                LastSalePrice = inventoryTemp.LastSalePrice != null ? inventoryTemp.LastSalePrice.Value : 0
                             });
                         }
                     }
@@ -45,7 +46,8 @@ namespace Facturando.Data
                             Id = x.Id,
                             IdProduct = x.IdProduct.Value,
                             Product = string.Concat(x.Product.Description, " ", x.Product.UnitMeasure.Description),
-                            Quantity = x.Quantity
+                            Quantity = x.Quantity,
+                            LastSalePrice = x.LastSalePrice != null ? x.LastSalePrice.Value : 0
                         }).ToList();
                     }
                     return result;
@@ -70,7 +72,8 @@ namespace Facturando.Data
                             Id = x.Id,
                             IdProduct = x.IdProduct.Value,
                             Product = string.Concat(x.Product.Description, " ", x.Product.UnitMeasure.Description),
-                            Quantity = x.Quantity
+                            Quantity = x.Quantity,
+                            LastSalePrice = x.LastSalePrice != null  ? x.LastSalePrice.Value : 0
                         }).ToList();
                 }
             }
@@ -274,6 +277,7 @@ namespace Facturando.Data
                     {
                         inventory.Inventory.Id = inventoryExists.Id;
                         inventoryExists.Quantity += newQuantity;
+                        inventoryExists.LastSalePrice = inventory.InventoryDetail.SalePrice;
                         inventory.Inventory.IdProduct = inventoryExists.IdProduct.Value;
                         inventory.Inventory.Quantity = inventoryExists.Quantity;
                     }
@@ -284,7 +288,8 @@ namespace Facturando.Data
                         {
                             Id = inventory.Inventory.Id,
                             IdProduct = inventory.Inventory.IdProduct,
-                            Quantity = newQuantity
+                            Quantity = newQuantity,
+                            LastSalePrice = inventory.InventoryDetail.SalePrice
                         });
                     }
                     inventory.InventoryDetail.Id = Guid.NewGuid();
@@ -339,6 +344,8 @@ namespace Facturando.Data
                            .Where(x => x.Id == inventory.Inventory.Id)
                            .ToList()
                            .FirstOrDefault();
+
+                    inventoryTemp.LastSalePrice = inventory.InventoryDetail.SalePrice;
 
                     if (actualSign.Equals("+") && newSign.Equals("+"))
                     {

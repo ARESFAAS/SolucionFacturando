@@ -52,6 +52,12 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lstImpuestos = new System.Windows.Forms.ListView();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtDescuento = new System.Windows.Forms.Label();
+            this.txtSubTotal = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.dtgDetalleFactura = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -61,15 +67,10 @@
             this.IdBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtSubTotal = new System.Windows.Forms.TextBox();
-            this.txtDescuento = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.lstImpuestos = new System.Windows.Forms.ListView();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -313,6 +314,60 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "DETALLE FACTURA";
             // 
+            // lstImpuestos
+            // 
+            this.lstImpuestos.Location = new System.Drawing.Point(502, 524);
+            this.lstImpuestos.Name = "lstImpuestos";
+            this.lstImpuestos.Size = new System.Drawing.Size(303, 129);
+            this.lstImpuestos.TabIndex = 6;
+            this.lstImpuestos.UseCompatibleStateImageBehavior = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(225, 569);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(264, 46);
+            this.label16.TabIndex = 5;
+            this.label16.Text = "IMPUESTOS";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(502, 465);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(303, 53);
+            this.textBox2.TabIndex = 4;
+            // 
+            // txtDescuento
+            // 
+            this.txtDescuento.AutoSize = true;
+            this.txtDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescuento.Location = new System.Drawing.Point(225, 465);
+            this.txtDescuento.Name = "txtDescuento";
+            this.txtDescuento.Size = new System.Drawing.Size(281, 46);
+            this.txtDescuento.TabIndex = 3;
+            this.txtDescuento.Text = "DESCUENTO";
+            // 
+            // txtSubTotal
+            // 
+            this.txtSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSubTotal.Location = new System.Drawing.Point(502, 403);
+            this.txtSubTotal.Name = "txtSubTotal";
+            this.txtSubTotal.Size = new System.Drawing.Size(303, 53);
+            this.txtSubTotal.TabIndex = 2;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(271, 410);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(239, 46);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "SUBTOTAL";
+            // 
             // dtgDetalleFactura
             // 
             this.dtgDetalleFactura.AllowUserToAddRows = false;
@@ -324,6 +379,7 @@
             this.IdBill,
             this.IdProduct,
             this.Product,
+            this.UnitPrice,
             this.Quantity,
             this.Discount,
             this.Total});
@@ -409,6 +465,13 @@
             this.Product.ReadOnly = true;
             this.Product.Width = 94;
             // 
+            // UnitPrice
+            // 
+            this.UnitPrice.DataPropertyName = "UnitPrice";
+            this.UnitPrice.HeaderText = "Precio Unitario";
+            this.UnitPrice.Name = "UnitPrice";
+            this.UnitPrice.Width = 131;
+            // 
             // Quantity
             // 
             this.Quantity.DataPropertyName = "Quantity";
@@ -429,60 +492,6 @@
             this.Total.HeaderText = "SubTotal";
             this.Total.Name = "Total";
             this.Total.Width = 92;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(271, 410);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(239, 46);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "SUBTOTAL";
-            // 
-            // txtSubTotal
-            // 
-            this.txtSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSubTotal.Location = new System.Drawing.Point(502, 403);
-            this.txtSubTotal.Name = "txtSubTotal";
-            this.txtSubTotal.Size = new System.Drawing.Size(303, 53);
-            this.txtSubTotal.TabIndex = 2;
-            // 
-            // txtDescuento
-            // 
-            this.txtDescuento.AutoSize = true;
-            this.txtDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescuento.Location = new System.Drawing.Point(225, 465);
-            this.txtDescuento.Name = "txtDescuento";
-            this.txtDescuento.Size = new System.Drawing.Size(281, 46);
-            this.txtDescuento.TabIndex = 3;
-            this.txtDescuento.Text = "DESCUENTO";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(502, 465);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(303, 53);
-            this.textBox2.TabIndex = 4;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(225, 569);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(264, 46);
-            this.label16.TabIndex = 5;
-            this.label16.Text = "IMPUESTOS";
-            // 
-            // lstImpuestos
-            // 
-            this.lstImpuestos.Location = new System.Drawing.Point(502, 524);
-            this.lstImpuestos.Name = "lstImpuestos";
-            this.lstImpuestos.Size = new System.Drawing.Size(303, 129);
-            this.lstImpuestos.TabIndex = 6;
-            this.lstImpuestos.UseCompatibleStateImageBehavior = false;
             // 
             // Facturacion
             // 
@@ -545,18 +554,19 @@
         private System.Windows.Forms.ListBox lstProducto;
         private System.Windows.Forms.Button btnBuscarProducto;
         private System.Windows.Forms.DataGridView dtgDetalleFactura;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdBill;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdProduct;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Product;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label txtDescuento;
         private System.Windows.Forms.TextBox txtSubTotal;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ListView lstImpuestos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdBill;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdProduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Product;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
     }
 }

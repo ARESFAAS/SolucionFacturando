@@ -76,8 +76,10 @@ namespace Facturando
                         IdProduct = inventoryItem.IdProduct,
                         Product = inventoryItem.Product,
                         Quantity = 0,
-                        Discount = _client.DiscountPercent,
-                        Total = 0
+                        Discount = (inventoryItem.LastSalePrice * _client.DiscountPercent) / 100 ,//_client.DiscountPercent,
+                        Total = 0,
+                        UnitPrice = inventoryItem.LastSalePrice
+                        
                     });
                     dtgDetalleFactura.DataSource = new List<BillDetailModel>();
                     dtgDetalleFactura.DataSource = _billDetail;
@@ -117,8 +119,9 @@ namespace Facturando
                             IdProduct = inventoryItem.IdProduct,
                             Product = inventoryItem.Product,
                             Quantity = 0,
-                            Discount = _client.DiscountPercent,
-                            Total = 0
+                            Discount = (inventoryItem.LastSalePrice * _client.DiscountPercent) / 100,//_client.DiscountPercent,
+                            Total = 0,
+                            UnitPrice = inventoryItem.LastSalePrice
                         });
                         dtgDetalleFactura.DataSource = new List<BillDetailModel>();
                         dtgDetalleFactura.DataSource = _billDetail;
@@ -135,13 +138,26 @@ namespace Facturando
         private void dtgDetalleFactura_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewCell dtgridCellEdit = ((DataGridView)sender).CurrentCell;
-            if (dtgridCellEdit.OwningColumn.Name.Equals("Quantity") || dtgridCellEdit.OwningColumn.Name.Equals("Discount") || dtgridCellEdit.OwningColumn.Name.Equals("Total"))
+            if (dtgridCellEdit.OwningColumn.Name.Equals("Quantity") || 
+                dtgridCellEdit.OwningColumn.Name.Equals("Discount") ||               
+                dtgridCellEdit.OwningColumn.Name.Equals("UnitPrice"))
             {
                 BillDetailModel billDetailEditRow = (BillDetailModel)dtgridCellEdit.OwningRow.DataBoundItem;
+                _billDetail.Find(x => x.Id == billDetailEditRow.Id).UnitPrice = billDetailEditRow.UnitPrice;
                 _billDetail.Find(x => x.Id == billDetailEditRow.Id).Quantity = billDetailEditRow.Quantity;
                 _billDetail.Find(x => x.Id == billDetailEditRow.Id).Discount = billDetailEditRow.Discount;
+                _billDetail.Find(x => x.Id == billDetailEditRow.Id).Total =
+                    ((billDetailEditRow.UnitPrice - billDetailEditRow.Discount) * billDetailEditRow.Quantity);
+            }
+
+            if (dtgridCellEdit.OwningColumn.Name.Equals("Total"))
+            {
+                BillDetailModel billDetailEditRow = (BillDetailModel)dtgridCellEdit.OwningRow.DataBoundItem;
                 _billDetail.Find(x => x.Id == billDetailEditRow.Id).Total = billDetailEditRow.Total;
             }
+
+            dtgDetalleFactura.DataSource = new List<BillDetailModel>();
+            dtgDetalleFactura.DataSource = _billDetail;
         }
     }
 }

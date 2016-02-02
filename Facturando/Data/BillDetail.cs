@@ -19,6 +19,7 @@ namespace Facturando.Data
         public Nullable<System.Guid> IdProduct { get; set; }
         public int Quantity { get; set; }
         public decimal Total { get; set; }
+        public Nullable<decimal> UnitPrice { get; set; }
     
         public virtual Bill Bill { get; set; }
         public virtual Product Product { get; set; }

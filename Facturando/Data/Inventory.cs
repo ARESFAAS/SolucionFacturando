@@ -22,6 +22,7 @@ namespace Facturando.Data
         public System.Guid Id { get; set; }
         public Nullable<System.Guid> IdProduct { get; set; }
         public int Quantity { get; set; }
+        public Nullable<decimal> LastSalePrice { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual ICollection<InventoryDetail> InventoryDetail { get; set; }

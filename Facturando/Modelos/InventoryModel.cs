@@ -10,6 +10,7 @@ namespace Facturando.Modelos
         public Guid Id { get; set; }
         public Guid IdProduct { get; set; }
         public string Product { get; set; }
+        public decimal LastSalePrice { get; set; }
         public int Quantity { get; set; }
     }
     public class InventoryDetailModel
@@ -51,13 +52,11 @@ namespace Facturando.Modelos
         public Guid Id { get; set; }
         public string Description { get; set; }
     }
-
     public class InventorySaveModel
     {
         public InventoryModel Inventory { get; set; }
         public InventoryDetailModel InventoryDetail { get; set; }
     }
-
     interface IFormInventory
     {
         void UpdateInventoryInfo(InventorySaveModel inventory);
