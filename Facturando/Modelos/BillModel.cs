@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Facturando.Modelos
 {
@@ -12,6 +9,7 @@ namespace Facturando.Modelos
         public decimal Total { get; set; }
         public long BillNumber { get; set; }
         public Guid IdClient { get; set; }
+        public DateTime DateEvent { get; set; }
     }
 
     public class ClientModel
@@ -24,6 +22,7 @@ namespace Facturando.Modelos
         public string Phone { get; set; }
         public string Email { get; set; }
         public decimal DiscountPercent { get; set; }
+        public bool IsNew { get; set; }
     }
 
     public class BillDetailModel {
@@ -55,5 +54,12 @@ namespace Facturando.Modelos
     public class IdentificationTypeModel {
         public Guid Id { get; set; }
         public string Description { get; set; }
+    }
+
+    public class BillSaveModel {
+        public ClientModel Client { get; set; }
+        public BillModel Bill { get; set; }
+        public List<BillDetailModel> BillDetail { get; set; }
+        public List<BillTaxesModel> BillTaxes { get; set; }
     }
 }

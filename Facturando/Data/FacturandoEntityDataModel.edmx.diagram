@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0f192e61a07d4796a329d064ad8451dc" Name="Diagram1">
+      <Diagram DiagramId="0f192e61a07d4796a329d064ad8451dc" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="FacturandoModel.Action" Width="1.5" PointX="9.75" PointY="14.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FacturandoModel.Bill" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="FacturandoModel.BillDetail" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
@@ -48,6 +48,7 @@
         <AssociationConnector Association="FacturandoModel.FK_UserRol_User" ManuallyRouted="false" />
         <EntityTypeShape EntityType="FacturandoModel.IdentificacionType" Width="1.5" PointX="1.5" PointY="1.75" />
         <AssociationConnector Association="FacturandoModel.FK_Client_IdentificacionType" />
+        <EntityTypeShape EntityType="FacturandoModel.ConfigurationSystem" Width="1.5" PointX="11.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -20,6 +20,7 @@
           <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="BillNumber" Type="bigint" Nullable="false" />
           <Property Name="IdClient" Type="uniqueidentifier" />
+          <Property Name="DateEvent" Type="date" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -53,6 +54,18 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="100" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="DisccountPercent" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConfigurationSystem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FiscalYear" Type="int" Nullable="false" />
+          <Property Name="OperationsInitDate" Type="date" Nullable="false" />
+          <Property Name="AuthorizedBillingInit" Type="bigint" Nullable="false" />
+          <Property Name="AuthorizedBillingEnd" Type="bigint" Nullable="false" />
+          <Property Name="IdCountry" Type="uniqueidentifier" />
+          <Property Name="IdCurrency" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="IdentificacionType">
           <Key>
@@ -456,6 +469,7 @@
           <EntitySet Name="BillDetail" EntityType="Self.BillDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillTaxes" EntityType="Self.BillTaxes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConfigurationSystem" EntityType="Self.ConfigurationSystem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IdentificacionType" EntityType="Self.IdentificacionType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InventoryClassification" EntityType="Self.InventoryClassification" Schema="dbo" store:Type="Tables" />
@@ -581,6 +595,7 @@
           <NavigationProperty Name="Client" Relationship="Self.FK_Bill_Client" FromRole="Bill" ToRole="Client" />
           <NavigationProperty Name="BillDetail" Relationship="Self.FK_BillDetail_Bill" FromRole="Bill" ToRole="BillDetail" />
           <NavigationProperty Name="BillTaxes" Relationship="Self.FK_BillTaxes_Bill" FromRole="Bill" ToRole="BillTaxes" />
+          <Property Name="DateEvent" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -1136,6 +1151,7 @@
             <End Role="IdentificacionType" EntitySet="IdentificacionType" />
             <End Role="Client" EntitySet="Client" />
           </AssociationSet>
+          <EntitySet Name="ConfigurationSystem" EntityType="FacturandoModel.ConfigurationSystem" />
         </EntityContainer>
         <EntityType Name="IdentificacionType">
           <Key>
@@ -1157,6 +1173,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ConfigurationSystem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="FiscalYear" Type="Int32" Nullable="false" />
+          <Property Name="OperationsInitDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AuthorizedBillingInit" Type="Int64" Nullable="false" />
+          <Property Name="AuthorizedBillingEnd" Type="Int64" Nullable="false" />
+          <Property Name="IdCountry" Type="Guid" />
+          <Property Name="IdCurrency" Type="Guid" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1174,6 +1202,7 @@
           <EntitySetMapping Name="Bill">
             <EntityTypeMapping TypeName="FacturandoModel.Bill">
               <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="DateEvent" ColumnName="DateEvent" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
@@ -1374,6 +1403,19 @@
             <EntityTypeMapping TypeName="FacturandoModel.IdentificacionType">
               <MappingFragment StoreEntitySet="IdentificacionType">
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConfigurationSystem">
+            <EntityTypeMapping TypeName="FacturandoModel.ConfigurationSystem">
+              <MappingFragment StoreEntitySet="ConfigurationSystem">
+                <ScalarProperty Name="IdCurrency" ColumnName="IdCurrency" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="AuthorizedBillingEnd" ColumnName="AuthorizedBillingEnd" />
+                <ScalarProperty Name="AuthorizedBillingInit" ColumnName="AuthorizedBillingInit" />
+                <ScalarProperty Name="OperationsInitDate" ColumnName="OperationsInitDate" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

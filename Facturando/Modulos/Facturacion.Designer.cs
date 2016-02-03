@@ -75,9 +75,10 @@
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblNumeroFactura = new System.Windows.Forms.Label();
             this.lblGranTotal = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnFacturar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -309,6 +310,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.btnFacturar);
             this.groupBox4.Controls.Add(this.dtgImpuestos);
             this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Controls.Add(this.txtDescuentoFinal);
@@ -460,6 +462,7 @@
             this.dtgDetalleFactura.TabIndex = 0;
             this.dtgDetalleFactura.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDetalleFactura_CellEndEdit);
             this.dtgDetalleFactura.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDetalleFactura_CellValueChanged);
+            this.dtgDetalleFactura.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgDetalleFactura_DataError);
             this.dtgDetalleFactura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgDetalleFactura_KeyDown);
             // 
             // Id
@@ -542,15 +545,15 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "FACTURA DE VENTA NO.";
             // 
-            // label3
+            // lblNumeroFactura
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1471, 27);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(134, 31);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "00000000";
+            this.lblNumeroFactura.AutoSize = true;
+            this.lblNumeroFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumeroFactura.Location = new System.Drawing.Point(1471, 27);
+            this.lblNumeroFactura.Name = "lblNumeroFactura";
+            this.lblNumeroFactura.Size = new System.Drawing.Size(134, 31);
+            this.lblNumeroFactura.TabIndex = 6;
+            this.lblNumeroFactura.Text = "00000000";
             // 
             // lblGranTotal
             // 
@@ -575,13 +578,24 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "TOTAL";
             // 
+            // btnFacturar
+            // 
+            this.btnFacturar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFacturar.Location = new System.Drawing.Point(19, 592);
+            this.btnFacturar.Name = "btnFacturar";
+            this.btnFacturar.Size = new System.Drawing.Size(117, 52);
+            this.btnFacturar.TabIndex = 7;
+            this.btnFacturar.Text = "FACTURAR";
+            this.btnFacturar.UseVisualStyleBackColor = true;
+            this.btnFacturar.Click += new System.EventHandler(this.btnFacturar_Click);
+            // 
             // Facturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
             this.ClientSize = new System.Drawing.Size(1620, 991);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblNumeroFactura);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox4);
@@ -615,7 +629,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblNumeroFactura;
         private System.Windows.Forms.Label lblGranTotal;
         private System.Windows.Forms.TextBox txtNombreCliente;
         private System.Windows.Forms.Label label6;
@@ -660,5 +674,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PercentageValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total2;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnFacturar;
     }
 }

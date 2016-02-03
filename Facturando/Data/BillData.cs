@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Facturando.Modelos;
 
 namespace Facturando.Data
@@ -74,6 +72,104 @@ namespace Facturando.Data
                         Id = x.Id,
                         Description = x.Description
                     }).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public long GetBillNumber()
+        {
+            try
+            {
+                long result = 0;
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    ConfigurationSystem lastConfiguration = context.ConfigurationSystem.OrderByDescending(x => x.FiscalYear).FirstOrDefault();
+                    BillModel bill = context.Bill.OrderByDescending(x => x.BillNumber).Select(x => new BillModel
+                    {
+                        BillNumber = x.BillNumber
+                    }).FirstOrDefault();
+
+                    if (lastConfiguration != null)
+                    {
+                        if (bill != null)
+                        {
+                            result = bill.BillNumber + 1;
+                            if (!(result >= lastConfiguration.AuthorizedBillingInit && result <= lastConfiguration.AuthorizedBillingEnd))
+                            {
+                                result = 0;
+                            }
+                        }
+                        else
+                        {
+                            result = lastConfiguration.AuthorizedBillingInit;
+                        };
+                    }
+                    else { result = 0; }
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public BillSaveModel SaveBill(BillSaveModel bill)
+        {
+            try
+            {
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    if (bill.Client.IsNew)
+                    {
+                        context.Client.Add(new Client
+                        {
+                            Address = bill.Client.Adress,
+                            DisccountPercent = bill.Client.DiscountPercent,
+                            Email = bill.Client.Email,
+                            Id = bill.Client.Id,
+                            IdIdentificationType = bill.Client.IdIdentificationType,
+                            IdentificationNumber = bill.Client.IdentificationNumber,
+                            Name = bill.Client.Name,
+                            Phone = bill.Client.Phone
+                        });
+                    }
+                    context.Bill.Add(new Bill
+                    {
+                        Id = bill.Bill.Id,
+                        BillNumber = bill.Bill.BillNumber,
+                        IdClient = bill.Bill.IdClient,
+                        Total = bill.Bill.Total,
+                        DateEvent = bill.Bill.DateEvent
+                    });
+                    foreach (var item in bill.BillDetail)
+                    {
+                        context.BillDetail.Add(new BillDetail
+                        {
+                            Id = item.Id,
+                            IdBill = item.IdBill,
+                            IdProduct = item.IdProduct,
+                            Quantity = item.Quantity,
+                            UnitPrice = item.UnitPrice,
+                            Total = item.Total
+                        });
+                    }
+                    foreach (var item in bill.BillTaxes)
+                    {
+                        context.BillTaxes.Add(new BillTaxes
+                        {
+                            Id = item.Id,
+                            IdBill = item.IdBill,
+                            IdTax = item.IdTax,
+                            Total = item.Total
+                        });
+                    }
+                    context.SaveChanges();
+                    return bill;
                 }
             }
             catch (Exception)

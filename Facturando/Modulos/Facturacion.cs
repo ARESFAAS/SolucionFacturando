@@ -2,14 +2,9 @@
 using Facturando.Modelos;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Facturando
@@ -22,6 +17,7 @@ namespace Facturando
         List<BillDetailModel> _billDetail = new List<BillDetailModel>();
         BillModel _bill = new BillModel();
         List<BillTaxesModel> _billTaxes = new List<BillTaxesModel>();
+        BillSaveModel _billSaveModel = new BillSaveModel();
 
         public Facturacion()
         {
@@ -33,8 +29,14 @@ namespace Facturando
             cmbTipoIdentificacion.DataSource = _billData.GetIdentificationType();
             cmbTipoIdentificacion.ValueMember = "Id";
             cmbTipoIdentificacion.DisplayMember = "Description";
-            _bill = new BillModel { Id = Guid.NewGuid() };
+            _bill = new BillModel {
+                Id = Guid.NewGuid(),
+                BillNumber = _billData.GetBillNumber(),
+                DateEvent = DateTime.Now
+            };
+            lblNumeroFactura.Text = _bill.BillNumber.ToString().PadLeft(8, '0');          
             _billTaxes = _billData.GetBillTaxes();
+            _billTaxes.ForEach(x => x.IdBill = _bill.Id);
             dtgImpuestos.DataSource = _billTaxes;
             lblGranTotal.Text = "$0,00";
             txtSubTotal.Text = string.Format("{0:0.00}", 0.00);
@@ -103,6 +105,39 @@ namespace Facturando
                     dtgDetalleFactura.DataSource = new List<BillDetailModel>();
                     dtgDetalleFactura.DataSource = _billDetail;
                 }
+            }
+        }
+
+        private void btnFacturar_Click(object sender, EventArgs e)
+        {
+            _billSaveModel.Client = _client;
+            _billSaveModel.Bill = _bill;
+            _billSaveModel.BillDetail = _billDetail;
+            _billSaveModel.BillTaxes = _billTaxes;
+
+            // Guarda los datos de la factura
+            _billData.SaveBill(_billSaveModel);
+            
+            // Actualiza el inventario
+            foreach (var item in _billSaveModel.BillDetail)
+            {
+                InventoryModel inventoryTemp = _inventoryData.GetInventoryByProductId(item.IdProduct);
+                if (inventoryTemp == null)
+                {
+                    inventoryTemp = new InventoryModel { IdProduct = item.IdProduct, LastSalePrice = 0, Quantity = item.Quantity };
+                }
+                inventoryTemp.Quantity = item.Quantity;
+                InventoryDetailModel inventoryDetailTemp = _inventoryData.GetLastInventoryDetailInByProductId(item.IdProduct);
+
+                inventoryDetailTemp.Quantity = item.Quantity;
+                inventoryDetailTemp.IdInventoryType = _inventoryData.GetInventoryType("-").Where(x => x.Description.ToLower().Equals("venta")).FirstOrDefault().Id;
+                inventoryDetailTemp.EventDate = DateTime.Now;
+                
+                _inventoryData.SaveInventory(new InventorySaveModel
+                {
+                     Inventory = inventoryTemp,
+                     InventoryDetail = inventoryDetailTemp
+                });
             }
         }
 
@@ -355,10 +390,18 @@ namespace Facturando
                     IdentificationNumber = txtIdentificacionCliente.Text,
                     IdIdentificationType = (Guid)cmbTipoIdentificacion.SelectedValue,
                     Name = txtNombreCliente.Text,
-                    Phone = txtTelefono.Text
+                    Phone = txtTelefono.Text,
+                    IsNew = true
                 };
             }
             return result;
-        }       
+        }
+
+        private void dtgDetalleFactura_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("Los datos que está intentando ingresar están errados.");
+            return;
+        }
+        
     }
 }

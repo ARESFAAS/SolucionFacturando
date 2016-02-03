@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Facturando.Modelos;
 
 namespace Facturando.Data
@@ -83,6 +81,30 @@ namespace Facturando.Data
             }
         }
 
+        public InventoryModel GetInventoryByProductId(Guid id)
+        {
+            try
+            {
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    return context.Inventory
+                        .Where(x => x.IdProduct == id)
+                        .Select(x => new InventoryModel
+                        {
+                            Id = x.Id,
+                            IdProduct = x.IdProduct.Value,
+                            Product = string.Concat(x.Product.Description, " ", x.Product.UnitMeasure.Description),
+                            Quantity = x.Quantity,
+                            LastSalePrice = x.LastSalePrice != null ? x.LastSalePrice.Value : 0
+                        }).FirstOrDefault();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public List<InventoryDetailModel> GetInventoryDetail(Guid productId)
         {
             try
@@ -155,7 +177,45 @@ namespace Facturando.Data
             {
                 throw;
             }
-        }        
+        }
+
+        public InventoryDetailModel GetLastInventoryDetailInByProductId(Guid productId)
+        {
+            try
+            {
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    return context.InventoryDetail
+                        .Where(x => x.Inventory.IdProduct.Value == productId && x.InventoryType.Sign.Equals("+"))
+                        .OrderByDescending(x => x.EventDate)
+                        .Select(x => new InventoryDetailModel
+                        {
+                            Id = x.Id,
+                            BarCodeData = x.BarCodeData,
+                            ConstructDate = x.ConstructionDate.Value,
+                            InventoryDescription = x.InventoryType.Description,
+                            IdProduct = x.Inventory.Product.Id,
+                            Product = string.Concat(x.Inventory.Product.Description, " ", x.Inventory.Product.UnitMeasure.Description),
+                            DueDate = x.DueDate.Value,
+                            EventDate = x.EventDate,
+                            IdInventory = x.IdInventory.Value,
+                            IdInventoryClassification = x.IdInventoryClassification.Value,
+                            ClassificationDescription = x.InventoryClassification.Description,
+                            IdInventoryLocalization = x.IdInventoryLocalization.Value,
+                            LocalizationDescription = x.InventoryLocation.Description,
+                            IdInventoryType = x.IdInventoryType.Value,
+                            PurchasePrice = x.PurchasePrice.Value,
+                            SalePrice = x.SalePrice.Value,
+                            Quantity = x.Quantity,
+                            Sign = x.InventoryType.Sign
+                        }).FirstOrDefault();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         public List<InventoryTypeModel> GetInventoryType(string sign)
         {
@@ -400,6 +460,5 @@ namespace Facturando.Data
                 throw;
             }
         }
-
     }
 }

@@ -1,9 +1,6 @@
 ﻿using Facturando.Modelos;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Facturando.Data
 {
@@ -11,8 +8,10 @@ namespace Facturando.Data
     {
         List<InventoryDetailModel> GetInventoryDetail(Guid producId);
         List<InventoryDetailModel> GetInventoryDetail(Guid id, bool byId);
+        InventoryDetailModel GetLastInventoryDetailInByProductId(Guid productId);
         List<InventoryModel> GetInventory(string barCode, string productName);
         List<InventoryModel> GetInventory(Guid id);
+        InventoryModel GetInventoryByProductId(Guid id);
         List<InventoryTypeModel> GetInventoryType(string sign);
         List<InventoryTypeModel> GetInventoryType();
         List<InventoryClassificationModel> GetInventoryClassification();

@@ -69,6 +69,9 @@
     <Compile Include="Data\Client.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\ConfigurationSystem.cs">
+      <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\ConverseNumberToText.cs" />
     <Compile Include="Data\FacturandoEntityDataModel.Context.cs">
       <AutoGen>True</AutoGen>

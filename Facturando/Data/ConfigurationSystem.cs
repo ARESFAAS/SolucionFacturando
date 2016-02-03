@@ -12,22 +12,14 @@ namespace Facturando.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Bill
+    public partial class ConfigurationSystem
     {
-        public Bill()
-        {
-            this.BillDetail = new HashSet<BillDetail>();
-            this.BillTaxes = new HashSet<BillTaxes>();
-        }
-    
         public System.Guid Id { get; set; }
-        public decimal Total { get; set; }
-        public long BillNumber { get; set; }
-        public Nullable<System.Guid> IdClient { get; set; }
-        public Nullable<System.DateTime> DateEvent { get; set; }
-    
-        public virtual Client Client { get; set; }
-        public virtual ICollection<BillDetail> BillDetail { get; set; }
-        public virtual ICollection<BillTaxes> BillTaxes { get; set; }
+        public int FiscalYear { get; set; }
+        public System.DateTime OperationsInitDate { get; set; }
+        public long AuthorizedBillingInit { get; set; }
+        public long AuthorizedBillingEnd { get; set; }
+        public Nullable<System.Guid> IdCountry { get; set; }
+        public Nullable<System.Guid> IdCurrency { get; set; }
     }
 }
