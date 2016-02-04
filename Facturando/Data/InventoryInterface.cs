@@ -7,6 +7,7 @@ namespace Facturando.Data
     interface InventoryInterface
     {
         List<InventoryDetailModel> GetInventoryDetail(Guid producId);
+        List<InventoryDetailModel> GetInventoryDetail(Guid productId, DateTime initDate, DateTime endDate, string type);
         List<InventoryDetailModel> GetInventoryDetail(Guid id, bool byId);
         InventoryDetailModel GetLastInventoryDetailInByProductId(Guid productId);
         List<InventoryModel> GetInventory(string barCode, string productName);

@@ -113,6 +113,48 @@ namespace Facturando.Data
                 {
                     return context.InventoryDetail
                         .Where(x => x.Inventory.IdProduct.Value == productId)
+                        .OrderByDescending(x => x.EventDate)
+                        .Take(50)
+                        .Select(x => new InventoryDetailModel
+                        {
+                            Id = x.Id,
+                            BarCodeData = x.BarCodeData,
+                            ConstructDate = x.ConstructionDate.Value,
+                            InventoryDescription = x.InventoryType.Description,
+                            IdProduct = x.Inventory.Product.Id,
+                            Product = string.Concat(x.Inventory.Product.Description, " ", x.Inventory.Product.UnitMeasure.Description),
+                            DueDate = x.DueDate.Value,
+                            EventDate = x.EventDate,
+                            IdInventory = x.IdInventory.Value,
+                            IdInventoryClassification = x.IdInventoryClassification.Value,
+                            ClassificationDescription = x.InventoryClassification.Description,
+                            IdInventoryLocalization = x.IdInventoryLocalization.Value,
+                            LocalizationDescription = x.InventoryLocation.Description,
+                            IdInventoryType = x.IdInventoryType.Value,
+                            PurchasePrice = x.PurchasePrice.Value,
+                            SalePrice = x.SalePrice.Value,
+                            Quantity = x.Quantity,
+                            Sign = x.InventoryType.Sign
+                        }).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<InventoryDetailModel> GetInventoryDetail(Guid productId, DateTime initDate, DateTime endDate, string type)
+        {
+            try
+            {
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    return context.InventoryDetail
+                        .Where(x => x.Inventory.IdProduct.Value == productId &&
+                        (x.EventDate >= initDate && x.EventDate <= endDate) && x.InventoryType.Sign.Equals(type))
+                        .OrderByDescending(x => x.EventDate)
+                        .Take(50)
                         .Select(x => new InventoryDetailModel
                         {
                             Id = x.Id,
@@ -459,6 +501,6 @@ namespace Facturando.Data
             {
                 throw;
             }
-        }
+        }        
     }
 }

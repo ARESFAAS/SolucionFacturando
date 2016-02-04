@@ -20,7 +20,23 @@ namespace Facturando
 
         private void Inventario_Load(object sender, EventArgs e)
         {
-            
+            List<InventoryTypeModel> listTypeTemp = new List<InventoryTypeModel>();
+            listTypeTemp.Add(new InventoryTypeModel {
+                Id = Guid.NewGuid(),
+                Description = "Entrada",
+                Sign = "+"
+            });
+            listTypeTemp.Add(new InventoryTypeModel
+            {
+                Id = Guid.NewGuid(),
+                Description = "Salida",
+                Sign = "-"
+            });
+
+            lstTipoMovimiento.DataSource = listTypeTemp;
+            lstTipoMovimiento.ValueMember = "Sign";
+            lstTipoMovimiento.DisplayMember = "Description";
+            lstTipoMovimiento.SelectedIndex = 0;
         }
 
         private void dataGridView2_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -29,9 +45,24 @@ namespace Facturando
             {
                 DataGridViewRow row = dataGridView2.SelectedRows[0];
                 _inventoryModelTemp = (InventoryModel)row.DataBoundItem;
-                dataGridView1.DataSource = _inventory.GetInventoryDetail(_inventoryModelTemp.IdProduct);
+                if (!string.IsNullOrEmpty(txtDesde.Text) && !string.IsNullOrEmpty(txtHasta.Text))
+                {
+                    DateTime initDate;
+                    DateTime endDate;
+                    if (DateTime.TryParse(txtDesde.Text, out initDate) && DateTime.TryParse(txtHasta.Text, out endDate))
+                    {
+                        dataGridView1.DataSource = _inventory.GetInventoryDetail(_inventoryModelTemp.IdProduct, initDate, endDate, lstTipoMovimiento.SelectedValue.ToString());
+                    }
+                    else
+                    {
+                        dataGridView1.DataSource = _inventory.GetInventoryDetail(_inventoryModelTemp.IdProduct);
+                    }
+                }
+                else
+                {
+                    dataGridView1.DataSource = _inventory.GetInventoryDetail(_inventoryModelTemp.IdProduct);
+                }                
             }
-
         }
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -124,6 +155,16 @@ namespace Facturando
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void dtpDesde_ValueChanged(object sender, EventArgs e)
+        {
+            txtDesde.Text = dtpDesde.Value.ToString();
+        }
+
+        private void dtpHasta_ValueChanged(object sender, EventArgs e)
+        {
+            txtHasta.Text = dtpHasta.Value.ToString();
         }
     }
 }

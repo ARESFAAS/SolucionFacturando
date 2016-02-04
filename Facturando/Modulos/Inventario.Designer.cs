@@ -50,6 +50,11 @@
             this.SalePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sign = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastSalePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -59,11 +64,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnEntrada = new System.Windows.Forms.Button();
             this.btnSalida = new System.Windows.Forms.Button();
-            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastSalePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtDesde = new System.Windows.Forms.MaskedTextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtHasta = new System.Windows.Forms.MaskedTextBox();
+            this.dtpDesde = new System.Windows.Forms.DateTimePicker();
+            this.dtpHasta = new System.Windows.Forms.DateTimePicker();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lstTipoMovimiento = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -120,7 +128,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(1586, 604);
-            this.dataGridView1.TabIndex = 7;
+            this.dataGridView1.TabIndex = 19;
             this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
             this.dataGridView1.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseDoubleClick);
             // 
@@ -287,98 +295,10 @@
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(1254, 135);
-            this.dataGridView2.TabIndex = 3;
+            this.dataGridView2.Size = new System.Drawing.Size(684, 135);
+            this.dataGridView2.TabIndex = 6;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             this.dataGridView2.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_RowHeaderMouseClick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 53);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(181, 17);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Ingrese el codigo de barras";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 244);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(355, 17);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Ingrese el código de barras o deje el campo en blanco:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(21, 263);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(345, 23);
-            this.textBox2.TabIndex = 4;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 106);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(194, 17);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Ingrese Nombre de Producto:";
-            // 
-            // txtNombreProducto
-            // 
-            this.txtNombreProducto.Location = new System.Drawing.Point(21, 127);
-            this.txtNombreProducto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNombreProducto.Name = "txtNombreProducto";
-            this.txtNombreProducto.Size = new System.Drawing.Size(321, 23);
-            this.txtNombreProducto.TabIndex = 1;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(359, 53);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 17);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Existencias Actuales";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 303);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(154, 17);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Detalle de movimientos";
-            // 
-            // btnEntrada
-            // 
-            this.btnEntrada.Location = new System.Drawing.Point(391, 261);
-            this.btnEntrada.Margin = new System.Windows.Forms.Padding(4);
-            this.btnEntrada.Name = "btnEntrada";
-            this.btnEntrada.Size = new System.Drawing.Size(157, 28);
-            this.btnEntrada.TabIndex = 5;
-            this.btnEntrada.Text = "Entrada";
-            this.btnEntrada.UseVisualStyleBackColor = true;
-            this.btnEntrada.Click += new System.EventHandler(this.btnEntrada_Click);
-            // 
-            // btnSalida
-            // 
-            this.btnSalida.Location = new System.Drawing.Point(565, 261);
-            this.btnSalida.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSalida.Name = "btnSalida";
-            this.btnSalida.Size = new System.Drawing.Size(156, 28);
-            this.btnSalida.TabIndex = 6;
-            this.btnSalida.Text = "Salida";
-            this.btnSalida.UseVisualStyleBackColor = true;
-            this.btnSalida.Click += new System.EventHandler(this.btnSalida_Click);
             // 
             // Product
             // 
@@ -422,14 +342,187 @@
             this.LastSalePrice.ReadOnly = true;
             this.LastSalePrice.Width = 114;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 53);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(181, 17);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Ingrese el codigo de barras";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 244);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(355, 17);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Ingrese el código de barras o deje el campo en blanco:";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(21, 263);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(345, 23);
+            this.textBox2.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(21, 106);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(194, 17);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Ingrese Nombre de Producto:";
+            // 
+            // txtNombreProducto
+            // 
+            this.txtNombreProducto.Location = new System.Drawing.Point(21, 127);
+            this.txtNombreProducto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNombreProducto.Name = "txtNombreProducto";
+            this.txtNombreProducto.Size = new System.Drawing.Size(321, 23);
+            this.txtNombreProducto.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(359, 53);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(593, 17);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Existencias Actuales (haga click en el encabezado de cada registro para consultar" +
+    " el detalle)";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(21, 303);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(715, 17);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Detalle de movimientos (últimos 50 registros) (haga doble click en el encabezado " +
+    "de cada registro para editarlo)";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // btnEntrada
+            // 
+            this.btnEntrada.Location = new System.Drawing.Point(391, 261);
+            this.btnEntrada.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEntrada.Name = "btnEntrada";
+            this.btnEntrada.Size = new System.Drawing.Size(157, 28);
+            this.btnEntrada.TabIndex = 8;
+            this.btnEntrada.Text = "Entrada";
+            this.btnEntrada.UseVisualStyleBackColor = true;
+            this.btnEntrada.Click += new System.EventHandler(this.btnEntrada_Click);
+            // 
+            // btnSalida
+            // 
+            this.btnSalida.Location = new System.Drawing.Point(565, 261);
+            this.btnSalida.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSalida.Name = "btnSalida";
+            this.btnSalida.Size = new System.Drawing.Size(156, 28);
+            this.btnSalida.TabIndex = 9;
+            this.btnSalida.Text = "Salida";
+            this.btnSalida.UseVisualStyleBackColor = true;
+            this.btnSalida.Click += new System.EventHandler(this.btnSalida_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1064, 53);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 17);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Desde";
+            // 
+            // txtDesde
+            // 
+            this.txtDesde.Location = new System.Drawing.Point(1067, 73);
+            this.txtDesde.Mask = "00/00/0000";
+            this.txtDesde.Name = "txtDesde";
+            this.txtDesde.Size = new System.Drawing.Size(147, 23);
+            this.txtDesde.TabIndex = 15;
+            this.txtDesde.ValidatingType = typeof(System.DateTime);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(1067, 106);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 17);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Hasta";
+            // 
+            // txtHasta
+            // 
+            this.txtHasta.Location = new System.Drawing.Point(1070, 129);
+            this.txtHasta.Mask = "00/00/0000";
+            this.txtHasta.Name = "txtHasta";
+            this.txtHasta.Size = new System.Drawing.Size(144, 23);
+            this.txtHasta.TabIndex = 17;
+            this.txtHasta.ValidatingType = typeof(System.DateTime);
+            // 
+            // dtpDesde
+            // 
+            this.dtpDesde.CustomFormat = "dd/MM/yyyy";
+            this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDesde.Location = new System.Drawing.Point(1226, 72);
+            this.dtpDesde.Name = "dtpDesde";
+            this.dtpDesde.Size = new System.Drawing.Size(200, 23);
+            this.dtpDesde.TabIndex = 3;
+            this.dtpDesde.ValueChanged += new System.EventHandler(this.dtpDesde_ValueChanged);
+            // 
+            // dtpHasta
+            // 
+            this.dtpHasta.CustomFormat = "dd/MM/yyyy";
+            this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpHasta.Location = new System.Drawing.Point(1226, 129);
+            this.dtpHasta.Name = "dtpHasta";
+            this.dtpHasta.Size = new System.Drawing.Size(200, 23);
+            this.dtpHasta.TabIndex = 4;
+            this.dtpHasta.ValueChanged += new System.EventHandler(this.dtpHasta_ValueChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(1070, 181);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(111, 17);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Tipo Movimiento";
+            // 
+            // lstTipoMovimiento
+            // 
+            this.lstTipoMovimiento.FormattingEnabled = true;
+            this.lstTipoMovimiento.ItemHeight = 16;
+            this.lstTipoMovimiento.Location = new System.Drawing.Point(1226, 181);
+            this.lstTipoMovimiento.Name = "lstTipoMovimiento";
+            this.lstTipoMovimiento.Size = new System.Drawing.Size(120, 52);
+            this.lstTipoMovimiento.TabIndex = 5;
+            // 
             // Inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.Yellow;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1620, 991);
+            this.Controls.Add(this.lstTipoMovimiento);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.dtpHasta);
+            this.Controls.Add(this.dtpDesde);
+            this.Controls.Add(this.txtHasta);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtDesde);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnSalida);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -495,5 +588,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IdProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastSalePrice;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.MaskedTextBox txtDesde;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.MaskedTextBox txtHasta;
+        private System.Windows.Forms.DateTimePicker dtpDesde;
+        private System.Windows.Forms.DateTimePicker dtpHasta;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ListBox lstTipoMovimiento;
     }
 }
