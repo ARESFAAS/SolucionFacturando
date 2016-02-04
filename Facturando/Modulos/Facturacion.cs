@@ -1,5 +1,6 @@
 ﻿using Facturando.Data;
 using Facturando.Modelos;
+using Facturando.Modulos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -429,8 +430,8 @@ namespace Facturando
                         InventoryDetail = inventoryDetailTemp
                     });
                 }
-
-                MessageBox.Show("Factura generada");
+                VisorFactura visorFactura = new VisorFactura(_billSaveModel);
+                visorFactura.Show(this);                
             }
             else
             {

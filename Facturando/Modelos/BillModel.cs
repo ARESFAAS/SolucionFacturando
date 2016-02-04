@@ -62,4 +62,11 @@ namespace Facturando.Modelos
         public List<BillDetailModel> BillDetail { get; set; }
         public List<BillTaxesModel> BillTaxes { get; set; }
     }
+
+    public class BillPrintModel {
+        public List<ClientModel> Client { get; set; }
+        public List<BillModel> Bill { get; set; }
+        public List<BillDetailModel> BillDetail { get; set; }
+        public List<BillTaxesModel> BillTaxes { get; set; }
+    }
 }
