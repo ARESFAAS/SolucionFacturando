@@ -34,7 +34,7 @@ namespace Facturando
                 BillNumber = _billData.GetBillNumber(),
                 DateEvent = DateTime.Now
             };
-            lblNumeroFactura.Text = _bill.BillNumber.ToString().PadLeft(8, '0');          
+            lblNumeroFactura.Text = _bill.BillNumber.ToString().PadLeft(8, '0');
             _billTaxes = _billData.GetBillTaxes();
             _billTaxes.ForEach(x => x.IdBill = _bill.Id);
             dtgImpuestos.DataSource = _billTaxes;
@@ -54,6 +54,7 @@ namespace Facturando
 
             if (_client != null)
             {
+                _bill.IdClient = _client.Id;
                 txtNombreCliente.Text = _client.Name;
                 txtDireccion.Text = _client.Adress;
                 txtEmail.Text = _client.Email;
@@ -62,8 +63,9 @@ namespace Facturando
             }
             else
             {
-                MessageBox.Show("No encontramos un cliente con los datos de búsqueda, verique que esten correctos o diligencie los datos para crear un nuevo cliente");                
+                MessageBox.Show("No encontramos un cliente con los datos de búsqueda, verique que esten correctos o diligencie los datos para crear un nuevo cliente");
             }
+            btnBuscarProducto.Enabled = true;
         }
 
         private void btnBuscarProducto_Click(object sender, EventArgs e)
@@ -87,7 +89,6 @@ namespace Facturando
 
             if ((List<InventoryModel>)lstBox.DataSource != null)
             {
-
                 if (((List<InventoryModel>)lstBox.DataSource).Count > 0)
                 {
                     _billDetail.Add(new BillDetailModel
@@ -97,7 +98,7 @@ namespace Facturando
                         IdProduct = inventoryItem.IdProduct,
                         Product = inventoryItem.Product,
                         Quantity = 0,
-                        Discount = (inventoryItem.LastSalePrice * _client.DiscountPercent) / 100,
+                        Discount = (inventoryItem.LastSalePrice * (_client == null ? 0 : _client.DiscountPercent)) / 100,
                         Total = 0,
                         UnitPrice = inventoryItem.LastSalePrice
                     });
@@ -110,35 +111,8 @@ namespace Facturando
 
         private void btnFacturar_Click(object sender, EventArgs e)
         {
-            _billSaveModel.Client = _client;
-            _billSaveModel.Bill = _bill;
-            _billSaveModel.BillDetail = _billDetail;
-            _billSaveModel.BillTaxes = _billTaxes;
-
-            // Guarda los datos de la factura
-            _billData.SaveBill(_billSaveModel);
-            
-            // Actualiza el inventario
-            foreach (var item in _billSaveModel.BillDetail)
-            {
-                InventoryModel inventoryTemp = _inventoryData.GetInventoryByProductId(item.IdProduct);
-                if (inventoryTemp == null)
-                {
-                    inventoryTemp = new InventoryModel { IdProduct = item.IdProduct, LastSalePrice = 0, Quantity = item.Quantity };
-                }
-                inventoryTemp.Quantity = item.Quantity;
-                InventoryDetailModel inventoryDetailTemp = _inventoryData.GetLastInventoryDetailInByProductId(item.IdProduct);
-
-                inventoryDetailTemp.Quantity = item.Quantity;
-                inventoryDetailTemp.IdInventoryType = _inventoryData.GetInventoryType("-").Where(x => x.Description.ToLower().Equals("venta")).FirstOrDefault().Id;
-                inventoryDetailTemp.EventDate = DateTime.Now;
-                
-                _inventoryData.SaveInventory(new InventorySaveModel
-                {
-                     Inventory = inventoryTemp,
-                     InventoryDetail = inventoryDetailTemp
-                });
-            }
+            SaveBill();
+            ClearControls();
         }
 
         private void dtgDetalleFactura_KeyDown(object sender, KeyEventArgs e)
@@ -167,7 +141,7 @@ namespace Facturando
                     if (((List<InventoryModel>)lstBox.DataSource).Count > 0)
                     {
                         InventoryModel inventoryItem = (InventoryModel)lstBox.SelectedItem;
-
+                                                
                         _billDetail.Add(new BillDetailModel
                         {
                             Id = Guid.NewGuid(),
@@ -175,7 +149,7 @@ namespace Facturando
                             IdProduct = inventoryItem.IdProduct,
                             Product = inventoryItem.Product,
                             Quantity = 0,
-                            Discount = (inventoryItem.LastSalePrice * _client.DiscountPercent) / 100,
+                            Discount = (inventoryItem.LastSalePrice * (_client == null ? 0 : _client.DiscountPercent)) / 100,
                             Total = 0,
                             UnitPrice = inventoryItem.LastSalePrice
                         });
@@ -185,11 +159,6 @@ namespace Facturando
                     }
                 }
             }
-        }
-
-        private void dtgDetalleFactura_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void dtgDetalleFactura_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -220,6 +189,8 @@ namespace Facturando
                 dtgDetalleFactura.DataSource = new List<BillDetailModel>();
                 dtgDetalleFactura.DataSource = _billDetail;
             }));
+
+            btnFacturar.Enabled = true;
         }
 
         private void txtSubTotal_Leave(object sender, EventArgs e)
@@ -251,7 +222,7 @@ namespace Facturando
                         MessageBox.Show("No existen datos de cliente para facturar");
                         return;
                     }
-                   
+
 
                     foreach (var item in _billTaxes)
                     {
@@ -350,6 +321,28 @@ namespace Facturando
             }
         }
 
+        private void dtgDetalleFactura_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("Los datos que está intentando ingresar están errados.");
+            return;
+        }
+
+        private void dtgDetalleFactura_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dtgDetalleFactura.Columns[e.ColumnIndex].Name.Equals("Total"))
+            {
+                decimal totalTemp = ((BillDetailModel)dtgDetalleFactura.Rows[e.RowIndex].DataBoundItem).Total;
+                if (totalTemp <= 0)
+                {
+                    e.CellStyle.BackColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    e.CellStyle.BackColor = System.Drawing.Color.White;
+                }
+            }
+        }
+
         private void billValuesCalculate()
         {
             _bill.Total = 0;
@@ -393,15 +386,93 @@ namespace Facturando
                     Phone = txtTelefono.Text,
                     IsNew = true
                 };
+                _bill.IdClient = _client.Id;
+                MessageBox.Show("ya puede agregar productos");
             }
             return result;
         }
 
-        private void dtgDetalleFactura_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        private void SaveBill()
         {
-            MessageBox.Show("Los datos que está intentando ingresar están errados.");
-            return;
+            _billSaveModel.Client = _client;
+            _billSaveModel.Bill = _bill;
+            _billSaveModel.BillDetail = _billDetail;
+            _billSaveModel.BillTaxes = _billTaxes;
+
+            if (_billSaveModel.Bill.Id != null &&
+                _bill.IdClient != null &&
+                _billDetail.Count > 0 &&
+                _billTaxes.Count > 0 &&
+                _bill.Total > 0)
+            {
+                // Guarda los datos de la factura
+                _billData.SaveBill(_billSaveModel);
+
+                // Actualiza el inventario
+                foreach (var item in _billSaveModel.BillDetail)
+                {
+                    InventoryModel inventoryTemp = _inventoryData.GetInventoryByProductId(item.IdProduct);
+                    if (inventoryTemp == null)
+                    {
+                        inventoryTemp = new InventoryModel { IdProduct = item.IdProduct, LastSalePrice = 0, Quantity = item.Quantity };
+                    }
+                    inventoryTemp.Quantity = item.Quantity;
+                    InventoryDetailModel inventoryDetailTemp = _inventoryData.GetLastInventoryDetailInByProductId(item.IdProduct);
+
+                    inventoryDetailTemp.Quantity = item.Quantity;
+                    inventoryDetailTemp.IdInventoryType = _inventoryData.GetInventoryType("-").Where(x => x.Description.ToLower().Equals("venta")).FirstOrDefault().Id;
+                    inventoryDetailTemp.EventDate = DateTime.Now;
+
+                    _inventoryData.SaveInventory(new InventorySaveModel
+                    {
+                        Inventory = inventoryTemp,
+                        InventoryDetail = inventoryDetailTemp
+                    });
+                }
+
+                MessageBox.Show("Factura generada");
+            }
+            else
+            {
+                MessageBox.Show("No hay datos para facturar");
+            }
         }
-        
+
+        private void ClearControls()
+        {
+            _billData = new BillData();
+            _inventoryData = new InventoryData();
+            _client = null;
+            _billDetail = new List<BillDetailModel>();
+            _bill = new BillModel();
+            _billTaxes = new List<BillTaxesModel>();
+            _billSaveModel = new BillSaveModel();
+
+            _bill = new BillModel
+            {
+                Id = Guid.NewGuid(),
+                BillNumber = _billData.GetBillNumber(),
+                DateEvent = DateTime.Now
+            };
+            lblNumeroFactura.Text = _bill.BillNumber.ToString().PadLeft(8, '0');
+            _billTaxes = _billData.GetBillTaxes();
+            _billTaxes.ForEach(x => x.IdBill = _bill.Id);
+            dtgImpuestos.DataSource = _billTaxes;
+            lblGranTotal.Text = "$0,00";
+            txtSubTotal.Text = string.Format("{0:0.00}", 0.00);
+            txtDescuentoFinal.Text = string.Format("{0:0.00}", 0.00);
+            txtDescuentoCliente.Text = string.Format("{0:0.00}", 0.00);
+            dtgDetalleFactura.DataSource = new List<BillDetailModel>();
+            txtIdentificacionCliente.Text = string.Empty;
+            txtNombreCliente.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtCodigoBarras.Text = string.Empty;
+            txtNombreProducto.Text = string.Empty;
+            lstProducto.DataSource = new List<InventoryModel>();
+            btnBuscarProducto.Enabled = false;
+            btnFacturar.Enabled = false;
+        }
     }
 }

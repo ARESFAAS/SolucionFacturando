@@ -126,17 +126,31 @@ namespace Facturando.Data
                 {
                     if (bill.Client.IsNew)
                     {
-                        context.Client.Add(new Client
+                        // verificar nuevamente si el cliente realmente no existe
+
+                        var clientValidate = context.Client
+                            .Where(x => x.IdIdentificationType == bill.Client.IdIdentificationType
+                            && x.IdentificationNumber.Equals(bill.Client.IdentificationNumber)).FirstOrDefault();
+
+                        if (clientValidate == null)
                         {
-                            Address = bill.Client.Adress,
-                            DisccountPercent = bill.Client.DiscountPercent,
-                            Email = bill.Client.Email,
-                            Id = bill.Client.Id,
-                            IdIdentificationType = bill.Client.IdIdentificationType,
-                            IdentificationNumber = bill.Client.IdentificationNumber,
-                            Name = bill.Client.Name,
-                            Phone = bill.Client.Phone
-                        });
+                            context.Client.Add(new Client
+                            {
+                                Address = bill.Client.Adress,
+                                DisccountPercent = bill.Client.DiscountPercent,
+                                Email = bill.Client.Email,
+                                Id = bill.Client.Id,
+                                IdIdentificationType = bill.Client.IdIdentificationType,
+                                IdentificationNumber = bill.Client.IdentificationNumber,
+                                Name = bill.Client.Name,
+                                Phone = bill.Client.Phone
+                            });
+                        }
+                        else
+                        {
+                            bill.Client.Id = clientValidate.Id;
+                            bill.Bill.IdClient = clientValidate.Id;
+                        }
                     }
                     context.Bill.Add(new Bill
                     {
