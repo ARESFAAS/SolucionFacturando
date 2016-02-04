@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Facturando
 {
-    public partial class Facturacion : Form
+    public partial class Facturacion : Form, IFormBill
     {
         IBill _billData = new BillData();
         InventoryInterface _inventoryData = new InventoryData();
@@ -112,8 +112,7 @@ namespace Facturando
 
         private void btnFacturar_Click(object sender, EventArgs e)
         {
-            SaveBill();
-            ClearControls();
+            PrintBill();
         }
 
         private void dtgDetalleFactura_KeyDown(object sender, KeyEventArgs e)
@@ -429,9 +428,7 @@ namespace Facturando
                         Inventory = inventoryTemp,
                         InventoryDetail = inventoryDetailTemp
                     });
-                }
-                VisorFactura visorFactura = new VisorFactura(_billSaveModel);
-                visorFactura.Show(this);                
+                }                
             }
             else
             {
@@ -474,6 +471,24 @@ namespace Facturando
             lstProducto.DataSource = new List<InventoryModel>();
             btnBuscarProducto.Enabled = false;
             btnFacturar.Enabled = false;
+        }
+
+        public void NewBill()
+        {
+            SaveBill();
+            ClearControls();
+        }
+
+        private void PrintBill() {
+            ConverseNumberToText numberToTextInstance = new ConverseNumberToText();
+            _bill.TotalInLetters = numberToTextInstance.enletras(_bill.Total.ToString());
+            _billSaveModel.Client = _client;
+            _billSaveModel.Bill = _bill;
+            _billSaveModel.BillDetail = _billDetail;
+            _billSaveModel.BillTaxes = _billTaxes;
+
+            VisorFactura visorFactura = new VisorFactura(_billSaveModel);
+            visorFactura.Show(this);
         }
     }
 }

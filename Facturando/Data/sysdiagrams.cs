@@ -12,17 +12,12 @@ namespace Facturando.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class ConfigurationSystem
+    public partial class sysdiagrams
     {
-        public System.Guid Id { get; set; }
-        public int FiscalYear { get; set; }
-        public System.DateTime OperationsInitDate { get; set; }
-        public long AuthorizedBillingInit { get; set; }
-        public long AuthorizedBillingEnd { get; set; }
-        public Nullable<System.Guid> IdCountry { get; set; }
-        public Nullable<System.Guid> IdCurrency { get; set; }
-    
-        public virtual Country Country { get; set; }
-        public virtual CurrencyType CurrencyType { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

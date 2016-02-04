@@ -28,6 +28,7 @@ namespace Facturando.Data
         public string Email { get; set; }
         public decimal DisccountPercent { get; set; }
         public Nullable<System.Guid> IdIdentificationType { get; set; }
+        public Nullable<System.DateTime> DateEvent { get; set; }
     
         public virtual ICollection<Bill> Bill { get; set; }
         public virtual ICollection<Remission> Remission { get; set; }

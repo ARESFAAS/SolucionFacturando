@@ -38,7 +38,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>=First(Fields!TotalInLetters.Value, "Bill") + " Dólares"</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -1447,6 +1447,10 @@
         <Field Name="Total">
           <DataField>Total</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TotalInLetters">
+          <DataField>TotalInLetters</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>

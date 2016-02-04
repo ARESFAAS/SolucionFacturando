@@ -48,5 +48,8 @@ namespace Facturando.Data
         public DbSet<UserRol> UserRol { get; set; }
         public DbSet<IdentificacionType> IdentificacionType { get; set; }
         public DbSet<ConfigurationSystem> ConfigurationSystem { get; set; }
+        public DbSet<Country> Country { get; set; }
+        public DbSet<CurrencyType> CurrencyType { get; set; }
+        public DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

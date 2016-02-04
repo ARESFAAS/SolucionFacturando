@@ -12,17 +12,16 @@ namespace Facturando.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class ConfigurationSystem
+    public partial class Country
     {
-        public System.Guid Id { get; set; }
-        public int FiscalYear { get; set; }
-        public System.DateTime OperationsInitDate { get; set; }
-        public long AuthorizedBillingInit { get; set; }
-        public long AuthorizedBillingEnd { get; set; }
-        public Nullable<System.Guid> IdCountry { get; set; }
-        public Nullable<System.Guid> IdCurrency { get; set; }
+        public Country()
+        {
+            this.ConfigurationSystem = new HashSet<ConfigurationSystem>();
+        }
     
-        public virtual Country Country { get; set; }
-        public virtual CurrencyType CurrencyType { get; set; }
+        public System.Guid Id { get; set; }
+        public string Description { get; set; }
+    
+        public virtual ICollection<ConfigurationSystem> ConfigurationSystem { get; set; }
     }
 }

@@ -39,5 +39,16 @@ namespace Facturando.Modulos
             billPrintModelBindingSource2.DataSource = _bill.BillDetail;
             billPrintModelBindingSource3.DataSource = _bill.BillTaxes;            
         }
+
+        private void btnNuevaFactura_Click(object sender, EventArgs e)
+        {
+            IFormBill formInterface = this.Owner.Controls.Find("Facturacion", true).FirstOrDefault() as IFormBill;
+
+            if (formInterface != null)
+            {
+                formInterface.NewBill();
+            }
+            this.Close();
+        }
     }
 }

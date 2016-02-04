@@ -76,6 +76,12 @@
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\ConverseNumberToText.cs" />
+    <Compile Include="Data\Country.cs">
+      <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\CurrencyType.cs">
+      <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\FacturandoEntityDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -131,6 +137,9 @@
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\RolModule.cs">
+      <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sysdiagrams.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Tax.cs">

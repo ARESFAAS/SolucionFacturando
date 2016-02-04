@@ -54,6 +54,7 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="100" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="DisccountPercent" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DateEvent" Type="date" />
         </EntityType>
         <EntityType Name="ConfigurationSystem">
           <Key>
@@ -66,6 +67,20 @@
           <Property Name="AuthorizedBillingEnd" Type="bigint" Nullable="false" />
           <Property Name="IdCountry" Type="uniqueidentifier" />
           <Property Name="IdCurrency" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurrencyType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="IdentificacionType">
           <Key>
@@ -179,6 +194,16 @@
           <Property Name="IdRol" Type="uniqueidentifier" />
           <Property Name="IdModule" Type="uniqueidentifier" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Tax">
           <Key>
             <PropertyRef Name="Id" />
@@ -280,6 +305,30 @@
             </Principal>
             <Dependent Role="Client">
               <PropertyRef Name="IdIdentificationType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConfigurationSystem_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="ConfigurationSystem" Type="Self.ConfigurationSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConfigurationSystem">
+              <PropertyRef Name="IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConfigurationSystem_CurrencyType">
+          <End Role="CurrencyType" Type="Self.CurrencyType" Multiplicity="0..1" />
+          <End Role="ConfigurationSystem" Type="Self.ConfigurationSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurrencyType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConfigurationSystem">
+              <PropertyRef Name="IdCurrency" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -470,6 +519,8 @@
           <EntitySet Name="BillTaxes" EntityType="Self.BillTaxes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConfigurationSystem" EntityType="Self.ConfigurationSystem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurrencyType" EntityType="Self.CurrencyType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IdentificacionType" EntityType="Self.IdentificacionType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InventoryClassification" EntityType="Self.InventoryClassification" Schema="dbo" store:Type="Tables" />
@@ -483,6 +534,7 @@
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RolAction" EntityType="Self.RolAction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RolModule" EntityType="Self.RolModule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tax" EntityType="Self.Tax" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnitMeasure" EntityType="Self.UnitMeasure" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -510,6 +562,14 @@
           <AssociationSet Name="FK_Client_IdentificacionType" Association="Self.FK_Client_IdentificacionType">
             <End Role="IdentificacionType" EntitySet="IdentificacionType" />
             <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConfigurationSystem_Country" Association="Self.FK_ConfigurationSystem_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="ConfigurationSystem" EntitySet="ConfigurationSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConfigurationSystem_CurrencyType" Association="Self.FK_ConfigurationSystem_CurrencyType">
+            <End Role="CurrencyType" EntitySet="CurrencyType" />
+            <End Role="ConfigurationSystem" EntitySet="ConfigurationSystem" />
           </AssociationSet>
           <AssociationSet Name="FK_Inventory_Product" Association="Self.FK_Inventory_Product">
             <End Role="Product" EntitySet="Product" />
@@ -636,6 +696,7 @@
           <NavigationProperty Name="Remission" Relationship="Self.FK_Remission_Client" FromRole="Client" ToRole="Remission" />
           <Property Name="IdIdentificationType" Type="Guid" />
           <NavigationProperty Name="IdentificacionType" Relationship="FacturandoModel.FK_Client_IdentificacionType" FromRole="Client" ToRole="IdentificacionType" />
+          <Property Name="DateEvent" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
@@ -1152,6 +1213,17 @@
             <End Role="Client" EntitySet="Client" />
           </AssociationSet>
           <EntitySet Name="ConfigurationSystem" EntityType="FacturandoModel.ConfigurationSystem" />
+          <EntitySet Name="Country" EntityType="FacturandoModel.Country" />
+          <EntitySet Name="CurrencyType" EntityType="FacturandoModel.CurrencyType" />
+          <EntitySet Name="sysdiagrams" EntityType="FacturandoModel.sysdiagrams" />
+          <AssociationSet Name="FK_ConfigurationSystem_Country" Association="FacturandoModel.FK_ConfigurationSystem_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="ConfigurationSystem" EntitySet="ConfigurationSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConfigurationSystem_CurrencyType" Association="FacturandoModel.FK_ConfigurationSystem_CurrencyType">
+            <End Role="CurrencyType" EntitySet="CurrencyType" />
+            <End Role="ConfigurationSystem" EntitySet="ConfigurationSystem" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="IdentificacionType">
           <Key>
@@ -1184,7 +1256,59 @@
           <Property Name="AuthorizedBillingEnd" Type="Int64" Nullable="false" />
           <Property Name="IdCountry" Type="Guid" />
           <Property Name="IdCurrency" Type="Guid" />
+          <NavigationProperty Name="Country" Relationship="FacturandoModel.FK_ConfigurationSystem_Country" FromRole="ConfigurationSystem" ToRole="Country" />
+          <NavigationProperty Name="CurrencyType" Relationship="FacturandoModel.FK_ConfigurationSystem_CurrencyType" FromRole="ConfigurationSystem" ToRole="CurrencyType" />
         </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ConfigurationSystem" Relationship="FacturandoModel.FK_ConfigurationSystem_Country" FromRole="Country" ToRole="ConfigurationSystem" />
+        </EntityType>
+        <EntityType Name="CurrencyType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ConfigurationSystem" Relationship="FacturandoModel.FK_ConfigurationSystem_CurrencyType" FromRole="CurrencyType" ToRole="ConfigurationSystem" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_ConfigurationSystem_Country">
+          <End Type="FacturandoModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="FacturandoModel.ConfigurationSystem" Role="ConfigurationSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConfigurationSystem">
+              <PropertyRef Name="IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConfigurationSystem_CurrencyType">
+          <End Type="FacturandoModel.CurrencyType" Role="CurrencyType" Multiplicity="0..1" />
+          <End Type="FacturandoModel.ConfigurationSystem" Role="ConfigurationSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurrencyType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConfigurationSystem">
+              <PropertyRef Name="IdCurrency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1235,6 +1359,7 @@
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="FacturandoModel.Client">
               <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="DateEvent" ColumnName="DateEvent" />
                 <ScalarProperty Name="IdIdentificationType" ColumnName="IdIdentificationType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdentificationNumber" ColumnName="IdentificationNumber" />
@@ -1417,6 +1542,33 @@
                 <ScalarProperty Name="OperationsInitDate" ColumnName="OperationsInitDate" />
                 <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country">
+            <EntityTypeMapping TypeName="FacturandoModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrencyType">
+            <EntityTypeMapping TypeName="FacturandoModel.CurrencyType">
+              <MappingFragment StoreEntitySet="CurrencyType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FacturandoModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

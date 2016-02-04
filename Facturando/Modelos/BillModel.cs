@@ -10,6 +10,7 @@ namespace Facturando.Modelos
         public long BillNumber { get; set; }
         public Guid IdClient { get; set; }
         public DateTime DateEvent { get; set; }
+        public string TotalInLetters { get; set; }
     }
 
     public class ClientModel
@@ -23,6 +24,7 @@ namespace Facturando.Modelos
         public string Email { get; set; }
         public decimal DiscountPercent { get; set; }
         public bool IsNew { get; set; }
+        public DateTime DateEvent { get; set; }
     }
 
     public class BillDetailModel {
@@ -68,5 +70,10 @@ namespace Facturando.Modelos
         public List<BillModel> Bill { get; set; }
         public List<BillDetailModel> BillDetail { get; set; }
         public List<BillTaxesModel> BillTaxes { get; set; }
+    }
+
+    interface IFormBill
+    {
+        void NewBill();
     }
 }

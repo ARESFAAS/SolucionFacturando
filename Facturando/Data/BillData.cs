@@ -49,7 +49,8 @@ namespace Facturando.Data
                             DiscountPercent = x.DisccountPercent,
                             Email = x.Email,
                             Name = x.Name,
-                            Phone = x.Phone
+                            Phone = x.Phone,
+                            DateEvent = x.DateEvent != null ? x.DateEvent.Value : DateTime.MinValue
                         }).ToList().FirstOrDefault();
 
                     return result;
@@ -143,7 +144,8 @@ namespace Facturando.Data
                                 IdIdentificationType = bill.Client.IdIdentificationType,
                                 IdentificationNumber = bill.Client.IdentificationNumber,
                                 Name = bill.Client.Name,
-                                Phone = bill.Client.Phone
+                                Phone = bill.Client.Phone,
+                                DateEvent = DateTime.Now
                             });
                         }
                         else
