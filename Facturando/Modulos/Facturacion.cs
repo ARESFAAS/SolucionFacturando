@@ -369,7 +369,7 @@ namespace Facturando
             bool result = false;
             if (txtIdentificacionCliente.Text.Equals(string.Empty) || txtNombreCliente.Text.Equals(string.Empty))
             {
-                MessageBox.Show("Faltan los datos del cliente para crear la factura, nombre y dirección");
+                MessageBox.Show("Faltan los datos del cliente para crear la factura, identificación y nombre");
             }
             else
             {
