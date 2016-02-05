@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Facturando
 {
-    public partial class Inventario : Form, IFormInventory
+    public partial class Inventario : BaseForm, IFormInventory
     {
         InventoryInterface _inventory = new InventoryData();
         InventoryDetailModel _inventoryDetailTemp = new InventoryDetailModel();

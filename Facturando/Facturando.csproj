@@ -56,6 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Data\Action.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -156,6 +159,7 @@
     </Compile>
     <Compile Include="Modelos\BillModel.cs" />
     <Compile Include="Modelos\InventoryModel.cs" />
+    <Compile Include="Modelos\LoginModel.cs" />
     <Compile Include="Modulos\AgregarEditarRegistroInventario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +225,12 @@
     <EmbeddedResource Include="Modulos\AgregarEditarRegistroInventario.resx">
       <DependentUpon>AgregarEditarRegistroInventario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Alertas.resx">
+      <DependentUpon>Alertas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Configuracion.resx">
+      <DependentUpon>Configuracion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Facturacion.resx">
       <DependentUpon>Facturacion.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,6 +239,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Remision.resx">
+      <DependentUpon>Remision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Reportes.resx">
+      <DependentUpon>Reportes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\VisorFactura.resx">
       <DependentUpon>VisorFactura.cs</DependentUpon>
@@ -244,6 +260,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Reportes\FacturaImpresa.rdlc" />
     <EntityDeploy Include="Data\FacturandoEntityDataModel.edmx">
@@ -280,6 +297,9 @@
       <DependentUpon>FacturandoEntityDataModel.edmx</DependentUpon>
       <LastGenOutput>FacturandoEntityDataModel.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\checklist.jpg" />
+    <None Include="Resources\remision.jpg" />
+    <None Include="Resources\folder_invoices_91734.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

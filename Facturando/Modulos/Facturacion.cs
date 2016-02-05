@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Facturando
 {
-    public partial class Facturacion : Form, IFormBill
+    public partial class Facturacion : BaseForm, IFormBill
     {
         IBill _billData = new BillData();
         InventoryInterface _inventoryData = new InventoryData();

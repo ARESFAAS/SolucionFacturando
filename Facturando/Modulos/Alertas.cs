@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Facturando
 {
-    public partial class Alertas : Form
+    public partial class Alertas : BaseForm
     {
         public Alertas()
         {
             InitializeComponent();
+        }
+
+        private void Alertas_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

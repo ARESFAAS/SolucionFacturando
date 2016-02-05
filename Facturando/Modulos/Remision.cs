@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Facturando
 {
-    public partial class Remision : Form
+    public partial class Remision : BaseForm
     {
         public Remision()
         {
             InitializeComponent();
+        }
+
+        private void Remision_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

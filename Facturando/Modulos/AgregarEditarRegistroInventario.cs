@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Facturando.Modulos
 {
-    public partial class AgregarEditarRegistroInventario : Form
+    public partial class AgregarEditarRegistroInventario : BaseForm
     {
         InventoryInterface _data = new InventoryData();
         public InventorySaveModel Inventory { get; set; }

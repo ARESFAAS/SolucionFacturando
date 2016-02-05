@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Facturando
 {
-    public partial class Reportes : Form
+    public partial class Reportes : BaseForm
     {
         public Reportes()
         {
             InitializeComponent();
+        }
+
+        private void Reportes_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

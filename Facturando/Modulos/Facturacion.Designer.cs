@@ -74,7 +74,6 @@
             this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNumeroFactura = new System.Windows.Forms.Label();
             this.lblGranTotal = new System.Windows.Forms.Label();
@@ -538,16 +537,6 @@
             this.Total.Name = "Total";
             this.Total.Width = 105;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(163, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(444, 31);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "IMPORTADORA SOL DE LA INDIA";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -599,7 +588,6 @@
             this.ClientSize = new System.Drawing.Size(1620, 991);
             this.Controls.Add(this.lblNumeroFactura);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -629,7 +617,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNumeroFactura;
         private System.Windows.Forms.Label lblGranTotal;

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using Facturando.Modelos;
+using System;
 
 namespace Facturando
 {
-    public partial class Login : Form
+    public partial class Login : BaseForm, IFormLogin
     {
         public Login()
         {
@@ -13,13 +13,19 @@ namespace Facturando
         private void button1_Click(object sender, EventArgs e)
         {
             Hide();
-            Principal principal = new Principal();
-            principal.Show();
+            Principal principal = new Principal(SystemCompany);
+            principal.Show(this);
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
+            SystemCompany = System.Configuration.ConfigurationSettings.AppSettings["SystemCompany"].ToString();
+            lblNombreEmpresa.Text = SystemCompany;            
+        }
 
+        public void Logout()
+        {
+            Close();
         }
     }
 }

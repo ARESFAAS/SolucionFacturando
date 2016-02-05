@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Facturando.Modulos
 {
-    public partial class VisorFactura : Form
+    public partial class VisorFactura : BaseForm
     {
         BillPrintModel _bill = new BillPrintModel();
         public VisorFactura()
@@ -42,7 +42,7 @@ namespace Facturando.Modulos
 
         private void btnNuevaFactura_Click(object sender, EventArgs e)
         {
-            IFormBill formInterface = this.Owner.Controls.Find("Facturacion", true).FirstOrDefault() as IFormBill;
+            IFormBill formInterface = Owner.Controls.Find("Facturacion", true).FirstOrDefault() as IFormBill;
 
             if (formInterface != null)
             {

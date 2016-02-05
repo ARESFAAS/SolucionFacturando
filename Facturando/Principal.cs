@@ -1,16 +1,78 @@
-﻿using System;
+﻿using Facturando.Modelos;
+using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Facturando
 {
-    public partial class Principal : Form
-    {
-        
+    public partial class Principal : BaseForm
+    {        
         public Principal()
         {
             InitializeComponent();
         }
 
+        public Principal(string systemCompany)
+        {
+            InitializeComponent();
+            SystemCompany = systemCompany;
+        }
+
+        private void Principal_Load(object sender, EventArgs e)
+        {
+            lblNombreEmpresa.Text = SystemCompany;
+        }
+
+        private void picAgregaFactura_Click(object sender, EventArgs e)
+        {
+            AddFormInPanel(new Facturacion());
+        }
+
+        private void pctNuevaRemision_Click(object sender, EventArgs e)
+        {
+            AddFormInPanel(new Remision());
+        }
+
+        private void picInventario_Click(object sender, EventArgs e)
+        {
+            AddFormInPanel(new Inventario());
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IFormLogin formInterface = Owner as IFormLogin;
+            this.Close();
+            if (formInterface != null)
+            {
+                formInterface.Logout();
+            }            
+        }
+
+        private void configuraciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void alertasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void facturaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void remisionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        
         private void AddFormInPanel(object formHijo)
         {
             if (this.splitContainer1.Panel2.Controls.Count > 0)
@@ -22,41 +84,6 @@ namespace Facturando
             this.splitContainer1.Panel2.Controls.Add(fh);
             this.splitContainer1.Panel2.Tag = fh;
             fh.Show();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            AddFormInPanel(new Inventario());
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            AddFormInPanel(new Facturacion());
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            AddFormInPanel(new Remision());
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            AddFormInPanel(new Configuracion());
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            AddFormInPanel(new Alertas());
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            AddFormInPanel(new Reportes());
-        }
-
-        private void Principal_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
