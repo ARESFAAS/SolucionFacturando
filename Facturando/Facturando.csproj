@@ -121,6 +121,7 @@
     <Compile Include="Data\InventoryType.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\IRemission.cs" />
     <Compile Include="Data\Module.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -130,6 +131,7 @@
     <Compile Include="Data\Remission.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\RemissionData.cs" />
     <Compile Include="Data\RemissionDetail.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -160,6 +162,7 @@
     <Compile Include="Modelos\BillModel.cs" />
     <Compile Include="Modelos\InventoryModel.cs" />
     <Compile Include="Modelos\LoginModel.cs" />
+    <Compile Include="Modelos\RemissionModel.cs" />
     <Compile Include="Modulos\AgregarEditarRegistroInventario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +204,12 @@
     </Compile>
     <Compile Include="Modulos\VisorFactura.Designer.cs">
       <DependentUpon>VisorFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\VisorRemision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\VisorRemision.Designer.cs">
+      <DependentUpon>VisorRemision.cs</DependentUpon>
     </Compile>
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
@@ -249,6 +258,9 @@
     <EmbeddedResource Include="Modulos\VisorFactura.resx">
       <DependentUpon>VisorFactura.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\VisorRemision.resx">
+      <DependentUpon>VisorRemision.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
@@ -263,6 +275,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Reportes\FacturaImpresa.rdlc" />
+    <EmbeddedResource Include="Reportes\RemisionImpresa.rdlc" />
     <EntityDeploy Include="Data\FacturandoEntityDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FacturandoEntityDataModel.Designer.cs</LastGenOutput>
@@ -272,6 +285,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Facturando.Modelos.BillPrintModel.datasource" />
+    <None Include="Properties\DataSources\Facturando.Modelos.RemissionPrintModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -160,6 +160,7 @@
           <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="RemissionNumber" Type="bigint" Nullable="false" />
           <Property Name="IdClient" Type="uniqueidentifier" />
+          <Property Name="DateEvent" Type="date" />
         </EntityType>
         <EntityType Name="RemissionDetail">
           <Key>
@@ -170,6 +171,7 @@
           <Property Name="IdProduct" Type="uniqueidentifier" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
@@ -785,6 +787,7 @@
           <Property Name="IdClient" Type="Guid" />
           <NavigationProperty Name="Client" Relationship="Self.FK_Remission_Client" FromRole="Remission" ToRole="Client" />
           <NavigationProperty Name="RemissionDetail" Relationship="Self.FK_RemissionDetail_Remission" FromRole="Remission" ToRole="RemissionDetail" />
+          <Property Name="DateEvent" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="RemissionDetail">
           <Key>
@@ -797,6 +800,7 @@
           <Property Name="Total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Self.FK_RemissionDetail_Product" FromRole="RemissionDetail" ToRole="Product" />
           <NavigationProperty Name="Remission" Relationship="Self.FK_RemissionDetail_Remission" FromRole="RemissionDetail" ToRole="Remission" />
+          <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
@@ -1444,6 +1448,7 @@
           <EntitySetMapping Name="Remission">
             <EntityTypeMapping TypeName="FacturandoModel.Remission">
               <MappingFragment StoreEntitySet="Remission">
+                <ScalarProperty Name="DateEvent" ColumnName="DateEvent" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="RemissionNumber" ColumnName="RemissionNumber" />
@@ -1454,6 +1459,7 @@
           <EntitySetMapping Name="RemissionDetail">
             <EntityTypeMapping TypeName="FacturandoModel.RemissionDetail">
               <MappingFragment StoreEntitySet="RemissionDetail">
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdRemission" ColumnName="IdRemission" />
                 <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />

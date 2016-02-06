@@ -23,6 +23,7 @@ namespace Facturando.Data
         public decimal Total { get; set; }
         public long RemissionNumber { get; set; }
         public Nullable<System.Guid> IdClient { get; set; }
+        public Nullable<System.DateTime> DateEvent { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual ICollection<RemissionDetail> RemissionDetail { get; set; }
