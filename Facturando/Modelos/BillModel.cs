@@ -56,6 +56,7 @@ namespace Facturando.Modelos
     public class IdentificationTypeModel {
         public Guid Id { get; set; }
         public string Description { get; set; }
+        public bool IsNewRegister { get; set; }
     }
 
     public class BillSaveModel {

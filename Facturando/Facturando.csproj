@@ -75,6 +75,7 @@
     <Compile Include="Data\Client.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\ConfigurationData.cs" />
     <Compile Include="Data\ConfigurationSystem.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -101,6 +102,7 @@
       <DependentUpon>FacturandoEntityDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Data\IBill.cs" />
+    <Compile Include="Data\IConfiguration.cs" />
     <Compile Include="Data\IdentificacionType.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -160,6 +162,7 @@
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelos\BillModel.cs" />
+    <Compile Include="Modelos\ConfigurationModel.cs" />
     <Compile Include="Modelos\InventoryModel.cs" />
     <Compile Include="Modelos\LoginModel.cs" />
     <Compile Include="Modelos\RemissionModel.cs" />

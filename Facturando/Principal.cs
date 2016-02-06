@@ -50,7 +50,7 @@ namespace Facturando
 
         private void configuraciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            AddFormInPanel(new Configuracion());
         }
 
         private void alertasToolStripMenuItem_Click(object sender, EventArgs e)

@@ -88,7 +88,9 @@ namespace Facturando.Data
                 long result = 0;
                 using (FacturandoEntities context = new FacturandoEntities())
                 {
-                    ConfigurationSystem lastConfiguration = context.ConfigurationSystem.OrderByDescending(x => x.FiscalYear).FirstOrDefault();
+                    ConfigurationSystem lastConfiguration = context.ConfigurationSystem
+                        .OrderByDescending(x => x.OperationsInitDate)
+                        .FirstOrDefault();
                     BillModel bill = context.Bill.OrderByDescending(x => x.BillNumber).Select(x => new BillModel
                     {
                         BillNumber = x.BillNumber
@@ -101,7 +103,7 @@ namespace Facturando.Data
                             result = bill.BillNumber + 1;
                             if (!(result >= lastConfiguration.AuthorizedBillingInit && result <= lastConfiguration.AuthorizedBillingEnd))
                             {
-                                result = 0;
+                                result = lastConfiguration.AuthorizedBillingInit;
                             }
                         }
                         else

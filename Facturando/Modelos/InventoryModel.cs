@@ -43,6 +43,7 @@ namespace Facturando.Modelos
     {
         public Guid Id { get; set; }
         public string Description { get; set; }
+        public bool IsNewRegister { get; set; }
     }
     public class ProductModel {
         public Guid Id { get; set; }
