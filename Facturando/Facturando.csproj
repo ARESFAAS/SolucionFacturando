@@ -184,6 +184,18 @@
     <Compile Include="Modulos\Configuracion.Designer.cs">
       <DependentUpon>Configuracion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\ConsultarFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\ConsultarFactura.Designer.cs">
+      <DependentUpon>ConsultarFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\ConsultarRemision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\ConsultarRemision.Designer.cs">
+      <DependentUpon>ConsultarRemision.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Facturacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Configuracion.resx">
       <DependentUpon>Configuracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\ConsultarFactura.resx">
+      <DependentUpon>ConsultarFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Facturacion.resx">
       <DependentUpon>Facturacion.cs</DependentUpon>

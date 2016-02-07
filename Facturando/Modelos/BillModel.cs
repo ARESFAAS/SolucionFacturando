@@ -11,6 +11,11 @@ namespace Facturando.Modelos
         public Guid IdClient { get; set; }
         public DateTime DateEvent { get; set; }
         public string TotalInLetters { get; set; }
+        public bool IsCanceled { get; set; }
+        public DateTime? CancelDate { get; set; }
+        public string IdentificationNumber { get; set; }
+        public string Name { get; set; }
+        public string WatchBill { get; set; }
     }
 
     public class ClientModel

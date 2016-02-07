@@ -30,6 +30,19 @@ namespace Facturando.Modulos
             _bill.BillTaxes = bill.BillTaxes;
         }
 
+        public VisorFactura(BillSaveModel bill, bool readOnly)
+        {
+            InitializeComponent();
+            _bill.Client = new List<ClientModel>();
+            _bill.Client.Add(bill.Client);
+            _bill.Bill = new List<BillModel>();
+            _bill.Bill.Add(bill.Bill);
+            _bill.BillDetail = bill.BillDetail;
+            _bill.BillTaxes = bill.BillTaxes;
+
+            btnNuevaFactura.Enabled = false;
+        }
+
         private void VisorFactura_Load(object sender, EventArgs e)
         {
             rvwFactura.RefreshReport();

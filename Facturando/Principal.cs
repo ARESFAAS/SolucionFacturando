@@ -1,4 +1,5 @@
 ﻿using Facturando.Modelos;
+using Facturando.Modulos;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -73,6 +74,16 @@ namespace Facturando
 
         }
         
+        private void picConsultarFactura_Click(object sender, EventArgs e)
+        {
+            AddFormInPanel(new ConsultarFactura());
+        }
+
+        private void picConsultarRemision_Click(object sender, EventArgs e)
+        {
+            AddFormInPanel(new ConsultarRemision());
+        }
+
         private void AddFormInPanel(object formHijo)
         {
             if (this.splitContainer1.Panel2.Controls.Count > 0)
@@ -85,5 +96,7 @@ namespace Facturando
             this.splitContainer1.Panel2.Tag = fh;
             fh.Show();
         }
+
+
     }
 }

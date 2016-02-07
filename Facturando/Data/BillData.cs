@@ -195,5 +195,164 @@ namespace Facturando.Data
                 throw;
             }
         }
+
+        public List<BillModel> GetBillList(long billNumber, string identificationNumber, DateTime? initDate, DateTime? endDate)
+        {
+            try
+            {
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    List<BillModel> result = null;
+                    if (billNumber > 0)
+                    {
+                        result = context.Bill
+                            .Where(x => x.BillNumber == billNumber)
+                            .Select(x => new BillModel
+                            {
+                                BillNumber = x.BillNumber,
+                                CancelDate = x.CancelDate,
+                                DateEvent = x.DateEvent.Value,
+                                Id = x.Id,
+                                IdClient = x.IdClient.Value,
+                                IsCanceled = x.IsCanceled != null ? x.IsCanceled.Value : false,
+                                Total = x.Total,
+                                IdentificationNumber = x.Client.IdentificationNumber,
+                                Name = x.Client.Name
+                            }).ToList();
+                    }
+
+                    if (!string.IsNullOrEmpty(identificationNumber))
+                    {
+                        result = context.Bill
+                            .Where(x => x.Client.IdentificationNumber.Equals(identificationNumber))
+                            .Select(x => new BillModel
+                            {
+                                BillNumber = x.BillNumber,
+                                CancelDate = x.CancelDate,
+                                DateEvent = x.DateEvent.Value,
+                                Id = x.Id,
+                                IdClient = x.IdClient.Value,
+                                IsCanceled = x.IsCanceled != null ? x.IsCanceled.Value : false,
+                                Total = x.Total,
+                                IdentificationNumber = x.Client.IdentificationNumber,
+                                Name = x.Client.Name
+                            }).ToList();
+                    }
+
+                    if (initDate != null && endDate != null)
+                    {
+                        result = context.Bill
+                           .Where(x => x.DateEvent.Value >= initDate && x.DateEvent.Value <= endDate)
+                           .Select(x => new BillModel
+                           {
+                               BillNumber = x.BillNumber,
+                               CancelDate = x.CancelDate,
+                               DateEvent = x.DateEvent.Value,
+                               Id = x.Id,
+                               IdClient = x.IdClient.Value,
+                               IsCanceled = x.IsCanceled != null ? x.IsCanceled.Value : false,
+                               Total = x.Total,
+                               IdentificationNumber = x.Client.IdentificationNumber,
+                               Name = x.Client.Name
+                           }).ToList();
+                    }
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public BillSaveModel GetBillData(BillModel bill)
+        {
+            try
+            {
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    BillSaveModel result = new BillSaveModel();
+                    result.Bill = bill;
+                    result.BillDetail = context.BillDetail
+                        .Where(x => x.IdBill == result.Bill.Id)
+                        .Select(x => new BillDetailModel
+                        {
+                            Id = x.Id,
+                            IdBill = x.IdBill,
+                            IdProduct = x.IdProduct.Value,
+                            Quantity = x.Quantity,
+                            Total = x.Total,
+                            UnitPrice = x.UnitPrice != null ? x.UnitPrice.Value : 0
+                        }).ToList();
+
+                    result.Client = context.Client
+                        .Where(x => x.Id == result.Bill.IdClient)
+                        .Select(x => new ClientModel
+                        {
+                            Id = x.Id,
+                            Adress = x.Address,
+                            DateEvent = x.DateEvent != null ? x.DateEvent.Value : DateTime.MinValue,
+                            DiscountPercent = x.DisccountPercent,
+                            Email = x.Email,
+                            IdentificationNumber = x.IdentificationNumber,
+                            IdIdentificationType = x.IdIdentificationType.Value,
+                            Name = x.Name,
+                            Phone = x.Phone
+                        }).FirstOrDefault();
+
+                    result.BillTaxes = context.BillTaxes
+                        .Where(x => x.IdBill == result.Bill.Id)
+                        .Select(x => new BillTaxesModel
+                        {
+                            Id = x.Id,
+                            Description = x.Tax.Description,
+                            IdBill = x.IdBill.Value,
+                            IdTax = x.IdTax.Value,
+                            PercentageValue = x.Tax.PercentageValue,
+                            Total = x.Total
+                        }).ToList();
+
+                    return result;
+
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<BillModel> CancelBill(List<BillModel> billList)
+        {
+            try
+            {
+                DateTime cancelDate = DateTime.Now;
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    foreach (var item in billList)
+                    {
+                        var billTemp = context.Bill.Where(x => x.Id == item.Id).FirstOrDefault();
+                        if (item.IsCanceled)
+                        {
+                            billTemp.IsCanceled = item.IsCanceled;
+                            billTemp.CancelDate = cancelDate;
+                            item.CancelDate = cancelDate;                            
+                        }
+                        else
+                        {
+                            billTemp.IsCanceled = item.IsCanceled;
+                            billTemp.CancelDate = null;
+                            item.CancelDate = null;
+                        }
+                    }
+                    context.SaveChanges();
+                    return billList;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

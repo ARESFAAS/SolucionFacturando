@@ -21,6 +21,8 @@
           <Property Name="BillNumber" Type="bigint" Nullable="false" />
           <Property Name="IdClient" Type="uniqueidentifier" />
           <Property Name="DateEvent" Type="date" />
+          <Property Name="IsCanceled" Type="bit" />
+          <Property Name="CancelDate" Type="date" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -658,6 +660,8 @@
           <NavigationProperty Name="BillDetail" Relationship="Self.FK_BillDetail_Bill" FromRole="Bill" ToRole="BillDetail" />
           <NavigationProperty Name="BillTaxes" Relationship="Self.FK_BillTaxes_Bill" FromRole="Bill" ToRole="BillTaxes" />
           <Property Name="DateEvent" Type="DateTime" Precision="0" />
+          <Property Name="IsCanceled" Type="Boolean" />
+          <Property Name="CancelDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -1330,6 +1334,8 @@
           <EntitySetMapping Name="Bill">
             <EntityTypeMapping TypeName="FacturandoModel.Bill">
               <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="CancelDate" ColumnName="CancelDate" />
+                <ScalarProperty Name="IsCanceled" ColumnName="IsCanceled" />
                 <ScalarProperty Name="DateEvent" ColumnName="DateEvent" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
