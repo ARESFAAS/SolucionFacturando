@@ -37,8 +37,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.dtgFactura = new System.Windows.Forms.DataGridView();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnConsultar = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BillNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateEvent = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +48,8 @@
             this.IsCanceled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CancelDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WatchBill = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnConsultar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgFactura)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,6 +70,7 @@
             this.txtFactura.Name = "txtFactura";
             this.txtFactura.Size = new System.Drawing.Size(182, 26);
             this.txtFactura.TabIndex = 1;
+            this.txtFactura.Leave += new System.EventHandler(this.txtFactura_Leave);
             // 
             // label2
             // 
@@ -103,7 +104,7 @@
             // 
             this.dtpDesde.CustomFormat = "dd/MM/yyyy";
             this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDesde.Location = new System.Drawing.Point(723, 23);
+            this.dtpDesde.Location = new System.Drawing.Point(723, 26);
             this.dtpDesde.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpDesde.Name = "dtpDesde";
             this.dtpDesde.Size = new System.Drawing.Size(118, 26);
@@ -155,26 +156,6 @@
             this.dtgFactura.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFactura_CellContentClick);
             this.dtgFactura.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFactura_CellValueChanged);
             this.dtgFactura.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgFactura_DataError);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Location = new System.Drawing.Point(984, 757);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(100, 36);
-            this.btnGuardar.TabIndex = 9;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // btnConsultar
-            // 
-            this.btnConsultar.Location = new System.Drawing.Point(17, 757);
-            this.btnConsultar.Name = "btnConsultar";
-            this.btnConsultar.Size = new System.Drawing.Size(108, 35);
-            this.btnConsultar.TabIndex = 10;
-            this.btnConsultar.Text = "Consultar";
-            this.btnConsultar.UseVisualStyleBackColor = true;
-            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // Id
             // 
@@ -263,6 +244,26 @@
             this.WatchBill.Text = "Ver";
             this.WatchBill.UseColumnTextForButtonValue = true;
             this.WatchBill.Width = 5;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(984, 757);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(100, 36);
+            this.btnGuardar.TabIndex = 9;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // btnConsultar
+            // 
+            this.btnConsultar.Location = new System.Drawing.Point(17, 757);
+            this.btnConsultar.Name = "btnConsultar";
+            this.btnConsultar.Size = new System.Drawing.Size(108, 35);
+            this.btnConsultar.TabIndex = 10;
+            this.btnConsultar.Text = "Consultar";
+            this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // ConsultarFactura
             // 

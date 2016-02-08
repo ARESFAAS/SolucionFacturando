@@ -258,6 +258,9 @@
     <EmbeddedResource Include="Modulos\ConsultarFactura.resx">
       <DependentUpon>ConsultarFactura.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\ConsultarRemision.resx">
+      <DependentUpon>ConsultarRemision.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Facturacion.resx">
       <DependentUpon>Facturacion.cs</DependentUpon>
     </EmbeddedResource>

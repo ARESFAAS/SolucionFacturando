@@ -7,6 +7,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -36,7 +38,7 @@ namespace Facturando.Modulos
                 var billNumberTemp = long.Parse(txtFactura.Text);
                 listBill = _billData.GetBillList(billNumberTemp, string.Empty, null, null);
             }
-            if (listBill == null && string.IsNullOrEmpty(txtIdentificacion.Text))
+            if (listBill == null && !string.IsNullOrEmpty(txtIdentificacion.Text))
             {
                 listBill = _billData.GetBillList(0, txtIdentificacion.Text, null, null);
             }
@@ -94,6 +96,30 @@ namespace Facturando.Modulos
         {
             dtgFactura.DataSource = _billData.CancelBill(_billModified);
             _billModified = new List<BillModel>();
+        }
+
+        private void txtFactura_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txtFactura.Text))
+                {
+                    long billNumberTemp = 0;
+                    var isValid = long.TryParse(txtFactura.Text, out billNumberTemp);
+
+                    if (!isValid)
+                    {
+                        MessageBox.Show("Al parecer hay un valor equivocado en la los datos del número de factura, revise nuevamente");
+                        txtFactura.Focus();
+                        return;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error");
+                return;
+            }
         }
     }
 }

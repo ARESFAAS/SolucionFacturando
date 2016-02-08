@@ -9,11 +9,14 @@ namespace Facturando.Modelos
     public class RemissionModel
     {
         public Guid Id { get; set; }
-        public decimal Total { get; set; }
-        public string TotalInLetters { get; set; }
+        public Guid? IdClient { get; set; }
         public long RemissionNumber { get; set; }
-        public Guid? IdClient {  get; set; }
+        public decimal Total { get; set; }
+        public string Name { get; set; }
+        public string IdentificationNumber { get; set; }
         public DateTime DateEvent { get; set; }
+        public string TotalInLetters { get; set; }
+        public string WatchRemission { get; set; }
     }
 
     public class RemissionDetailModel {

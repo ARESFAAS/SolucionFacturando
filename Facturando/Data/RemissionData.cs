@@ -9,6 +9,69 @@ namespace Facturando.Data
 {
     public class RemissionData : IRemission
     {
+        public List<RemissionModel> GetRemissionList(long remissionNumber, string identificationNumber, DateTime? initDate, DateTime? endDate)
+        {
+            try
+            {
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    List<RemissionModel> result = null;
+                    if (remissionNumber > 0)
+                    {
+                        result = context.Remission
+                            .Where(x => x.RemissionNumber == remissionNumber)
+                            .Select(x => new RemissionModel
+                            {
+                                RemissionNumber = x.RemissionNumber,
+                                DateEvent = x.DateEvent.Value,
+                                Id = x.Id,
+                                IdClient = x.IdClient.Value,
+                                Total = x.Total,
+                                IdentificationNumber = x.Client.IdentificationNumber,
+                                Name = x.Client.Name
+                            }).ToList();
+                    }
+
+                    if (!string.IsNullOrEmpty(identificationNumber))
+                    {
+                        result = context.Remission
+                            .Where(x => x.Client.IdentificationNumber.Equals(identificationNumber))
+                            .Select(x => new RemissionModel
+                            {
+                                RemissionNumber = x.RemissionNumber,
+                                DateEvent = x.DateEvent.Value,
+                                Id = x.Id,
+                                IdClient = x.IdClient.Value,
+                                Total = x.Total,
+                                IdentificationNumber = x.Client.IdentificationNumber,
+                                Name = x.Client.Name
+                            }).ToList();
+                    }
+
+                    if (initDate != null && endDate != null)
+                    {
+                        result = context.Remission
+                           .Where(x => x.DateEvent.Value >= initDate && x.DateEvent.Value <= endDate)
+                           .Select(x => new RemissionModel
+                           {
+                               RemissionNumber = x.RemissionNumber,
+                               DateEvent = x.DateEvent.Value,
+                               Id = x.Id,
+                               IdClient = x.IdClient.Value,
+                               Total = x.Total,
+                               IdentificationNumber = x.Client.IdentificationNumber,
+                               Name = x.Client.Name
+                           }).ToList();
+                    }
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public long GetRemissionNumber()
         {
             try
@@ -97,6 +160,50 @@ namespace Facturando.Data
                     }
                     context.SaveChanges();
                     return remission;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public RemissionSaveModel GetRemissionData(RemissionModel remission)
+        {
+            try
+            {
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    RemissionSaveModel result = new RemissionSaveModel();
+                    result.Remission = remission;
+                    result.RemissionDetail = context.RemissionDetail
+                        .Where(x => x.IdRemission == result.Remission.Id)
+                        .Select(x => new RemissionDetailModel
+                        {
+                            Id = x.Id,
+                            IdRemission = x.IdRemission.Value,
+                            IdProduct = x.IdProduct.Value,
+                            Quantity = x.Quantity,
+                            Total = x.Total,
+                            UnitPrice = x.UnitPrice
+                        }).ToList();
+
+                    result.Client = context.Client
+                        .Where(x => x.Id == result.Remission.IdClient)
+                        .Select(x => new ClientModel
+                        {
+                            Id = x.Id,
+                            Adress = x.Address,
+                            DateEvent = x.DateEvent != null ? x.DateEvent.Value : DateTime.MinValue,
+                            DiscountPercent = x.DisccountPercent,
+                            Email = x.Email,
+                            IdentificationNumber = x.IdentificationNumber,
+                            IdIdentificationType = x.IdIdentificationType.Value,
+                            Name = x.Name,
+                            Phone = x.Phone
+                        }).FirstOrDefault();
+
+                    return result;
                 }
             }
             catch (Exception)
