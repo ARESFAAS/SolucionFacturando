@@ -332,6 +332,8 @@
       <DependentUpon>FacturandoEntityDataModel.edmx</DependentUpon>
       <LastGenOutput>FacturandoEntityDataModel.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\consultarRemision.jpg" />
+    <None Include="Resources\consultarFactura.jpe" />
     <None Include="Resources\checklist.jpg" />
     <None Include="Resources\remision.jpg" />
     <None Include="Resources\folder_invoices_91734.jpg" />

@@ -73,6 +73,26 @@ namespace Facturando.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap consultarFactura {
+            get {
+                object obj = ResourceManager.GetObject("consultarFactura", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap consultarRemision {
+            get {
+                object obj = ResourceManager.GetObject("consultarRemision", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap folder_invoices_91734 {
             get {
                 object obj = ResourceManager.GetObject("folder_invoices_91734", resourceCulture);

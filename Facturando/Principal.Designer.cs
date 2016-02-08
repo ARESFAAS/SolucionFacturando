@@ -29,12 +29,11 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.picInventario = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.pctNuevaRemision = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.picAgregaFactura = new System.Windows.Forms.PictureBox();
             this.lblNombreEmpresa = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,19 +45,20 @@
             this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.remisionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.picConsultarFactura = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.picConsultarRemision = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.picConsultarFactura = new System.Windows.Forms.PictureBox();
+            this.picInventario = new System.Windows.Forms.PictureBox();
+            this.pctNuevaRemision = new System.Windows.Forms.PictureBox();
+            this.picAgregaFactura = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picConsultarRemision)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picConsultarFactura)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picInventario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctNuevaRemision)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAgregaFactura)).BeginInit();
-            this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picConsultarFactura)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picConsultarRemision)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -88,6 +88,24 @@
             this.splitContainer1.SplitterDistance = 208;
             this.splitContainer1.TabIndex = 0;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(31, 627);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(145, 17);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Consultar Remisiones";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(43, 516);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(127, 17);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Consultar Facturas";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -96,18 +114,6 @@
             this.label4.Size = new System.Drawing.Size(70, 17);
             this.label4.TabIndex = 14;
             this.label4.Text = "Inventario";
-            // 
-            // picInventario
-            // 
-            this.picInventario.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picInventario.Image = global::Facturando.Properties.Resources.checklist;
-            this.picInventario.Location = new System.Drawing.Point(31, 334);
-            this.picInventario.Name = "picInventario";
-            this.picInventario.Size = new System.Drawing.Size(145, 72);
-            this.picInventario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picInventario.TabIndex = 13;
-            this.picInventario.TabStop = false;
-            this.picInventario.Click += new System.EventHandler(this.picInventario_Click);
             // 
             // label3
             // 
@@ -118,18 +124,6 @@
             this.label3.TabIndex = 12;
             this.label3.Text = "Nueva Remisión";
             // 
-            // pctNuevaRemision
-            // 
-            this.pctNuevaRemision.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pctNuevaRemision.Image = global::Facturando.Properties.Resources.remision;
-            this.pctNuevaRemision.Location = new System.Drawing.Point(31, 223);
-            this.pctNuevaRemision.Name = "pctNuevaRemision";
-            this.pctNuevaRemision.Size = new System.Drawing.Size(145, 72);
-            this.pctNuevaRemision.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pctNuevaRemision.TabIndex = 11;
-            this.pctNuevaRemision.TabStop = false;
-            this.pctNuevaRemision.Click += new System.EventHandler(this.pctNuevaRemision_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -138,18 +132,6 @@
             this.label1.Size = new System.Drawing.Size(101, 17);
             this.label1.TabIndex = 10;
             this.label1.Text = "Nueva Factura";
-            // 
-            // picAgregaFactura
-            // 
-            this.picAgregaFactura.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picAgregaFactura.Image = global::Facturando.Properties.Resources.folder_invoices_91734;
-            this.picAgregaFactura.Location = new System.Drawing.Point(31, 105);
-            this.picAgregaFactura.Name = "picAgregaFactura";
-            this.picAgregaFactura.Size = new System.Drawing.Size(145, 72);
-            this.picAgregaFactura.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picAgregaFactura.TabIndex = 9;
-            this.picAgregaFactura.TabStop = false;
-            this.picAgregaFactura.Click += new System.EventHandler(this.picAgregaFactura_Click);
             // 
             // lblNombreEmpresa
             // 
@@ -243,43 +225,65 @@
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
-            // picConsultarFactura
-            // 
-            this.picConsultarFactura.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picConsultarFactura.Location = new System.Drawing.Point(31, 441);
-            this.picConsultarFactura.Name = "picConsultarFactura";
-            this.picConsultarFactura.Size = new System.Drawing.Size(145, 72);
-            this.picConsultarFactura.TabIndex = 16;
-            this.picConsultarFactura.TabStop = false;
-            this.picConsultarFactura.Click += new System.EventHandler(this.picConsultarFactura_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(43, 516);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 17);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Consultar Facturas";
-            // 
             // picConsultarRemision
             // 
             this.picConsultarRemision.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picConsultarRemision.Image = global::Facturando.Properties.Resources.consultarRemision;
             this.picConsultarRemision.Location = new System.Drawing.Point(31, 550);
             this.picConsultarRemision.Name = "picConsultarRemision";
             this.picConsultarRemision.Size = new System.Drawing.Size(145, 72);
+            this.picConsultarRemision.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picConsultarRemision.TabIndex = 18;
             this.picConsultarRemision.TabStop = false;
             this.picConsultarRemision.Click += new System.EventHandler(this.picConsultarRemision_Click);
             // 
-            // label5
+            // picConsultarFactura
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(31, 627);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(145, 17);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "Consultar Remisiones";
+            this.picConsultarFactura.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picConsultarFactura.Image = global::Facturando.Properties.Resources.consultarFactura;
+            this.picConsultarFactura.Location = new System.Drawing.Point(31, 441);
+            this.picConsultarFactura.Name = "picConsultarFactura";
+            this.picConsultarFactura.Size = new System.Drawing.Size(145, 72);
+            this.picConsultarFactura.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picConsultarFactura.TabIndex = 16;
+            this.picConsultarFactura.TabStop = false;
+            this.picConsultarFactura.Click += new System.EventHandler(this.picConsultarFactura_Click);
+            // 
+            // picInventario
+            // 
+            this.picInventario.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picInventario.Image = global::Facturando.Properties.Resources.checklist;
+            this.picInventario.Location = new System.Drawing.Point(31, 334);
+            this.picInventario.Name = "picInventario";
+            this.picInventario.Size = new System.Drawing.Size(145, 72);
+            this.picInventario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picInventario.TabIndex = 13;
+            this.picInventario.TabStop = false;
+            this.picInventario.Click += new System.EventHandler(this.picInventario_Click);
+            // 
+            // pctNuevaRemision
+            // 
+            this.pctNuevaRemision.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pctNuevaRemision.Image = global::Facturando.Properties.Resources.remision;
+            this.pctNuevaRemision.Location = new System.Drawing.Point(31, 223);
+            this.pctNuevaRemision.Name = "pctNuevaRemision";
+            this.pctNuevaRemision.Size = new System.Drawing.Size(145, 72);
+            this.pctNuevaRemision.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pctNuevaRemision.TabIndex = 11;
+            this.pctNuevaRemision.TabStop = false;
+            this.pctNuevaRemision.Click += new System.EventHandler(this.pctNuevaRemision_Click);
+            // 
+            // picAgregaFactura
+            // 
+            this.picAgregaFactura.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picAgregaFactura.Image = global::Facturando.Properties.Resources.folder_invoices_91734;
+            this.picAgregaFactura.Location = new System.Drawing.Point(31, 105);
+            this.picAgregaFactura.Name = "picAgregaFactura";
+            this.picAgregaFactura.Size = new System.Drawing.Size(145, 72);
+            this.picAgregaFactura.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picAgregaFactura.TabIndex = 9;
+            this.picAgregaFactura.TabStop = false;
+            this.picAgregaFactura.Click += new System.EventHandler(this.picAgregaFactura_Click);
             // 
             // Principal
             // 
@@ -301,13 +305,13 @@
             this.splitContainer1.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picConsultarRemision)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picConsultarFactura)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picInventario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctNuevaRemision)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAgregaFactura)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picConsultarFactura)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picConsultarRemision)).EndInit();
             this.ResumeLayout(false);
 
         }
