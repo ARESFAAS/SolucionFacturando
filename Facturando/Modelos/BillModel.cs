@@ -22,6 +22,7 @@ namespace Facturando.Modelos
     {
         public Guid Id { get; set; }
         public Guid IdIdentificationType { get; set; }
+        public List<IdentificationTypeModel> TypeList { get; set; }
         public string IdentificationNumber { get; set; }
         public string Name { get; set; }
         public string Adress { get; set; }

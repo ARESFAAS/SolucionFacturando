@@ -84,6 +84,12 @@ namespace Facturando
             AddFormInPanel(new ConsultarRemision());
         }
 
+        private void picClientes_Click(object sender, EventArgs e)
+        {
+
+            AddFormInPanel(new Cliente());
+        }
+
         private void AddFormInPanel(object formHijo)
         {
             if (this.splitContainer1.Panel2.Controls.Count > 0)
@@ -95,8 +101,6 @@ namespace Facturando
             this.splitContainer1.Panel2.Controls.Add(fh);
             this.splitContainer1.Panel2.Tag = fh;
             fh.Show();
-        }
-
-
+        }        
     }
 }

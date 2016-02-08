@@ -75,6 +75,7 @@
     <Compile Include="Data\Client.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\ClientData.cs" />
     <Compile Include="Data\ConfigurationData.cs" />
     <Compile Include="Data\ConfigurationSystem.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
@@ -102,6 +103,7 @@
       <DependentUpon>FacturandoEntityDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Data\IBill.cs" />
+    <Compile Include="Data\IClient.cs" />
     <Compile Include="Data\IConfiguration.cs" />
     <Compile Include="Data\IdentificacionType.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
@@ -178,6 +180,12 @@
     <Compile Include="Modulos\Alertas.Designer.cs">
       <DependentUpon>Alertas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Cliente.Designer.cs">
+      <DependentUpon>Cliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Configuracion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Alertas.resx">
       <DependentUpon>Alertas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Cliente.resx">
+      <DependentUpon>Cliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Configuracion.resx">
       <DependentUpon>Configuracion.cs</DependentUpon>
