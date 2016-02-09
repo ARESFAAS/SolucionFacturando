@@ -125,6 +125,7 @@
     <Compile Include="Data\InventoryType.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\IProduct.cs" />
     <Compile Include="Data\IRemission.cs" />
     <Compile Include="Data\Module.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
@@ -132,6 +133,7 @@
     <Compile Include="Data\Product.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\ProductData.cs" />
     <Compile Include="Data\Remission.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -222,6 +224,12 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Producto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Producto.Designer.cs">
+      <DependentUpon>Producto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\VisorFactura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Producto.resx">
+      <DependentUpon>Producto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Remision.resx">
       <DependentUpon>Remision.cs</DependentUpon>

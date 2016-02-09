@@ -116,6 +116,7 @@
             this.picProductos.Size = new System.Drawing.Size(145, 72);
             this.picProductos.TabIndex = 22;
             this.picProductos.TabStop = false;
+            this.picProductos.Click += new System.EventHandler(this.picProductos_Click);
             // 
             // label6
             // 

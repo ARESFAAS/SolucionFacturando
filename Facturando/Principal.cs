@@ -90,6 +90,11 @@ namespace Facturando
             AddFormInPanel(new Cliente());
         }
 
+        private void picProductos_Click(object sender, EventArgs e)
+        {
+            AddFormInPanel(new Producto());
+        }
+
         private void AddFormInPanel(object formHijo)
         {
             if (this.splitContainer1.Panel2.Controls.Count > 0)
@@ -101,6 +106,6 @@ namespace Facturando
             this.splitContainer1.Panel2.Controls.Add(fh);
             this.splitContainer1.Panel2.Tag = fh;
             fh.Show();
-        }        
+        }
     }
 }

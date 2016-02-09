@@ -48,6 +48,8 @@ namespace Facturando.Modelos
     public class ProductModel {
         public Guid Id { get; set; }
         public string Description { get; set; }
+        public Guid IdUnit { get; set; }
+        public string DescriptionUnit { get; set; }
     }
     public class InventorySaveModel
     {
