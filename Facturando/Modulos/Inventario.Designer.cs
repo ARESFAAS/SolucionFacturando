@@ -72,6 +72,9 @@
             this.dtpHasta = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.lstTipoMovimiento = new System.Windows.Forms.ListBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -122,12 +125,12 @@
             this.PurchasePrice,
             this.SalePrice,
             this.Sign});
-            this.dataGridView1.Location = new System.Drawing.Point(21, 323);
+            this.dataGridView1.Location = new System.Drawing.Point(21, 349);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1586, 604);
+            this.dataGridView1.Size = new System.Drawing.Size(1586, 578);
             this.dataGridView1.TabIndex = 19;
             this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
             this.dataGridView1.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseDoubleClick);
@@ -355,16 +358,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 244);
+            this.label2.Location = new System.Drawing.Point(21, 234);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(355, 17);
+            this.label2.Size = new System.Drawing.Size(351, 17);
             this.label2.TabIndex = 18;
-            this.label2.Text = "Ingrese el código de barras o deje el campo en blanco:";
+            this.label2.Text = "Ingrese el código de barras o deje el campo en blanco";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(21, 263);
+            this.textBox2.Location = new System.Drawing.Point(21, 282);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(345, 23);
@@ -402,7 +405,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 303);
+            this.label5.Location = new System.Drawing.Point(21, 328);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(715, 17);
@@ -413,7 +416,7 @@
             // 
             // btnEntrada
             // 
-            this.btnEntrada.Location = new System.Drawing.Point(391, 261);
+            this.btnEntrada.Location = new System.Drawing.Point(391, 277);
             this.btnEntrada.Margin = new System.Windows.Forms.Padding(4);
             this.btnEntrada.Name = "btnEntrada";
             this.btnEntrada.Size = new System.Drawing.Size(157, 28);
@@ -424,7 +427,7 @@
             // 
             // btnSalida
             // 
-            this.btnSalida.Location = new System.Drawing.Point(565, 261);
+            this.btnSalida.Location = new System.Drawing.Point(565, 277);
             this.btnSalida.Margin = new System.Windows.Forms.Padding(4);
             this.btnSalida.Name = "btnSalida";
             this.btnSalida.Size = new System.Drawing.Size(156, 28);
@@ -507,6 +510,35 @@
             this.lstTipoMovimiento.Size = new System.Drawing.Size(120, 52);
             this.lstTipoMovimiento.TabIndex = 5;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(18, 9);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(1181, 17);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Ingrese código de barras o nombre del producto o parte de el y haga click en Busc" +
+    "ar, luego puede ver el detalle y puede filtrar ese detalle con un rango de fecha" +
+    "s y el tipo de movimiento";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(21, 255);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(211, 17);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "y haga click en el botón Entrada";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(566, 255);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(471, 17);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Para crear una salida debe seleccionar un registro de detalle con signo +";
+            // 
             // Inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -515,6 +547,9 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1620, 991);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.lstTipoMovimiento);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.dtpHasta);
@@ -596,5 +631,8 @@
         private System.Windows.Forms.DateTimePicker dtpHasta;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ListBox lstTipoMovimiento;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
     }
 }

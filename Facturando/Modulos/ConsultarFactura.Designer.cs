@@ -50,13 +50,15 @@
             this.WatchBill = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnConsultar = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgFactura)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 26);
+            this.label1.Location = new System.Drawing.Point(18, 72);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 20);
@@ -65,7 +67,7 @@
             // 
             // txtFactura
             // 
-            this.txtFactura.Location = new System.Drawing.Point(85, 23);
+            this.txtFactura.Location = new System.Drawing.Point(90, 69);
             this.txtFactura.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtFactura.Name = "txtFactura";
             this.txtFactura.Size = new System.Drawing.Size(182, 26);
@@ -75,7 +77,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(284, 26);
+            this.label2.Location = new System.Drawing.Point(289, 72);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 20);
@@ -84,7 +86,7 @@
             // 
             // txtIdentificacion
             // 
-            this.txtIdentificacion.Location = new System.Drawing.Point(395, 23);
+            this.txtIdentificacion.Location = new System.Drawing.Point(400, 69);
             this.txtIdentificacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtIdentificacion.Name = "txtIdentificacion";
             this.txtIdentificacion.Size = new System.Drawing.Size(214, 26);
@@ -93,7 +95,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(641, 26);
+            this.label3.Location = new System.Drawing.Point(646, 72);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 20);
@@ -104,7 +106,7 @@
             // 
             this.dtpDesde.CustomFormat = "dd/MM/yyyy";
             this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDesde.Location = new System.Drawing.Point(723, 26);
+            this.dtpDesde.Location = new System.Drawing.Point(728, 72);
             this.dtpDesde.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpDesde.Name = "dtpDesde";
             this.dtpDesde.Size = new System.Drawing.Size(118, 26);
@@ -113,7 +115,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(865, 26);
+            this.label4.Location = new System.Drawing.Point(870, 72);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 20);
@@ -124,7 +126,7 @@
             // 
             this.dtpFin.CustomFormat = "dd/MM/yyyy";
             this.dtpFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFin.Location = new System.Drawing.Point(945, 26);
+            this.dtpFin.Location = new System.Drawing.Point(950, 72);
             this.dtpFin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpFin.Name = "dtpFin";
             this.dtpFin.Size = new System.Drawing.Size(118, 26);
@@ -149,9 +151,9 @@
             this.IsCanceled,
             this.CancelDate,
             this.WatchBill});
-            this.dtgFactura.Location = new System.Drawing.Point(13, 77);
+            this.dtgFactura.Location = new System.Drawing.Point(13, 141);
             this.dtgFactura.Name = "dtgFactura";
-            this.dtgFactura.Size = new System.Drawing.Size(1071, 660);
+            this.dtgFactura.Size = new System.Drawing.Size(1071, 596);
             this.dtgFactura.TabIndex = 8;
             this.dtgFactura.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFactura_CellContentClick);
             this.dtgFactura.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFactura_CellValueChanged);
@@ -261,9 +263,29 @@
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(108, 35);
             this.btnConsultar.TabIndex = 10;
-            this.btnConsultar.Text = "Consultar";
+            this.btnConsultar.Text = "Buscar";
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(698, 20);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Ingrese el número de factura o identificación o un rango de fechas y haga click e" +
+    "n el botón Buscar";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 118);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(997, 20);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Haga click en el botón Ver para imprimir o revisar la factura, puede anular la fa" +
+    "ctura haciendo click en la columna y luego en el botón Guardar";
             // 
             // ConsultarFactura
             // 
@@ -271,6 +293,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
             this.ClientSize = new System.Drawing.Size(1101, 816);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnConsultar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.dtgFactura);
@@ -317,5 +341,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsCanceled;
         private System.Windows.Forms.DataGridViewTextBoxColumn CancelDate;
         private System.Windows.Forms.DataGridViewButtonColumn WatchBill;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }

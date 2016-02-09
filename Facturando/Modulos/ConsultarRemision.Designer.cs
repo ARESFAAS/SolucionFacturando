@@ -47,6 +47,8 @@
             this.txtRemision = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnConsultar = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRemision)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,10 +69,10 @@
             this.TotalInLetters,
             this.IdClient,
             this.WatchRemission});
-            this.dtgRemision.Location = new System.Drawing.Point(13, 77);
+            this.dtgRemision.Location = new System.Drawing.Point(13, 128);
             this.dtgRemision.Name = "dtgRemision";
             this.dtgRemision.ReadOnly = true;
-            this.dtgRemision.Size = new System.Drawing.Size(1076, 665);
+            this.dtgRemision.Size = new System.Drawing.Size(1076, 614);
             this.dtgRemision.TabIndex = 0;
             this.dtgRemision.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgRemision_CellContentClick);
             this.dtgRemision.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgRemision_DataError);
@@ -156,7 +158,7 @@
             // 
             this.dtpFin.CustomFormat = "dd/MM/yyyy";
             this.dtpFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFin.Location = new System.Drawing.Point(962, 27);
+            this.dtpFin.Location = new System.Drawing.Point(965, 59);
             this.dtpFin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpFin.Name = "dtpFin";
             this.dtpFin.Size = new System.Drawing.Size(118, 26);
@@ -165,7 +167,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(882, 27);
+            this.label4.Location = new System.Drawing.Point(885, 59);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 20);
@@ -176,7 +178,7 @@
             // 
             this.dtpDesde.CustomFormat = "dd/MM/yyyy";
             this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDesde.Location = new System.Drawing.Point(740, 27);
+            this.dtpDesde.Location = new System.Drawing.Point(743, 59);
             this.dtpDesde.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpDesde.Name = "dtpDesde";
             this.dtpDesde.Size = new System.Drawing.Size(118, 26);
@@ -185,7 +187,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(658, 27);
+            this.label3.Location = new System.Drawing.Point(661, 59);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 20);
@@ -194,7 +196,7 @@
             // 
             // txtIdentificacion
             // 
-            this.txtIdentificacion.Location = new System.Drawing.Point(412, 24);
+            this.txtIdentificacion.Location = new System.Drawing.Point(415, 56);
             this.txtIdentificacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtIdentificacion.Name = "txtIdentificacion";
             this.txtIdentificacion.Size = new System.Drawing.Size(214, 26);
@@ -203,7 +205,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(301, 27);
+            this.label2.Location = new System.Drawing.Point(304, 59);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 20);
@@ -212,7 +214,7 @@
             // 
             // txtRemision
             // 
-            this.txtRemision.Location = new System.Drawing.Point(102, 24);
+            this.txtRemision.Location = new System.Drawing.Point(105, 56);
             this.txtRemision.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtRemision.Name = "txtRemision";
             this.txtRemision.Size = new System.Drawing.Size(182, 26);
@@ -222,7 +224,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 27);
+            this.label1.Location = new System.Drawing.Point(22, 59);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 20);
@@ -235,9 +237,28 @@
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(108, 35);
             this.btnConsultar.TabIndex = 16;
-            this.btnConsultar.Text = "Consultar";
+            this.btnConsultar.Text = "Buscar";
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(22, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(621, 20);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Ingrese numero de remisión, identificación o un rango de fechas y haga click en B" +
+    "uscar";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(22, 105);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(430, 20);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Haga click en el boton Ver para imprimir o revisar la remisión";
             // 
             // ConsultarRemision
             // 
@@ -245,6 +266,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
             this.ClientSize = new System.Drawing.Size(1101, 816);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnConsultar);
             this.Controls.Add(this.dtpFin);
             this.Controls.Add(this.label4);
@@ -287,5 +310,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalInLetters;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdClient;
         private System.Windows.Forms.DataGridViewButtonColumn WatchRemission;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }

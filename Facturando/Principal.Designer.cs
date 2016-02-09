@@ -111,9 +111,11 @@
             // picProductos
             // 
             this.picProductos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picProductos.Image = global::Facturando.Properties.Resources.products;
             this.picProductos.Location = new System.Drawing.Point(31, 778);
             this.picProductos.Name = "picProductos";
             this.picProductos.Size = new System.Drawing.Size(145, 72);
+            this.picProductos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picProductos.TabIndex = 22;
             this.picProductos.TabStop = false;
             this.picProductos.Click += new System.EventHandler(this.picProductos_Click);
@@ -130,9 +132,11 @@
             // picClientes
             // 
             this.picClientes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picClientes.Image = global::Facturando.Properties.Resources.folder_customer_91730;
             this.picClientes.Location = new System.Drawing.Point(31, 667);
             this.picClientes.Name = "picClientes";
             this.picClientes.Size = new System.Drawing.Size(145, 72);
+            this.picClientes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picClientes.TabIndex = 20;
             this.picClientes.TabStop = false;
             this.picClientes.Click += new System.EventHandler(this.picClientes_Click);
@@ -310,35 +314,35 @@
             // alertasToolStripMenuItem
             // 
             this.alertasToolStripMenuItem.Name = "alertasToolStripMenuItem";
-            this.alertasToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.alertasToolStripMenuItem.Text = "Alertas";
+            this.alertasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.alertasToolStripMenuItem.Text = "Inventario";
             this.alertasToolStripMenuItem.Click += new System.EventHandler(this.alertasToolStripMenuItem_Click);
             // 
             // facturaciónToolStripMenuItem
             // 
             this.facturaciónToolStripMenuItem.Name = "facturaciónToolStripMenuItem";
-            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.facturaciónToolStripMenuItem.Text = "Facturación";
             this.facturaciónToolStripMenuItem.Click += new System.EventHandler(this.facturaciónToolStripMenuItem_Click);
             // 
             // remisionesToolStripMenuItem
             // 
             this.remisionesToolStripMenuItem.Name = "remisionesToolStripMenuItem";
-            this.remisionesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.remisionesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.remisionesToolStripMenuItem.Text = "Remisiones";
             this.remisionesToolStripMenuItem.Click += new System.EventHandler(this.remisionesToolStripMenuItem_Click);
             // 
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
             // productosToolStripMenuItem
             // 
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.productosToolStripMenuItem.Text = "Productos";
             // 
             // Principal
