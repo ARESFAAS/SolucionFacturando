@@ -13,30 +13,70 @@ namespace Facturando
             InitializeComponent();
         }
 
-        public Principal(string systemCompany)
+        public Principal(string systemCompany, UserModel user)
         {
             InitializeComponent();
             SystemCompany = systemCompany;
+            User = user;
+
         }
 
         private void Principal_Load(object sender, EventArgs e)
         {
             lblNombreEmpresa.Text = SystemCompany;
+            lblRol.Text = User.Roles.FirstOrDefault().RolName;
+            Modules = System.Configuration.ConfigurationSettings.AppSettings["Modules"].ToString()
+                .Split('|')                
+                .ToDictionary(x => x.Split('-')[0], x => x.Split('-')[1]);
+            Actions = System.Configuration.ConfigurationSettings.AppSettings["Actions"].ToString()
+                .Split('|')                
+                .ToDictionary(x => x.Split('-')[0], x => x.Split('-')[1]);
         }
 
         private void picAgregaFactura_Click(object sender, EventArgs e)
         {
-            AddFormInPanel(new Facturacion());
+            
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["NF"])) {
+                        AddFormInPanel(new Facturacion());
+                        return;
+                    }
+                }
+            }
+            
         }
 
         private void pctNuevaRemision_Click(object sender, EventArgs e)
         {
-            AddFormInPanel(new Remision());
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["NR"]))
+                    {
+                        AddFormInPanel(new Remision());
+                        return;
+                    }
+                }
+            }
         }
 
         private void picInventario_Click(object sender, EventArgs e)
         {
-            AddFormInPanel(new Inventario());
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["I"]))
+                    {
+                        AddFormInPanel(new Inventario());
+                        return;
+                    }
+                }
+            }            
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -51,12 +91,22 @@ namespace Facturando
 
         private void configuraciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddFormInPanel(new Configuracion());
+            foreach(var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["C"]))
+                    {
+                        AddFormInPanel(new Configuracion());
+                        return;
+                    }
+                }
+            }            
         }
 
         private void alertasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void facturaciónToolStripMenuItem_Click(object sender, EventArgs e)
@@ -76,24 +126,63 @@ namespace Facturando
         
         private void picConsultarFactura_Click(object sender, EventArgs e)
         {
-            AddFormInPanel(new ConsultarFactura());
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["CF"]))
+                    {
+                        AddFormInPanel(new ConsultarFactura());
+                        return;
+                    }
+                }
+            }            
         }
 
         private void picConsultarRemision_Click(object sender, EventArgs e)
         {
-            AddFormInPanel(new ConsultarRemision());
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["CR"]))
+                    {
+                        AddFormInPanel(new ConsultarRemision());
+                        return;
+                    }
+                }
+            }            
         }
 
         private void picClientes_Click(object sender, EventArgs e)
         {
-
-            AddFormInPanel(new Cliente());
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["CL"]))
+                    {
+                        AddFormInPanel(new Cliente());
+                        return;
+                    }
+                }
+            }            
         }
 
         private void picProductos_Click(object sender, EventArgs e)
         {
-            AddFormInPanel(new Producto());
-        }
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["PR"]))
+                    {
+                        AddFormInPanel(new Producto());
+                        return;
+                    }
+                }
+            }
+        }        
 
         private void AddFormInPanel(object formHijo)
         {

@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="Data\IProduct.cs" />
     <Compile Include="Data\IRemission.cs" />
+    <Compile Include="Data\IUser.cs" />
     <Compile Include="Data\Module.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -162,14 +163,17 @@
     <Compile Include="Data\User.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\UserData.cs" />
     <Compile Include="Data\UserRol.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Encrypt.cs" />
     <Compile Include="Modelos\BillModel.cs" />
     <Compile Include="Modelos\ConfigurationModel.cs" />
     <Compile Include="Modelos\InventoryModel.cs" />
     <Compile Include="Modelos\LoginModel.cs" />
     <Compile Include="Modelos\RemissionModel.cs" />
+    <Compile Include="Modelos\UserModel.cs" />
     <Compile Include="Modulos\AgregarEditarRegistroInventario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -340,7 +344,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

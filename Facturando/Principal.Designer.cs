@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lblRol = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.picProductos = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -78,6 +79,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.splitContainer1.Panel1.Controls.Add(this.lblRol);
             this.splitContainer1.Panel1.Controls.Add(this.label7);
             this.splitContainer1.Panel1.Controls.Add(this.picProductos);
             this.splitContainer1.Panel1.Controls.Add(this.label6);
@@ -98,6 +100,14 @@
             this.splitContainer1.Size = new System.Drawing.Size(1394, 904);
             this.splitContainer1.SplitterDistance = 208;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // lblRol
+            // 
+            this.lblRol.AutoSize = true;
+            this.lblRol.Location = new System.Drawing.Point(3, 24);
+            this.lblRol.Name = "lblRol";
+            this.lblRol.Size = new System.Drawing.Size(0, 17);
+            this.lblRol.TabIndex = 24;
             // 
             // label7
             // 
@@ -407,5 +417,6 @@
         private System.Windows.Forms.PictureBox picProductos;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox picClientes;
+        private System.Windows.Forms.Label lblRol;
     }
 }
