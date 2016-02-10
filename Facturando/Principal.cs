@@ -106,22 +106,22 @@ namespace Facturando
 
         private void alertasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            AddFormInPanel(new Alertas());
         }
 
         private void facturaciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            AddFormInPanel(new FacturacionReporte());
         }
 
         private void remisionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            AddFormInPanel(new RemisionReporte());
         }
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            AddFormInPanel(new ClientesReporte());
         }
         
         private void picConsultarFactura_Click(object sender, EventArgs e)
@@ -182,7 +182,12 @@ namespace Facturando
                     }
                 }
             }
-        }        
+        }
+
+        private void productosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddFormInPanel(new ProductosReporte());
+        }
 
         private void AddFormInPanel(object formHijo)
         {

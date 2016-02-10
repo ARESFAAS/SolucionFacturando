@@ -9,20 +9,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Facturando
+namespace Facturando.Modulos
 {
-    public partial class Alertas : BaseForm
+    public partial class ClientesReporte : Form
     {
-        public Alertas()
+        public ClientesReporte()
         {
             InitializeComponent();
         }
 
-        private void Alertas_Load(object sender, EventArgs e)
+        private void ClientesReporte_Load(object sender, EventArgs e)
         {
             IReport report = new ReportData();
-            InventoryReportModelBindingSource.DataSource = report.GetInventory();
-            this.rpvInventario.RefreshReport();
+            ClientReportModelBindingSource.DataSource = report.GetClients();
+            this.rpvClientes.RefreshReport();
         }
     }
 }

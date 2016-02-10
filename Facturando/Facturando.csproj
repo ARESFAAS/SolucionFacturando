@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="Data\IProduct.cs" />
     <Compile Include="Data\IRemission.cs" />
+    <Compile Include="Data\IReport.cs" />
     <Compile Include="Data\IUser.cs" />
     <Compile Include="Data\Module.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
@@ -142,6 +143,7 @@
     <Compile Include="Data\RemissionDetail.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\ReportData.cs" />
     <Compile Include="Data\Rol.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -173,6 +175,7 @@
     <Compile Include="Modelos\InventoryModel.cs" />
     <Compile Include="Modelos\LoginModel.cs" />
     <Compile Include="Modelos\RemissionModel.cs" />
+    <Compile Include="Modelos\ReportModel.cs" />
     <Compile Include="Modelos\UserModel.cs" />
     <Compile Include="Modulos\AgregarEditarRegistroInventario.cs">
       <SubType>Form</SubType>
@@ -191,6 +194,12 @@
     </Compile>
     <Compile Include="Modulos\Cliente.Designer.cs">
       <DependentUpon>Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\ClientesReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\ClientesReporte.Designer.cs">
+      <DependentUpon>ClientesReporte.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Configuracion.cs">
       <SubType>Form</SubType>
@@ -216,6 +225,12 @@
     <Compile Include="Modulos\Facturacion.Designer.cs">
       <DependentUpon>Facturacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\FacturacionReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\FacturacionReporte.Designer.cs">
+      <DependentUpon>FacturacionReporte.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\Inventario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,6 +248,18 @@
     </Compile>
     <Compile Include="Modulos\Producto.Designer.cs">
       <DependentUpon>Producto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\ProductosReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\ProductosReporte.Designer.cs">
+      <DependentUpon>ProductosReporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\RemisionReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\RemisionReporte.Designer.cs">
+      <DependentUpon>RemisionReporte.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\VisorFactura.cs">
       <SubType>Form</SubType>
@@ -275,6 +302,9 @@
     <EmbeddedResource Include="Modulos\Cliente.resx">
       <DependentUpon>Cliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\ClientesReporte.resx">
+      <DependentUpon>ClientesReporte.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Configuracion.resx">
       <DependentUpon>Configuracion.cs</DependentUpon>
     </EmbeddedResource>
@@ -287,6 +317,9 @@
     <EmbeddedResource Include="Modulos\Facturacion.resx">
       <DependentUpon>Facturacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\FacturacionReporte.resx">
+      <DependentUpon>FacturacionReporte.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Inventario.resx">
       <DependentUpon>Inventario.cs</DependentUpon>
     </EmbeddedResource>
@@ -296,8 +329,14 @@
     <EmbeddedResource Include="Modulos\Producto.resx">
       <DependentUpon>Producto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\ProductosReporte.resx">
+      <DependentUpon>ProductosReporte.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Remision.resx">
       <DependentUpon>Remision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\RemisionReporte.resx">
+      <DependentUpon>RemisionReporte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Reportes.resx">
       <DependentUpon>Reportes.cs</DependentUpon>
@@ -321,7 +360,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reportes\Clientes.rdlc" />
+    <EmbeddedResource Include="Reportes\Facturacion.rdlc" />
     <EmbeddedResource Include="Reportes\FacturaImpresa.rdlc" />
+    <EmbeddedResource Include="Reportes\Inventario.rdlc" />
+    <EmbeddedResource Include="Reportes\Productos.rdlc" />
+    <EmbeddedResource Include="Reportes\Remision.rdlc" />
     <EmbeddedResource Include="Reportes\RemisionImpresa.rdlc" />
     <EntityDeploy Include="Data\FacturandoEntityDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -332,6 +376,11 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Facturando.Modelos.BillPrintModel.datasource" />
+    <None Include="Properties\DataSources\Facturando.Modelos.BillReportModel.datasource" />
+    <None Include="Properties\DataSources\Facturando.Modelos.BillViewModel.datasource" />
+    <None Include="Properties\DataSources\Facturando.Modelos.ClientReportModel.datasource" />
+    <None Include="Properties\DataSources\Facturando.Modelos.InventoryReportModel.datasource" />
+    <None Include="Properties\DataSources\Facturando.Modelos.ProductReportModel.datasource" />
     <None Include="Properties\DataSources\Facturando.Modelos.RemissionPrintModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

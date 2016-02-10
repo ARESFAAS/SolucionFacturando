@@ -28,20 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.InventoryReportModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.rpvInventario = new Microsoft.Reporting.WinForms.ReportViewer();
+            ((System.ComponentModel.ISupportInitialize)(this.InventoryReportModelBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // InventoryReportModelBindingSource
+            // 
+            this.InventoryReportModelBindingSource.DataMember = "Inventory";
+            this.InventoryReportModelBindingSource.DataSource = typeof(Facturando.Modelos.InventoryReportModel);
+            // 
+            // rpvInventario
+            // 
+            this.rpvInventario.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource1.Name = "Inventory";
+            reportDataSource1.Value = this.InventoryReportModelBindingSource;
+            this.rpvInventario.LocalReport.DataSources.Add(reportDataSource1);
+            this.rpvInventario.LocalReport.ReportEmbeddedResource = "Facturando.Reportes.Inventario.rdlc";
+            this.rpvInventario.Location = new System.Drawing.Point(0, 0);
+            this.rpvInventario.Name = "rpvInventario";
+            this.rpvInventario.Size = new System.Drawing.Size(931, 824);
+            this.rpvInventario.TabIndex = 0;
             // 
             // Alertas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(931, 824);
+            this.Controls.Add(this.rpvInventario);
             this.Name = "Alertas";
             this.Text = "Alertas";
             this.Load += new System.EventHandler(this.Alertas_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.InventoryReportModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private Microsoft.Reporting.WinForms.ReportViewer rpvInventario;
+        private System.Windows.Forms.BindingSource InventoryReportModelBindingSource;
     }
 }
