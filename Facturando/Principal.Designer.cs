@@ -56,6 +56,7 @@
             this.remisionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -79,6 +80,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.splitContainer1.Panel1.Controls.Add(this.label8);
             this.splitContainer1.Panel1.Controls.Add(this.lblRol);
             this.splitContainer1.Panel1.Controls.Add(this.label7);
             this.splitContainer1.Panel1.Controls.Add(this.picProductos);
@@ -104,7 +106,7 @@
             // lblRol
             // 
             this.lblRol.AutoSize = true;
-            this.lblRol.Location = new System.Drawing.Point(3, 24);
+            this.lblRol.Location = new System.Drawing.Point(77, 28);
             this.lblRol.Name = "lblRol";
             this.lblRol.Size = new System.Drawing.Size(0, 17);
             this.lblRol.TabIndex = 24;
@@ -324,37 +326,46 @@
             // alertasToolStripMenuItem
             // 
             this.alertasToolStripMenuItem.Name = "alertasToolStripMenuItem";
-            this.alertasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.alertasToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.alertasToolStripMenuItem.Text = "Inventario";
             this.alertasToolStripMenuItem.Click += new System.EventHandler(this.alertasToolStripMenuItem_Click);
             // 
             // facturaciónToolStripMenuItem
             // 
             this.facturaciónToolStripMenuItem.Name = "facturaciónToolStripMenuItem";
-            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.facturaciónToolStripMenuItem.Text = "Facturación";
             this.facturaciónToolStripMenuItem.Click += new System.EventHandler(this.facturaciónToolStripMenuItem_Click);
             // 
             // remisionesToolStripMenuItem
             // 
             this.remisionesToolStripMenuItem.Name = "remisionesToolStripMenuItem";
-            this.remisionesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.remisionesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.remisionesToolStripMenuItem.Text = "Remisiones";
             this.remisionesToolStripMenuItem.Click += new System.EventHandler(this.remisionesToolStripMenuItem_Click);
             // 
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
             // productosToolStripMenuItem
             // 
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.productosToolStripMenuItem.Text = "Productos";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 28);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(61, 17);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "Usuario:";
             // 
             // Principal
             // 
@@ -369,7 +380,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FACTURANDO Versión 1.0 - Principal";
+            this.Text = "INVENTARIOS Y FACTURACIÓN Versión 1.0 - Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Principal_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -419,5 +430,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox picClientes;
         private System.Windows.Forms.Label lblRol;
+        private System.Windows.Forms.Label label8;
     }
 }

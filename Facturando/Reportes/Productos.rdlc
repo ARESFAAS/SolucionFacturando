@@ -6,10 +6,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>8.77062cm</Width>
+              <Width>9.0733cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>7.87104cm</Width>
+              <Width>8.17372cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -26,10 +26,14 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Nombre Producto</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox1</rd:DefaultName>
@@ -56,10 +60,14 @@
                           <TextRuns>
                             <TextRun>
                               <Value>Unidad de Medida</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox3</rd:DefaultName>
@@ -109,7 +117,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -164,9 +171,8 @@
         </TablixRowHierarchy>
         <DataSetName>Productos</DataSetName>
         <Top>0.20849cm</Top>
-        <Left>0.60537cm</Left>
         <Height>1.2cm</Height>
-        <Width>16.64167cm</Width>
+        <Width>17.24703cm</Width>
         <Style>
           <Border>
             <Style>None</Style>

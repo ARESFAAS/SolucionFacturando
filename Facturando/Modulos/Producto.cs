@@ -2,17 +2,11 @@
 using Facturando.Modelos;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Facturando.Modulos
 {
-    public partial class Producto : Form
+    public partial class Producto : BaseForm
     {
         IProduct _productData = new ProductData();
         IConfiguration _configurationData = new ConfigurationData();

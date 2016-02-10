@@ -89,22 +89,22 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(281, 69);
+            this.label3.Location = new System.Drawing.Point(209, 68);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(232, 22);
+            this.label3.Size = new System.Drawing.Size(379, 22);
             this.label3.TabIndex = 5;
-            this.label3.Text = "FACTURANDO Versión 1.0";
+            this.label3.Text = "INVENTARIOS Y FACTURACIÓN Versión 1.0";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(317, 538);
+            this.label4.Location = new System.Drawing.Point(247, 539);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(150, 22);
+            this.label4.Size = new System.Drawing.Size(300, 22);
             this.label4.TabIndex = 6;
-            this.label4.Text = "AreSoftware SAS";
+            this.label4.Text = "Software fabricado por: AreSoftware";
             // 
             // lblNombreEmpresa
             // 
