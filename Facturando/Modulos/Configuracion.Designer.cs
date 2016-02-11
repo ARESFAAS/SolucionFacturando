@@ -91,6 +91,8 @@
             this.dtgConfiguracion.Name = "dtgConfiguracion";
             this.dtgConfiguracion.Size = new System.Drawing.Size(972, 204);
             this.dtgConfiguracion.TabIndex = 0;
+            this.dtgConfiguracion.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgConfiguracion_CellBeginEdit);
+            this.dtgConfiguracion.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgConfiguracion_CellEndEdit);
             this.dtgConfiguracion.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgConfiguracion_DataError);
             this.dtgConfiguracion.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dtgConfiguracion_UserAddedRow);
             // 
@@ -204,6 +206,8 @@
             this.dtgImpuestos.Name = "dtgImpuestos";
             this.dtgImpuestos.Size = new System.Drawing.Size(417, 172);
             this.dtgImpuestos.TabIndex = 3;
+            this.dtgImpuestos.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgImpuestos_CellBeginEdit);
+            this.dtgImpuestos.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgImpuestos_CellEndEdit);
             this.dtgImpuestos.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgImpuestos_DataError);
             this.dtgImpuestos.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dtgImpuestos_UserAddedRow);
             // 
@@ -251,6 +255,8 @@
             this.dtgTiposIdentificacion.Name = "dtgTiposIdentificacion";
             this.dtgTiposIdentificacion.Size = new System.Drawing.Size(431, 172);
             this.dtgTiposIdentificacion.TabIndex = 4;
+            this.dtgTiposIdentificacion.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgTiposIdentificacion_CellBeginEdit);
+            this.dtgTiposIdentificacion.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgTiposIdentificacion_CellEndEdit);
             this.dtgTiposIdentificacion.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgTiposIdentificacion_DataError);
             this.dtgTiposIdentificacion.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dtgTiposIdentificacion_UserAddedRow);
             // 
@@ -291,6 +297,8 @@
             this.dtgLocalizacionInventario.Name = "dtgLocalizacionInventario";
             this.dtgLocalizacionInventario.Size = new System.Drawing.Size(431, 175);
             this.dtgLocalizacionInventario.TabIndex = 5;
+            this.dtgLocalizacionInventario.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgLocalizacionInventario_CellBeginEdit);
+            this.dtgLocalizacionInventario.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgLocalizacionInventario_CellEndEdit);
             this.dtgLocalizacionInventario.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgLocalizacionInventario_DataError);
             this.dtgLocalizacionInventario.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dtgLocalizacionInventario_UserAddedRow);
             // 
@@ -331,6 +339,8 @@
             this.dtgUnidadesMedida.Name = "dtgUnidadesMedida";
             this.dtgUnidadesMedida.Size = new System.Drawing.Size(421, 175);
             this.dtgUnidadesMedida.TabIndex = 6;
+            this.dtgUnidadesMedida.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgUnidadesMedida_CellBeginEdit);
+            this.dtgUnidadesMedida.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgUnidadesMedida_CellEndEdit);
             this.dtgUnidadesMedida.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgUnidadesMedida_DataError);
             this.dtgUnidadesMedida.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dtgUnidadesMedida_UserAddedRow);
             // 

@@ -47,26 +47,33 @@ namespace Facturando
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
         {
-            _client = _billData.GetClient(new ClientModel
+            if (cmbTipoIdentificacion.Items.Count > 0)
             {
-                IdIdentificationType = (Guid)cmbTipoIdentificacion.SelectedValue,
-                IdentificationNumber = txtIdentificacionCliente.Text
-            });
+                _client = _billData.GetClient(new ClientModel
+                {
+                    IdIdentificationType = (Guid)cmbTipoIdentificacion.SelectedValue,
+                    IdentificationNumber = txtIdentificacionCliente.Text
+                });
 
-            if (_client != null)
-            {
-                _bill.IdClient = _client.Id;
-                txtNombreCliente.Text = _client.Name;
-                txtDireccion.Text = _client.Adress;
-                txtEmail.Text = _client.Email;
-                txtDescuentoCliente.Text = _client.DiscountPercent.ToString();
-                txtTelefono.Text = _client.Phone;
+                if (_client != null)
+                {
+                    _bill.IdClient = _client.Id;
+                    txtNombreCliente.Text = _client.Name;
+                    txtDireccion.Text = _client.Adress;
+                    txtEmail.Text = _client.Email;
+                    txtDescuentoCliente.Text = _client.DiscountPercent.ToString();
+                    txtTelefono.Text = _client.Phone;
+                }
+                else
+                {
+                    MessageBox.Show("No encontramos un cliente con los datos de búsqueda, verique que esten correctos o diligencie los datos para crear un nuevo cliente");
+                }
+                btnBuscarProducto.Enabled = true;
             }
             else
             {
-                MessageBox.Show("No encontramos un cliente con los datos de búsqueda, verique que esten correctos o diligencie los datos para crear un nuevo cliente");
+                MessageBox.Show("Error - Revise la configuración del sistema");
             }
-            btnBuscarProducto.Enabled = true;
         }
 
         private void btnBuscarProducto_Click(object sender, EventArgs e)
@@ -191,6 +198,8 @@ namespace Facturando
             }));
 
             btnFacturar.Enabled = true;
+
+            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = true;
         }
 
         private void txtSubTotal_Leave(object sender, EventArgs e)
@@ -387,7 +396,6 @@ namespace Facturando
                     IsNew = true
                 };
                 _bill.IdClient = _client.Id;
-                MessageBox.Show("ya puede agregar productos");
             }
             return result;
         }
@@ -489,6 +497,11 @@ namespace Facturando
 
             VisorFactura visorFactura = new VisorFactura(_billSaveModel);
             visorFactura.Show(this);
+        }
+
+        private void dtgDetalleFactura_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = false;
         }
     }
 }

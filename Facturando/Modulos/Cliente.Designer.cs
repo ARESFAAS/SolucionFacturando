@@ -109,6 +109,8 @@
             this.dtgCliente.Name = "dtgCliente";
             this.dtgCliente.Size = new System.Drawing.Size(1212, 598);
             this.dtgCliente.TabIndex = 5;
+            this.dtgCliente.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgCliente_CellBeginEdit);
+            this.dtgCliente.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgCliente_CellEndEdit);
             this.dtgCliente.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgCliente_CellValueChanged);
             this.dtgCliente.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgCliente_DataError);
             this.dtgCliente.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dtgCliente_UserAddedRow);

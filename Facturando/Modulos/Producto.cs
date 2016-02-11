@@ -56,14 +56,22 @@ namespace Facturando.Modulos
         {
             if (!string.IsNullOrEmpty(txtDescripción.Text))
             {
-                _product = new ProductModel
+                if (lstUnidadMedida.Items.Count > 0)
                 {
-                    Id = Guid.NewGuid(),
-                    Description = txtDescripción.Text,
-                    IdUnit = (Guid)lstUnidadMedida.SelectedValue,
-                    DescriptionUnit = lstUnidadMedida.Text                     
-                };
-                dtgProducto.DataSource = _productData.SaveProduct(_product);
+                    _product = new ProductModel
+                    {
+                        Id = Guid.NewGuid(),
+                        Description = txtDescripción.Text,
+                        IdUnit = (Guid)lstUnidadMedida.SelectedValue,
+                        DescriptionUnit = lstUnidadMedida.Text
+                    };
+                    dtgProducto.DataSource = _productData.SaveProduct(_product);
+                }
+                else
+                {
+                    btnAgregar.Enabled = false;
+                    MessageBox.Show("Error - revise la configuración del sistema");
+                }
             }
             else {
                 MessageBox.Show("No ha ingresado ningún dato en la descripción del producto");

@@ -188,5 +188,55 @@ namespace Facturando
             unitSource.DataSource = _configuration.GetUnitMeasureList();
             dtgUnidadesMedida.DataSource = unitSource;
         }
+
+        private void dtgConfiguracion_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = false;
+        }
+
+        private void dtgConfiguracion_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = true;
+        }
+
+        private void dtgImpuestos_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = false;
+        }
+
+        private void dtgImpuestos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = true;
+        }
+
+        private void dtgTiposIdentificacion_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = false;
+        }
+
+        private void dtgTiposIdentificacion_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = true;
+        }
+
+        private void dtgUnidadesMedida_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = false;
+        }
+
+        private void dtgUnidadesMedida_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = true;
+        }
+
+        private void dtgLocalizacionInventario_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = false;
+        }
+
+        private void dtgLocalizacionInventario_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = true;
+        }
     }
 }

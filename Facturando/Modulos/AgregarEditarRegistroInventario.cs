@@ -51,8 +51,24 @@ namespace Facturando.Modulos
             {
                 lstTipoMovimiento.SelectedIndex = 0;
                 lstClasificacion.SelectedIndex = 0;
-                lstLocalizacion.SelectedIndex = 0;
-                lstProducto.SelectedIndex = 0;
+                if (lstLocalizacion.Items.Count > 0)
+                {
+                    lstLocalizacion.SelectedIndex = 0;
+                }
+                else
+                {
+                    btnGuardar.Enabled = false;
+                    MessageBox.Show("Error - revise la configuración del sistema");
+                }
+                if (lstProducto.Items.Count > 0)
+                {
+                    lstProducto.SelectedIndex = 0;
+                }
+                else
+                {
+                    btnGuardar.Enabled = false;
+                    MessageBox.Show("Error - Revise la configuración de los productos");
+                }
             }
             else
             {

@@ -47,24 +47,31 @@ namespace Facturando
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
         {
-            _client = _billData.GetClient(new ClientModel
+            if (cmbTipoIdentificacion.Items.Count > 0)
             {
-                IdIdentificationType = (Guid)cmbTipoIdentificacion.SelectedValue,
-                IdentificationNumber = txtIdentificacionCliente.Text
-            });
+                _client = _billData.GetClient(new ClientModel
+                {
+                    IdIdentificationType = (Guid)cmbTipoIdentificacion.SelectedValue,
+                    IdentificationNumber = txtIdentificacionCliente.Text
+                });
 
-            if (_client != null)
-            {
-                _remission.IdClient = _client.Id;
-                txtNombreCliente.Text = _client.Name;
-                txtDireccion.Text = _client.Adress;
-                txtEmail.Text = _client.Email;
-                txtDescuentoCliente.Text = _client.DiscountPercent.ToString();
-                txtTelefono.Text = _client.Phone;
+                if (_client != null)
+                {
+                    _remission.IdClient = _client.Id;
+                    txtNombreCliente.Text = _client.Name;
+                    txtDireccion.Text = _client.Adress;
+                    txtEmail.Text = _client.Email;
+                    txtDescuentoCliente.Text = _client.DiscountPercent.ToString();
+                    txtTelefono.Text = _client.Phone;
+                }
+                else
+                {
+                    MessageBox.Show("No encontramos un cliente con los datos de búsqueda, verique que esten correctos o diligencie los datos para crear un nuevo cliente");
+                }
             }
             else
             {
-                MessageBox.Show("No encontramos un cliente con los datos de búsqueda, verique que esten correctos o diligencie los datos para crear un nuevo cliente");
+                MessageBox.Show("Error - Revise la configuración del sistema");
             }
         }
 
@@ -273,6 +280,8 @@ namespace Facturando
             }));
 
             btnRemitir.Enabled = true;
+
+            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = true;
         }
 
         private void dtgDetalleRemision_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -316,19 +325,24 @@ namespace Facturando
             }
             else
             {
-                _client = new ClientModel
+                if (cmbTipoIdentificacion.Items.Count > 0)
                 {
-                    Adress = txtDireccion.Text,
-                    DiscountPercent = decimal.Parse(txtDescuentoCliente.Text),
-                    Email = txtEmail.Text,
-                    IdentificationNumber = txtIdentificacionCliente.Text,
-                    IdIdentificationType = (Guid)cmbTipoIdentificacion.SelectedValue,
-                    Name = txtNombreCliente.Text,
-                    Phone = txtTelefono.Text,
-                };
+                    _client = new ClientModel
+                    {
+                        Adress = txtDireccion.Text,
+                        DiscountPercent = decimal.Parse(txtDescuentoCliente.Text),
+                        Email = txtEmail.Text,
+                        IdentificationNumber = txtIdentificacionCliente.Text,
+                        IdIdentificationType = (Guid)cmbTipoIdentificacion.SelectedValue,
+                        Name = txtNombreCliente.Text,
+                        Phone = txtTelefono.Text,
+                    };
+                }
+                else
+                {
+                    MessageBox.Show("Error - revise la configuración del sistema");
+                }
             }
-
-            MessageBox.Show("ya puede agregar productos");
         }
 
         private void remissionValuesCalculate()
@@ -428,6 +442,11 @@ namespace Facturando
             
             VisorRemision visorRemision = new VisorRemision(_remissionSaveModel);
             visorRemision.Show(this);
+        }
+
+        private void dtgDetalleRemision_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = false;
         }
     }
 }

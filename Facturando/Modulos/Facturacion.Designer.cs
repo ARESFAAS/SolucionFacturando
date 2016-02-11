@@ -472,6 +472,7 @@
             this.dtgDetalleFactura.Name = "dtgDetalleFactura";
             this.dtgDetalleFactura.Size = new System.Drawing.Size(786, 344);
             this.dtgDetalleFactura.TabIndex = 0;
+            this.dtgDetalleFactura.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgDetalleFactura_CellBeginEdit);
             this.dtgDetalleFactura.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDetalleFactura_CellEndEdit);
             this.dtgDetalleFactura.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dtgDetalleFactura_CellFormatting);
             this.dtgDetalleFactura.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgDetalleFactura_DataError);

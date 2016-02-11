@@ -58,10 +58,6 @@
             this.txtSubTotal = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.dtgDetalleRemision = new System.Windows.Forms.DataGridView();
-            this.lblNumeroRemision = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.lblGranTotal = new System.Windows.Forms.Label();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdRemission = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,6 +66,10 @@
             this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblNumeroRemision = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblGranTotal = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -124,6 +124,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.White;
             this.label11.Location = new System.Drawing.Point(566, 268);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(130, 18);
@@ -140,6 +141,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.White;
             this.label10.Location = new System.Drawing.Point(251, 268);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(51, 18);
@@ -163,6 +165,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(574, 184);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(89, 18);
@@ -172,6 +175,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.White;
             this.label8.Location = new System.Drawing.Point(229, 184);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(91, 18);
@@ -181,6 +185,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(337, 106);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(75, 18);
@@ -197,6 +202,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(350, 34);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(124, 18);
@@ -213,6 +219,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(109, 34);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 18);
@@ -283,6 +290,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.White;
             this.label13.Location = new System.Drawing.Point(333, 29);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(166, 18);
@@ -292,6 +300,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.White;
             this.label12.Location = new System.Drawing.Point(72, 29);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(133, 18);
@@ -340,6 +349,7 @@
             // 
             this.txtDescuento.AutoSize = true;
             this.txtDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescuento.ForeColor = System.Drawing.Color.White;
             this.txtDescuento.Location = new System.Drawing.Point(37, 597);
             this.txtDescuento.Name = "txtDescuento";
             this.txtDescuento.Size = new System.Drawing.Size(409, 39);
@@ -359,6 +369,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.White;
             this.label14.Location = new System.Drawing.Point(189, 533);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(260, 39);
@@ -384,58 +395,11 @@
             this.dtgDetalleRemision.Name = "dtgDetalleRemision";
             this.dtgDetalleRemision.Size = new System.Drawing.Size(786, 468);
             this.dtgDetalleRemision.TabIndex = 1;
+            this.dtgDetalleRemision.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgDetalleRemision_CellBeginEdit);
             this.dtgDetalleRemision.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgDetalleRemision_CellEndEdit);
             this.dtgDetalleRemision.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dtgDetalleRemision_CellFormatting);
             this.dtgDetalleRemision.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgDetalleRemision_DataError);
             this.dtgDetalleRemision.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgDetalleRemision_KeyDown);
-            // 
-            // lblNumeroRemision
-            // 
-            this.lblNumeroRemision.AutoSize = true;
-            this.lblNumeroRemision.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumeroRemision.Location = new System.Drawing.Point(1461, 25);
-            this.lblNumeroRemision.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNumeroRemision.Name = "lblNumeroRemision";
-            this.lblNumeroRemision.Size = new System.Drawing.Size(134, 31);
-            this.lblNumeroRemision.TabIndex = 8;
-            this.lblNumeroRemision.Text = "00000000";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(848, 25);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(205, 31);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "REMISIÓN NO.";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.BackColor = System.Drawing.Color.White;
-            this.groupBox4.Controls.Add(this.lblGranTotal);
-            this.groupBox4.Location = new System.Drawing.Point(784, 76);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Size = new System.Drawing.Size(826, 213);
-            this.groupBox4.TabIndex = 9;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "TOTAL";
-            // 
-            // lblGranTotal
-            // 
-            this.lblGranTotal.AutoSize = true;
-            this.lblGranTotal.BackColor = System.Drawing.Color.Transparent;
-            this.lblGranTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 80F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGranTotal.Location = new System.Drawing.Point(-2, 66);
-            this.lblGranTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblGranTotal.Name = "lblGranTotal";
-            this.lblGranTotal.Size = new System.Drawing.Size(111, 120);
-            this.lblGranTotal.TabIndex = 0;
-            this.lblGranTotal.Text = "0";
-            this.lblGranTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // Id
             // 
@@ -496,6 +460,56 @@
             this.Total.HeaderText = "SubTotal ($)";
             this.Total.Name = "Total";
             this.Total.Width = 105;
+            // 
+            // lblNumeroRemision
+            // 
+            this.lblNumeroRemision.AutoSize = true;
+            this.lblNumeroRemision.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumeroRemision.ForeColor = System.Drawing.Color.White;
+            this.lblNumeroRemision.Location = new System.Drawing.Point(1461, 25);
+            this.lblNumeroRemision.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNumeroRemision.Name = "lblNumeroRemision";
+            this.lblNumeroRemision.Size = new System.Drawing.Size(134, 31);
+            this.lblNumeroRemision.TabIndex = 8;
+            this.lblNumeroRemision.Text = "00000000";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(848, 25);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(205, 31);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "REMISIÓN NO.";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.BackColor = System.Drawing.Color.White;
+            this.groupBox4.Controls.Add(this.lblGranTotal);
+            this.groupBox4.Location = new System.Drawing.Point(784, 76);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox4.Size = new System.Drawing.Size(826, 213);
+            this.groupBox4.TabIndex = 9;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "TOTAL";
+            // 
+            // lblGranTotal
+            // 
+            this.lblGranTotal.AutoSize = true;
+            this.lblGranTotal.BackColor = System.Drawing.Color.Transparent;
+            this.lblGranTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 80F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGranTotal.Location = new System.Drawing.Point(-2, 66);
+            this.lblGranTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGranTotal.Name = "lblGranTotal";
+            this.lblGranTotal.Size = new System.Drawing.Size(111, 120);
+            this.lblGranTotal.TabIndex = 0;
+            this.lblGranTotal.Text = "0";
+            this.lblGranTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // Remision
             // 

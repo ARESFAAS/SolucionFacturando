@@ -7,7 +7,7 @@ using System.Windows.Forms;
 namespace Facturando
 {
     public partial class Principal : BaseForm
-    {        
+    {
         public Principal()
         {
             InitializeComponent();
@@ -26,27 +26,28 @@ namespace Facturando
             lblNombreEmpresa.Text = SystemCompany;
             lblRol.Text = User.Roles.FirstOrDefault().RolName;
             Modules = System.Configuration.ConfigurationSettings.AppSettings["Modules"].ToString()
-                .Split('|')                
+                .Split('|')
                 .ToDictionary(x => x.Split('-')[0], x => x.Split('-')[1]);
             Actions = System.Configuration.ConfigurationSettings.AppSettings["Actions"].ToString()
-                .Split('|')                
+                .Split('|')
                 .ToDictionary(x => x.Split('-')[0], x => x.Split('-')[1]);
         }
 
         private void picAgregaFactura_Click(object sender, EventArgs e)
         {
-            
+
             foreach (var rol in User.Roles)
             {
                 foreach (var module in rol.ModuleList)
                 {
-                    if (module.Equals(Modules["NF"])) {
+                    if (module.Equals(Modules["NF"]))
+                    {
                         AddFormInPanel(new Facturacion());
                         return;
                     }
                 }
             }
-            
+
         }
 
         private void pctNuevaRemision_Click(object sender, EventArgs e)
@@ -76,7 +77,7 @@ namespace Facturando
                         return;
                     }
                 }
-            }            
+            }
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -86,12 +87,12 @@ namespace Facturando
             if (formInterface != null)
             {
                 formInterface.Logout();
-            }            
+            }
         }
 
         private void configuraciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach(var rol in User.Roles)
+            foreach (var rol in User.Roles)
             {
                 foreach (var module in rol.ModuleList)
                 {
@@ -101,7 +102,7 @@ namespace Facturando
                         return;
                     }
                 }
-            }            
+            }
         }
 
         private void alertasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -123,7 +124,7 @@ namespace Facturando
         {
             AddFormInPanel(new ClientesReporte());
         }
-        
+
         private void picConsultarFactura_Click(object sender, EventArgs e)
         {
             foreach (var rol in User.Roles)
@@ -136,7 +137,7 @@ namespace Facturando
                         return;
                     }
                 }
-            }            
+            }
         }
 
         private void picConsultarRemision_Click(object sender, EventArgs e)
@@ -151,7 +152,7 @@ namespace Facturando
                         return;
                     }
                 }
-            }            
+            }
         }
 
         private void picClientes_Click(object sender, EventArgs e)
@@ -166,7 +167,7 @@ namespace Facturando
                         return;
                     }
                 }
-            }            
+            }
         }
 
         private void picProductos_Click(object sender, EventArgs e)
