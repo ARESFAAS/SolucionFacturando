@@ -153,7 +153,7 @@
             this.WatchBill});
             this.dtgFactura.Location = new System.Drawing.Point(13, 141);
             this.dtgFactura.Name = "dtgFactura";
-            this.dtgFactura.Size = new System.Drawing.Size(1071, 596);
+            this.dtgFactura.Size = new System.Drawing.Size(1071, 519);
             this.dtgFactura.TabIndex = 8;
             this.dtgFactura.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFactura_CellContentClick);
             this.dtgFactura.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFactura_CellValueChanged);
@@ -165,6 +165,7 @@
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
             this.Id.Visible = false;
+            this.Id.Width = 48;
             // 
             // BillNumber
             // 
@@ -212,6 +213,7 @@
             this.IdClient.HeaderText = "IdClient";
             this.IdClient.Name = "IdClient";
             this.IdClient.Visible = false;
+            this.IdClient.Width = 88;
             // 
             // TotalInLetters
             // 
@@ -219,6 +221,7 @@
             this.TotalInLetters.HeaderText = "Total en letras";
             this.TotalInLetters.Name = "TotalInLetters";
             this.TotalInLetters.Visible = false;
+            this.TotalInLetters.Width = 123;
             // 
             // IsCanceled
             // 
@@ -249,7 +252,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(984, 757);
+            this.btnGuardar.Location = new System.Drawing.Point(984, 665);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 36);
             this.btnGuardar.TabIndex = 9;
@@ -259,7 +262,7 @@
             // 
             // btnConsultar
             // 
-            this.btnConsultar.Location = new System.Drawing.Point(17, 757);
+            this.btnConsultar.Location = new System.Drawing.Point(13, 665);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(108, 35);
             this.btnConsultar.TabIndex = 10;
@@ -292,7 +295,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
-            this.ClientSize = new System.Drawing.Size(1101, 816);
+            this.ClientSize = new System.Drawing.Size(1101, 706);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnConsultar);

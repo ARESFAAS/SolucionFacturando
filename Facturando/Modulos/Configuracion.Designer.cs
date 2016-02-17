@@ -89,7 +89,7 @@
             this.dtgConfiguracion.Location = new System.Drawing.Point(42, 56);
             this.dtgConfiguracion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtgConfiguracion.Name = "dtgConfiguracion";
-            this.dtgConfiguracion.Size = new System.Drawing.Size(972, 204);
+            this.dtgConfiguracion.Size = new System.Drawing.Size(972, 182);
             this.dtgConfiguracion.TabIndex = 0;
             this.dtgConfiguracion.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgConfiguracion_CellBeginEdit);
             this.dtgConfiguracion.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgConfiguracion_CellEndEdit);
@@ -102,6 +102,7 @@
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
             this.Id.Visible = false;
+            this.Id.Width = 48;
             // 
             // FiscalYear
             // 
@@ -139,6 +140,7 @@
             this.IdCountry.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.IdCountry.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.IdCountry.Visible = false;
+            this.IdCountry.Width = 84;
             // 
             // IdCurrency
             // 
@@ -148,6 +150,7 @@
             this.IdCurrency.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.IdCurrency.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.IdCurrency.Visible = false;
+            this.IdCurrency.Width = 92;
             // 
             // CurrencyList
             // 
@@ -167,6 +170,7 @@
             this.IsNewRegister.HeaderText = "IsNewRegister";
             this.IsNewRegister.Name = "IsNewRegister";
             this.IsNewRegister.Visible = false;
+            this.IsNewRegister.Width = 138;
             // 
             // label1
             // 
@@ -182,10 +186,10 @@
             // btnGuardar
             // 
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(843, 777);
+            this.btnGuardar.Location = new System.Drawing.Point(862, 646);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(171, 55);
+            this.btnGuardar.Size = new System.Drawing.Size(152, 40);
             this.btnGuardar.TabIndex = 2;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -202,9 +206,9 @@
             this.Description,
             this.PercentageValue,
             this.IsNewRegisterTax});
-            this.dtgImpuestos.Location = new System.Drawing.Point(46, 314);
+            this.dtgImpuestos.Location = new System.Drawing.Point(46, 275);
             this.dtgImpuestos.Name = "dtgImpuestos";
-            this.dtgImpuestos.Size = new System.Drawing.Size(417, 172);
+            this.dtgImpuestos.Size = new System.Drawing.Size(417, 150);
             this.dtgImpuestos.TabIndex = 3;
             this.dtgImpuestos.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgImpuestos_CellBeginEdit);
             this.dtgImpuestos.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgImpuestos_CellEndEdit);
@@ -251,9 +255,9 @@
             this.IdIdentificationType,
             this.DescriptionIdentificationType,
             this.IsNewRegisterTI});
-            this.dtgTiposIdentificacion.Location = new System.Drawing.Point(583, 314);
+            this.dtgTiposIdentificacion.Location = new System.Drawing.Point(583, 275);
             this.dtgTiposIdentificacion.Name = "dtgTiposIdentificacion";
-            this.dtgTiposIdentificacion.Size = new System.Drawing.Size(431, 172);
+            this.dtgTiposIdentificacion.Size = new System.Drawing.Size(431, 150);
             this.dtgTiposIdentificacion.TabIndex = 4;
             this.dtgTiposIdentificacion.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgTiposIdentificacion_CellBeginEdit);
             this.dtgTiposIdentificacion.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgTiposIdentificacion_CellEndEdit);
@@ -293,9 +297,9 @@
             this.IdInventoryLocation,
             this.DescriptionInventoryLocation,
             this.IsNewRegisterL});
-            this.dtgLocalizacionInventario.Location = new System.Drawing.Point(583, 560);
+            this.dtgLocalizacionInventario.Location = new System.Drawing.Point(583, 469);
             this.dtgLocalizacionInventario.Name = "dtgLocalizacionInventario";
-            this.dtgLocalizacionInventario.Size = new System.Drawing.Size(431, 175);
+            this.dtgLocalizacionInventario.Size = new System.Drawing.Size(431, 153);
             this.dtgLocalizacionInventario.TabIndex = 5;
             this.dtgLocalizacionInventario.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgLocalizacionInventario_CellBeginEdit);
             this.dtgLocalizacionInventario.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgLocalizacionInventario_CellEndEdit);
@@ -335,9 +339,9 @@
             this.DescriptionUnitMeasure,
             this.IdUnitMeasure,
             this.IsNewRegisterUM});
-            this.dtgUnidadesMedida.Location = new System.Drawing.Point(42, 560);
+            this.dtgUnidadesMedida.Location = new System.Drawing.Point(42, 469);
             this.dtgUnidadesMedida.Name = "dtgUnidadesMedida";
-            this.dtgUnidadesMedida.Size = new System.Drawing.Size(421, 175);
+            this.dtgUnidadesMedida.Size = new System.Drawing.Size(421, 153);
             this.dtgUnidadesMedida.TabIndex = 6;
             this.dtgUnidadesMedida.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgUnidadesMedida_CellBeginEdit);
             this.dtgUnidadesMedida.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgUnidadesMedida_CellEndEdit);
@@ -370,7 +374,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(42, 291);
+            this.label2.Location = new System.Drawing.Point(42, 252);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 20);
             this.label2.TabIndex = 7;
@@ -379,7 +383,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(579, 291);
+            this.label3.Location = new System.Drawing.Point(579, 252);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(145, 20);
             this.label3.TabIndex = 8;
@@ -388,7 +392,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(42, 534);
+            this.label4.Location = new System.Drawing.Point(42, 443);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(217, 20);
             this.label4.TabIndex = 9;
@@ -397,7 +401,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(579, 534);
+            this.label5.Location = new System.Drawing.Point(579, 443);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(197, 20);
             this.label5.TabIndex = 10;
@@ -407,7 +411,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1055, 854);
+            this.ClientSize = new System.Drawing.Size(1055, 729);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);

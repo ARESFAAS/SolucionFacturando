@@ -32,15 +32,15 @@
             this.txtNombreProducto = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dtgProducto = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescriptionUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEditar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDescripción = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lstUnidadMedida = new System.Windows.Forms.ListBox();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescriptionUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -86,56 +86,12 @@
             this.Description,
             this.IdUnit,
             this.DescriptionUnit});
-            this.dtgProducto.Location = new System.Drawing.Point(45, 206);
+            this.dtgProducto.Location = new System.Drawing.Point(45, 173);
             this.dtgProducto.Name = "dtgProducto";
             this.dtgProducto.ReadOnly = true;
-            this.dtgProducto.Size = new System.Drawing.Size(834, 217);
+            this.dtgProducto.Size = new System.Drawing.Size(834, 190);
             this.dtgProducto.TabIndex = 3;
             this.dtgProducto.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dtgProducto_RowHeaderMouseClick);
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Location = new System.Drawing.Point(632, 733);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(87, 36);
-            this.btnEditar.TabIndex = 4;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 472);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 20);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Descripción";
-            // 
-            // txtDescripción
-            // 
-            this.txtDescripción.Location = new System.Drawing.Point(203, 466);
-            this.txtDescripción.Name = "txtDescripción";
-            this.txtDescripción.Size = new System.Drawing.Size(362, 26);
-            this.txtDescripción.TabIndex = 6;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 545);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(138, 20);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Unidad de Medida";
-            // 
-            // lstUnidadMedida
-            // 
-            this.lstUnidadMedida.FormattingEnabled = true;
-            this.lstUnidadMedida.ItemHeight = 20;
-            this.lstUnidadMedida.Location = new System.Drawing.Point(203, 545);
-            this.lstUnidadMedida.Name = "lstUnidadMedida";
-            this.lstUnidadMedida.Size = new System.Drawing.Size(362, 224);
-            this.lstUnidadMedida.TabIndex = 8;
             // 
             // Id
             // 
@@ -144,6 +100,7 @@
             this.Id.Name = "Id";
             this.Id.ReadOnly = true;
             this.Id.Visible = false;
+            this.Id.Width = 48;
             // 
             // Description
             // 
@@ -160,6 +117,7 @@
             this.IdUnit.Name = "IdUnit";
             this.IdUnit.ReadOnly = true;
             this.IdUnit.Visible = false;
+            this.IdUnit.Width = 77;
             // 
             // DescriptionUnit
             // 
@@ -167,11 +125,55 @@
             this.DescriptionUnit.HeaderText = "Unidad de Medida";
             this.DescriptionUnit.Name = "DescriptionUnit";
             this.DescriptionUnit.ReadOnly = true;
-            this.DescriptionUnit.Width = 102;
+            this.DescriptionUnit.Width = 149;
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Location = new System.Drawing.Point(632, 615);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(87, 36);
+            this.btnEditar.TabIndex = 4;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(41, 390);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Descripción";
+            // 
+            // txtDescripción
+            // 
+            this.txtDescripción.Location = new System.Drawing.Point(203, 384);
+            this.txtDescripción.Name = "txtDescripción";
+            this.txtDescripción.Size = new System.Drawing.Size(362, 26);
+            this.txtDescripción.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(41, 427);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(138, 20);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Unidad de Medida";
+            // 
+            // lstUnidadMedida
+            // 
+            this.lstUnidadMedida.FormattingEnabled = true;
+            this.lstUnidadMedida.ItemHeight = 20;
+            this.lstUnidadMedida.Location = new System.Drawing.Point(203, 427);
+            this.lstUnidadMedida.Name = "lstUnidadMedida";
+            this.lstUnidadMedida.Size = new System.Drawing.Size(362, 224);
+            this.lstUnidadMedida.TabIndex = 8;
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(632, 677);
+            this.btnAgregar.Location = new System.Drawing.Point(632, 559);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(87, 38);
             this.btnAgregar.TabIndex = 9;
@@ -192,7 +194,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(44, 157);
+            this.label5.Location = new System.Drawing.Point(44, 124);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(856, 20);
             this.label5.TabIndex = 11;
@@ -202,7 +204,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(46, 181);
+            this.label6.Location = new System.Drawing.Point(46, 148);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(302, 20);
             this.label6.TabIndex = 12;
@@ -212,7 +214,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(922, 807);
+            this.ClientSize = new System.Drawing.Size(1101, 706);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);

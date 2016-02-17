@@ -72,7 +72,7 @@
             this.dtgRemision.Location = new System.Drawing.Point(13, 128);
             this.dtgRemision.Name = "dtgRemision";
             this.dtgRemision.ReadOnly = true;
-            this.dtgRemision.Size = new System.Drawing.Size(1076, 614);
+            this.dtgRemision.Size = new System.Drawing.Size(1076, 525);
             this.dtgRemision.TabIndex = 0;
             this.dtgRemision.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgRemision_CellContentClick);
             this.dtgRemision.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgRemision_DataError);
@@ -237,7 +237,7 @@
             // 
             // btnConsultar
             // 
-            this.btnConsultar.Location = new System.Drawing.Point(13, 769);
+            this.btnConsultar.Location = new System.Drawing.Point(13, 659);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(108, 35);
             this.btnConsultar.TabIndex = 16;
@@ -271,7 +271,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
-            this.ClientSize = new System.Drawing.Size(1101, 816);
+            this.ClientSize = new System.Drawing.Size(1101, 706);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnConsultar);

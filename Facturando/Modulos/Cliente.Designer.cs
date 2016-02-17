@@ -105,9 +105,9 @@
             this.DiscountPercent,
             this.IsNew,
             this.DateEvent});
-            this.dtgCliente.Location = new System.Drawing.Point(30, 149);
+            this.dtgCliente.Location = new System.Drawing.Point(30, 134);
             this.dtgCliente.Name = "dtgCliente";
-            this.dtgCliente.Size = new System.Drawing.Size(1212, 598);
+            this.dtgCliente.Size = new System.Drawing.Size(1046, 526);
             this.dtgCliente.TabIndex = 5;
             this.dtgCliente.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dtgCliente_CellBeginEdit);
             this.dtgCliente.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgCliente_CellEndEdit);
@@ -206,7 +206,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(1139, 763);
+            this.btnGuardar.Location = new System.Drawing.Point(973, 666);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(103, 32);
             this.btnGuardar.TabIndex = 6;
@@ -217,7 +217,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 117);
+            this.label3.Location = new System.Drawing.Point(26, 102);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(414, 20);
             this.label3.TabIndex = 7;
@@ -227,7 +227,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1269, 807);
+            this.ClientSize = new System.Drawing.Size(1101, 706);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnConsultar);

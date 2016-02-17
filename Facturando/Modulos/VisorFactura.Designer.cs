@@ -82,13 +82,13 @@
             this.rvwFactura.LocalReport.ReportEmbeddedResource = "Facturando.Reportes.FacturaImpresa.rdlc";
             this.rvwFactura.Location = new System.Drawing.Point(13, 13);
             this.rvwFactura.Name = "rvwFactura";
-            this.rvwFactura.Size = new System.Drawing.Size(706, 744);
+            this.rvwFactura.Size = new System.Drawing.Size(695, 603);
             this.rvwFactura.TabIndex = 0;
             // 
             // btnNuevaFactura
             // 
             this.btnNuevaFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevaFactura.Location = new System.Drawing.Point(397, 763);
+            this.btnNuevaFactura.Location = new System.Drawing.Point(386, 622);
             this.btnNuevaFactura.Name = "btnNuevaFactura";
             this.btnNuevaFactura.Size = new System.Drawing.Size(322, 35);
             this.btnNuevaFactura.TabIndex = 1;
@@ -100,7 +100,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 810);
+            this.ClientSize = new System.Drawing.Size(725, 668);
             this.Controls.Add(this.btnNuevaFactura);
             this.Controls.Add(this.rvwFactura);
             this.Name = "VisorFactura";
