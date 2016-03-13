@@ -495,8 +495,16 @@ namespace Facturando
             _billSaveModel.BillDetail = _billDetail;
             _billSaveModel.BillTaxes = _billTaxes;
 
-            VisorFactura visorFactura = new VisorFactura(_billSaveModel);
-            visorFactura.Show(this);
+            if (System.Configuration.ConfigurationSettings.AppSettings["PrintFormat"].ToString().ToUpper().Equals("CARTA"))
+            {
+                VisorFactura visorFactura = new VisorFactura(_billSaveModel);
+                visorFactura.Show(this);
+            }
+            else
+            {
+                VisorFacturaMediaCarta visorFactura = new VisorFacturaMediaCarta(_billSaveModel);
+                visorFactura.Show(this);
+            }
         }
 
         private void dtgDetalleFactura_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)

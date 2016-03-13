@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AppText>
+  <BillData>
+    <CompanyName>DecoAroma</CompanyName>
+    <ClientName>Ariza Forero Erika Johanna</ClientName>
+    <Address1>Dir: Garcia Aviles 8-23 entre Sucre y 10</Address1>
+    <Address2>de Agosto Telf: 0984466606 Guayaquil</Address2>
+    <Address3>DOCUMENTO CATEGORIZADO: NO</Address3>
+    <Authorize1>R.U.C. 1726992561001</Authorize1>
+    <Authorize2>Autorización S.R.I. 1118380133</Authorize2>
+    <Authorize3>FACTURA S-001-001</Authorize3>
+    <Authorize4>F.Aut. 18/Febrero/2016</Authorize4>
+    <Footer1>SINGAÑA RIVERA JOSE DAVID, RUC 176123805001, Aut 4229 Numerados del 000801 al 000900</Footer1>
+    <Footer2>VALIDA PARA SU EMISIÓN HASTA 18/Febrero/2017 ORIGINAL: ADQUIRIENTE COPIA: EMISOR</Footer2>
+  </BillData>
+  <RemissionData>
+    <CompanyName>DecoAroma</CompanyName>
+    <ClientName>Ariza Forero Erika Johanna</ClientName>
+    <Address1>Dir: Garcia Aviles 8-23 entre Sucre y 10</Address1>
+    <Address2>de Agosto Telf: 0984466606 Guayaquil</Address2>    
+  </RemissionData>
+</AppText>

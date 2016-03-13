@@ -704,6 +704,7 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
+        <RepeatColumnHeaders>true</RepeatColumnHeaders>
         <DataSetName>BillDetail</DataSetName>
         <Top>0.20849cm</Top>
         <Left>0.21716cm</Left>
@@ -712,7 +713,8 @@
         <ZIndex>12</ZIndex>
         <Style>
           <Border>
-            <Style>None</Style>
+            <Color>Gray</Color>
+            <Style>Solid</Style>
           </Border>
         </Style>
       </Tablix>
@@ -734,7 +736,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>LA CASA DE LA SUERTE</Value>
+                  <Value>=First(Fields!CompanyName.Value, "BillText")</Value>
                   <Style>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -768,7 +770,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Ariza Forero Erika Johanna</Value>
+                  <Value>=First(Fields!ClientName.Value, "BillText")</Value>
                   <Style>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -802,13 +804,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Dir: Mideros 8-19 e Imbabura  Telf: 2956 213 Quito - Ecuador      </Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-                <TextRun>
-                  <Value>DOCUMENTO CATEGORIZADO:NO</Value>
+                  <Value>=First(Fields!Address1.Value, "BillText")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -821,9 +817,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox11</rd:DefaultName>
-          <Top>1.67894cm</Top>
+          <Top>1.89061cm</Top>
           <Left>3.33646cm</Left>
-          <Height>1.76594cm</Height>
+          <Height>0.57531cm</Height>
           <Width>6.25058cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
@@ -1155,33 +1151,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>R.U.C 1726992561001</Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Autorización S.R.I. 1117809464</Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>FACTURA S-001-001</Value>
+                  <Value>=First(Fields!Authorize1.Value, "BillText")</Value>
                   <Style>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -1195,7 +1165,7 @@
           <rd:DefaultName>Textbox22</rd:DefaultName>
           <Top>0.26013cm</Top>
           <Left>10.40022cm</Left>
-          <Height>1.55677cm</Height>
+          <Height>0.41897cm</Height>
           <Width>5.89262cm</Width>
           <ZIndex>13</ZIndex>
           <Style>
@@ -1215,8 +1185,10 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Sum(Fields!BillNumber.Value, "Bill")</Value>
-                  <Style />
+                  <Value>="N. " &amp; Sum(Fields!BillNumber.Value, "Bill").ToString().PadLeft(7 - Sum(Fields!BillNumber.Value, "Bill").ToString().Length(), "0")</Value>
+                  <Style>
+                    <Color>Red</Color>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -1247,7 +1219,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>F.AUT.29/Octubre/2015</Value>
+                  <Value>=First(Fields!Authorize4.Value, "BillText")</Value>
                   <Style>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -1274,6 +1246,158 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Textbox Name="Textbox38">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!Address2.Value, "BillText")</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox11</rd:DefaultName>
+          <Top>2.5012cm</Top>
+          <Left>3.33646cm</Left>
+          <Height>0.57531cm</Height>
+          <Width>6.25058cm</Width>
+          <ZIndex>16</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox40">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!Address3.Value, "BillText")</Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox11</rd:DefaultName>
+          <Top>3.07651cm</Top>
+          <Left>3.33646cm</Left>
+          <Height>0.57531cm</Height>
+          <Width>6.25058cm</Width>
+          <ZIndex>17</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox42">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!Authorize2.Value, "BillText")</Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox22</rd:DefaultName>
+          <Top>0.74965cm</Top>
+          <Left>10.40022cm</Left>
+          <Height>0.41897cm</Height>
+          <Width>5.89262cm</Width>
+          <ZIndex>18</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox44">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!Authorize3.Value, "BillText")</Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox22</rd:DefaultName>
+          <Top>1.2039cm</Top>
+          <Left>10.40022cm</Left>
+          <Height>0.41897cm</Height>
+          <Width>5.89262cm</Width>
+          <ZIndex>19</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Image Name="Logo">
+          <Source>External</Source>
+          <Value>=Variables!RutaLogo.Value</Value>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.31432cm</Top>
+          <Left>0.28787cm</Left>
+          <Height>3.3375cm</Height>
+          <Width>2.8722cm</Width>
+          <ZIndex>20</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
       </ReportItems>
       <Style>
         <Border>
@@ -1293,20 +1417,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>SINGAÑA RIVERA JOSE DAVID, RUC 176123805001, Aut 4229 Numerados del 000501 al 000700 </Value>
-                  <Style>
-                    <FontSize>9pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>VALIDA PARA SU EMISIÓN HASTA 29/OCTUBRE/2016 ORIGINAL: ADQUIRIENTE COPIA: EMISOR</Value>
+                  <Value>=First(Fields!Footer1.Value, "BillText")</Value>
                   <Style>
                     <FontSize>9pt</FontSize>
                   </Style>
@@ -1320,8 +1431,42 @@
           <rd:DefaultName>Textbox25</rd:DefaultName>
           <Top>0.10583cm</Top>
           <Left>0.21716cm</Left>
-          <Height>0.99197cm</Height>
+          <Height>0.38343cm</Height>
           <Width>16.07567cm</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox46">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!Footer2.Value, "BillText")</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox25</rd:DefaultName>
+          <Top>0.48926cm</Top>
+          <Left>0.21716cm</Left>
+          <Height>0.38343cm</Height>
+          <Width>16.07567cm</Width>
+          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1339,8 +1484,8 @@
         </Border>
       </Style>
     </PageFooter>
-    <PageHeight>15.24cm</PageHeight>
-    <PageWidth>11.43cm</PageWidth>
+    <PageHeight>27.94cm</PageHeight>
+    <PageWidth>21.59cm</PageWidth>
     <LeftMargin>2cm</LeftMargin>
     <RightMargin>2cm</RightMargin>
     <TopMargin>2cm</TopMargin>
@@ -1377,6 +1522,13 @@
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
       <rd:DataSourceID>a5f230da-dc80-456e-805f-c8426f5ef6a3</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="FacturandoModelos4">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>7a6ed644-f303-4e42-9c88-7ffdb0a65b73</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -1552,7 +1704,70 @@
         <rd:ObjectDataSourceType>Facturando.Modelos.BillPrintModel, Facturando, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
+    <DataSet Name="BillText">
+      <Query>
+        <DataSourceName>FacturandoModelos4</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Address1">
+          <DataField>Address1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Address2">
+          <DataField>Address2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Address3">
+          <DataField>Address3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Authorize1">
+          <DataField>Authorize1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Authorize2">
+          <DataField>Authorize2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Authorize3">
+          <DataField>Authorize3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Authorize4">
+          <DataField>Authorize4</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ClientName">
+          <DataField>ClientName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Footer1">
+          <DataField>Footer1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Footer2">
+          <DataField>Footer2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Facturando.Modelos</rd:DataSetName>
+        <rd:TableName>BillPrintModel</rd:TableName>
+        <rd:ObjectDataSourceSelectMethod>BillText</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceType>Facturando.Modelos.BillPrintModel, Facturando, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
   </DataSets>
+  <Variables>
+    <Variable Name="RutaLogo">
+      <Value>file:///C:/Facturando-img/Logo.bmp</Value>
+    </Variable>
+  </Variables>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>51260c25-046b-4473-a973-ba617418bd63</rd:ReportID>
 </Report>

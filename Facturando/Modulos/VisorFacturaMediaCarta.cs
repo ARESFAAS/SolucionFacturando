@@ -5,15 +5,16 @@ using System.Linq;
 
 namespace Facturando.Modulos
 {
-    public partial class VisorFactura : BaseForm
+    public partial class VisorFacturaMediaCarta : BaseForm
     {
         BillPrintModel _bill = new BillPrintModel();
-        public VisorFactura()
+
+        public VisorFacturaMediaCarta()
         {
             InitializeComponent();
         }
 
-        public VisorFactura(BillSaveModel bill)
+        public VisorFacturaMediaCarta(BillSaveModel bill)
         {
             InitializeComponent();
             _bill.Client = new List<ClientModel>();
@@ -26,7 +27,7 @@ namespace Facturando.Modulos
             _bill.BillText.Add(AppText.Instance.AppTextData.BillData);
         }
 
-        public VisorFactura(BillSaveModel bill, bool readOnly)
+        public VisorFacturaMediaCarta(BillSaveModel bill, bool readOnly)
         {
             InitializeComponent();
             _bill.Client = new List<ClientModel>();
@@ -41,15 +42,14 @@ namespace Facturando.Modulos
             btnNuevaFactura.Enabled = false;
         }
 
-        private void VisorFactura_Load(object sender, EventArgs e)
+        private void VisorFacturaMediaCarta_Load(object sender, EventArgs e)
         {
-            rvwFactura.RefreshReport();
+            reportViewer1.RefreshReport();
             billPrintModelBindingSource.DataSource = _bill.Client;
             billPrintModelBindingSource1.DataSource = _bill.Bill;
             billPrintModelBindingSource2.DataSource = _bill.BillDetail;
             billPrintModelBindingSource3.DataSource = _bill.BillTaxes;
-            billPrintModelBindingSource4.DataSource = _bill.BillText; 
-                       
+            billPrintModelBindingSource4.DataSource = _bill.BillText;
         }
 
         private void btnNuevaFactura_Click(object sender, EventArgs e)

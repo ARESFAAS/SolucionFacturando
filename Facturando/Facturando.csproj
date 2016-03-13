@@ -11,6 +11,21 @@
     <AssemblyName>Facturando</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publicar\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -56,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppText.cs" />
     <Compile Include="BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +186,7 @@
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Encrypt.cs" />
+    <Compile Include="Modelos\AppTextModel.cs" />
     <Compile Include="Modelos\BillModel.cs" />
     <Compile Include="Modelos\ConfigurationModel.cs" />
     <Compile Include="Modelos\InventoryModel.cs" />
@@ -267,11 +284,23 @@
     <Compile Include="Modulos\VisorFactura.Designer.cs">
       <DependentUpon>VisorFactura.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\VisorFacturaMediaCarta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\VisorFacturaMediaCarta.Designer.cs">
+      <DependentUpon>VisorFacturaMediaCarta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\VisorRemision.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modulos\VisorRemision.Designer.cs">
       <DependentUpon>VisorRemision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\VisorRemisionMediaCarta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\VisorRemisionMediaCarta.Designer.cs">
+      <DependentUpon>VisorRemisionMediaCarta.cs</DependentUpon>
     </Compile>
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
@@ -344,8 +373,14 @@
     <EmbeddedResource Include="Modulos\VisorFactura.resx">
       <DependentUpon>VisorFactura.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\VisorFacturaMediaCarta.resx">
+      <DependentUpon>VisorFacturaMediaCarta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\VisorRemision.resx">
       <DependentUpon>VisorRemision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\VisorRemisionMediaCarta.resx">
+      <DependentUpon>VisorRemisionMediaCarta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
@@ -363,10 +398,12 @@
     <EmbeddedResource Include="Reportes\Clientes.rdlc" />
     <EmbeddedResource Include="Reportes\Facturacion.rdlc" />
     <EmbeddedResource Include="Reportes\FacturaImpresa.rdlc" />
+    <EmbeddedResource Include="Reportes\FacturaImpresaMediaCarta.rdlc" />
     <EmbeddedResource Include="Reportes\Inventario.rdlc" />
     <EmbeddedResource Include="Reportes\Productos.rdlc" />
     <EmbeddedResource Include="Reportes\Remision.rdlc" />
     <EmbeddedResource Include="Reportes\RemisionImpresa.rdlc" />
+    <EmbeddedResource Include="Reportes\RemisionImpresaMediaCarta.rdlc" />
     <EntityDeploy Include="Data\FacturandoEntityDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FacturandoEntityDataModel.Designer.cs</LastGenOutput>
@@ -376,12 +413,11 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Facturando.Modelos.BillPrintModel.datasource" />
-    <None Include="Properties\DataSources\Facturando.Modelos.BillReportModel.datasource" />
-    <None Include="Properties\DataSources\Facturando.Modelos.BillViewModel.datasource" />
     <None Include="Properties\DataSources\Facturando.Modelos.ClientReportModel.datasource" />
     <None Include="Properties\DataSources\Facturando.Modelos.InventoryReportModel.datasource" />
     <None Include="Properties\DataSources\Facturando.Modelos.ProductReportModel.datasource" />
     <None Include="Properties\DataSources\Facturando.Modelos.RemissionPrintModel.datasource" />
+    <None Include="Properties\DataSources\Facturando.Modelos.RemissionText.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -397,8 +433,20 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppText.xml" />
     <Content Include="Data\FacturandoEntityDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FacturandoEntityDataModel.edmx</DependentUpon>

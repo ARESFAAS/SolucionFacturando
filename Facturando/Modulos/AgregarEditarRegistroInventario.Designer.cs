@@ -214,6 +214,7 @@
             this.lstProducto.Name = "lstProducto";
             this.lstProducto.Size = new System.Drawing.Size(188, 134);
             this.lstProducto.TabIndex = 1;
+            this.lstProducto.SelectedIndexChanged += new System.EventHandler(this.lstProducto_SelectedIndexChanged);
             // 
             // lstTipoMovimiento
             // 

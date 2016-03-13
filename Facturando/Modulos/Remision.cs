@@ -439,9 +439,17 @@ namespace Facturando
             _remissionSaveModel.Client = _client;
             _remissionSaveModel.Remission = _remission;
             _remissionSaveModel.RemissionDetail = _remissionDetail;
-            
-            VisorRemision visorRemision = new VisorRemision(_remissionSaveModel);
-            visorRemision.Show(this);
+
+            if (System.Configuration.ConfigurationSettings.AppSettings["PrintFormat"].ToString().ToUpper().Equals("CARTA"))
+            {
+                VisorRemision visorRemision = new VisorRemision(_remissionSaveModel);
+                visorRemision.Show(this);
+            }
+            else
+            {
+                VisorRemisionMediaCarta visorRemision = new VisorRemisionMediaCarta(_remissionSaveModel);
+                visorRemision.Show(this);
+            }
         }
 
         private void dtgDetalleRemision_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)

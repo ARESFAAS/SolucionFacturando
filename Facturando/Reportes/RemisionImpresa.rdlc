@@ -448,7 +448,8 @@
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
-            <Style>None</Style>
+            <Color>Gray</Color>
+            <Style>Solid</Style>
           </Border>
         </Style>
       </Tablix>
@@ -470,7 +471,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>LA CASA DE LA SUERTE</Value>
+                  <Value>=First(Fields!CompanyName.Value, "RemissionText")</Value>
                   <Style>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -504,7 +505,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Ariza Forero Erika Johanna</Value>
+                  <Value>=First(Fields!ClientName.Value, "RemissionText")</Value>
                   <Style>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -538,8 +539,9 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Dir: Mideros 8-19 e Imbabura  Telf: 2956 213 Quito - Ecuador      </Value>
+                  <Value>=First(Fields!Address1.Value, "RemissionText")</Value>
                   <Style>
+                    <FontSize>9pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -549,9 +551,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox11</rd:DefaultName>
           <Top>1.66241cm</Top>
-          <Left>3.86702cm</Left>
-          <Height>1.07469cm</Height>
-          <Width>5.36864cm</Width>
+          <Left>3.36431cm</Left>
+          <Height>0.51906cm</Height>
+          <Width>6.25058cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -630,8 +632,10 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Sum(Fields!RemissionNumber.Value, "Remission")</Value>
-                  <Style />
+                  <Value>="N. " &amp; Sum(Fields!RemissionNumber.Value, "Remission").ToString().PadLeft(7 - Sum(Fields!RemissionNumber.Value, "Remission").ToString().Length(), "0")</Value>
+                  <Style>
+                    <Color>Red</Color>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -801,7 +805,7 @@
           <Top>3.78048cm</Top>
           <Left>0.21716cm</Left>
           <Height>0.6cm</Height>
-          <Width>1.66864cm</Width>
+          <Width>1.77447cm</Width>
           <ZIndex>9</ZIndex>
           <Style>
             <Border>
@@ -829,9 +833,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox17</rd:DefaultName>
           <Top>3.78048cm</Top>
-          <Left>1.8858cm</Left>
+          <Left>1.99163cm</Left>
           <Height>0.6cm</Height>
-          <Width>14.40703cm</Width>
+          <Width>14.3012cm</Width>
           <ZIndex>10</ZIndex>
           <Style>
             <Border>
@@ -863,7 +867,7 @@
           <Top>4.55687cm</Top>
           <Left>0.21716cm</Left>
           <Height>0.6cm</Height>
-          <Width>1.74292cm</Width>
+          <Width>1.84875cm</Width>
           <ZIndex>11</ZIndex>
           <Style>
             <Border>
@@ -891,9 +895,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox19</rd:DefaultName>
           <Top>4.55687cm</Top>
-          <Left>1.96008cm</Left>
+          <Left>2.06591cm</Left>
           <Height>0.6cm</Height>
-          <Width>8.29168cm</Width>
+          <Width>8.18585cm</Width>
           <ZIndex>12</ZIndex>
           <Style>
             <Border>
@@ -967,6 +971,54 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Textbox Name="Textbox24">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!Address2.Value, "RemissionText")</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox11</rd:DefaultName>
+          <Top>2.18147cm</Top>
+          <Left>3.36431cm</Left>
+          <Height>0.51906cm</Height>
+          <Width>6.25058cm</Width>
+          <ZIndex>15</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Image Name="Logo">
+          <Source>External</Source>
+          <Value>=Variables!RutaLogo.Value</Value>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.2436cm</Top>
+          <Left>0.31432cm</Left>
+          <Height>2.45693cm</Height>
+          <Width>2.71708cm</Width>
+          <ZIndex>16</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
       </ReportItems>
       <Style>
         <Border>
@@ -974,8 +1026,8 @@
         </Border>
       </Style>
     </PageHeader>
-    <PageHeight>15.24cm</PageHeight>
-    <PageWidth>11.43cm</PageWidth>
+    <PageHeight>27.94cm</PageHeight>
+    <PageWidth>21.59cm</PageWidth>
     <LeftMargin>2cm</LeftMargin>
     <RightMargin>2cm</RightMargin>
     <TopMargin>2cm</TopMargin>
@@ -1005,6 +1057,13 @@
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
       <rd:DataSourceID>e6318a7b-8ead-4f3b-b477-d6169fec69bb</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="FacturandoModelos3">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>6278f011-9a31-4668-80a4-f8607ab70dac</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -1146,7 +1205,42 @@
         <rd:ObjectDataSourceType>Facturando.Modelos.RemissionPrintModel, Facturando, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
+    <DataSet Name="RemissionText">
+      <Query>
+        <DataSourceName>FacturandoModelos3</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Address1">
+          <DataField>Address1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Address2">
+          <DataField>Address2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ClientName">
+          <DataField>ClientName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Facturando.Modelos</rd:DataSetName>
+        <rd:TableName>RemissionPrintModel</rd:TableName>
+        <rd:ObjectDataSourceSelectMethod>RemissionText</rd:ObjectDataSourceSelectMethod>
+        <rd:ObjectDataSourceType>Facturando.Modelos.RemissionPrintModel, Facturando, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
   </DataSets>
+  <Variables>
+    <Variable Name="RutaLogo">
+      <Value>file:///C:/Facturando-img/Logo.bmp</Value>
+    </Variable>
+  </Variables>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>e6ff0d98-5be1-497c-9c9e-1775d867c235</rd:ReportID>
 </Report>

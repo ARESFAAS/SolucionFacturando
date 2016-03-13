@@ -329,9 +329,38 @@ namespace Facturando.Data
                 DateTime cancelDate = DateTime.Now;
                 using (FacturandoEntities context = new FacturandoEntities())
                 {
+                    InventoryInterface inventoryData = new InventoryData();
+                    var inventoryTypeList = inventoryData.GetInventoryType();
+                    InventoryTypeModel inventoryTypeIn = inventoryTypeList.Where(x => x.Description.Equals("Devolución Cliente")).FirstOrDefault();
+                    InventoryTypeModel inventoryTypeOut = inventoryTypeList.Where(x => x.Description.Equals("Venta")).FirstOrDefault();
+
                     foreach (var item in billList)
                     {
                         var billTemp = context.Bill.Where(x => x.Id == item.Id).FirstOrDefault();
+
+                        // Simon Ariza - 10-03-2016 - inventory affect
+                        if (billTemp.IsCanceled != item.IsCanceled)
+                        {   
+                            var billDetailTemp = context.BillDetail.Where(x => x.IdBill == item.Id).ToList();
+                            foreach (var billProduct in billDetailTemp)
+                            {
+                                InventoryModel inventoryTemp = inventoryData.GetInventoryByProductId(billProduct.IdProduct.Value);
+                                InventoryDetailModel inventoryDetailTemp = inventoryData.GetLastInventoryDetailInByProductId(billProduct.IdProduct.Value);
+                                InventorySaveModel inventorySaveTemp = new InventorySaveModel {  Inventory = inventoryTemp, InventoryDetail = inventoryDetailTemp };
+                                if (item.IsCanceled) // inventory in
+                                {
+                                    inventorySaveTemp.InventoryDetail.IdInventoryType = inventoryTypeIn.Id;                                    
+                                }
+                                else // inventory out
+                                {
+                                    inventorySaveTemp.InventoryDetail.IdInventoryType = inventoryTypeOut.Id;                                   
+                                }
+                                inventorySaveTemp.InventoryDetail.Quantity = billProduct.Quantity;
+                                inventoryData.SaveInventory(inventorySaveTemp);
+                            } 
+                        }
+                        //fin cambio
+
                         if (item.IsCanceled)
                         {
                             billTemp.IsCanceled = item.IsCanceled;

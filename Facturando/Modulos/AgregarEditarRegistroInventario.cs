@@ -171,5 +171,26 @@ namespace Facturando.Modulos
             }
             this.Close();
         }
+
+        private void lstProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Simon Ariza - charge sale price and purchase price
+            if (Operation.Equals("ENTRADA"))
+            {
+                InventoryDetailModel inventoryDetailTemp =
+                    _data.GetLastInventoryDetailInByProductId(((Facturando.Modelos.ProductModel)((System.Windows.Forms.ListBox)sender).SelectedItem).Id);
+                if (inventoryDetailTemp != null)
+                {
+                    txtPrecioCompra.Text = inventoryDetailTemp.PurchasePrice.ToString();
+                    txtPrecioVenta.Text = inventoryDetailTemp.SalePrice.ToString();
+                }
+                else
+                {
+                    txtPrecioCompra.Text = 0D.ToString();
+                    txtPrecioVenta.Text = 0D.ToString();
+                }
+            }
+            // fin cambio
+        }
     }
 }

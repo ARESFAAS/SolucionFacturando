@@ -40,6 +40,7 @@ namespace Facturando.Modelos
         public List<ClientModel> Client { get; set; }
         public List<RemissionModel> Remission { get; set; }
         public List<RemissionDetailModel> RemissionDetail { get; set; }
+        public List<RemissionText> RemissionText { get; set; }
     }
 
     interface IFormRemission {

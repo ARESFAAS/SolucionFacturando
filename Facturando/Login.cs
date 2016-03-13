@@ -39,6 +39,8 @@ namespace Facturando
         private void Login_Load(object sender, EventArgs e)
         {
             SystemCompany = System.Configuration.ConfigurationSettings.AppSettings["SystemCompany"].ToString();
+            // Get the AppSettings section.
+           
             lblNombreEmpresa.Text = SystemCompany;            
         }
 

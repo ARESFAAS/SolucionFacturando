@@ -77,6 +77,7 @@ namespace Facturando.Modelos
         public List<BillModel> Bill { get; set; }
         public List<BillDetailModel> BillDetail { get; set; }
         public List<BillTaxesModel> BillTaxes { get; set; }
+        public List<BillText> BillText { get; set; }
     }
 
     interface IFormBill

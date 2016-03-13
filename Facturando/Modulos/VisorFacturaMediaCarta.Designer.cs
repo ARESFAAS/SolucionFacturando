@@ -1,6 +1,6 @@
 ﻿namespace Facturando.Modulos
 {
-    partial class VisorFactura
+    partial class VisorFacturaMediaCarta
     {
         /// <summary>
         /// Required designer variable.
@@ -39,7 +39,7 @@
             this.billPrintModelBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.billPrintModelBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.billPrintModelBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
-            this.rvwFactura = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.btnNuevaFactura = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource)).BeginInit();
@@ -73,7 +73,7 @@
             this.billPrintModelBindingSource4.DataMember = "BillText";
             this.billPrintModelBindingSource4.DataSource = typeof(Facturando.Modelos.BillPrintModel);
             // 
-            // rvwFactura
+            // reportViewer1
             // 
             reportDataSource1.Name = "BillDetail";
             reportDataSource1.Value = this.billPrintModelBindingSource2;
@@ -85,22 +85,22 @@
             reportDataSource4.Value = this.billPrintModelBindingSource3;
             reportDataSource5.Name = "BillText";
             reportDataSource5.Value = this.billPrintModelBindingSource4;
-            this.rvwFactura.LocalReport.DataSources.Add(reportDataSource1);
-            this.rvwFactura.LocalReport.DataSources.Add(reportDataSource2);
-            this.rvwFactura.LocalReport.DataSources.Add(reportDataSource3);
-            this.rvwFactura.LocalReport.DataSources.Add(reportDataSource4);
-            this.rvwFactura.LocalReport.DataSources.Add(reportDataSource5);
-            this.rvwFactura.LocalReport.EnableExternalImages = true;
-            this.rvwFactura.LocalReport.ReportEmbeddedResource = "Facturando.Reportes.FacturaImpresa.rdlc";
-            this.rvwFactura.Location = new System.Drawing.Point(13, 13);
-            this.rvwFactura.Name = "rvwFactura";
-            this.rvwFactura.Size = new System.Drawing.Size(695, 603);
-            this.rvwFactura.TabIndex = 0;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource3);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource4);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource5);
+            this.reportViewer1.LocalReport.EnableExternalImages = true;
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Facturando.Reportes.FacturaImpresaMediaCarta.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(12, 12);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.Size = new System.Drawing.Size(860, 593);
+            this.reportViewer1.TabIndex = 0;
             // 
             // btnNuevaFactura
             // 
-            this.btnNuevaFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevaFactura.Location = new System.Drawing.Point(386, 622);
+            this.btnNuevaFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnNuevaFactura.Location = new System.Drawing.Point(550, 621);
             this.btnNuevaFactura.Name = "btnNuevaFactura";
             this.btnNuevaFactura.Size = new System.Drawing.Size(322, 35);
             this.btnNuevaFactura.TabIndex = 1;
@@ -108,17 +108,16 @@
             this.btnNuevaFactura.UseVisualStyleBackColor = true;
             this.btnNuevaFactura.Click += new System.EventHandler(this.btnNuevaFactura_Click);
             // 
-            // VisorFactura
+            // VisorFacturaMediaCarta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(725, 668);
+            this.ClientSize = new System.Drawing.Size(884, 668);
             this.Controls.Add(this.btnNuevaFactura);
-            this.Controls.Add(this.rvwFactura);
-            this.Name = "VisorFactura";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Visor Factura";
-            this.Load += new System.EventHandler(this.VisorFactura_Load);
+            this.Controls.Add(this.reportViewer1);
+            this.Name = "VisorFacturaMediaCarta";
+            this.Text = "VisorFactura";
+            this.Load += new System.EventHandler(this.VisorFacturaMediaCarta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource1)).EndInit();
@@ -130,12 +129,12 @@
 
         #endregion
 
-        private Microsoft.Reporting.WinForms.ReportViewer rvwFactura;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.Button btnNuevaFactura;
         private System.Windows.Forms.BindingSource billPrintModelBindingSource;
         private System.Windows.Forms.BindingSource billPrintModelBindingSource1;
         private System.Windows.Forms.BindingSource billPrintModelBindingSource2;
         private System.Windows.Forms.BindingSource billPrintModelBindingSource3;
-        private System.Windows.Forms.Button btnNuevaFactura;
         private System.Windows.Forms.BindingSource billPrintModelBindingSource4;
     }
 }
