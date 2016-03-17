@@ -89,12 +89,12 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(209, 68);
+            this.label3.Location = new System.Drawing.Point(185, 70);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(379, 22);
+            this.label3.Size = new System.Drawing.Size(409, 22);
             this.label3.TabIndex = 5;
-            this.label3.Text = "INVENTARIOS Y FACTURACIÓN Versión 1.0";
+            this.label3.Text = "INVENTARIOS Y FACTURACIÓN Versión 1.0.1.0";
             // 
             // label4
             // 
