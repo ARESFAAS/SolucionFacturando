@@ -19,7 +19,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox26</rd:DefaultName>
-        <Top>9.08508cm</Top>
+        <Top>1.46508cm</Top>
         <Left>0.21716cm</Left>
         <Height>1.18796cm</Height>
         <Width>0.90577cm</Width>
@@ -48,7 +48,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox27</rd:DefaultName>
-        <Top>9.08508cm</Top>
+        <Top>1.46508cm</Top>
         <Left>1.12293cm</Left>
         <Height>1.18796cm</Height>
         <Width>9.27728cm</Width>
@@ -80,9 +80,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox34</rd:DefaultName>
-        <Top>9.08508cm</Top>
+        <Top>1.46508cm</Top>
         <Left>10.4355cm</Left>
-        <Height>1.2238cm</Height>
+        <Height>1.18796cm</Height>
         <Width>2.35155cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
@@ -114,9 +114,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox35</rd:DefaultName>
-        <Top>9.08508cm</Top>
+        <Top>1.46508cm</Top>
         <Left>12.8576cm</Left>
-        <Height>1.2238cm</Height>
+        <Height>1.18796cm</Height>
         <Width>3.43524cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
@@ -1241,6 +1241,7 @@
       <Value>file:///C:/Facturando-img/Logo.bmp</Value>
     </Variable>
   </Variables>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>e6ff0d98-5be1-497c-9c9e-1775d867c235</rd:ReportID>
 </Report>

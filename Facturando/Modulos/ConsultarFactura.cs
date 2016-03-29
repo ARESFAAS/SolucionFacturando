@@ -56,8 +56,17 @@ namespace Facturando.Modulos
                 var billTemp = ((List<BillModel>)senderGrid.DataSource)[e.RowIndex];
                 ConverseNumberToText numberToTextInstance = new ConverseNumberToText();
                 billTemp.TotalInLetters = numberToTextInstance.enletras(billTemp.Total.ToString());
-                VisorFactura visorFactura = new VisorFactura(_billData.GetBillData(billTemp), true);
-                visorFactura.Show();
+                
+                if (System.Configuration.ConfigurationSettings.AppSettings["PrintFormat"].ToString().ToUpper().Equals("CARTA"))
+                {
+                    VisorFactura visorFactura = new VisorFactura(_billData.GetBillData(billTemp), true);
+                    visorFactura.Show();
+                }
+                else
+                {
+                    VisorFacturaMediaCarta visorFactura = new VisorFacturaMediaCarta(_billData.GetBillData(billTemp), true);
+                    visorFactura.Show();
+                }
             }            
         }
 

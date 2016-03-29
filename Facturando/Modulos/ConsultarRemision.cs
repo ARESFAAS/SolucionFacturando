@@ -76,8 +76,17 @@ namespace Facturando.Modulos
                 var remissionTemp = ((List<RemissionModel>)senderGrid.DataSource)[e.RowIndex];
                 ConverseNumberToText numberToTextInstance = new ConverseNumberToText();
                 remissionTemp.TotalInLetters = numberToTextInstance.enletras(remissionTemp.Total.ToString());
-                VisorRemision visorRemision = new VisorRemision(_remissionData.GetRemissionData(remissionTemp), true);
-                visorRemision.Show();
+               
+                if (System.Configuration.ConfigurationSettings.AppSettings["PrintFormat"].ToString().ToUpper().Equals("CARTA"))
+                {
+                    VisorRemision visorRemision = new VisorRemision(_remissionData.GetRemissionData(remissionTemp), true);
+                    visorRemision.Show();
+                }
+                else
+                {
+                    VisorRemisionMediaCarta visorRemision = new VisorRemisionMediaCarta(_remissionData.GetRemissionData(remissionTemp), true);
+                    visorRemision.Show();
+                }
             }
         }
 
