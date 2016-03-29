@@ -280,6 +280,7 @@ namespace Facturando.Data
                             Id = x.Id,
                             IdBill = x.IdBill,
                             IdProduct = x.IdProduct.Value,
+                            Product = string.Concat(x.Product.Description, " ", x.Product.UnitMeasure.Description),
                             Quantity = x.Quantity,
                             Total = x.Total,
                             UnitPrice = x.UnitPrice != null ? x.UnitPrice.Value : 0

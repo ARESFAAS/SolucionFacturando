@@ -2235,9 +2235,9 @@
           <Source>External</Source>
           <Value>=Variables!RutaLogo.Value</Value>
           <Sizing>FitProportional</Sizing>
-          <Top>0.14867cm</Top>
+          <Top>0.80901cm</Top>
           <Left>0.85216cm</Left>
-          <Height>2.00857cm</Height>
+          <Height>1.34823cm</Height>
           <Width>1.85515cm</Width>
           <ZIndex>22</ZIndex>
           <Style>
@@ -2644,9 +2644,9 @@
           <Source>External</Source>
           <Value>=Variables!RutaLogo.Value</Value>
           <Sizing>FitProportional</Sizing>
-          <Top>0.15557cm</Top>
+          <Top>0.8563cm</Top>
           <Left>10.941cm</Left>
-          <Height>2.04896cm</Height>
+          <Height>1.34823cm</Height>
           <Width>1.85515cm</Width>
           <ZIndex>34</ZIndex>
           <Style>

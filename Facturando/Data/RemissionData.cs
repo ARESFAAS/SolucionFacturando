@@ -181,6 +181,7 @@ namespace Facturando.Data
                             Id = x.Id,
                             IdRemission = x.IdRemission.Value,
                             IdProduct = x.IdProduct.Value,
+                            Product = string.Concat(x.Product.Description, " ", x.Product.UnitMeasure.Description),
                             Quantity = x.Quantity,
                             Total = x.Total,
                             UnitPrice = x.UnitPrice
