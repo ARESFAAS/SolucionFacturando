@@ -42,6 +42,7 @@ namespace Facturando.Modelos
         public int Quantity { get; set; }
         public decimal Discount { get; set; }
         public decimal Total { get; set; }
+        public bool FreeProduct { get; set; }
     }
 
     public class Tax {

@@ -34,6 +34,7 @@ namespace Facturando.Modulos
             _product = (ProductModel)(((List<ProductModel>)dtgProducto.DataSource))[e.RowIndex];
             txtDescripción.Text = _product.Description;
             lstUnidadMedida.SelectedValue = _product.IdUnit;
+            checkBox1.Checked = _product.FreeProduct;
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -47,6 +48,7 @@ namespace Facturando.Modulos
                 _product.Description = txtDescripción.Text;
                 _product.IdUnit = (Guid)lstUnidadMedida.SelectedValue;
                 _product.DescriptionUnit = lstUnidadMedida.Text;
+                _product.FreeProduct = checkBox1.Checked;
                 dtgProducto.DataSource = _productData.SaveProduct(_product);
             }
             _product = new ProductModel();
@@ -63,7 +65,8 @@ namespace Facturando.Modulos
                         Id = Guid.NewGuid(),
                         Description = txtDescripción.Text,
                         IdUnit = (Guid)lstUnidadMedida.SelectedValue,
-                        DescriptionUnit = lstUnidadMedida.Text
+                        DescriptionUnit = lstUnidadMedida.Text,
+                        FreeProduct = checkBox1.Checked
                     };
                     dtgProducto.DataSource = _productData.SaveProduct(_product);
                 }

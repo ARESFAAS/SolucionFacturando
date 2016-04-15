@@ -40,7 +40,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!TotalInLetters.Value, "Remission") + " Dólares"</Value>
+                <Value>=First(Fields!TotalInLetters.Value, "Remission") + " " + First(Fields!MoneyDescription.Value, "RemissionText")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -70,7 +70,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>TOTAL USD</Value>
+                <Value>="TOTAL " + First(Fields!MoneySymbol.Value, "RemissionText")</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -730,7 +730,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>RUC/CI</Value>
+                  <Value>ID</Value>
                   <Style>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -1225,6 +1225,14 @@
         </Field>
         <Field Name="CompanyName">
           <DataField>CompanyName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MoneyDescription">
+          <DataField>MoneyDescription</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MoneySymbol">
+          <DataField>MoneySymbol</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

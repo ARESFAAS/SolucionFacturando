@@ -1,22 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <AppText>
   <BillData>
-    <CompanyName>DecoAroma</CompanyName>
-    <ClientName>Ariza Forero Erika Johanna</ClientName>
-    <Address1>Dir: Garcia Aviles 8-23 entre Sucre y 10</Address1>
-    <Address2>de Agosto Telf: 0984466606 Guayaquil</Address2>
-    <Address3>DOCUMENTO CATEGORIZADO: NO</Address3>
-    <Authorize1>R.U.C. 1726992561001</Authorize1>
-    <Authorize2>Autorización S.R.I. 1118380133</Authorize2>
-    <Authorize3>FACTURA S-001-001</Authorize3>
-    <Authorize4>F.Aut. 18/Febrero/2016</Authorize4>
-    <Footer1>SINGAÑA RIVERA JOSE DAVID, RUC 176123805001, Aut 4229 Numerados del 000801 al 000900</Footer1>
-    <Footer2>VALIDA PARA SU EMISIÓN HASTA 18/Febrero/2017 ORIGINAL: ADQUIRIENTE COPIA: EMISOR</Footer2>
+    <CompanyName>Multiservicios El Claret</CompanyName>
+    <ClientName>CRUZ OCHOA JULIO CESAR</ClientName>
+    <Address1>Dir: Cra 25 43A 09 Sur</Address1>
+    <Address2>Tel: 760 84 24 Bogotá</Address2>
+    <Address3>REGIMEN COMÚN</Address3>
+    <Authorize1>NIT 79395241-0 Res.DIAN</Authorize1>
+    <Authorize2>320001355344 Aut. A1-A5000</Authorize2>
+    <Authorize3>FACTURA DE VENTA</Authorize3>
+    <Authorize4>F.Aut. 2016/01/22</Authorize4>
+    <Footer1></Footer1>
+    <Footer2>AreSoftware - Simón Ariza - CC 80071246</Footer2>
+    <Prefix>A</Prefix>
+    <BillNote>La presente Factura de Venta se asimila en todos sus efectos a la Letra de Cambio</BillNote>
+    <TaxPercentage>16</TaxPercentage>
+    <MoneySymbol>$</MoneySymbol>
+    <MoneyDescription>Pesos</MoneyDescription>
   </BillData>
   <RemissionData>
-    <CompanyName>DecoAroma</CompanyName>
-    <ClientName>Ariza Forero Erika Johanna</ClientName>
-    <Address1>Dir: Garcia Aviles 8-23 entre Sucre y 10</Address1>
-    <Address2>de Agosto Telf: 0984466606 Guayaquil</Address2>    
+    <CompanyName>Multiservicios El Claret</CompanyName>
+    <ClientName>CRUZ OCHOA JULIO CESAR</ClientName>
+    <Address1>Dir: Cra 25 43A 09 Sur</Address1>
+    <Address2>Tel: 760 84 24 Bogotá</Address2>  
+    <MoneySymbol>$</MoneySymbol>
+    <MoneyDescription>Pesos</MoneyDescription>
   </RemissionData>
 </AppText>

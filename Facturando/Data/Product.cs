@@ -24,6 +24,7 @@ namespace Facturando.Data
         public System.Guid Id { get; set; }
         public string Description { get; set; }
         public Nullable<System.Guid> IdUnit { get; set; }
+        public Nullable<bool> Free { get; set; }
     
         public virtual ICollection<BillDetail> BillDetail { get; set; }
         public virtual ICollection<Inventory> Inventory { get; set; }

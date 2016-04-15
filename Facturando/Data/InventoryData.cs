@@ -31,7 +31,8 @@ namespace Facturando.Data
                                 IdProduct = inventoryTemp.IdProduct.Value,
                                 Product = string.Concat(inventoryTemp.Product.Description, " ", inventoryTemp.Product.UnitMeasure.Description),
                                 Quantity = inventoryTemp.Quantity,
-                                LastSalePrice = inventoryTemp.LastSalePrice != null ? inventoryTemp.LastSalePrice.Value : 0
+                                LastSalePrice = inventoryTemp.LastSalePrice != null ? inventoryTemp.LastSalePrice.Value : 0,
+                                FreeProduct = inventoryTemp.Product.Free == null ? false : inventoryTemp.Product.Free.Value
                             });
                         }
                     }
@@ -45,7 +46,8 @@ namespace Facturando.Data
                             IdProduct = x.IdProduct.Value,
                             Product = string.Concat(x.Product.Description, " ", x.Product.UnitMeasure.Description),
                             Quantity = x.Quantity,
-                            LastSalePrice = x.LastSalePrice != null ? x.LastSalePrice.Value : 0
+                            LastSalePrice = x.LastSalePrice != null ? x.LastSalePrice.Value : 0,
+                            FreeProduct = x.Product.Free == null ? false : x.Product.Free.Value
                         }).ToList();
                     }
                     return result;

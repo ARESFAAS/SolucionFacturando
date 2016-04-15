@@ -25,6 +25,11 @@ namespace Facturando.Modelos
         public string Authorize4 { get; set; }
         public string Footer1 { get; set; }
         public string Footer2 { get; set; }
+        public string Prefix { get; set; }
+        public string BillNote { get; set; }
+        public string TaxPercentage { get; set; }
+        public string MoneySymbol { get; set; }
+        public string MoneyDescription { get; set; }
     }
 
     public class RemissionText
@@ -33,5 +38,7 @@ namespace Facturando.Modelos
         public string ClientName { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
+        public string MoneySymbol { get; set; }
+        public string MoneyDescription { get; set; }
     }
 }

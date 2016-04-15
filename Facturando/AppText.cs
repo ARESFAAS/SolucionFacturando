@@ -64,6 +64,21 @@ namespace Facturando
             xmlNodeTemp = xmlData.SelectSingleNode("/AppText/BillData/Footer2");
             AppTextData.BillData.Footer2 = xmlNodeTemp.InnerText;
 
+            xmlNodeTemp = xmlData.SelectSingleNode("/AppText/BillData/Prefix");
+            AppTextData.BillData.Prefix = xmlNodeTemp.InnerText;
+
+            xmlNodeTemp = xmlData.SelectSingleNode("/AppText/BillData/BillNote");
+            AppTextData.BillData.BillNote = xmlNodeTemp.InnerText;
+
+            xmlNodeTemp = xmlData.SelectSingleNode("/AppText/BillData/TaxPercentage");
+            AppTextData.BillData.TaxPercentage = xmlNodeTemp.InnerText;
+
+            xmlNodeTemp = xmlData.SelectSingleNode("/AppText/BillData/MoneySymbol");
+            AppTextData.BillData.MoneySymbol = xmlNodeTemp.InnerText;
+
+            xmlNodeTemp = xmlData.SelectSingleNode("/AppText/BillData/MoneyDescription");
+            AppTextData.BillData.MoneyDescription = xmlNodeTemp.InnerText;
+
             #endregion
 
             #region remission
@@ -79,6 +94,12 @@ namespace Facturando
 
             xmlNodeTemp = xmlData.SelectSingleNode("/AppText/RemissionData/Address2");
             AppTextData.RemissionData.Address2 = xmlNodeTemp.InnerText;
+
+            xmlNodeTemp = xmlData.SelectSingleNode("/AppText/RemissionData/MoneySymbol");
+            AppTextData.RemissionData.MoneySymbol = xmlNodeTemp.InnerText;
+
+            xmlNodeTemp = xmlData.SelectSingleNode("/AppText/RemissionData/MoneyDescription");
+            AppTextData.RemissionData.MoneyDescription = xmlNodeTemp.InnerText;
 
             #endregion
         }

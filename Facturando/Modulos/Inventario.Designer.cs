@@ -50,11 +50,6 @@
             this.SalePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sign = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastSalePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -75,6 +70,12 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastSalePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FreeProduct = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -295,7 +296,8 @@
             this.Id,
             this.IdProduct,
             this.Quantity,
-            this.LastSalePrice});
+            this.LastSalePrice,
+            this.FreeProduct});
             this.dataGridView2.Location = new System.Drawing.Point(305, 73);
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
@@ -304,48 +306,6 @@
             this.dataGridView2.TabIndex = 6;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             this.dataGridView2.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_RowHeaderMouseClick);
-            // 
-            // Product
-            // 
-            this.Product.DataPropertyName = "Product";
-            this.Product.HeaderText = "Producto";
-            this.Product.Name = "Product";
-            this.Product.ReadOnly = true;
-            this.Product.Width = 90;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            this.Id.Width = 44;
-            // 
-            // IdProduct
-            // 
-            this.IdProduct.DataPropertyName = "IdProduct";
-            this.IdProduct.HeaderText = "IdProduct";
-            this.IdProduct.Name = "IdProduct";
-            this.IdProduct.ReadOnly = true;
-            this.IdProduct.Visible = false;
-            this.IdProduct.Width = 93;
-            // 
-            // Quantity
-            // 
-            this.Quantity.DataPropertyName = "Quantity";
-            this.Quantity.HeaderText = "Cantidad";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            this.Quantity.Width = 89;
-            // 
-            // LastSalePrice
-            // 
-            this.LastSalePrice.DataPropertyName = "LastSalePrice";
-            this.LastSalePrice.HeaderText = "Precio Venta";
-            this.LastSalePrice.Name = "LastSalePrice";
-            this.LastSalePrice.ReadOnly = true;
-            this.LastSalePrice.Width = 114;
             // 
             // label1
             // 
@@ -534,6 +494,57 @@
             this.label11.TabIndex = 22;
             this.label11.Text = "Para crear una salida debe seleccionar un registro de detalle con signo +";
             // 
+            // Product
+            // 
+            this.Product.DataPropertyName = "Product";
+            this.Product.HeaderText = "Producto";
+            this.Product.Name = "Product";
+            this.Product.ReadOnly = true;
+            this.Product.Width = 90;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            this.Id.Width = 44;
+            // 
+            // IdProduct
+            // 
+            this.IdProduct.DataPropertyName = "IdProduct";
+            this.IdProduct.HeaderText = "IdProduct";
+            this.IdProduct.Name = "IdProduct";
+            this.IdProduct.ReadOnly = true;
+            this.IdProduct.Visible = false;
+            this.IdProduct.Width = 93;
+            // 
+            // Quantity
+            // 
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.HeaderText = "Cantidad";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            this.Quantity.Width = 89;
+            // 
+            // LastSalePrice
+            // 
+            this.LastSalePrice.DataPropertyName = "LastSalePrice";
+            this.LastSalePrice.HeaderText = "Precio Venta";
+            this.LastSalePrice.Name = "LastSalePrice";
+            this.LastSalePrice.ReadOnly = true;
+            this.LastSalePrice.Width = 114;
+            // 
+            // FreeProduct
+            // 
+            this.FreeProduct.DataPropertyName = "FreeProduct";
+            this.FreeProduct.HeaderText = "Exento";
+            this.FreeProduct.Name = "FreeProduct";
+            this.FreeProduct.ReadOnly = true;
+            this.FreeProduct.Visible = false;
+            this.FreeProduct.Width = 57;
+            // 
             // Inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -612,11 +623,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PurchasePrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn SalePrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sign;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Product;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdProduct;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LastSalePrice;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.MaskedTextBox txtDesde;
         private System.Windows.Forms.Label label7;
@@ -628,5 +634,11 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Product;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdProduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastSalePrice;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn FreeProduct;
     }
 }

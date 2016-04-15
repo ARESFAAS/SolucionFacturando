@@ -66,6 +66,10 @@
             this.txtSubTotal = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.dtgDetalleFactura = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblNumeroFactura = new System.Windows.Forms.Label();
+            this.lblGranTotal = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,10 +78,7 @@
             this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblNumeroFactura = new System.Windows.Forms.Label();
-            this.lblGranTotal = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.FreeProduct = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -460,7 +461,8 @@
             this.UnitPrice,
             this.Discount,
             this.Quantity,
-            this.Total});
+            this.Total,
+            this.FreeProduct});
             this.dtgDetalleFactura.Location = new System.Drawing.Point(12, 23);
             this.dtgDetalleFactura.Name = "dtgDetalleFactura";
             this.dtgDetalleFactura.Size = new System.Drawing.Size(585, 265);
@@ -471,13 +473,56 @@
             this.dtgDetalleFactura.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgDetalleFactura_DataError);
             this.dtgDetalleFactura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgDetalleFactura_KeyDown);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(513, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(343, 31);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "FACTURA DE VENTA NO.";
+            // 
+            // lblNumeroFactura
+            // 
+            this.lblNumeroFactura.AutoSize = true;
+            this.lblNumeroFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumeroFactura.Location = new System.Drawing.Point(1000, 20);
+            this.lblNumeroFactura.Name = "lblNumeroFactura";
+            this.lblNumeroFactura.Size = new System.Drawing.Size(134, 31);
+            this.lblNumeroFactura.TabIndex = 6;
+            this.lblNumeroFactura.Text = "00000000";
+            // 
+            // lblGranTotal
+            // 
+            this.lblGranTotal.AutoSize = true;
+            this.lblGranTotal.BackColor = System.Drawing.Color.Transparent;
+            this.lblGranTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 55F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGranTotal.Location = new System.Drawing.Point(0, 36);
+            this.lblGranTotal.Name = "lblGranTotal";
+            this.lblGranTotal.Size = new System.Drawing.Size(79, 85);
+            this.lblGranTotal.TabIndex = 0;
+            this.lblGranTotal.Text = "0";
+            this.lblGranTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.White;
+            this.groupBox2.Controls.Add(this.lblGranTotal);
+            this.groupBox2.Location = new System.Drawing.Point(519, 55);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(615, 160);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "TOTAL";
+            // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
             this.Id.Visible = false;
-            this.Id.Width = 44;
+            this.Id.Width = 42;
             // 
             // IdBill
             // 
@@ -485,7 +530,7 @@
             this.IdBill.HeaderText = "IdBill";
             this.IdBill.Name = "IdBill";
             this.IdBill.Visible = false;
-            this.IdBill.Width = 63;
+            this.IdBill.Width = 59;
             // 
             // IdProduct
             // 
@@ -493,7 +538,7 @@
             this.IdProduct.HeaderText = "IdProduct";
             this.IdProduct.Name = "IdProduct";
             this.IdProduct.Visible = false;
-            this.IdProduct.Width = 96;
+            this.IdProduct.Width = 84;
             // 
             // Product
             // 
@@ -531,48 +576,13 @@
             this.Total.Name = "Total";
             this.Total.Width = 91;
             // 
-            // label2
+            // FreeProduct
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(513, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(343, 31);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "FACTURA DE VENTA NO.";
-            // 
-            // lblNumeroFactura
-            // 
-            this.lblNumeroFactura.AutoSize = true;
-            this.lblNumeroFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumeroFactura.Location = new System.Drawing.Point(1000, 20);
-            this.lblNumeroFactura.Name = "lblNumeroFactura";
-            this.lblNumeroFactura.Size = new System.Drawing.Size(134, 31);
-            this.lblNumeroFactura.TabIndex = 6;
-            this.lblNumeroFactura.Text = "00000000";
-            // 
-            // lblGranTotal
-            // 
-            this.lblGranTotal.AutoSize = true;
-            this.lblGranTotal.BackColor = System.Drawing.Color.Transparent;
-            this.lblGranTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 80F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGranTotal.Location = new System.Drawing.Point(0, 36);
-            this.lblGranTotal.Name = "lblGranTotal";
-            this.lblGranTotal.Size = new System.Drawing.Size(111, 120);
-            this.lblGranTotal.TabIndex = 0;
-            this.lblGranTotal.Text = "0";
-            this.lblGranTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.BackColor = System.Drawing.Color.White;
-            this.groupBox2.Controls.Add(this.lblGranTotal);
-            this.groupBox2.Location = new System.Drawing.Point(519, 55);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(615, 160);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "TOTAL";
+            this.FreeProduct.DataPropertyName = "FreeProduct";
+            this.FreeProduct.HeaderText = "Exento";
+            this.FreeProduct.Name = "FreeProduct";
+            this.FreeProduct.ReadOnly = true;
+            this.FreeProduct.Width = 51;
             // 
             // Facturacion
             // 
@@ -657,5 +667,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn FreeProduct;
     }
 }

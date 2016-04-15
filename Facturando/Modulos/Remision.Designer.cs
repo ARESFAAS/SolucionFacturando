@@ -518,10 +518,10 @@
             // 
             this.lblGranTotal.AutoSize = true;
             this.lblGranTotal.BackColor = System.Drawing.Color.Transparent;
-            this.lblGranTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 80F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGranTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 55F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGranTotal.Location = new System.Drawing.Point(-1, 36);
             this.lblGranTotal.Name = "lblGranTotal";
-            this.lblGranTotal.Size = new System.Drawing.Size(111, 120);
+            this.lblGranTotal.Size = new System.Drawing.Size(79, 85);
             this.lblGranTotal.TabIndex = 0;
             this.lblGranTotal.Text = "0";
             this.lblGranTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;

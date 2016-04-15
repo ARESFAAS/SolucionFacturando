@@ -8,6 +8,7 @@ namespace Facturando.Modelos
         public string Product { get; set; }
         public decimal LastSalePrice { get; set; }
         public int Quantity { get; set; }
+        public bool FreeProduct { get; set; }
     }
     public class InventoryDetailModel
     {
@@ -50,6 +51,7 @@ namespace Facturando.Modelos
         public string Description { get; set; }
         public Guid IdUnit { get; set; }
         public string DescriptionUnit { get; set; }
+        public bool FreeProduct { get; set; }
     }
     public class InventorySaveModel
     {

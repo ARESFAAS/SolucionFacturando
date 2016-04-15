@@ -21,7 +21,8 @@ namespace Facturando.Data
                             Id = x.Id,
                             Description = x.Description,
                             IdUnit = x.IdUnit.Value,
-                            DescriptionUnit = x.UnitMeasure.Description
+                            DescriptionUnit = x.UnitMeasure.Description,
+                            FreeProduct = x.Free == null ? false : x.Free.Value
                         })
                         .ToList();
                 }
@@ -46,13 +47,15 @@ namespace Facturando.Data
                         {
                             Id = product.Id,
                             Description = product.Description,
-                            IdUnit = product.IdUnit                            
+                            IdUnit = product.IdUnit,
+                            Free = product.FreeProduct                            
                         });
                     }
                     else
                     {
                         productTemp.Description = product.Description;
                         productTemp.IdUnit = product.IdUnit;
+                        productTemp.Free = product.FreeProduct;
                     }
                     context.SaveChanges();
                     result.Add(product);

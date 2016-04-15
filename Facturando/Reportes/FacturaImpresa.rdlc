@@ -19,7 +19,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox26</rd:DefaultName>
-        <Top>1.46508cm</Top>
+        <Top>2.10008cm</Top>
         <Left>0.21716cm</Left>
         <Height>1.18796cm</Height>
         <Width>0.90577cm</Width>
@@ -40,7 +40,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!TotalInLetters.Value, "Bill") + " Dólares"</Value>
+                <Value>=First(Fields!TotalInLetters.Value, "Bill") + " " + First(Fields!MoneyDescription.Value, "BillText")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -48,7 +48,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox27</rd:DefaultName>
-        <Top>1.46508cm</Top>
+        <Top>2.10008cm</Top>
         <Left>1.12293cm</Left>
         <Height>1.18796cm</Height>
         <Width>9.27728cm</Width>
@@ -80,7 +80,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox28</rd:DefaultName>
-        <Top>1.46508cm</Top>
+        <Top>2.10008cm</Top>
         <Left>10.47077cm</Left>
         <Height>0.6cm</Height>
         <Width>2.24981cm</Width>
@@ -114,7 +114,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox29</rd:DefaultName>
-        <Top>1.46508cm</Top>
+        <Top>2.10008cm</Top>
         <Left>12.79112cm</Left>
         <Height>0.6cm</Height>
         <Width>3.5017cm</Width>
@@ -146,7 +146,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox30</rd:DefaultName>
-        <Top>2.13564cm</Top>
+        <Top>2.77064cm</Top>
         <Left>10.4355cm</Left>
         <Height>0.51741cm</Height>
         <Width>2.32036cm</Width>
@@ -176,7 +176,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox31</rd:DefaultName>
-        <Top>2.13564cm</Top>
+        <Top>2.77064cm</Top>
         <Left>12.79112cm</Left>
         <Height>0.51741cm</Height>
         <Width>3.5017cm</Width>
@@ -198,7 +198,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>I.V.A 12 %</Value>
+                <Value>= "I.V.A " + First(Fields!TaxPercentage.Value, "BillText") + " %"</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -208,7 +208,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox32</rd:DefaultName>
-        <Top>2.68832cm</Top>
+        <Top>3.32332cm</Top>
         <Left>10.4355cm</Left>
         <Height>0.6cm</Height>
         <Width>2.35155cm</Width>
@@ -242,7 +242,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox33</rd:DefaultName>
-        <Top>2.7236cm</Top>
+        <Top>3.3586cm</Top>
         <Left>12.82232cm</Left>
         <Height>0.56472cm</Height>
         <Width>3.47052cm</Width>
@@ -264,7 +264,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>TOTAL USD</Value>
+                <Value>="TOTAL " + First(Fields!MoneySymbol.Value, "BillText")</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -274,7 +274,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox34</rd:DefaultName>
-        <Top>3.35888cm</Top>
+        <Top>3.99388cm</Top>
         <Left>10.4355cm</Left>
         <Height>0.6cm</Height>
         <Width>2.35155cm</Width>
@@ -308,7 +308,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox35</rd:DefaultName>
-        <Top>3.35888cm</Top>
+        <Top>3.99388cm</Top>
         <Left>12.8576cm</Left>
         <Height>0.6cm</Height>
         <Width>3.43524cm</Width>
@@ -342,7 +342,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox36</rd:DefaultName>
-        <Top>2.7236cm</Top>
+        <Top>3.3586cm</Top>
         <Left>0.21716cm</Left>
         <Height>1.23528cm</Height>
         <Width>4.98044cm</Width>
@@ -377,7 +377,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox37</rd:DefaultName>
-        <Top>2.7236cm</Top>
+        <Top>3.3586cm</Top>
         <Left>5.23288cm</Left>
         <Height>1.23528cm</Height>
         <Width>5.16733cm</Width>
@@ -718,6 +718,40 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="Textbox47">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!BillNote.Value, "BillText")</Value>
+                <Style>
+                  <FontSize>9pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox25</rd:DefaultName>
+        <Top>1.47905cm</Top>
+        <Left>0.21715cm</Left>
+        <Height>0.48926cm</Height>
+        <Width>16.07567cm</Width>
+        <ZIndex>13</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>4.13542in</Height>
     <Style />
@@ -903,7 +937,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>RUC/CI</Value>
+                  <Value>ID</Value>
                   <Style>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -1185,7 +1219,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>="N. " &amp; Sum(Fields!BillNumber.Value, "Bill").ToString().PadLeft(7 - Sum(Fields!BillNumber.Value, "Bill").ToString().Length(), "0")</Value>
+                  <Value>=First(Fields!Prefix.Value, "BillText") &amp; " " &amp; Sum(Fields!BillNumber.Value, "Bill").ToString().PadLeft(7 - Sum(Fields!BillNumber.Value, "Bill").ToString().Length(), "0")</Value>
                   <Style>
                     <Color>Red</Color>
                   </Style>
@@ -1738,6 +1772,10 @@
           <DataField>Authorize4</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="BillNote">
+          <DataField>BillNote</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="ClientName">
           <DataField>ClientName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1752,6 +1790,22 @@
         </Field>
         <Field Name="Footer2">
           <DataField>Footer2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MoneyDescription">
+          <DataField>MoneyDescription</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MoneySymbol">
+          <DataField>MoneySymbol</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Prefix">
+          <DataField>Prefix</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TaxPercentage">
+          <DataField>TaxPercentage</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

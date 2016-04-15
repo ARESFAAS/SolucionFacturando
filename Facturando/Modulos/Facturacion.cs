@@ -108,7 +108,8 @@ namespace Facturando
                         Quantity = 0,
                         Discount = (inventoryItem.LastSalePrice * (_client == null ? 0 : _client.DiscountPercent)) / 100,
                         Total = 0,
-                        UnitPrice = inventoryItem.LastSalePrice
+                        UnitPrice = inventoryItem.LastSalePrice,
+                        FreeProduct = inventoryItem.FreeProduct
                     });
 
                     dtgDetalleFactura.DataSource = new List<BillDetailModel>();
@@ -158,7 +159,8 @@ namespace Facturando
                             Quantity = 0,
                             Discount = (inventoryItem.LastSalePrice * (_client == null ? 0 : _client.DiscountPercent)) / 100,
                             Total = 0,
-                            UnitPrice = inventoryItem.LastSalePrice
+                            UnitPrice = inventoryItem.LastSalePrice,
+                            FreeProduct = inventoryItem.FreeProduct
                         });
 
                         dtgDetalleFactura.DataSource = new List<BillDetailModel>();
@@ -181,6 +183,7 @@ namespace Facturando
                 _billDetail.Find(x => x.Id == billDetailEditRow.Id).Discount = billDetailEditRow.Discount;
                 _billDetail.Find(x => x.Id == billDetailEditRow.Id).Total =
                     ((billDetailEditRow.UnitPrice - billDetailEditRow.Discount) * billDetailEditRow.Quantity);
+                _billDetail.Find(x => x.Id == billDetailEditRow.Id).FreeProduct = billDetailEditRow.FreeProduct;
             }
 
             if (dtgridCellEdit.OwningColumn.Name.Equals("Total"))
@@ -217,7 +220,7 @@ namespace Facturando
                     _bill.Total = 0;
 
                     decimal newTotalTemp = decimal.Parse(txtSubTotal.Text) - decimal.Parse(txtDescuentoFinal.Text);
-                    _billTaxes.ForEach(x => x.Total = (x.PercentageValue * newTotalTemp) / 100);
+                    _billTaxes.ForEach(x => x.Total = (x.PercentageValue * _billDetail.Where(y => !y.FreeProduct).Sum(z => z.Total)) / 100);
 
                     dtgImpuestos.DataSource = new List<BillTaxesModel>();
                     dtgImpuestos.DataSource = _billTaxes;
@@ -270,7 +273,7 @@ namespace Facturando
                     _bill.Total = 0;
 
                     decimal newTotalTemp = decimal.Parse(txtSubTotal.Text) - decimal.Parse(txtDescuentoFinal.Text);
-                    _billTaxes.ForEach(x => x.Total = (x.PercentageValue * newTotalTemp) / 100);
+                    _billTaxes.ForEach(x => x.Total = (x.PercentageValue * _billDetail.Where(y => !y.FreeProduct).Sum(z => z.Total)) / 100);
 
                     dtgImpuestos.DataSource = new List<BillTaxesModel>();
                     dtgImpuestos.DataSource = _billTaxes;
@@ -356,9 +359,9 @@ namespace Facturando
         {
             _bill.Total = 0;
 
-            txtSubTotal.Text = string.Format("{0:0.00}", _billDetail.Sum(x => x.Total)); //_billDetail.Sum(x => x.Total).ToString();
+            txtSubTotal.Text = string.Format("{0:0.00}", _billDetail.Sum(x => x.Total));
             decimal newTotalTemp = decimal.Parse(txtSubTotal.Text) - decimal.Parse(txtDescuentoFinal.Text);
-            _billTaxes.ForEach(x => x.Total = (x.PercentageValue * newTotalTemp) / 100);
+            _billTaxes.ForEach(x => x.Total = (x.PercentageValue * _billDetail.Where(y => !y.FreeProduct).Sum(z => z.Total)) / 100);
 
             dtgImpuestos.DataSource = new List<BillTaxesModel>();
             dtgImpuestos.DataSource = _billTaxes;
