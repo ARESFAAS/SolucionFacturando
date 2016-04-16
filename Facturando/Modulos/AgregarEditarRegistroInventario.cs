@@ -68,7 +68,7 @@ namespace Facturando.Modulos
                 {
                     btnGuardar.Enabled = false;
                     MessageBox.Show("Error - Revise la configuración de los productos");
-                }
+                }                
             }
             else
             {
@@ -80,8 +80,7 @@ namespace Facturando.Modulos
                     Inventory.InventoryDetail.IdInventoryType = ((List<InventoryTypeModel>)lstTipoMovimiento.DataSource).FirstOrDefault().Id;
                     
                 }
-                lstTipoMovimiento.SelectedValue = Inventory.InventoryDetail.IdInventoryType;
-                
+                lstTipoMovimiento.SelectedValue = Inventory.InventoryDetail.IdInventoryType;                
             }
 
             if (Operation.Equals("SALIDA") || Operation.Equals("EDICION"))
@@ -96,6 +95,26 @@ namespace Facturando.Modulos
             txtCantidad.Text = Inventory.InventoryDetail.Quantity.ToString();
             txtPrecioCompra.Text = Inventory.InventoryDetail.PurchasePrice.ToString();
             txtPrecioVenta.Text = Inventory.InventoryDetail.SalePrice.ToString();
+
+            if (Operation.Equals("ENTRADA"))
+            {
+                if (Inventory.Inventory.IdProduct.CompareTo(Guid.Empty) == 1)
+                {
+                    lstProducto.SelectedValue = Inventory.Inventory.IdProduct;
+                    InventoryDetailModel inventoryDetailTemp =
+                   _data.GetLastInventoryDetailInByProductId(Inventory.Inventory.IdProduct);
+                    if (inventoryDetailTemp != null)
+                    {
+                        txtPrecioCompra.Text = inventoryDetailTemp.PurchasePrice.ToString();
+                        txtPrecioVenta.Text = inventoryDetailTemp.SalePrice.ToString();
+                    }
+                    else
+                    {
+                        txtPrecioCompra.Text = 0D.ToString();
+                        txtPrecioVenta.Text = 0D.ToString();
+                    }
+                }
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
