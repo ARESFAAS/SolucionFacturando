@@ -37,21 +37,41 @@ namespace Facturando.Data
                 ClientModel result = new ClientModel();
                 using (FacturandoEntities context = new FacturandoEntities())
                 {
-                    result = context.Client
-                        .Where(x => x.IdIdentificationType == client.IdIdentificationType &&
-                        x.IdentificationNumber.Equals(client.IdentificationNumber))
-                        .Select(x => new ClientModel
-                        {
-                            Id = x.Id,
-                            IdentificationNumber = x.IdentificationNumber,
-                            IdIdentificationType = x.IdIdentificationType.Value,
-                            Adress = x.Address,
-                            DiscountPercent = x.DisccountPercent,
-                            Email = x.Email,
-                            Name = x.Name,
-                            Phone = x.Phone,
-                            DateEvent = x.DateEvent != null ? x.DateEvent.Value : DateTime.MinValue
-                        }).ToList().FirstOrDefault();
+                    if (!string.IsNullOrEmpty(client.Name))
+                    {
+                        result = context.Client
+                           .Where(x => x.Name.ToLower().Contains(client.Name.ToLower()))
+                           .Select(x => new ClientModel
+                           {
+                               Id = x.Id,
+                               IdentificationNumber = x.IdentificationNumber,
+                               IdIdentificationType = x.IdIdentificationType.Value,
+                               Adress = x.Address,
+                               DiscountPercent = x.DisccountPercent,
+                               Email = x.Email,
+                               Name = x.Name,
+                               Phone = x.Phone,
+                               DateEvent = x.DateEvent != null ? x.DateEvent.Value : DateTime.MinValue
+                           }).ToList().FirstOrDefault();
+                    }               
+                    else
+                    {
+                        result = context.Client
+                            .Where(x => x.IdIdentificationType == client.IdIdentificationType &&
+                            x.IdentificationNumber.Equals(client.IdentificationNumber))
+                            .Select(x => new ClientModel
+                            {
+                                Id = x.Id,
+                                IdentificationNumber = x.IdentificationNumber,
+                                IdIdentificationType = x.IdIdentificationType.Value,
+                                Adress = x.Address,
+                                DiscountPercent = x.DisccountPercent,
+                                Email = x.Email,
+                                Name = x.Name,
+                                Phone = x.Phone,
+                                DateEvent = x.DateEvent != null ? x.DateEvent.Value : DateTime.MinValue
+                            }).ToList().FirstOrDefault();
+                    }
 
                     return result;
                 }
@@ -217,8 +237,10 @@ namespace Facturando.Data
                                 IsCanceled = x.IsCanceled != null ? x.IsCanceled.Value : false,
                                 Total = x.Total,
                                 IdentificationNumber = x.Client.IdentificationNumber,
-                                Name = x.Client.Name
-                            }).ToList();
+                                Name = x.Client.Name,
+                                TotalTaxes = x.BillTaxes.Sum(y => y.Total),
+                                SubTotal = x.Total - x.BillTaxes.Sum(y => y.Total)
+                            }).OrderBy(x => x.BillNumber).ToList();
                     }
 
                     if (!string.IsNullOrEmpty(identificationNumber))
@@ -235,8 +257,10 @@ namespace Facturando.Data
                                 IsCanceled = x.IsCanceled != null ? x.IsCanceled.Value : false,
                                 Total = x.Total,
                                 IdentificationNumber = x.Client.IdentificationNumber,
-                                Name = x.Client.Name
-                            }).ToList();
+                                Name = x.Client.Name,
+                                TotalTaxes = x.BillTaxes.Sum(y => y.Total),
+                                SubTotal = x.Total - x.BillTaxes.Sum(y => y.Total)
+                            }).OrderBy(x => x.BillNumber).ToList();
                     }
 
                     if (initDate != null && endDate != null)
@@ -253,8 +277,10 @@ namespace Facturando.Data
                                IsCanceled = x.IsCanceled != null ? x.IsCanceled.Value : false,
                                Total = x.Total,
                                IdentificationNumber = x.Client.IdentificationNumber,
-                               Name = x.Client.Name
-                           }).ToList();
+                               Name = x.Client.Name,
+                               TotalTaxes = x.BillTaxes.Sum(y => y.Total),
+                               SubTotal = x.Total - x.BillTaxes.Sum(y => y.Total)
+                           }).OrderBy(x => x.BillNumber).ToList();
                     }
                     return result;
                 }

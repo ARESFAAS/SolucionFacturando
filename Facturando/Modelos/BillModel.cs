@@ -16,6 +16,8 @@ namespace Facturando.Modelos
         public string IdentificationNumber { get; set; }
         public string Name { get; set; }
         public string WatchBill { get; set; }
+        public decimal SubTotal { get; set; }
+        public decimal TotalTaxes { get; set; }
     }
 
     public class ClientModel

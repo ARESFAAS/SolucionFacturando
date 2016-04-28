@@ -86,6 +86,7 @@ namespace Facturando.Modulos
             if (Operation.Equals("SALIDA") || Operation.Equals("EDICION"))
             {
                 lstProducto.Enabled = false;
+                grpBusquedaProducto.Visible = false;
             }
             
             txtCodigoBarras.Text = Inventory.InventoryDetail.BarCodeData;
@@ -210,6 +211,21 @@ namespace Facturando.Modulos
                 }
             }
             // fin cambio
+        }
+
+        private void btnBuscarProducto_Click(object sender, EventArgs e)
+        {          
+            lstProductoEncontrado.DataSource = 
+                ((List<Facturando.Modelos.ProductModel>)lstProducto.DataSource)
+                .Where(x => x.Description.ToLowerInvariant().Contains(txtBuscarProducto.Text.ToLowerInvariant()))
+                .ToList();
+            lstProductoEncontrado.DisplayMember = "Description";
+            lstProductoEncontrado.ValueMember = "Id";
+        }
+
+        private void lstProductoEncontrado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lstProducto.SelectedItem = ((ProductModel)((ListBox)sender).SelectedItem);
         }
     }
 }

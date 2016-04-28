@@ -52,7 +52,8 @@ namespace Facturando
                 _client = _billData.GetClient(new ClientModel
                 {
                     IdIdentificationType = (Guid)cmbTipoIdentificacion.SelectedValue,
-                    IdentificationNumber = txtIdentificacionCliente.Text
+                    IdentificationNumber = txtIdentificacionCliente.Text,
+                    Name = txtNombreCliente.Text
                 });
 
                 if (_client != null)
@@ -63,6 +64,8 @@ namespace Facturando
                     txtEmail.Text = _client.Email;
                     txtDescuentoCliente.Text = _client.DiscountPercent.ToString();
                     txtTelefono.Text = _client.Phone;
+                    txtIdentificacionCliente.Text = _client.IdentificationNumber;
+                    cmbTipoIdentificacion.SelectedValue = _client.IdIdentificationType;
                 }
                 else
                 {

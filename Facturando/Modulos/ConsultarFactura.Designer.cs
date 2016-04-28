@@ -37,9 +37,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.dtgFactura = new System.Windows.Forms.DataGridView();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnConsultar = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BillNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateEvent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Iva = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NameClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdentificationNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,10 +54,6 @@
             this.IsCanceled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CancelDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WatchBill = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnConsultar = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgFactura)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,6 +145,8 @@
             this.Id,
             this.BillNumber,
             this.DateEvent,
+            this.SubTotal,
+            this.Iva,
             this.Total,
             this.NameClient,
             this.IdentificationNumber,
@@ -158,6 +162,46 @@
             this.dtgFactura.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFactura_CellContentClick);
             this.dtgFactura.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFactura_CellValueChanged);
             this.dtgFactura.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgFactura_DataError);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(984, 665);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(100, 36);
+            this.btnGuardar.TabIndex = 9;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // btnConsultar
+            // 
+            this.btnConsultar.Location = new System.Drawing.Point(13, 665);
+            this.btnConsultar.Name = "btnConsultar";
+            this.btnConsultar.Size = new System.Drawing.Size(108, 35);
+            this.btnConsultar.TabIndex = 10;
+            this.btnConsultar.Text = "Buscar";
+            this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(698, 20);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Ingrese el número de factura o identificación o un rango de fechas y haga click e" +
+    "n el botón Buscar";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 118);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(997, 20);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Haga click en el botón Ver para imprimir o revisar la factura, puede anular la fa" +
+    "ctura haciendo click en la columna y luego en el botón Guardar";
             // 
             // Id
             // 
@@ -182,6 +226,22 @@
             this.DateEvent.Name = "DateEvent";
             this.DateEvent.ReadOnly = true;
             this.DateEvent.Width = 133;
+            // 
+            // SubTotal
+            // 
+            this.SubTotal.DataPropertyName = "SubTotal";
+            this.SubTotal.HeaderText = "SubTotal";
+            this.SubTotal.Name = "SubTotal";
+            this.SubTotal.ReadOnly = true;
+            this.SubTotal.Width = 98;
+            // 
+            // Iva
+            // 
+            this.Iva.DataPropertyName = "TotalTaxes";
+            this.Iva.HeaderText = "Iva";
+            this.Iva.Name = "Iva";
+            this.Iva.ReadOnly = true;
+            this.Iva.Width = 55;
             // 
             // Total
             // 
@@ -250,46 +310,6 @@
             this.WatchBill.UseColumnTextForButtonValue = true;
             this.WatchBill.Width = 5;
             // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Location = new System.Drawing.Point(984, 665);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(100, 36);
-            this.btnGuardar.TabIndex = 9;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // btnConsultar
-            // 
-            this.btnConsultar.Location = new System.Drawing.Point(13, 665);
-            this.btnConsultar.Name = "btnConsultar";
-            this.btnConsultar.Size = new System.Drawing.Size(108, 35);
-            this.btnConsultar.TabIndex = 10;
-            this.btnConsultar.Text = "Buscar";
-            this.btnConsultar.UseVisualStyleBackColor = true;
-            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 20);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(698, 20);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Ingrese el número de factura o identificación o un rango de fechas y haga click e" +
-    "n el botón Buscar";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 118);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(997, 20);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Haga click en el botón Ver para imprimir o revisar la factura, puede anular la fa" +
-    "ctura haciendo click en la columna y luego en el botón Guardar";
-            // 
             // ConsultarFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -333,9 +353,13 @@
         private System.Windows.Forms.DataGridView dtgFactura;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnConsultar;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn BillNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateEvent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Iva;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameClient;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdentificationNumber;
@@ -344,7 +368,5 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsCanceled;
         private System.Windows.Forms.DataGridViewTextBoxColumn CancelDate;
         private System.Windows.Forms.DataGridViewButtonColumn WatchBill;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
     }
 }
