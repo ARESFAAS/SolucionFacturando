@@ -29,15 +29,6 @@
         private void InitializeComponent()
         {
             this.dtgRemision = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RemissionNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateEvent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdentificationNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalInLetters = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WatchRemission = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.dtpDesde = new System.Windows.Forms.DateTimePicker();
@@ -49,6 +40,15 @@
             this.btnConsultar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RemissionNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateEvent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdentificationNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalInLetters = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WatchRemission = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRemision)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,83 +76,6 @@
             this.dtgRemision.TabIndex = 0;
             this.dtgRemision.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgRemision_CellContentClick);
             this.dtgRemision.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgRemision_DataError);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            this.Id.Width = 48;
-            // 
-            // RemissionNumber
-            // 
-            this.RemissionNumber.DataPropertyName = "RemissionNumber";
-            this.RemissionNumber.HeaderText = "Número Remisión";
-            this.RemissionNumber.Name = "RemissionNumber";
-            this.RemissionNumber.ReadOnly = true;
-            this.RemissionNumber.Width = 146;
-            // 
-            // DateEvent
-            // 
-            this.DateEvent.DataPropertyName = "DateEvent";
-            this.DateEvent.HeaderText = "Fecha Creación";
-            this.DateEvent.Name = "DateEvent";
-            this.DateEvent.ReadOnly = true;
-            this.DateEvent.Width = 133;
-            // 
-            // Total
-            // 
-            this.Total.DataPropertyName = "Total";
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            this.Total.Width = 69;
-            // 
-            // NameClient
-            // 
-            this.NameClient.DataPropertyName = "Name";
-            this.NameClient.HeaderText = "Client";
-            this.NameClient.Name = "NameClient";
-            this.NameClient.ReadOnly = true;
-            this.NameClient.Width = 74;
-            // 
-            // IdentificationNumber
-            // 
-            this.IdentificationNumber.DataPropertyName = "IdentificationNumber";
-            this.IdentificationNumber.HeaderText = "Identificación";
-            this.IdentificationNumber.Name = "IdentificationNumber";
-            this.IdentificationNumber.ReadOnly = true;
-            this.IdentificationNumber.Width = 128;
-            // 
-            // TotalInLetters
-            // 
-            this.TotalInLetters.DataPropertyName = "TotalInLetters";
-            this.TotalInLetters.HeaderText = "TotalInLetters";
-            this.TotalInLetters.Name = "TotalInLetters";
-            this.TotalInLetters.ReadOnly = true;
-            this.TotalInLetters.Visible = false;
-            this.TotalInLetters.Width = 133;
-            // 
-            // IdClient
-            // 
-            this.IdClient.DataPropertyName = "IdClient";
-            this.IdClient.HeaderText = "IdClient";
-            this.IdClient.Name = "IdClient";
-            this.IdClient.ReadOnly = true;
-            this.IdClient.Visible = false;
-            this.IdClient.Width = 88;
-            // 
-            // WatchRemission
-            // 
-            this.WatchRemission.DataPropertyName = "WatchRemission";
-            this.WatchRemission.HeaderText = "";
-            this.WatchRemission.Name = "WatchRemission";
-            this.WatchRemission.ReadOnly = true;
-            this.WatchRemission.Text = "Ver";
-            this.WatchRemission.UseColumnTextForButtonValue = true;
-            this.WatchRemission.Width = 5;
             // 
             // dtpFin
             // 
@@ -266,6 +189,83 @@
             this.label6.TabIndex = 18;
             this.label6.Text = "Haga click en el boton Ver para imprimir o revisar la remisión";
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            this.Id.Width = 48;
+            // 
+            // RemissionNumber
+            // 
+            this.RemissionNumber.DataPropertyName = "RemissionNumber";
+            this.RemissionNumber.HeaderText = "Número Remisión";
+            this.RemissionNumber.Name = "RemissionNumber";
+            this.RemissionNumber.ReadOnly = true;
+            this.RemissionNumber.Width = 146;
+            // 
+            // DateEvent
+            // 
+            this.DateEvent.DataPropertyName = "DateEvent";
+            this.DateEvent.HeaderText = "Fecha Creación";
+            this.DateEvent.Name = "DateEvent";
+            this.DateEvent.ReadOnly = true;
+            this.DateEvent.Width = 133;
+            // 
+            // Total
+            // 
+            this.Total.DataPropertyName = "Total";
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Width = 69;
+            // 
+            // NameClient
+            // 
+            this.NameClient.DataPropertyName = "Name";
+            this.NameClient.HeaderText = "Cliente";
+            this.NameClient.Name = "NameClient";
+            this.NameClient.ReadOnly = true;
+            this.NameClient.Width = 83;
+            // 
+            // IdentificationNumber
+            // 
+            this.IdentificationNumber.DataPropertyName = "IdentificationNumber";
+            this.IdentificationNumber.HeaderText = "Identificación";
+            this.IdentificationNumber.Name = "IdentificationNumber";
+            this.IdentificationNumber.ReadOnly = true;
+            this.IdentificationNumber.Width = 128;
+            // 
+            // TotalInLetters
+            // 
+            this.TotalInLetters.DataPropertyName = "TotalInLetters";
+            this.TotalInLetters.HeaderText = "TotalInLetters";
+            this.TotalInLetters.Name = "TotalInLetters";
+            this.TotalInLetters.ReadOnly = true;
+            this.TotalInLetters.Visible = false;
+            this.TotalInLetters.Width = 133;
+            // 
+            // IdClient
+            // 
+            this.IdClient.DataPropertyName = "IdClient";
+            this.IdClient.HeaderText = "IdClient";
+            this.IdClient.Name = "IdClient";
+            this.IdClient.ReadOnly = true;
+            this.IdClient.Visible = false;
+            this.IdClient.Width = 88;
+            // 
+            // WatchRemission
+            // 
+            this.WatchRemission.DataPropertyName = "WatchRemission";
+            this.WatchRemission.HeaderText = "";
+            this.WatchRemission.Name = "WatchRemission";
+            this.WatchRemission.ReadOnly = true;
+            this.WatchRemission.Text = "Ver";
+            this.WatchRemission.UseColumnTextForButtonValue = true;
+            this.WatchRemission.Width = 5;
+            // 
             // ConsultarRemision
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -307,6 +307,8 @@
         private System.Windows.Forms.TextBox txtRemision;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnConsultar;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn RemissionNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateEvent;
@@ -316,7 +318,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalInLetters;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdClient;
         private System.Windows.Forms.DataGridViewButtonColumn WatchRemission;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
     }
 }

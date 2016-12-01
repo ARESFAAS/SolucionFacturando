@@ -41,7 +41,8 @@ namespace Facturando.Data
                             Email = x.Email,
                             Name = x.Name,
                             Phone = x.Phone,
-                            DateEvent = x.DateEvent != null ? x.DateEvent.Value : DateTime.MinValue
+                            DateEvent = x.DateEvent != null ? x.DateEvent.Value : DateTime.MinValue,
+                            CreditDaysNumber = x.CreditDaysNumber.HasValue ? x.CreditDaysNumber.Value : 0
                         }).ToList();
                 }
             }
@@ -72,7 +73,8 @@ namespace Facturando.Data
                                 IdIdentificationType = item.IdIdentificationType,                                
                                 IdentificationNumber = item.IdentificationNumber,
                                 Name = item.Name,
-                                Phone = item.Phone
+                                Phone = item.Phone,
+                                CreditDaysNumber = item.CreditDaysNumber
                             });
                         }
                         else
@@ -82,6 +84,7 @@ namespace Facturando.Data
                             clientTemp.Email = item.Email;
                             clientTemp.Name = item.Name;
                             clientTemp.Phone = item.Phone;
+                            clientTemp.CreditDaysNumber = item.CreditDaysNumber;
                         }
                     }
                     context.SaveChanges();

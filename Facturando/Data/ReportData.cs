@@ -33,6 +33,28 @@ namespace Facturando.Data
             }
         }
 
+        public DailyReportModel GetDaily(DateTime initDate, DateTime endDate)
+        {
+            DailyReportModel result = new DailyReportModel();
+            
+            try
+            {
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    result.Daily = context.DailyGet(initDate, endDate).Select(x => new DailyModel {
+                         Group = x.Description,
+                         Quantity = x.Quantity.HasValue ? x.Quantity.Value : 0,
+                         Total = x.Total.HasValue ? x.Total.Value : 0
+                    }).ToList();
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public List<InventoryModel> GetInventory()
         {
             try

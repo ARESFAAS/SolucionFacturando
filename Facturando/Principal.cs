@@ -49,7 +49,7 @@ namespace Facturando
             }
 
         }
-
+        
         private void pctNuevaRemision_Click(object sender, EventArgs e)
         {
             foreach (var rol in User.Roles)
@@ -190,6 +190,11 @@ namespace Facturando
             AddFormInPanel(new ProductosReporte());
         }
 
+        private void diarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddFormInPanel(new Diario());
+        }
+
         private void AddFormInPanel(object formHijo)
         {
             if (this.splitContainer1.Panel2.Controls.Count > 0)
@@ -202,5 +207,6 @@ namespace Facturando
             this.splitContainer1.Panel2.Tag = fh;
             fh.Show();
         }
+
     }
 }

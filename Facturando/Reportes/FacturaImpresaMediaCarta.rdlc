@@ -327,7 +327,7 @@
         <Top>0.14111cm</Top>
         <Left>0.53467cm</Left>
         <Height>1.16472cm</Height>
-        <Width>8.84348cm</Width>
+        <Width>8.84349cm</Width>
         <Style>
           <Border>
             <Color>Gray</Color>
@@ -1075,8 +1075,8 @@
         <DataSetName>BillDetail</DataSetName>
         <Top>0.15546cm</Top>
         <Left>10.27953cm</Left>
-        <Height>1.15037cm</Height>
-        <Width>9.26472cm</Width>
+        <Height>1.15038cm</Height>
+        <Width>9.26471cm</Width>
         <ZIndex>14</ZIndex>
         <Style>
           <Border>
@@ -1734,7 +1734,7 @@
           <Top>2.89807cm</Top>
           <Left>1.45677cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.09969cm</Width>
+          <Width>1.51219cm</Width>
           <ZIndex>4</ZIndex>
           <Style>
             <Border>
@@ -1765,9 +1765,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
           <Top>2.89807cm</Top>
-          <Left>4.55646cm</Left>
+          <Left>6.22524cm</Left>
           <Height>0.6cm</Height>
-          <Width>0.78922cm</Width>
+          <Width>0.461cm</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>
@@ -1797,9 +1797,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox15</rd:DefaultName>
           <Top>2.89807cm</Top>
-          <Left>5.38096cm</Left>
+          <Left>6.68624cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.99723cm</Width>
+          <Width>2.69195cm</Width>
           <ZIndex>6</ZIndex>
           <Style>
             <Border>
@@ -2777,7 +2777,7 @@
           <Top>2.91328cm</Top>
           <Left>11.25452cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.36213cm</Width>
+          <Width>1.43067cm</Width>
           <ZIndex>36</ZIndex>
           <Style>
             <Border>
@@ -2807,8 +2807,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
-          <Top>2.91328cm</Top>
-          <Left>14.61666cm</Left>
+          <Top>2.878cm</Top>
+          <Left>15.84084cm</Left>
           <Height>0.6cm</Height>
           <Width>0.52678cm</Width>
           <ZIndex>37</ZIndex>
@@ -2840,9 +2840,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox15</rd:DefaultName>
           <Top>2.91328cm</Top>
-          <Left>15.17871cm</Left>
+          <Left>16.36762cm</Left>
           <Height>0.6cm</Height>
-          <Width>4.3655cm</Width>
+          <Width>3.17659cm</Width>
           <ZIndex>38</ZIndex>
           <Style>
             <Border>
@@ -3039,6 +3039,138 @@
           <Height>0.6cm</Height>
           <Width>2.21748cm</Width>
           <ZIndex>44</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox89">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Fecha Límite</Value>
+                  <Style>
+                    <FontSize>6.5pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox12</rd:DefaultName>
+          <Top>2.90127cm</Top>
+          <Left>2.96896cm</Left>
+          <Height>0.6cm</Height>
+          <Width>1.70881cm</Width>
+          <ZIndex>45</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox90">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!LimitDate.Value, "Bill")</Value>
+                  <Style>
+                    <FontSize>6.5pt</FontSize>
+                    <Format>d</Format>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox13</rd:DefaultName>
+          <Top>2.90127cm</Top>
+          <Left>4.67777cm</Left>
+          <Height>0.6cm</Height>
+          <Width>1.51219cm</Width>
+          <ZIndex>46</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox91">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Fecha Límite</Value>
+                  <Style>
+                    <FontSize>6.5pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox12</rd:DefaultName>
+          <Top>2.90127cm</Top>
+          <Left>12.72047cm</Left>
+          <Height>0.6cm</Height>
+          <Width>1.68244cm</Width>
+          <ZIndex>47</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox92">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!LimitDate.Value, "Bill")</Value>
+                  <Style>
+                    <FontSize>6.5pt</FontSize>
+                    <Format>d</Format>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox13</rd:DefaultName>
+          <Top>2.91328cm</Top>
+          <Left>14.40291cm</Left>
+          <Height>0.6cm</Height>
+          <Width>1.43067cm</Width>
+          <ZIndex>48</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -3319,6 +3451,10 @@
           <DataField>Adress</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CreditDaysNumber">
+          <DataField>CreditDaysNumber</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="DateEvent">
           <DataField>DateEvent</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
@@ -3397,9 +3533,17 @@
           <DataField>IsCanceled</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
+        <Field Name="LimitDate">
+          <DataField>LimitDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="Name">
           <DataField>Name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SubTotal">
+          <DataField>SubTotal</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="Total">
           <DataField>Total</DataField>
@@ -3408,6 +3552,10 @@
         <Field Name="TotalInLetters">
           <DataField>TotalInLetters</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TotalTaxes">
+          <DataField>TotalTaxes</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="WatchBill">
           <DataField>WatchBill</DataField>

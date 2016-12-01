@@ -27,6 +27,7 @@ namespace Facturando.Data
         public Nullable<System.DateTime> DateEvent { get; set; }
         public Nullable<bool> IsCanceled { get; set; }
         public Nullable<System.DateTime> CancelDate { get; set; }
+        public Nullable<System.DateTime> LimitDate { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual ICollection<BillDetail> BillDetail { get; set; }

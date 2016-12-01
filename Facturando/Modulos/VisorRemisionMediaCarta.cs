@@ -46,13 +46,12 @@ namespace Facturando.Modulos
         }
 
         private void VisorRemisionMediaCarta_Load(object sender, EventArgs e)
-        {
-
-            rpwRemision.RefreshReport();
+        {                      
             remissionPrintModelBindingSource1.DataSource = _remission.Client;
             remissionPrintModelBindingSource2.DataSource = _remission.Remission;
             remissionPrintModelBindingSource3.DataSource = _remission.RemissionDetail;
             remissionPrintModelBindingSource.DataSource = _remission.RemissionText;
+            rpwRemision.RefreshReport();
         }
 
         private void btnNuevaRemision_Click(object sender, EventArgs e)

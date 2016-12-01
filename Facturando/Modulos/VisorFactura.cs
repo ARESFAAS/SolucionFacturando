@@ -42,14 +42,14 @@ namespace Facturando.Modulos
         }
 
         private void VisorFactura_Load(object sender, EventArgs e)
-        {
-            rvwFactura.RefreshReport();
+        {            
             billPrintModelBindingSource.DataSource = _bill.Client;
             billPrintModelBindingSource1.DataSource = _bill.Bill;
             billPrintModelBindingSource2.DataSource = _bill.BillDetail;
             billPrintModelBindingSource3.DataSource = _bill.BillTaxes;
-            billPrintModelBindingSource4.DataSource = _bill.BillText; 
-                       
+            billPrintModelBindingSource4.DataSource = _bill.BillText;
+            rvwFactura.RefreshReport();
+
         }
 
         private void btnNuevaFactura_Click(object sender, EventArgs e)

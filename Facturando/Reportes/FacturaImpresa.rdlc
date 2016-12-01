@@ -918,7 +918,7 @@
           <Top>3.9253cm</Top>
           <Left>1.41264cm</Left>
           <Height>0.6cm</Height>
-          <Width>7.29245cm</Width>
+          <Width>2.88273cm</Width>
           <ZIndex>4</ZIndex>
           <Style>
             <Border>
@@ -948,9 +948,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
           <Top>3.9253cm</Top>
-          <Left>8.74038cm</Left>
+          <Left>9.61351cm</Left>
           <Height>0.6cm</Height>
-          <Width>1.51138cm</Width>
+          <Width>0.63825cm</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>
@@ -1432,6 +1432,70 @@
             </Border>
           </Style>
         </Image>
+        <Textbox Name="Textbox48">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Fecha Límite</Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox12</rd:DefaultName>
+          <Top>3.9253cm</Top>
+          <Left>4.29537cm</Left>
+          <Height>0.6cm</Height>
+          <Width>2.57131cm</Width>
+          <ZIndex>21</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox49">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!LimitDate.Value, "Bill")</Value>
+                  <Style>
+                    <Format>d</Format>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox13</rd:DefaultName>
+          <Top>3.9253cm</Top>
+          <Left>6.86668cm</Left>
+          <Height>0.6cm</Height>
+          <Width>2.72036cm</Width>
+          <ZIndex>22</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
       </ReportItems>
       <Style>
         <Border>
@@ -1622,6 +1686,14 @@
           <DataField>Adress</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CreditDaysNumber">
+          <DataField>CreditDaysNumber</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DateEvent">
+          <DataField>DateEvent</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="DiscountPercent">
           <DataField>DiscountPercent</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -1672,6 +1744,10 @@
           <DataField>BillNumber</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
+        <Field Name="CancelDate">
+          <DataField>CancelDate</DataField>
+          <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
         <Field Name="DateEvent">
           <DataField>DateEvent</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
@@ -1684,12 +1760,40 @@
           <DataField>IdClient</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
+        <Field Name="IdentificationNumber">
+          <DataField>IdentificationNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IsCanceled">
+          <DataField>IsCanceled</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="LimitDate">
+          <DataField>LimitDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SubTotal">
+          <DataField>SubTotal</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="Total">
           <DataField>Total</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="TotalInLetters">
           <DataField>TotalInLetters</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TotalTaxes">
+          <DataField>TotalTaxes</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="WatchBill">
+          <DataField>WatchBill</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

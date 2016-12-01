@@ -18,6 +18,7 @@ namespace Facturando.Modelos
         public string WatchBill { get; set; }
         public decimal SubTotal { get; set; }
         public decimal TotalTaxes { get; set; }
+        public DateTime LimitDate { get; set; }
     }
 
     public class ClientModel
@@ -33,6 +34,7 @@ namespace Facturando.Modelos
         public decimal DiscountPercent { get; set; }
         public bool IsNew { get; set; }
         public DateTime DateEvent { get; set; }
+        public int CreditDaysNumber { get; set; }
     }
 
     public class BillDetailModel {

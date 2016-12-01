@@ -23,6 +23,7 @@
           <Property Name="DateEvent" Type="date" />
           <Property Name="IsCanceled" Type="bit" />
           <Property Name="CancelDate" Type="date" />
+          <Property Name="LimitDate" Type="date" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -44,6 +45,14 @@
           <Property Name="IdBill" Type="uniqueidentifier" />
           <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="BillTemp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MacAddress" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="BillNumber" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
@@ -57,6 +66,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="DisccountPercent" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="DateEvent" Type="date" />
+          <Property Name="CreditDaysNumber" Type="int" />
         </EntityType>
         <EntityType Name="ConfigurationSystem">
           <Key>
@@ -175,6 +185,14 @@
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RemissionTemp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MacAddress" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RemissionNumber" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
@@ -517,11 +535,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="DailyGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="InitDate" Type="date" Mode="In" />
+          <Parameter Name="EndDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="GetBillNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MacAddress" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetRemissionNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MacAddress" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="FacturandoModelStoreContainer">
           <EntitySet Name="Action" EntityType="Self.Action" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillDetail" EntityType="Self.BillDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillTaxes" EntityType="Self.BillTaxes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillTemp" EntityType="Self.BillTemp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConfigurationSystem" EntityType="Self.ConfigurationSystem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
@@ -536,6 +565,7 @@
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Remission" EntityType="Self.Remission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RemissionDetail" EntityType="Self.RemissionDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RemissionTemp" EntityType="Self.RemissionTemp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RolAction" EntityType="Self.RolAction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RolModule" EntityType="Self.RolModule" Schema="dbo" store:Type="Tables" />
@@ -663,6 +693,7 @@
           <Property Name="DateEvent" Type="DateTime" Precision="0" />
           <Property Name="IsCanceled" Type="Boolean" />
           <Property Name="CancelDate" Type="DateTime" Precision="0" />
+          <Property Name="LimitDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -704,6 +735,7 @@
           <Property Name="IdIdentificationType" Type="Guid" />
           <NavigationProperty Name="IdentificacionType" Relationship="FacturandoModel.FK_Client_IdentificacionType" FromRole="Client" ToRole="IdentificacionType" />
           <Property Name="DateEvent" Type="DateTime" Precision="0" />
+          <Property Name="CreditDaysNumber" Type="Int32" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
@@ -1234,6 +1266,18 @@
             <End Role="CurrencyType" EntitySet="CurrencyType" />
             <End Role="ConfigurationSystem" EntitySet="ConfigurationSystem" />
           </AssociationSet>
+          <FunctionImport Name="DailyGet" ReturnType="Collection(FacturandoModel.DailyGet_Result)">
+            <Parameter Name="InitDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetBillNumber" ReturnType="Collection(FacturandoModel.GetBillNumber_Result)">
+          <Parameter Name="MacAddress" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="BillTemp" EntityType="FacturandoModel.BillTemp" />
+          <EntitySet Name="RemissionTemp" EntityType="FacturandoModel.RemissionTemp" />
+          <FunctionImport Name="GetRemissionNumber" ReturnType="Collection(FacturandoModel.GetRemissionNumber_Result)">
+            <Parameter Name="MacAddress" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="IdentificacionType">
           <Key>
@@ -1319,6 +1363,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="DailyGet_Result">
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="GetBillNumber_Result">
+          <Property Type="Int64" Name="BillNumber" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="BillTemp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="MacAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="BillNumber" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RemissionTemp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="MacAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RemissionNumber" Type="Int64" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="GetRemissionNumber_Result">
+          <Property Type="Int64" Name="RemissionNumber" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1336,6 +1407,7 @@
           <EntitySetMapping Name="Bill">
             <EntityTypeMapping TypeName="FacturandoModel.Bill">
               <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="LimitDate" ColumnName="LimitDate" />
                 <ScalarProperty Name="CancelDate" ColumnName="CancelDate" />
                 <ScalarProperty Name="IsCanceled" ColumnName="IsCanceled" />
                 <ScalarProperty Name="DateEvent" ColumnName="DateEvent" />
@@ -1371,6 +1443,7 @@
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="FacturandoModel.Client">
               <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="CreditDaysNumber" ColumnName="CreditDaysNumber" />
                 <ScalarProperty Name="DateEvent" ColumnName="DateEvent" />
                 <ScalarProperty Name="IdIdentificationType" ColumnName="IdIdentificationType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1587,6 +1660,47 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DailyGet" FunctionName="FacturandoModel.Store.DailyGet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FacturandoModel.DailyGet_Result">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetBillNumber" FunctionName="FacturandoModel.Store.GetBillNumber">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FacturandoModel.GetBillNumber_Result">
+                <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="BillTemp">
+            <EntityTypeMapping TypeName="FacturandoModel.BillTemp">
+              <MappingFragment StoreEntitySet="BillTemp">
+                <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
+                <ScalarProperty Name="MacAddress" ColumnName="MacAddress" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RemissionTemp">
+            <EntityTypeMapping TypeName="FacturandoModel.RemissionTemp">
+              <MappingFragment StoreEntitySet="RemissionTemp">
+                <ScalarProperty Name="RemissionNumber" ColumnName="RemissionNumber" />
+                <ScalarProperty Name="MacAddress" ColumnName="MacAddress" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetRemissionNumber" FunctionName="FacturandoModel.Store.GetRemissionNumber">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FacturandoModel.GetRemissionNumber_Result">
+                <ScalarProperty Name="RemissionNumber" ColumnName="RemissionNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

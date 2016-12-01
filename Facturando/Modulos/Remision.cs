@@ -34,7 +34,7 @@ namespace Facturando
             _remission = new RemissionModel
             {
                 Id = Guid.NewGuid(),
-                RemissionNumber = _remissionData.GetRemissionNumber(),
+                RemissionNumber = _remissionData.GetRemissionNumber(GetMacAddress()),
                 Total = 0,
                 DateEvent = DateTime.Now
             };
@@ -368,7 +368,7 @@ namespace Facturando
                 _remission.Total > 0)
             {
                 // Guarda los datos de la factura
-                _remissionData.SaveRemission(_remissionSaveModel);
+                _remissionData.SaveRemission(_remissionSaveModel, GetMacAddress());
 
                 // Actualiza el inventario
                 foreach (var item in _remissionSaveModel.RemissionDetail)
@@ -409,7 +409,7 @@ namespace Facturando
             _remission = new RemissionModel
             {
                 Id = Guid.NewGuid(),
-                RemissionNumber = _remissionData.GetRemissionNumber(),
+                RemissionNumber = _remissionData.GetRemissionNumber(GetMacAddress()),
                 DateEvent = DateTime.Now
             };
             lblNumeroRemision.Text = _remission.RemissionNumber.ToString().PadLeft(8, '0');

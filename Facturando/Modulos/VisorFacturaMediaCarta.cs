@@ -43,13 +43,13 @@ namespace Facturando.Modulos
         }
 
         private void VisorFacturaMediaCarta_Load(object sender, EventArgs e)
-        {
-            reportViewer1.RefreshReport();
+        {            
             billPrintModelBindingSource.DataSource = _bill.Client;
             billPrintModelBindingSource1.DataSource = _bill.Bill;
             billPrintModelBindingSource2.DataSource = _bill.BillDetail;
             billPrintModelBindingSource3.DataSource = _bill.BillTaxes;
             billPrintModelBindingSource4.DataSource = _bill.BillText;
+            reportViewer1.RefreshReport();
         }
 
         private void btnNuevaFactura_Click(object sender, EventArgs e)

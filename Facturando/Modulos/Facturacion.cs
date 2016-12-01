@@ -27,14 +27,16 @@ namespace Facturando
 
         private void Facturacion_Load(object sender, EventArgs e)
         {
+            
             cmbTipoIdentificacion.DataSource = _billData.GetIdentificationType();
             cmbTipoIdentificacion.ValueMember = "Id";
             cmbTipoIdentificacion.DisplayMember = "Description";
             _bill = new BillModel {
                 Id = Guid.NewGuid(),
-                BillNumber = _billData.GetBillNumber(),
+                BillNumber = _billData.GetBillNumber(GetMacAddress()),
                 DateEvent = DateTime.Now
             };
+
             lblNumeroFactura.Text = _bill.BillNumber.ToString().PadLeft(8, '0');
             _billTaxes = _billData.GetBillTaxes();
             _billTaxes.ForEach(x => x.IdBill = _bill.Id);
@@ -66,6 +68,8 @@ namespace Facturando
                     txtTelefono.Text = _client.Phone;
                     txtIdentificacionCliente.Text = _client.IdentificationNumber;
                     cmbTipoIdentificacion.SelectedValue = _client.IdIdentificationType;
+                    txtDiasLimite.Text = _client.CreditDaysNumber.ToString();
+                    dtpFechaLimite.Value = DateTime.Now.AddDays(_client.CreditDaysNumber);
                 }
                 else
                 {
@@ -399,9 +403,11 @@ namespace Facturando
                     IdIdentificationType = (Guid)cmbTipoIdentificacion.SelectedValue,
                     Name = txtNombreCliente.Text,
                     Phone = txtTelefono.Text,
-                    IsNew = true
+                    IsNew = true,
+                    CreditDaysNumber = !String.IsNullOrEmpty(txtDiasLimite.Text) ? int.Parse(txtDiasLimite.Text) : 0
                 };
                 _bill.IdClient = _client.Id;
+                _bill.LimitDate = dtpFechaLimite.Value;                
             }
             return result;
         }
@@ -420,7 +426,7 @@ namespace Facturando
                 _bill.Total > 0)
             {
                 // Guarda los datos de la factura
-                _billData.SaveBill(_billSaveModel);
+                _billData.SaveBill(_billSaveModel, GetMacAddress());
 
                 // Actualiza el inventario
                 foreach (var item in _billSaveModel.BillDetail)
@@ -463,7 +469,7 @@ namespace Facturando
             _bill = new BillModel
             {
                 Id = Guid.NewGuid(),
-                BillNumber = _billData.GetBillNumber(),
+                BillNumber = _billData.GetBillNumber(GetMacAddress()),
                 DateEvent = DateTime.Now
             };
             lblNumeroFactura.Text = _bill.BillNumber.ToString().PadLeft(8, '0');
@@ -485,6 +491,8 @@ namespace Facturando
             lstProducto.DataSource = new List<InventoryModel>();
             btnBuscarProducto.Enabled = false;
             btnFacturar.Enabled = false;
+            txtDiasLimite.Text = string.Empty;
+            dtpFechaLimite.Value = DateTime.Now;
         }
 
         public void NewBill()
@@ -517,5 +525,24 @@ namespace Facturando
         {
             ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = false;
         }
+
+        private void txtDiasLimite_TextChanged(object sender, EventArgs e)
+        {
+            int limitDaysTemp = 0;
+            if(!string.IsNullOrEmpty(txtDiasLimite.Text) && int.TryParse(txtDiasLimite.Text, out limitDaysTemp))
+            {
+                dtpFechaLimite.Value = DateTime.Now.AddDays(limitDaysTemp);
+            }
+            else
+            {
+                dtpFechaLimite.Value = DateTime.Now;
+            }
+            _bill.LimitDate = dtpFechaLimite.Value;
+            if(_client != null)
+            {
+                _client.CreditDaysNumber = limitDaysTemp;
+            }            
+        }
+
     }
 }

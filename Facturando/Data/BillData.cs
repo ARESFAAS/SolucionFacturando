@@ -51,7 +51,8 @@ namespace Facturando.Data
                                Email = x.Email,
                                Name = x.Name,
                                Phone = x.Phone,
-                               DateEvent = x.DateEvent != null ? x.DateEvent.Value : DateTime.MinValue
+                               DateEvent = x.DateEvent != null ? x.DateEvent.Value : DateTime.MinValue,
+                               CreditDaysNumber = x.CreditDaysNumber.HasValue ? x.CreditDaysNumber.Value : 0
                            }).ToList().FirstOrDefault();
                     }               
                     else
@@ -69,7 +70,8 @@ namespace Facturando.Data
                                 Email = x.Email,
                                 Name = x.Name,
                                 Phone = x.Phone,
-                                DateEvent = x.DateEvent != null ? x.DateEvent.Value : DateTime.MinValue
+                                DateEvent = x.DateEvent != null ? x.DateEvent.Value : DateTime.MinValue,
+                                CreditDaysNumber = x.CreditDaysNumber.HasValue ? x.CreditDaysNumber.Value : 0
                             }).ToList().FirstOrDefault();
                     }
 
@@ -111,6 +113,7 @@ namespace Facturando.Data
                     ConfigurationSystem lastConfiguration = context.ConfigurationSystem
                         .OrderByDescending(x => x.OperationsInitDate)
                         .FirstOrDefault();
+                                        
                     BillModel bill = context.Bill.OrderByDescending(x => x.BillNumber).Select(x => new BillModel
                     {
                         BillNumber = x.BillNumber
@@ -132,6 +135,32 @@ namespace Facturando.Data
                         };
                     }
                     else { result = 0; }
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public long GetBillNumber(string macAddress)
+        {
+            try
+            {
+                long result = 0;
+                using (FacturandoEntities context = new FacturandoEntities())
+                {                    
+                    BillModel bill = context.GetBillNumber(macAddress).Select(x => new BillModel
+                    {
+                        BillNumber = x.BillNumber
+                    }).FirstOrDefault();
+
+                    if (bill != null)
+                    {
+                        result = bill.BillNumber;                                         
+                    }
+
                     return result;
                 }
             }
@@ -167,7 +196,8 @@ namespace Facturando.Data
                                 IdentificationNumber = bill.Client.IdentificationNumber,
                                 Name = bill.Client.Name,
                                 Phone = bill.Client.Phone,
-                                DateEvent = DateTime.Now
+                                DateEvent = DateTime.Now,
+                                CreditDaysNumber = bill.Client.CreditDaysNumber
                             });
                         }
                         else
@@ -182,7 +212,8 @@ namespace Facturando.Data
                         BillNumber = bill.Bill.BillNumber,
                         IdClient = bill.Bill.IdClient,
                         Total = bill.Bill.Total,
-                        DateEvent = bill.Bill.DateEvent
+                        DateEvent = bill.Bill.DateEvent,
+                        LimitDate = bill.Bill.LimitDate
                     });
                     foreach (var item in bill.BillDetail)
                     {
@@ -206,6 +237,86 @@ namespace Facturando.Data
                             Total = item.Total
                         });
                     }
+
+                    context.SaveChanges();
+                    return bill;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public BillSaveModel SaveBill(BillSaveModel bill, string macAddress)
+        {
+            try
+            {
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    if (bill.Client.IsNew)
+                    {
+                        // verificar nuevamente si el cliente realmente no existe
+
+                        var clientValidate = context.Client
+                            .Where(x => x.IdIdentificationType == bill.Client.IdIdentificationType
+                            && x.IdentificationNumber.Equals(bill.Client.IdentificationNumber)).FirstOrDefault();
+
+                        if (clientValidate == null)
+                        {
+                            context.Client.Add(new Client
+                            {
+                                Address = bill.Client.Adress,
+                                DisccountPercent = bill.Client.DiscountPercent,
+                                Email = bill.Client.Email,
+                                Id = bill.Client.Id,
+                                IdIdentificationType = bill.Client.IdIdentificationType,
+                                IdentificationNumber = bill.Client.IdentificationNumber,
+                                Name = bill.Client.Name,
+                                Phone = bill.Client.Phone,
+                                DateEvent = DateTime.Now,
+                                CreditDaysNumber = bill.Client.CreditDaysNumber
+                            });
+                        }
+                        else
+                        {
+                            bill.Client.Id = clientValidate.Id;
+                            bill.Bill.IdClient = clientValidate.Id;
+                        }
+                    }
+                    context.Bill.Add(new Bill
+                    {
+                        Id = bill.Bill.Id,
+                        BillNumber = bill.Bill.BillNumber,
+                        IdClient = bill.Bill.IdClient,
+                        Total = bill.Bill.Total,
+                        DateEvent = bill.Bill.DateEvent,
+                        LimitDate = bill.Bill.LimitDate
+                    });
+                    foreach (var item in bill.BillDetail)
+                    {
+                        context.BillDetail.Add(new BillDetail
+                        {
+                            Id = item.Id,
+                            IdBill = item.IdBill,
+                            IdProduct = item.IdProduct,
+                            Quantity = item.Quantity,
+                            UnitPrice = item.UnitPrice,
+                            Total = item.Total
+                        });
+                    }
+                    foreach (var item in bill.BillTaxes)
+                    {
+                        context.BillTaxes.Add(new BillTaxes
+                        {
+                            Id = item.Id,
+                            IdBill = item.IdBill,
+                            IdTax = item.IdTax,
+                            Total = item.Total
+                        });
+                    }
+                    BillTemp billTemp = context.BillTemp.Where(x => x.BillNumber.Equals(bill.Bill.BillNumber) && x.MacAddress.Equals(macAddress)).FirstOrDefault();
+                    context.BillTemp.Remove(billTemp);
                     context.SaveChanges();
                     return bill;
                 }
@@ -239,7 +350,8 @@ namespace Facturando.Data
                                 IdentificationNumber = x.Client.IdentificationNumber,
                                 Name = x.Client.Name,
                                 TotalTaxes = x.BillTaxes.Sum(y => y.Total),
-                                SubTotal = x.Total - x.BillTaxes.Sum(y => y.Total)
+                                SubTotal = x.Total - x.BillTaxes.Sum(y => y.Total),
+                                LimitDate = x.LimitDate.HasValue ? x.LimitDate.Value : DateTime.MinValue
                             }).OrderBy(x => x.BillNumber).ToList();
                     }
 
@@ -259,7 +371,8 @@ namespace Facturando.Data
                                 IdentificationNumber = x.Client.IdentificationNumber,
                                 Name = x.Client.Name,
                                 TotalTaxes = x.BillTaxes.Sum(y => y.Total),
-                                SubTotal = x.Total - x.BillTaxes.Sum(y => y.Total)
+                                SubTotal = x.Total - x.BillTaxes.Sum(y => y.Total),
+                                LimitDate = x.LimitDate.HasValue ? x.LimitDate.Value : DateTime.MinValue
                             }).OrderBy(x => x.BillNumber).ToList();
                     }
 
@@ -279,7 +392,8 @@ namespace Facturando.Data
                                IdentificationNumber = x.Client.IdentificationNumber,
                                Name = x.Client.Name,
                                TotalTaxes = x.BillTaxes.Sum(y => y.Total),
-                               SubTotal = x.Total - x.BillTaxes.Sum(y => y.Total)
+                               SubTotal = x.Total - x.BillTaxes.Sum(y => y.Total),
+                               LimitDate = x.LimitDate.HasValue ? x.LimitDate.Value : DateTime.MinValue
                            }).OrderBy(x => x.BillNumber).ToList();
                     }
                     return result;
@@ -324,7 +438,8 @@ namespace Facturando.Data
                             IdentificationNumber = x.IdentificationNumber,
                             IdIdentificationType = x.IdIdentificationType.Value,
                             Name = x.Name,
-                            Phone = x.Phone
+                            Phone = x.Phone,
+                            CreditDaysNumber = x.CreditDaysNumber.HasValue ? x.CreditDaysNumber.Value : 0
                         }).FirstOrDefault();
 
                     result.BillTaxes = context.BillTaxes

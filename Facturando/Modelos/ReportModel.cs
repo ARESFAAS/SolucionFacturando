@@ -30,4 +30,14 @@ namespace Facturando.Modelos
         public List<ProductModel> Product { get; set; }
     }
 
+    public class DailyModel {
+        public string Group { get; set; }
+        public int Quantity { get; set; }
+        public decimal Total { get; set; }
+    }
+
+    public class DailyReportModel
+    {
+        public List<DailyModel> Daily { get; set; }
+    }
 }

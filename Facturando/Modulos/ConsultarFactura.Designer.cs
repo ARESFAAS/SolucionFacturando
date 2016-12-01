@@ -53,6 +53,7 @@
             this.TotalInLetters = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsCanceled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CancelDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LimitDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WatchBill = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgFactura)).BeginInit();
             this.SuspendLayout();
@@ -154,6 +155,7 @@
             this.TotalInLetters,
             this.IsCanceled,
             this.CancelDate,
+            this.LimitDate,
             this.WatchBill});
             this.dtgFactura.Location = new System.Drawing.Point(13, 141);
             this.dtgFactura.Name = "dtgFactura";
@@ -301,6 +303,13 @@
             this.CancelDate.ReadOnly = true;
             this.CancelDate.Width = 159;
             // 
+            // LimitDate
+            // 
+            this.LimitDate.DataPropertyName = "LimitDate";
+            this.LimitDate.HeaderText = "Fecha Límite Pago";
+            this.LimitDate.Name = "LimitDate";
+            this.LimitDate.Width = 118;
+            // 
             // WatchBill
             // 
             this.WatchBill.DataPropertyName = "WatchBill";
@@ -367,6 +376,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalInLetters;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsCanceled;
         private System.Windows.Forms.DataGridViewTextBoxColumn CancelDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LimitDate;
         private System.Windows.Forms.DataGridViewButtonColumn WatchBill;
     }
 }

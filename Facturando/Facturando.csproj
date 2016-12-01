@@ -90,6 +90,9 @@
     <Compile Include="Data\BillTaxes.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\BillTemp.cs">
+      <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Client.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -103,6 +106,9 @@
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\CurrencyType.cs">
+      <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DailyGet_Result.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\FacturandoEntityDataModel.Context.cs">
@@ -119,6 +125,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FacturandoEntityDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\GetBillNumber_Result.cs">
+      <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\GetRemissionNumber_Result.cs">
+      <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\IBill.cs" />
     <Compile Include="Data\IClient.cs" />
@@ -159,6 +171,9 @@
     </Compile>
     <Compile Include="Data\RemissionData.cs" />
     <Compile Include="Data\RemissionDetail.cs">
+      <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\RemissionTemp.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\ReportData.cs" />
@@ -237,6 +252,12 @@
     </Compile>
     <Compile Include="Modulos\ConsultarRemision.Designer.cs">
       <DependentUpon>ConsultarRemision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\Diario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Diario.Designer.cs">
+      <DependentUpon>Diario.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Facturacion.cs">
       <SubType>Form</SubType>
@@ -345,6 +366,9 @@
     <EmbeddedResource Include="Modulos\ConsultarRemision.resx">
       <DependentUpon>ConsultarRemision.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Diario.resx">
+      <DependentUpon>Diario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Facturacion.resx">
       <DependentUpon>Facturacion.cs</DependentUpon>
     </EmbeddedResource>
@@ -398,6 +422,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Reportes\Clientes.rdlc" />
+    <EmbeddedResource Include="Reportes\Diario.rdlc" />
     <EmbeddedResource Include="Reportes\Facturacion.rdlc" />
     <EmbeddedResource Include="Reportes\FacturaImpresa.rdlc" />
     <EmbeddedResource Include="Reportes\FacturaImpresaMediaCarta.rdlc" />
@@ -416,6 +441,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Facturando.Modelos.BillPrintModel.datasource" />
     <None Include="Properties\DataSources\Facturando.Modelos.ClientReportModel.datasource" />
+    <None Include="Properties\DataSources\Facturando.Modelos.DailyReportModel.datasource" />
     <None Include="Properties\DataSources\Facturando.Modelos.InventoryReportModel.datasource" />
     <None Include="Properties\DataSources\Facturando.Modelos.ProductReportModel.datasource" />
     <None Include="Properties\DataSources\Facturando.Modelos.RemissionPrintModel.datasource" />
@@ -448,7 +474,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppText.xml" />
+    <Content Include="AppText.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Data\FacturandoEntityDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FacturandoEntityDataModel.edmx</DependentUpon>

@@ -57,6 +57,7 @@
             this.remisionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.diarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -99,8 +100,8 @@
             this.splitContainer1.Panel1.Controls.Add(this.lblNombreEmpresa);
             this.splitContainer1.Panel1.Controls.Add(this.menuStrip1);
             this.splitContainer1.Panel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.splitContainer1.Size = new System.Drawing.Size(1362, 741);
-            this.splitContainer1.SplitterDistance = 196;
+            this.splitContainer1.Size = new System.Drawing.Size(1354, 733);
+            this.splitContainer1.SplitterDistance = 194;
             this.splitContainer1.TabIndex = 0;
             // 
             // picInventario
@@ -288,7 +289,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(196, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(194, 24);
             this.menuStrip1.TabIndex = 15;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -329,7 +330,8 @@
             this.facturaciónToolStripMenuItem,
             this.remisionesToolStripMenuItem,
             this.clientesToolStripMenuItem,
-            this.productosToolStripMenuItem});
+            this.productosToolStripMenuItem,
+            this.diarioToolStripMenuItem});
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
             this.reportesToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.reportesToolStripMenuItem.Text = "Reportes";
@@ -369,13 +371,20 @@
             this.productosToolStripMenuItem.Text = "Productos";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
+            // diarioToolStripMenuItem
+            // 
+            this.diarioToolStripMenuItem.Name = "diarioToolStripMenuItem";
+            this.diarioToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.diarioToolStripMenuItem.Text = "Diario";
+            this.diarioToolStripMenuItem.Click += new System.EventHandler(this.diarioToolStripMenuItem_Click);
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1362, 741);
+            this.ClientSize = new System.Drawing.Size(1354, 733);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip1;
@@ -433,5 +442,6 @@
         private System.Windows.Forms.PictureBox picClientes;
         private System.Windows.Forms.Label lblRol;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ToolStripMenuItem diarioToolStripMenuItem;
     }
 }

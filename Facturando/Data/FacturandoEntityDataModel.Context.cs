@@ -12,6 +12,9 @@ namespace Facturando.Data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class FacturandoEntities : DbContext
     {
@@ -51,5 +54,38 @@ namespace Facturando.Data
         public DbSet<Country> Country { get; set; }
         public DbSet<CurrencyType> CurrencyType { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public DbSet<BillTemp> BillTemp { get; set; }
+        public DbSet<RemissionTemp> RemissionTemp { get; set; }
+    
+        public virtual ObjectResult<DailyGet_Result> DailyGet(Nullable<System.DateTime> initDate, Nullable<System.DateTime> endDate)
+        {
+            var initDateParameter = initDate.HasValue ?
+                new ObjectParameter("InitDate", initDate) :
+                new ObjectParameter("InitDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("EndDate", endDate) :
+                new ObjectParameter("EndDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DailyGet_Result>("DailyGet", initDateParameter, endDateParameter);
+        }
+    
+        public virtual ObjectResult<GetBillNumber_Result> GetBillNumber(string macAddress)
+        {
+            var macAddressParameter = macAddress != null ?
+                new ObjectParameter("MacAddress", macAddress) :
+                new ObjectParameter("MacAddress", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetBillNumber_Result>("GetBillNumber", macAddressParameter);
+        }
+    
+        public virtual ObjectResult<GetRemissionNumber_Result> GetRemissionNumber(string macAddress)
+        {
+            var macAddressParameter = macAddress != null ?
+                new ObjectParameter("MacAddress", macAddress) :
+                new ObjectParameter("MacAddress", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRemissionNumber_Result>("GetRemissionNumber", macAddressParameter);
+        }
     }
 }
