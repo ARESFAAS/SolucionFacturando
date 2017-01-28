@@ -448,6 +448,11 @@ namespace Facturando
                 VisorRemision visorRemision = new VisorRemision(_remissionSaveModel);
                 visorRemision.Show(this);
             }
+            else if (System.Configuration.ConfigurationSettings.AppSettings["PrintFormat"].ToString().ToUpper().Equals("MEDIACARTAVERTICAL"))
+            {
+                VisorRemisionMediaCartaVertical visorFactura = new VisorRemisionMediaCartaVertical(_remissionSaveModel);
+                visorFactura.Show(this);
+            }
             else
             {
                 VisorRemisionMediaCarta visorRemision = new VisorRemisionMediaCarta(_remissionSaveModel);

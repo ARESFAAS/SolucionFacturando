@@ -80,12 +80,17 @@ namespace Facturando.Modulos
                 if (System.Configuration.ConfigurationSettings.AppSettings["PrintFormat"].ToString().ToUpper().Equals("CARTA"))
                 {
                     VisorRemision visorRemision = new VisorRemision(_remissionData.GetRemissionData(remissionTemp), true);
-                    visorRemision.Show();
+                    visorRemision.Show(this);
+                }
+                else if (System.Configuration.ConfigurationSettings.AppSettings["PrintFormat"].ToString().ToUpper().Equals("MEDIACARTAVERTICAL"))
+                {
+                    VisorRemisionMediaCartaVertical visorFactura = new VisorRemisionMediaCartaVertical(_remissionData.GetRemissionData(remissionTemp), true);
+                    visorFactura.Show(this);
                 }
                 else
                 {
                     VisorRemisionMediaCarta visorRemision = new VisorRemisionMediaCarta(_remissionData.GetRemissionData(remissionTemp), true);
-                    visorRemision.Show();
+                    visorRemision.Show(this);
                 }
             }
         }

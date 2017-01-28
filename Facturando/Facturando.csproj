@@ -313,6 +313,12 @@
     <Compile Include="Modulos\VisorFacturaMediaCarta.Designer.cs">
       <DependentUpon>VisorFacturaMediaCarta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\VisorFacturaMediaCartaVertical.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\VisorFacturaMediaCartaVertical.Designer.cs">
+      <DependentUpon>VisorFacturaMediaCartaVertical.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\VisorRemision.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -324,6 +330,12 @@
     </Compile>
     <Compile Include="Modulos\VisorRemisionMediaCarta.Designer.cs">
       <DependentUpon>VisorRemisionMediaCarta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\VisorRemisionMediaCartaVertical.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\VisorRemisionMediaCartaVertical.Designer.cs">
+      <DependentUpon>VisorRemisionMediaCartaVertical.cs</DependentUpon>
     </Compile>
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
@@ -402,11 +414,17 @@
     <EmbeddedResource Include="Modulos\VisorFacturaMediaCarta.resx">
       <DependentUpon>VisorFacturaMediaCarta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\VisorFacturaMediaCartaVertical.resx">
+      <DependentUpon>VisorFacturaMediaCartaVertical.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\VisorRemision.resx">
       <DependentUpon>VisorRemision.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\VisorRemisionMediaCarta.resx">
       <DependentUpon>VisorRemisionMediaCarta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\VisorRemisionMediaCartaVertical.resx">
+      <DependentUpon>VisorRemisionMediaCartaVertical.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
@@ -424,6 +442,7 @@
     <EmbeddedResource Include="Reportes\Clientes.rdlc" />
     <EmbeddedResource Include="Reportes\Diario.rdlc" />
     <EmbeddedResource Include="Reportes\Facturacion.rdlc" />
+    <EmbeddedResource Include="Reportes\FacturacionImpresaMediaCartaVertical.rdlc" />
     <EmbeddedResource Include="Reportes\FacturaImpresa.rdlc" />
     <EmbeddedResource Include="Reportes\FacturaImpresaMediaCarta.rdlc" />
     <EmbeddedResource Include="Reportes\Inventario.rdlc" />
@@ -431,6 +450,7 @@
     <EmbeddedResource Include="Reportes\Remision.rdlc" />
     <EmbeddedResource Include="Reportes\RemisionImpresa.rdlc" />
     <EmbeddedResource Include="Reportes\RemisionImpresaMediaCarta.rdlc" />
+    <EmbeddedResource Include="Reportes\RemisionImpresaMediaCartaVertical.rdlc" />
     <EntityDeploy Include="Data\FacturandoEntityDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FacturandoEntityDataModel.Designer.cs</LastGenOutput>

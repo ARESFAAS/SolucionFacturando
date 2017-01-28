@@ -60,12 +60,17 @@ namespace Facturando.Modulos
                 if (System.Configuration.ConfigurationSettings.AppSettings["PrintFormat"].ToString().ToUpper().Equals("CARTA"))
                 {
                     VisorFactura visorFactura = new VisorFactura(_billData.GetBillData(billTemp), true);
-                    visorFactura.Show();
+                    visorFactura.Show(this);
+                }
+                else if (System.Configuration.ConfigurationSettings.AppSettings["PrintFormat"].ToString().ToUpper().Equals("MEDIACARTAVERTICAL"))
+                {
+                    VisorFacturaMediaCartaVertical visorFactura = new VisorFacturaMediaCartaVertical(_billData.GetBillData(billTemp), true);
+                    visorFactura.Show(this);
                 }
                 else
                 {
                     VisorFacturaMediaCarta visorFactura = new VisorFacturaMediaCarta(_billData.GetBillData(billTemp), true);
-                    visorFactura.Show();
+                    visorFactura.Show(this);
                 }
             }            
         }
