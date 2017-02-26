@@ -15,6 +15,6 @@ namespace Facturando.Data
         BillSaveModel SaveBill(BillSaveModel bill, string macAddress);
         List<BillModel> GetBillList(long billNumber, string identificationNumber, DateTime? initDate, DateTime? endDate);
         BillSaveModel GetBillData(BillModel bill);
-        List<BillModel> CancelBill(List<BillModel> bill);
+        List<BillModel> EditBill(List<BillModel> bill);
     }
 }

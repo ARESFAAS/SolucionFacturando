@@ -1,6 +1,7 @@
 ﻿using Facturando.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 
 namespace Facturando.Modulos
@@ -8,6 +9,8 @@ namespace Facturando.Modulos
     public partial class VisorRemisionMediaCartaVertical : BaseForm
     {
         RemissionPrintModel _remission = new RemissionPrintModel();
+        private bool _readOnly = false;
+
         public VisorRemisionMediaCartaVertical()
         {
             InitializeComponent();
@@ -16,6 +19,16 @@ namespace Facturando.Modulos
         public VisorRemisionMediaCartaVertical(RemissionSaveModel remission)
         {
             InitializeComponent();
+
+            if (ConfigurationManager.AppSettings["SaveType"].ToString().ToUpper().Equals("IMPRIMIRGUARDAR"))
+            {
+                btnNuevaRemision.Visible = false;
+            }
+            else
+            {
+                btnNuevaRemision.Visible = true;
+            }
+
             _remission.Client = new List<ClientModel>();
             _remission.Client.Add(remission.Client);
             _remission.Remission = new List<RemissionModel>();
@@ -37,6 +50,8 @@ namespace Facturando.Modulos
             _remission.RemissionText.Add(AppText.Instance.AppTextData.RemissionData);
 
             btnNuevaRemision.Enabled = false;
+            btnNuevaRemision.Visible = false;
+            _readOnly = true;
         }
 
         private void VisorRemisionMediaCartaVertical_Load(object sender, EventArgs e)
@@ -58,6 +73,28 @@ namespace Facturando.Modulos
                 formInterface.NewRemission();
             }
             Close();
+        }
+
+        private void reportViewer1_PrintingBegin(object sender, Microsoft.Reporting.WinForms.ReportPrintEventArgs e)
+        {
+            if (ConfigurationManager.AppSettings["SaveType"].ToString().ToUpper().Equals("IMPRIMIRGUARDAR"))
+            {
+                IFormRemission formInterface = Owner.Controls.Find("Remision", true).FirstOrDefault() as IFormRemission;
+
+                if (formInterface != null)
+                {
+                    formInterface.NewRemission();
+                }
+                if (_readOnly)
+                {
+
+                    reportViewer1.ShowPrintButton = true;
+                }
+                else
+                {
+                    reportViewer1.ShowPrintButton = false;
+                }
+            }
         }
     }
 }

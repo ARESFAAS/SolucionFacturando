@@ -87,6 +87,7 @@ namespace Facturando.Modulos
                 if (billValidate != null)
                 {
                     _billModified.Where(x => x.Id == billTemp.Id).FirstOrDefault().IsCanceled = billTemp.IsCanceled;
+                    _billModified.Where(x => x.Id == billTemp.Id).FirstOrDefault().IsPaid = billTemp.IsPaid;
                 }
                 else
                 {
@@ -102,7 +103,7 @@ namespace Facturando.Modulos
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            dtgFactura.DataSource = _billData.CancelBill(_billModified);
+            dtgFactura.DataSource = _billData.EditBill(_billModified);
             _billModified = new List<BillModel>();
         }
 

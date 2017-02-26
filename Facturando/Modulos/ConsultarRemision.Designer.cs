@@ -40,6 +40,7 @@
             this.btnConsultar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RemissionNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateEvent = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +49,9 @@
             this.IdentificationNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalInLetters = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsPaid = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.PaidDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comments = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WatchRemission = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRemision)).BeginInit();
             this.SuspendLayout();
@@ -68,13 +72,16 @@
             this.IdentificationNumber,
             this.TotalInLetters,
             this.IdClient,
+            this.IsPaid,
+            this.PaidDate,
+            this.Comments,
             this.WatchRemission});
             this.dtgRemision.Location = new System.Drawing.Point(13, 128);
             this.dtgRemision.Name = "dtgRemision";
-            this.dtgRemision.ReadOnly = true;
             this.dtgRemision.Size = new System.Drawing.Size(1076, 525);
             this.dtgRemision.TabIndex = 0;
             this.dtgRemision.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgRemision_CellContentClick);
+            this.dtgRemision.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgRemision_CellValueChanged);
             this.dtgRemision.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgRemision_DataError);
             // 
             // dtpFin
@@ -189,12 +196,21 @@
             this.label6.TabIndex = 18;
             this.label6.Text = "Haga click en el boton Ver para imprimir o revisar la remisión";
             // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(989, 659);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(100, 36);
+            this.btnGuardar.TabIndex = 19;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
             this.Id.Visible = false;
             this.Id.Width = 48;
             // 
@@ -243,7 +259,6 @@
             this.TotalInLetters.DataPropertyName = "TotalInLetters";
             this.TotalInLetters.HeaderText = "TotalInLetters";
             this.TotalInLetters.Name = "TotalInLetters";
-            this.TotalInLetters.ReadOnly = true;
             this.TotalInLetters.Visible = false;
             this.TotalInLetters.Width = 133;
             // 
@@ -252,16 +267,41 @@
             this.IdClient.DataPropertyName = "IdClient";
             this.IdClient.HeaderText = "IdClient";
             this.IdClient.Name = "IdClient";
-            this.IdClient.ReadOnly = true;
             this.IdClient.Visible = false;
             this.IdClient.Width = 88;
+            // 
+            // IsPaid
+            // 
+            this.IsPaid.DataPropertyName = "IsPaid";
+            this.IsPaid.FalseValue = "false";
+            this.IsPaid.HeaderText = "Pagada";
+            this.IsPaid.IndeterminateValue = "false";
+            this.IsPaid.Name = "IsPaid";
+            this.IsPaid.TrueValue = "true";
+            this.IsPaid.Width = 70;
+            // 
+            // PaidDate
+            // 
+            this.PaidDate.DataPropertyName = "PaidDate";
+            this.PaidDate.HeaderText = "Fecha de Pago";
+            this.PaidDate.Name = "PaidDate";
+            this.PaidDate.ReadOnly = true;
+            this.PaidDate.Width = 96;
+            // 
+            // Comments
+            // 
+            this.Comments.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Comments.DataPropertyName = "Comments";
+            this.Comments.HeaderText = "Observaciones";
+            this.Comments.Name = "Comments";
+            this.Comments.ReadOnly = true;
+            this.Comments.Width = 139;
             // 
             // WatchRemission
             // 
             this.WatchRemission.DataPropertyName = "WatchRemission";
             this.WatchRemission.HeaderText = "";
             this.WatchRemission.Name = "WatchRemission";
-            this.WatchRemission.ReadOnly = true;
             this.WatchRemission.Text = "Ver";
             this.WatchRemission.UseColumnTextForButtonValue = true;
             this.WatchRemission.Width = 5;
@@ -272,6 +312,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
             this.ClientSize = new System.Drawing.Size(1101, 706);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnConsultar);
@@ -309,6 +350,7 @@
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn RemissionNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateEvent;
@@ -317,6 +359,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IdentificationNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalInLetters;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdClient;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsPaid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PaidDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Comments;
         private System.Windows.Forms.DataGridViewButtonColumn WatchRemission;
     }
 }

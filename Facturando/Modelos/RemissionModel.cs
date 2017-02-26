@@ -14,6 +14,9 @@ namespace Facturando.Modelos
         public DateTime DateEvent { get; set; }
         public string TotalInLetters { get; set; }
         public string WatchRemission { get; set; }
+        public bool IsPaid { get; set; }
+        public DateTime? PaidDate { get; set; }
+        public string Comments { get; set; }
     }
 
     public class RemissionDetailModel {

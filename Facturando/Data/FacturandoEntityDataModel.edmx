@@ -24,6 +24,9 @@
           <Property Name="IsCanceled" Type="bit" />
           <Property Name="CancelDate" Type="date" />
           <Property Name="LimitDate" Type="date" />
+          <Property Name="IsPaid" Type="bit" />
+          <Property Name="PaidDate" Type="date" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -174,6 +177,9 @@
           <Property Name="RemissionNumber" Type="bigint" Nullable="false" />
           <Property Name="IdClient" Type="uniqueidentifier" />
           <Property Name="DateEvent" Type="date" />
+          <Property Name="IsPaid" Type="bit" />
+          <Property Name="PaidDate" Type="date" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="RemissionDetail">
           <Key>
@@ -694,6 +700,9 @@
           <Property Name="IsCanceled" Type="Boolean" />
           <Property Name="CancelDate" Type="DateTime" Precision="0" />
           <Property Name="LimitDate" Type="DateTime" Precision="0" />
+          <Property Name="IsPaid" Type="Boolean" />
+          <Property Name="PaidDate" Type="DateTime" Precision="0" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -826,6 +835,9 @@
           <NavigationProperty Name="Client" Relationship="Self.FK_Remission_Client" FromRole="Remission" ToRole="Client" />
           <NavigationProperty Name="RemissionDetail" Relationship="Self.FK_RemissionDetail_Remission" FromRole="Remission" ToRole="RemissionDetail" />
           <Property Name="DateEvent" Type="DateTime" Precision="0" />
+          <Property Name="IsPaid" Type="Boolean" />
+          <Property Name="PaidDate" Type="DateTime" Precision="0" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="RemissionDetail">
           <Key>
@@ -1276,7 +1288,7 @@
           <EntitySet Name="BillTemp" EntityType="FacturandoModel.BillTemp" />
           <EntitySet Name="RemissionTemp" EntityType="FacturandoModel.RemissionTemp" />
           <FunctionImport Name="GetRemissionNumber" ReturnType="Collection(FacturandoModel.GetRemissionNumber_Result)">
-            <Parameter Name="MacAddress" Mode="In" Type="String" />
+          <Parameter Name="MacAddress" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="IdentificacionType">
@@ -1407,6 +1419,9 @@
           <EntitySetMapping Name="Bill">
             <EntityTypeMapping TypeName="FacturandoModel.Bill">
               <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
                 <ScalarProperty Name="LimitDate" ColumnName="LimitDate" />
                 <ScalarProperty Name="CancelDate" ColumnName="CancelDate" />
                 <ScalarProperty Name="IsCanceled" ColumnName="IsCanceled" />
@@ -1530,6 +1545,9 @@
           <EntitySetMapping Name="Remission">
             <EntityTypeMapping TypeName="FacturandoModel.Remission">
               <MappingFragment StoreEntitySet="Remission">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
                 <ScalarProperty Name="DateEvent" ColumnName="DateEvent" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Total" ColumnName="Total" />

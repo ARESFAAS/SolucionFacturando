@@ -51,9 +51,12 @@
             this.IdentificationNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdClient = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalInLetters = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LimitDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsCanceled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CancelDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LimitDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsPaid = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.PaidDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comments = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WatchBill = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgFactura)).BeginInit();
             this.SuspendLayout();
@@ -153,9 +156,12 @@
             this.IdentificationNumber,
             this.IdClient,
             this.TotalInLetters,
+            this.LimitDate,
             this.IsCanceled,
             this.CancelDate,
-            this.LimitDate,
+            this.IsPaid,
+            this.PaidDate,
+            this.Comments,
             this.WatchBill});
             this.dtgFactura.Location = new System.Drawing.Point(13, 141);
             this.dtgFactura.Name = "dtgFactura";
@@ -285,6 +291,13 @@
             this.TotalInLetters.Visible = false;
             this.TotalInLetters.Width = 123;
             // 
+            // LimitDate
+            // 
+            this.LimitDate.DataPropertyName = "LimitDate";
+            this.LimitDate.HeaderText = "Fecha Límite Pago";
+            this.LimitDate.Name = "LimitDate";
+            this.LimitDate.Width = 118;
+            // 
             // IsCanceled
             // 
             this.IsCanceled.DataPropertyName = "IsCanceled";
@@ -303,12 +316,32 @@
             this.CancelDate.ReadOnly = true;
             this.CancelDate.Width = 159;
             // 
-            // LimitDate
+            // IsPaid
             // 
-            this.LimitDate.DataPropertyName = "LimitDate";
-            this.LimitDate.HeaderText = "Fecha Límite Pago";
-            this.LimitDate.Name = "LimitDate";
-            this.LimitDate.Width = 118;
+            this.IsPaid.DataPropertyName = "IsPaid";
+            this.IsPaid.FalseValue = "false";
+            this.IsPaid.HeaderText = "Pagada";
+            this.IsPaid.IndeterminateValue = "false";
+            this.IsPaid.Name = "IsPaid";
+            this.IsPaid.TrueValue = "true";
+            this.IsPaid.Width = 70;
+            // 
+            // PaidDate
+            // 
+            this.PaidDate.DataPropertyName = "PaidDate";
+            this.PaidDate.HeaderText = "Fecha de Pago";
+            this.PaidDate.Name = "PaidDate";
+            this.PaidDate.ReadOnly = true;
+            this.PaidDate.Width = 96;
+            // 
+            // Comments
+            // 
+            this.Comments.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Comments.DataPropertyName = "Comments";
+            this.Comments.HeaderText = "Observaciones";
+            this.Comments.Name = "Comments";
+            this.Comments.ReadOnly = true;
+            this.Comments.Width = 139;
             // 
             // WatchBill
             // 
@@ -374,9 +407,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IdentificationNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdClient;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalInLetters;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LimitDate;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsCanceled;
         private System.Windows.Forms.DataGridViewTextBoxColumn CancelDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LimitDate;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsPaid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PaidDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Comments;
         private System.Windows.Forms.DataGridViewButtonColumn WatchBill;
     }
 }

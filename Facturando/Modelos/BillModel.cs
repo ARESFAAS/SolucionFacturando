@@ -19,6 +19,9 @@ namespace Facturando.Modelos
         public decimal SubTotal { get; set; }
         public decimal TotalTaxes { get; set; }
         public DateTime LimitDate { get; set; }
+        public bool IsPaid { get; set; }
+        public DateTime? PaidDate { get; set; }
+        public string Comments { get; set; }
     }
 
     public class ClientModel

@@ -2,6 +2,7 @@
 using Facturando.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Facturando.Modulos
@@ -9,6 +10,7 @@ namespace Facturando.Modulos
     public partial class ConsultarRemision : BaseForm
     {
         IRemission _remissionData = new RemissionData();
+        List<RemissionModel> _remissionModified = new List<RemissionModel>();
 
         public ConsultarRemision()
         {
@@ -47,6 +49,7 @@ namespace Facturando.Modulos
         private void btnConsultar_Click(object sender, EventArgs e)
         {
             List<RemissionModel> listRemission = null;
+            _remissionModified = new List<RemissionModel>();
             if (!string.IsNullOrEmpty(txtRemision.Text))
             {
                 var remissionNumberTemp = long.Parse(txtRemision.Text);
@@ -98,6 +101,32 @@ namespace Facturando.Modulos
         private void dtgRemision_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
 
+        }
+
+        private void dtgRemision_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn &&
+                e.RowIndex >= 0)
+            {
+                var remissionTemp = ((List<RemissionModel>)senderGrid.DataSource)[e.RowIndex];
+                var remissionValidate = _remissionModified.Where(x => x.Id == remissionTemp.Id).FirstOrDefault();
+                if (remissionValidate != null)
+                {
+                    _remissionModified.Where(x => x.Id == remissionTemp.Id).FirstOrDefault().IsPaid = remissionTemp.IsPaid;
+                }
+                else
+                {
+                    _remissionModified.Add(remissionTemp);
+                }
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            dtgRemision.DataSource = _remissionData.EditRemission(_remissionModified);
+            _remissionModified = new List<RemissionModel>();
         }
     }
 }

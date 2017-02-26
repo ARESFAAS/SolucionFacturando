@@ -70,11 +70,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lblGranTotal = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtObservaciones = new System.Windows.Forms.TextBox();
+            this.chkPagada = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleRemision)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -258,7 +262,7 @@
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Location = new System.Drawing.Point(13, 308);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(505, 368);
+            this.groupBox2.Size = new System.Drawing.Size(507, 277);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "PRODUCTO";
@@ -280,7 +284,7 @@
             this.lstProducto.Location = new System.Drawing.Point(17, 74);
             this.lstProducto.Margin = new System.Windows.Forms.Padding(2);
             this.lstProducto.Name = "lstProducto";
-            this.lstProducto.Size = new System.Drawing.Size(474, 277);
+            this.lstProducto.Size = new System.Drawing.Size(474, 186);
             this.lstProducto.TabIndex = 9;
             this.lstProducto.Click += new System.EventHandler(this.lstProducto_Click);
             this.lstProducto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstProducto_KeyDown);
@@ -526,12 +530,44 @@
             this.lblGranTotal.Text = "0";
             this.lblGranTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.txtObservaciones);
+            this.groupBox5.Controls.Add(this.chkPagada);
+            this.groupBox5.Location = new System.Drawing.Point(12, 589);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(508, 87);
+            this.groupBox5.TabIndex = 10;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "OBSERVACIONES";
+            // 
+            // txtObservaciones
+            // 
+            this.txtObservaciones.Location = new System.Drawing.Point(17, 20);
+            this.txtObservaciones.MaxLength = 255;
+            this.txtObservaciones.Multiline = true;
+            this.txtObservaciones.Name = "txtObservaciones";
+            this.txtObservaciones.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtObservaciones.Size = new System.Drawing.Size(397, 47);
+            this.txtObservaciones.TabIndex = 3;
+            // 
+            // chkPagada
+            // 
+            this.chkPagada.AutoSize = true;
+            this.chkPagada.Location = new System.Drawing.Point(423, 40);
+            this.chkPagada.Name = "chkPagada";
+            this.chkPagada.Size = new System.Drawing.Size(69, 19);
+            this.chkPagada.TabIndex = 2;
+            this.chkPagada.Text = "Pagada";
+            this.chkPagada.UseVisualStyleBackColor = true;
+            // 
             // Remision
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
             this.ClientSize = new System.Drawing.Size(1146, 688);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.lblNumeroRemision);
             this.Controls.Add(this.label2);
@@ -551,6 +587,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleRemision)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -600,5 +638,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox txtObservaciones;
+        private System.Windows.Forms.CheckBox chkPagada;
     }
 }

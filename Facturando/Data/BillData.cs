@@ -213,7 +213,10 @@ namespace Facturando.Data
                         IdClient = bill.Bill.IdClient,
                         Total = bill.Bill.Total,
                         DateEvent = bill.Bill.DateEvent,
-                        LimitDate = bill.Bill.LimitDate
+                        LimitDate = bill.Bill.LimitDate,
+                        IsPaid = bill.Bill.IsPaid,
+                        PaidDate = bill.Bill.PaidDate,
+                        Comments = bill.Bill.Comments
                     });
                     foreach (var item in bill.BillDetail)
                     {
@@ -291,7 +294,10 @@ namespace Facturando.Data
                         IdClient = bill.Bill.IdClient,
                         Total = bill.Bill.Total,
                         DateEvent = bill.Bill.DateEvent,
-                        LimitDate = bill.Bill.LimitDate
+                        LimitDate = bill.Bill.LimitDate,
+                        IsPaid = bill.Bill.IsPaid,
+                        PaidDate = bill.Bill.PaidDate,
+                        Comments = bill.Bill.Comments
                     });
                     foreach (var item in bill.BillDetail)
                     {
@@ -351,7 +357,10 @@ namespace Facturando.Data
                                 Name = x.Client.Name,
                                 TotalTaxes = x.BillTaxes.Sum(y => y.Total),
                                 SubTotal = x.Total - x.BillTaxes.Sum(y => y.Total),
-                                LimitDate = x.LimitDate.HasValue ? x.LimitDate.Value : DateTime.MinValue
+                                LimitDate = x.LimitDate.HasValue ? x.LimitDate.Value : DateTime.MinValue,
+                                IsPaid = x.IsPaid != null ? x.IsPaid.Value : false,
+                                PaidDate = x.PaidDate,
+                                Comments = x.Comments
                             }).OrderBy(x => x.BillNumber).ToList();
                     }
 
@@ -372,7 +381,10 @@ namespace Facturando.Data
                                 Name = x.Client.Name,
                                 TotalTaxes = x.BillTaxes.Sum(y => y.Total),
                                 SubTotal = x.Total - x.BillTaxes.Sum(y => y.Total),
-                                LimitDate = x.LimitDate.HasValue ? x.LimitDate.Value : DateTime.MinValue
+                                LimitDate = x.LimitDate.HasValue ? x.LimitDate.Value : DateTime.MinValue,
+                                IsPaid = x.IsPaid != null ? x.IsPaid.Value : false,
+                                PaidDate = x.PaidDate,
+                                Comments = x.Comments
                             }).OrderBy(x => x.BillNumber).ToList();
                     }
 
@@ -393,7 +405,10 @@ namespace Facturando.Data
                                Name = x.Client.Name,
                                TotalTaxes = x.BillTaxes.Sum(y => y.Total),
                                SubTotal = x.Total - x.BillTaxes.Sum(y => y.Total),
-                               LimitDate = x.LimitDate.HasValue ? x.LimitDate.Value : DateTime.MinValue
+                               LimitDate = x.LimitDate.HasValue ? x.LimitDate.Value : DateTime.MinValue,
+                               IsPaid = x.IsPaid != null ? x.IsPaid.Value : false,
+                               PaidDate = x.PaidDate,
+                               Comments = x.Comments
                            }).OrderBy(x => x.BillNumber).ToList();
                     }
                     return result;
@@ -464,11 +479,11 @@ namespace Facturando.Data
             }
         }
 
-        public List<BillModel> CancelBill(List<BillModel> billList)
+        public List<BillModel> EditBill(List<BillModel> billList)
         {
             try
             {
-                DateTime cancelDate = DateTime.Now;
+                DateTime editDate = DateTime.Now;
                 using (FacturandoEntities context = new FacturandoEntities())
                 {
                     InventoryInterface inventoryData = new InventoryData();
@@ -506,14 +521,26 @@ namespace Facturando.Data
                         if (item.IsCanceled)
                         {
                             billTemp.IsCanceled = item.IsCanceled;
-                            billTemp.CancelDate = cancelDate;
-                            item.CancelDate = cancelDate;                            
+                            billTemp.CancelDate = editDate;
+                            item.CancelDate = editDate;                            
                         }
                         else
                         {
                             billTemp.IsCanceled = item.IsCanceled;
                             billTemp.CancelDate = null;
                             item.CancelDate = null;
+                        }
+
+                        if (item.IsPaid) {
+                            billTemp.IsPaid = item.IsPaid;
+                            billTemp.PaidDate = editDate;
+                            item.PaidDate = editDate;
+                        }
+                        else
+                        {
+                            billTemp.IsPaid = item.IsPaid;
+                            billTemp.PaidDate = null;
+                            item.PaidDate = null;
                         }
                     }
                     context.SaveChanges();

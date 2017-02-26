@@ -359,6 +359,10 @@ namespace Facturando
 
         private void SaveRemission()
         {
+            _remission.IsPaid = chkPagada.Checked;
+            if (chkPagada.Checked) { _remission.PaidDate = DateTime.Now; } else { _remission.PaidDate = null; }
+            _remission.Comments = txtObservaciones.Text;
+
             _remissionSaveModel.Client = _client;
             _remissionSaveModel.Remission = _remission;
             _remissionSaveModel.RemissionDetail = _remissionDetail;
@@ -427,6 +431,8 @@ namespace Facturando
             txtNombreProducto.Text = string.Empty;
             lstProducto.DataSource = new List<InventoryModel>();           
             btnRemitir.Enabled = false;
+            chkPagada.Checked = false;
+            txtObservaciones.Text = string.Empty;
         }
 
         public void NewRemission()

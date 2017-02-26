@@ -81,6 +81,7 @@
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.Size = new System.Drawing.Size(860, 593);
             this.reportViewer1.TabIndex = 0;
+            this.reportViewer1.PrintingBegin += new Microsoft.Reporting.WinForms.ReportPrintEventHandler(this.reportViewer1_PrintingBegin);
             // 
             // btnNuevaRemision
             // 

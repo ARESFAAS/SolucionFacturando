@@ -83,12 +83,16 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtpFechaLimite = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.chkPagada = new System.Windows.Forms.CheckBox();
+            this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgImpuestos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleFactura)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -269,7 +273,7 @@
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Location = new System.Drawing.Point(9, 309);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(507, 367);
+            this.groupBox3.Size = new System.Drawing.Size(507, 277);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "PRODUCTO";
@@ -290,7 +294,7 @@
             this.lstProducto.FormattingEnabled = true;
             this.lstProducto.Location = new System.Drawing.Point(15, 72);
             this.lstProducto.Name = "lstProducto";
-            this.lstProducto.Size = new System.Drawing.Size(475, 277);
+            this.lstProducto.Size = new System.Drawing.Size(475, 186);
             this.lstProducto.TabIndex = 3;
             this.lstProducto.Click += new System.EventHandler(this.lstProducto_Click);
             this.lstProducto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstProducto_KeyDown);
@@ -624,12 +628,44 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "FECHA LÍMITE DE PAGO";
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.txtObservaciones);
+            this.groupBox5.Controls.Add(this.chkPagada);
+            this.groupBox5.Location = new System.Drawing.Point(9, 592);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(507, 84);
+            this.groupBox5.TabIndex = 9;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "OBSERVACIONES";
+            // 
+            // chkPagada
+            // 
+            this.chkPagada.AutoSize = true;
+            this.chkPagada.Location = new System.Drawing.Point(421, 39);
+            this.chkPagada.Name = "chkPagada";
+            this.chkPagada.Size = new System.Drawing.Size(69, 19);
+            this.chkPagada.TabIndex = 0;
+            this.chkPagada.Text = "Pagada";
+            this.chkPagada.UseVisualStyleBackColor = true;
+            // 
+            // txtObservaciones
+            // 
+            this.txtObservaciones.Location = new System.Drawing.Point(15, 19);
+            this.txtObservaciones.MaxLength = 255;
+            this.txtObservaciones.Multiline = true;
+            this.txtObservaciones.Name = "txtObservaciones";
+            this.txtObservaciones.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtObservaciones.Size = new System.Drawing.Size(397, 47);
+            this.txtObservaciones.TabIndex = 1;
+            // 
             // Facturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
             this.ClientSize = new System.Drawing.Size(1146, 688);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dtpFechaLimite);
             this.Controls.Add(this.lblNumeroFactura);
@@ -652,6 +688,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleFactura)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -714,5 +752,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtpFechaLimite;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.CheckBox chkPagada;
+        private System.Windows.Forms.TextBox txtObservaciones;
     }
 }

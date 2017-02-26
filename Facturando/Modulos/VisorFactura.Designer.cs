@@ -96,6 +96,7 @@
             this.rvwFactura.Name = "rvwFactura";
             this.rvwFactura.Size = new System.Drawing.Size(695, 603);
             this.rvwFactura.TabIndex = 0;
+            this.rvwFactura.PrintingBegin += new Microsoft.Reporting.WinForms.ReportPrintEventHandler(this.rvwFactura_PrintingBegin);
             // 
             // btnNuevaFactura
             // 

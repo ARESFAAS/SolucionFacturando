@@ -414,6 +414,10 @@ namespace Facturando
 
         private void SaveBill()
         {
+            _bill.IsPaid = chkPagada.Checked;
+            if (chkPagada.Checked) { _bill.PaidDate = DateTime.Now; } else { _bill.PaidDate = null; }
+           _bill.Comments = txtObservaciones.Text;
+
             _billSaveModel.Client = _client;
             _billSaveModel.Bill = _bill;
             _billSaveModel.BillDetail = _billDetail;
@@ -493,6 +497,8 @@ namespace Facturando
             btnFacturar.Enabled = false;
             txtDiasLimite.Text = string.Empty;
             dtpFechaLimite.Value = DateTime.Now;
+            chkPagada.Checked = false;
+            txtObservaciones.Text = string.Empty;
         }
 
         public void NewBill()

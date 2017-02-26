@@ -81,6 +81,7 @@
             this.rpwRemision.Name = "rpwRemision";
             this.rpwRemision.Size = new System.Drawing.Size(859, 598);
             this.rpwRemision.TabIndex = 0;
+            this.rpwRemision.PrintingBegin += new Microsoft.Reporting.WinForms.ReportPrintEventHandler(this.rpwRemision_PrintingBegin);
             // 
             // btnNuevaRemision
             // 

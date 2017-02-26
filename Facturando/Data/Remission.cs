@@ -24,6 +24,9 @@ namespace Facturando.Data
         public long RemissionNumber { get; set; }
         public Nullable<System.Guid> IdClient { get; set; }
         public Nullable<System.DateTime> DateEvent { get; set; }
+        public Nullable<bool> IsPaid { get; set; }
+        public Nullable<System.DateTime> PaidDate { get; set; }
+        public string Comments { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual ICollection<RemissionDetail> RemissionDetail { get; set; }

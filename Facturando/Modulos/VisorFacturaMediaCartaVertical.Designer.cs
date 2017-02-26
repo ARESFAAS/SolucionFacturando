@@ -34,24 +34,44 @@
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource5 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.billPrintModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.btnNuevaFactura = new System.Windows.Forms.Button();
-            this.billPrintModelBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.billPrintModelBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.billPrintModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.billPrintModelBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.billPrintModelBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.billPrintModelBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.btnNuevaFactura = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource4)).BeginInit();
             this.SuspendLayout();
+            // 
+            // billPrintModelBindingSource2
+            // 
+            this.billPrintModelBindingSource2.DataMember = "BillDetail";
+            this.billPrintModelBindingSource2.DataSource = typeof(Facturando.Modelos.BillPrintModel);
             // 
             // billPrintModelBindingSource
             // 
             this.billPrintModelBindingSource.DataMember = "Client";
             this.billPrintModelBindingSource.DataSource = typeof(Facturando.Modelos.BillPrintModel);
+            // 
+            // billPrintModelBindingSource1
+            // 
+            this.billPrintModelBindingSource1.DataMember = "Bill";
+            this.billPrintModelBindingSource1.DataSource = typeof(Facturando.Modelos.BillPrintModel);
+            // 
+            // billPrintModelBindingSource3
+            // 
+            this.billPrintModelBindingSource3.DataMember = "BillTaxes";
+            this.billPrintModelBindingSource3.DataSource = typeof(Facturando.Modelos.BillPrintModel);
+            // 
+            // billPrintModelBindingSource4
+            // 
+            this.billPrintModelBindingSource4.DataMember = "BillText";
+            this.billPrintModelBindingSource4.DataSource = typeof(Facturando.Modelos.BillPrintModel);
             // 
             // reportViewer1
             // 
@@ -76,6 +96,7 @@
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.Size = new System.Drawing.Size(860, 593);
             this.reportViewer1.TabIndex = 0;
+            this.reportViewer1.PrintingBegin += new Microsoft.Reporting.WinForms.ReportPrintEventHandler(this.reportViewer1_PrintingBegin);
             // 
             // btnNuevaFactura
             // 
@@ -88,26 +109,6 @@
             this.btnNuevaFactura.UseVisualStyleBackColor = true;
             this.btnNuevaFactura.Click += new System.EventHandler(this.btnNuevaFactura_Click);
             // 
-            // billPrintModelBindingSource1
-            // 
-            this.billPrintModelBindingSource1.DataMember = "Bill";
-            this.billPrintModelBindingSource1.DataSource = typeof(Facturando.Modelos.BillPrintModel);
-            // 
-            // billPrintModelBindingSource2
-            // 
-            this.billPrintModelBindingSource2.DataMember = "BillDetail";
-            this.billPrintModelBindingSource2.DataSource = typeof(Facturando.Modelos.BillPrintModel);
-            // 
-            // billPrintModelBindingSource3
-            // 
-            this.billPrintModelBindingSource3.DataMember = "BillTaxes";
-            this.billPrintModelBindingSource3.DataSource = typeof(Facturando.Modelos.BillPrintModel);
-            // 
-            // billPrintModelBindingSource4
-            // 
-            this.billPrintModelBindingSource4.DataMember = "BillText";
-            this.billPrintModelBindingSource4.DataSource = typeof(Facturando.Modelos.BillPrintModel);
-            // 
             // VisorFacturaMediaCartaVertical
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -118,9 +119,9 @@
             this.Name = "VisorFacturaMediaCartaVertical";
             this.Text = "VisorFacturaMediaCartaVertical";
             this.Load += new System.EventHandler(this.VisorFacturaMediaCartaVertical_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.billPrintModelBindingSource4)).EndInit();
             this.ResumeLayout(false);

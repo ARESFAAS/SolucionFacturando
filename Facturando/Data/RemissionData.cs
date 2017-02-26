@@ -26,7 +26,10 @@ namespace Facturando.Data
                                 IdClient = x.IdClient.Value,
                                 Total = x.Total,
                                 IdentificationNumber = x.Client.IdentificationNumber,
-                                Name = x.Client.Name
+                                Name = x.Client.Name,
+                                IsPaid = x.IsPaid != null ? x.IsPaid.Value : false,
+                                PaidDate = x.PaidDate,
+                                Comments = x.Comments
                             }).ToList();
                     }
 
@@ -42,7 +45,10 @@ namespace Facturando.Data
                                 IdClient = x.IdClient.Value,
                                 Total = x.Total,
                                 IdentificationNumber = x.Client.IdentificationNumber,
-                                Name = x.Client.Name
+                                Name = x.Client.Name,
+                                IsPaid = x.IsPaid != null ? x.IsPaid.Value : false,
+                                PaidDate = x.PaidDate,
+                                Comments = x.Comments
                             }).ToList();
                     }
 
@@ -58,7 +64,10 @@ namespace Facturando.Data
                                IdClient = x.IdClient.Value,
                                Total = x.Total,
                                IdentificationNumber = x.Client.IdentificationNumber,
-                               Name = x.Client.Name
+                               Name = x.Client.Name,
+                               IsPaid = x.IsPaid != null ? x.IsPaid.Value : false,
+                               PaidDate = x.PaidDate,
+                               Comments = x.Comments
                            }).ToList();
                     }
                     return result;
@@ -167,7 +176,10 @@ namespace Facturando.Data
                         RemissionNumber = remission.Remission.RemissionNumber,
                         IdClient = remission.Remission.IdClient,
                         Total = remission.Remission.Total,
-                        DateEvent = remission.Remission.DateEvent
+                        DateEvent = remission.Remission.DateEvent,
+                        IsPaid = remission.Remission.IsPaid,
+                        PaidDate = remission.Remission.PaidDate,
+                        Comments = remission.Remission.Comments
                     });
 
                     foreach (var item in remission.RemissionDetail)
@@ -233,7 +245,10 @@ namespace Facturando.Data
                         RemissionNumber = remission.Remission.RemissionNumber,
                         IdClient = remission.Remission.IdClient,
                         Total = remission.Remission.Total,
-                        DateEvent = remission.Remission.DateEvent
+                        DateEvent = remission.Remission.DateEvent,
+                        IsPaid = remission.Remission.IsPaid,
+                        PaidDate = remission.Remission.PaidDate,
+                        Comments = remission.Remission.Comments
                     });
 
                     foreach (var item in remission.RemissionDetail)
@@ -305,5 +320,38 @@ namespace Facturando.Data
             }
         }
 
+        public List<RemissionModel> EditRemission(List<RemissionModel> remissionList)
+        {
+            try
+            {
+                DateTime editDate = DateTime.Now;
+                using (FacturandoEntities context = new FacturandoEntities())
+                {                    
+                    foreach (var item in remissionList)
+                    {
+                        var remissionTemp = context.Remission.Where(x => x.Id == item.Id).FirstOrDefault();
+                        
+                        if (item.IsPaid)
+                        {
+                            remissionTemp.IsPaid = item.IsPaid;
+                            remissionTemp.PaidDate = editDate;
+                            item.PaidDate = editDate;
+                        }
+                        else
+                        {
+                            remissionTemp.IsPaid = item.IsPaid;
+                            remissionTemp.PaidDate = null;
+                            item.PaidDate = null;
+                        }
+                    }
+                    context.SaveChanges();
+                    return remissionList;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
