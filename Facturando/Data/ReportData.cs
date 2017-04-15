@@ -44,7 +44,9 @@ namespace Facturando.Data
                     result.Daily = context.DailyGet(initDate, endDate).Select(x => new DailyModel {
                          Group = x.Description,
                          Quantity = x.Quantity.HasValue ? x.Quantity.Value : 0,
-                         Total = x.Total.HasValue ? x.Total.Value : 0
+                         Total = x.Total.HasValue ? x.Total.Value : 0,
+                         ClassT = x.ClassT
+                         
                     }).ToList();
                     return result;
                 }
@@ -68,6 +70,29 @@ namespace Facturando.Data
                         LastSalePrice = x.LastSalePrice.Value,
                         Product = string.Concat(x.Product.Description, " ", x.Product.UnitMeasure.Description),
                         Quantity = x.Quantity
+                    }).OrderBy(x => x.Quantity).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<InventoryModel> GetInventoryFromSP()
+        {
+            try
+            {
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    return context.GetInventoryFromSP().Select(x => new InventoryModel
+                    {
+                        Id = x.Id,
+                        IdProduct = x.IdProduct.Value,
+                        LastSalePrice = x.LastSalePrice.Value,
+                        Product = x.Product,
+                        Quantity = x.Quantity,
+                        GroupT = x.GroupT
                     }).OrderBy(x => x.Quantity).ToList();
                 }
             }

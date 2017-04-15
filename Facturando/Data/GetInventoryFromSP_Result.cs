@@ -11,11 +11,13 @@ namespace Facturando.Data
 {
     using System;
     
-    public partial class DailyGet_Result
+    public partial class GetInventoryFromSP_Result
     {
-        public string Description { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<decimal> Total { get; set; }
-        public string ClassT { get; set; }
+        public System.Guid Id { get; set; }
+        public Nullable<System.Guid> IdProduct { get; set; }
+        public Nullable<decimal> LastSalePrice { get; set; }
+        public string Product { get; set; }
+        public int Quantity { get; set; }
+        public string GroupT { get; set; }
     }
 }

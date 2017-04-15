@@ -548,6 +548,7 @@
         <Function Name="GetBillNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MacAddress" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetInventoryFromSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetRemissionNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MacAddress" Type="varchar" Mode="In" />
         </Function>
@@ -1278,10 +1279,6 @@
             <End Role="CurrencyType" EntitySet="CurrencyType" />
             <End Role="ConfigurationSystem" EntitySet="ConfigurationSystem" />
           </AssociationSet>
-          <FunctionImport Name="DailyGet" ReturnType="Collection(FacturandoModel.DailyGet_Result)">
-            <Parameter Name="InitDate" Mode="In" Type="DateTime" />
-            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="GetBillNumber" ReturnType="Collection(FacturandoModel.GetBillNumber_Result)">
           <Parameter Name="MacAddress" Mode="In" Type="String" />
           </FunctionImport>
@@ -1289,6 +1286,11 @@
           <EntitySet Name="RemissionTemp" EntityType="FacturandoModel.RemissionTemp" />
           <FunctionImport Name="GetRemissionNumber" ReturnType="Collection(FacturandoModel.GetRemissionNumber_Result)">
           <Parameter Name="MacAddress" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetInventoryFromSP" ReturnType="Collection(FacturandoModel.GetInventoryFromSP_Result)" />
+          <FunctionImport Name="DailyGet" ReturnType="Collection(FacturandoModel.DailyGet_Result)">
+            <Parameter Name="InitDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="IdentificacionType">
@@ -1375,11 +1377,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="DailyGet_Result">
-          <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />
-          <Property Type="Int32" Name="Quantity" Nullable="true" />
-          <Property Type="Decimal" Name="Total" Nullable="true" Precision="38" Scale="2" />
-        </ComplexType>
         <ComplexType Name="GetBillNumber_Result">
           <Property Type="Int64" Name="BillNumber" Nullable="false" />
         </ComplexType>
@@ -1401,6 +1398,20 @@
         </EntityType>
         <ComplexType Name="GetRemissionNumber_Result">
           <Property Type="Int64" Name="RemissionNumber" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetInventoryFromSP_Result">
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="IdProduct" Nullable="true" />
+          <Property Type="Decimal" Name="LastSalePrice" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Product" Nullable="true" MaxLength="511" />
+          <Property Type="Int32" Name="Quantity" Nullable="false" />
+          <Property Type="String" Name="GroupT" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="DailyGet_Result">
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="String" Name="ClassT" Nullable="false" MaxLength="7" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1678,15 +1689,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="DailyGet" FunctionName="FacturandoModel.Store.DailyGet">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FacturandoModel.DailyGet_Result">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetBillNumber" FunctionName="FacturandoModel.Store.GetBillNumber">
             <ResultMapping>
               <ComplexTypeMapping TypeName="FacturandoModel.GetBillNumber_Result">
@@ -1716,6 +1718,28 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="FacturandoModel.GetRemissionNumber_Result">
                 <ScalarProperty Name="RemissionNumber" ColumnName="RemissionNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetInventoryFromSP" FunctionName="FacturandoModel.Store.GetInventoryFromSP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FacturandoModel.GetInventoryFromSP_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="LastSalePrice" ColumnName="LastSalePrice" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="GroupT" ColumnName="GroupT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DailyGet" FunctionName="FacturandoModel.Store.DailyGet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FacturandoModel.DailyGet_Result">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="ClassT" ColumnName="ClassT" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

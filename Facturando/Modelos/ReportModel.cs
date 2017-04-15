@@ -34,6 +34,7 @@ namespace Facturando.Modelos
         public string Group { get; set; }
         public int Quantity { get; set; }
         public decimal Total { get; set; }
+        public string ClassT { get; set; }
     }
 
     public class DailyReportModel

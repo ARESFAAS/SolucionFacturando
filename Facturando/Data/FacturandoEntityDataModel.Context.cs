@@ -57,19 +57,6 @@ namespace Facturando.Data
         public DbSet<BillTemp> BillTemp { get; set; }
         public DbSet<RemissionTemp> RemissionTemp { get; set; }
     
-        public virtual ObjectResult<DailyGet_Result> DailyGet(Nullable<System.DateTime> initDate, Nullable<System.DateTime> endDate)
-        {
-            var initDateParameter = initDate.HasValue ?
-                new ObjectParameter("InitDate", initDate) :
-                new ObjectParameter("InitDate", typeof(System.DateTime));
-    
-            var endDateParameter = endDate.HasValue ?
-                new ObjectParameter("EndDate", endDate) :
-                new ObjectParameter("EndDate", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DailyGet_Result>("DailyGet", initDateParameter, endDateParameter);
-        }
-    
         public virtual ObjectResult<GetBillNumber_Result> GetBillNumber(string macAddress)
         {
             var macAddressParameter = macAddress != null ?
@@ -86,6 +73,24 @@ namespace Facturando.Data
                 new ObjectParameter("MacAddress", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRemissionNumber_Result>("GetRemissionNumber", macAddressParameter);
+        }
+    
+        public virtual ObjectResult<GetInventoryFromSP_Result> GetInventoryFromSP()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetInventoryFromSP_Result>("GetInventoryFromSP");
+        }
+    
+        public virtual ObjectResult<DailyGet_Result> DailyGet(Nullable<System.DateTime> initDate, Nullable<System.DateTime> endDate)
+        {
+            var initDateParameter = initDate.HasValue ?
+                new ObjectParameter("InitDate", initDate) :
+                new ObjectParameter("InitDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("EndDate", endDate) :
+                new ObjectParameter("EndDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DailyGet_Result>("DailyGet", initDateParameter, endDateParameter);
         }
     }
 }

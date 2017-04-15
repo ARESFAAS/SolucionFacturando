@@ -10,5 +10,6 @@ namespace Facturando.Data
         List<ClientViewModel> GetClients();
         List<ProductModel> GetProducts();
         DailyReportModel GetDaily(DateTime initDate, DateTime endDate);
+        List<InventoryModel> GetInventoryFromSP();
     }
 }

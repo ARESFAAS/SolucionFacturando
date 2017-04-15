@@ -9,6 +9,7 @@ namespace Facturando.Modelos
         public decimal LastSalePrice { get; set; }
         public int Quantity { get; set; }
         public bool FreeProduct { get; set; }
+        public string GroupT { get; set; }
     }
     public class InventoryDetailModel
     {
