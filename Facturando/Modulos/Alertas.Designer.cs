@@ -49,14 +49,14 @@
             this.rpvInventario.LocalReport.ReportEmbeddedResource = "Facturando.Reportes.Inventario.rdlc";
             this.rpvInventario.Location = new System.Drawing.Point(0, 0);
             this.rpvInventario.Name = "rpvInventario";
-            this.rpvInventario.Size = new System.Drawing.Size(931, 824);
+            this.rpvInventario.Size = new System.Drawing.Size(931, 741);
             this.rpvInventario.TabIndex = 0;
             // 
             // Alertas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 824);
+            this.ClientSize = new System.Drawing.Size(931, 741);
             this.Controls.Add(this.rpvInventario);
             this.Name = "Alertas";
             this.Text = "Alertas";

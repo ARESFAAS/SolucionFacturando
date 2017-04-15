@@ -13,7 +13,7 @@ namespace Facturando
         private void Alertas_Load(object sender, EventArgs e)
         {
             IReport report = new ReportData();
-            InventoryReportModelBindingSource.DataSource = report.GetInventory();
+            InventoryReportModelBindingSource.DataSource = report.GetInventoryFromSP();
             this.rpvInventario.RefreshReport();
         }
     }

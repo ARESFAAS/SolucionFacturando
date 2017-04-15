@@ -470,5 +470,12 @@ namespace Facturando
         {
             ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = false;
         }
+
+        private void lstProducto_Format(object sender, ListControlConvertEventArgs e)
+        {
+            string productDescription = ((InventoryModel)e.ListItem).Product;
+            string quantity = ((InventoryModel)e.ListItem).Quantity.ToString();
+            e.Value = productDescription + " ---> " + quantity;
+        }
     }
 }

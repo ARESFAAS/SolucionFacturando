@@ -287,6 +287,7 @@
             this.lstProducto.Size = new System.Drawing.Size(474, 186);
             this.lstProducto.TabIndex = 9;
             this.lstProducto.Click += new System.EventHandler(this.lstProducto_Click);
+            this.lstProducto.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.lstProducto_Format);
             this.lstProducto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstProducto_KeyDown);
             // 
             // txtNombreProducto

@@ -84,8 +84,8 @@
             this.dtpFechaLimite = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.chkPagada = new System.Windows.Forms.CheckBox();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
+            this.chkPagada = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -297,6 +297,7 @@
             this.lstProducto.Size = new System.Drawing.Size(475, 186);
             this.lstProducto.TabIndex = 3;
             this.lstProducto.Click += new System.EventHandler(this.lstProducto_Click);
+            this.lstProducto.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.lstProducto_Format);
             this.lstProducto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstProducto_KeyDown);
             // 
             // txtNombreProducto
@@ -639,16 +640,6 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "OBSERVACIONES";
             // 
-            // chkPagada
-            // 
-            this.chkPagada.AutoSize = true;
-            this.chkPagada.Location = new System.Drawing.Point(421, 39);
-            this.chkPagada.Name = "chkPagada";
-            this.chkPagada.Size = new System.Drawing.Size(69, 19);
-            this.chkPagada.TabIndex = 0;
-            this.chkPagada.Text = "Pagada";
-            this.chkPagada.UseVisualStyleBackColor = true;
-            // 
             // txtObservaciones
             // 
             this.txtObservaciones.Location = new System.Drawing.Point(15, 19);
@@ -658,6 +649,16 @@
             this.txtObservaciones.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtObservaciones.Size = new System.Drawing.Size(397, 47);
             this.txtObservaciones.TabIndex = 1;
+            // 
+            // chkPagada
+            // 
+            this.chkPagada.AutoSize = true;
+            this.chkPagada.Location = new System.Drawing.Point(421, 39);
+            this.chkPagada.Name = "chkPagada";
+            this.chkPagada.Size = new System.Drawing.Size(69, 19);
+            this.chkPagada.TabIndex = 0;
+            this.chkPagada.Text = "Pagada";
+            this.chkPagada.UseVisualStyleBackColor = true;
             // 
             // Facturacion
             // 
