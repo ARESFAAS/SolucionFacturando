@@ -1,6 +1,7 @@
 ﻿using Facturando.Modelos;
 using Facturando.Modulos;
 using System;
+using System.Configuration;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -18,19 +19,37 @@ namespace Facturando
             InitializeComponent();
             SystemCompany = systemCompany;
             User = user;
-
         }
 
         private void Principal_Load(object sender, EventArgs e)
         {
-            lblNombreEmpresa.Text = SystemCompany;
-            lblRol.Text = User.Roles.FirstOrDefault().RolName;
-            Modules = System.Configuration.ConfigurationSettings.AppSettings["Modules"].ToString()
-                .Split('|')
-                .ToDictionary(x => x.Split('-')[0], x => x.Split('-')[1]);
-            Actions = System.Configuration.ConfigurationSettings.AppSettings["Actions"].ToString()
-                .Split('|')
-                .ToDictionary(x => x.Split('-')[0], x => x.Split('-')[1]);
+            string saveProductKey = ConfigurationManager.AppSettings["ProductKey"];
+            string validProductKey = new KeyGenData.KeyGen(string.Empty).GenerateKeyEncrypt();
+
+            if (string.IsNullOrEmpty(saveProductKey))
+            {
+                string userProductKey = getProductKey();
+                if (userProductKey.Equals(validProductKey))
+                {
+                    saveProductKey = userProductKey;
+                }
+            }
+
+            if (saveProductKey.Equals(validProductKey))
+            {
+                lblNombreEmpresa.Text = SystemCompany;
+                lblRol.Text = User.Roles.FirstOrDefault().RolName;
+                Modules = System.Configuration.ConfigurationSettings.AppSettings["Modules"].ToString()
+                    .Split('|')
+                    .ToDictionary(x => x.Split('-')[0], x => x.Split('-')[1]);
+                Actions = System.Configuration.ConfigurationSettings.AppSettings["Actions"].ToString()
+                    .Split('|')
+                    .ToDictionary(x => x.Split('-')[0], x => x.Split('-')[1]);
+            }
+            else
+            {
+                logOut();
+            }
         }
 
         private void picAgregaFactura_Click(object sender, EventArgs e)
@@ -82,12 +101,7 @@ namespace Facturando
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            IFormLogin formInterface = Owner as IFormLogin;
-            this.Close();
-            if (formInterface != null)
-            {
-                formInterface.Logout();
-            }
+            logOut();
         }
 
         private void configuraciónToolStripMenuItem_Click(object sender, EventArgs e)
@@ -208,5 +222,30 @@ namespace Facturando
             fh.Show();
         }
 
+        private string getProductKey()
+        {
+            KeyValidate keyDialog = new KeyValidate();
+            string result;
+
+            if (keyDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                result = keyDialog.TextBox1;
+            }
+            else
+            {
+                result = string.Empty;
+            }
+            keyDialog.Dispose();
+            return result;
+        }
+
+        private void logOut() {
+            IFormLogin formInterface = Owner as IFormLogin;
+            this.Close();
+            if (formInterface != null)
+            {
+                formInterface.Logout();
+            }
+        }
     }
 }
