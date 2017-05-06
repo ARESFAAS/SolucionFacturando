@@ -37,6 +37,12 @@ namespace Facturando
                 DateEvent = DateTime.Now
             };
 
+            if (_bill.BillNumber.Equals(0))
+            {
+                MessageBox.Show("No hay facturas disponibles. Debe configurar una nueva autorización", "Advertencia en configuración", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Enabled = false;
+            }
+
             lblNumeroFactura.Text = _bill.BillNumber.ToString().PadLeft(8, '0');
             _billTaxes = _billData.GetBillTaxes();
             _billTaxes.ForEach(x => x.IdBill = _bill.Id);
@@ -497,8 +503,13 @@ namespace Facturando
             btnFacturar.Enabled = false;
             txtDiasLimite.Text = string.Empty;
             dtpFechaLimite.Value = DateTime.Now;
-            chkPagada.Checked = false;
+            chkPagada.Checked = true;
             txtObservaciones.Text = string.Empty;
+
+            if (_bill.BillNumber.Equals(0))
+            {
+                Enabled = false;
+            }
         }
 
         public void NewBill()
