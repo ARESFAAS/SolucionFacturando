@@ -76,6 +76,7 @@
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastSalePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FreeProduct = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.GroupT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -297,7 +298,8 @@
             this.IdProduct,
             this.Quantity,
             this.LastSalePrice,
-            this.FreeProduct});
+            this.FreeProduct,
+            this.GroupT});
             this.dataGridView2.Location = new System.Drawing.Point(305, 73);
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
@@ -545,6 +547,15 @@
             this.FreeProduct.Visible = false;
             this.FreeProduct.Width = 57;
             // 
+            // GroupT
+            // 
+            this.GroupT.DataPropertyName = "GroupT";
+            this.GroupT.HeaderText = "Grupo";
+            this.GroupT.Name = "GroupT";
+            this.GroupT.ReadOnly = true;
+            this.GroupT.Visible = false;
+            this.GroupT.Width = 73;
+            // 
             // Inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -640,5 +651,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastSalePrice;
         private System.Windows.Forms.DataGridViewCheckBoxColumn FreeProduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GroupT;
     }
 }
