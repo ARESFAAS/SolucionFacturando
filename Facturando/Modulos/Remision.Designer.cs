@@ -555,6 +555,8 @@
             // chkPagada
             // 
             this.chkPagada.AutoSize = true;
+            this.chkPagada.Checked = true;
+            this.chkPagada.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkPagada.Location = new System.Drawing.Point(423, 40);
             this.chkPagada.Name = "chkPagada";
             this.chkPagada.Size = new System.Drawing.Size(69, 19);

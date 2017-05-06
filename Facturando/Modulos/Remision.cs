@@ -431,7 +431,7 @@ namespace Facturando
             txtNombreProducto.Text = string.Empty;
             lstProducto.DataSource = new List<InventoryModel>();           
             btnRemitir.Enabled = false;
-            chkPagada.Checked = false;
+            chkPagada.Checked = true;
             txtObservaciones.Text = string.Empty;
         }
 
