@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installer", "Installer", "{
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "InventariosYFacturacion", "InventariosYFacturacion\InventariosYFacturacion.vdproj", "{B5CD42EE-803D-4D0E-8DE7-DFFB95E6121C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{BA03957C-DBCD-4860-9A3F-4822FF861E6A}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FacturandoDatabase", "FacturandoDatabase\FacturandoDatabase.sqlproj", "{1DC7249B-2D56-4E07-A26C-8EA1F21C8926}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,12 @@ Global
 		{FB60727A-3A3F-4429-B789-E61C2C024DE3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B5CD42EE-803D-4D0E-8DE7-DFFB95E6121C}.Debug|Any CPU.ActiveCfg = Debug
 		{B5CD42EE-803D-4D0E-8DE7-DFFB95E6121C}.Release|Any CPU.ActiveCfg = Release
+		{1DC7249B-2D56-4E07-A26C-8EA1F21C8926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DC7249B-2D56-4E07-A26C-8EA1F21C8926}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DC7249B-2D56-4E07-A26C-8EA1F21C8926}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1DC7249B-2D56-4E07-A26C-8EA1F21C8926}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DC7249B-2D56-4E07-A26C-8EA1F21C8926}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DC7249B-2D56-4E07-A26C-8EA1F21C8926}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,5 +40,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FB60727A-3A3F-4429-B789-E61C2C024DE3} = {693F4D93-F887-4D1A-A153-06DA6D66BA27}
 		{B5CD42EE-803D-4D0E-8DE7-DFFB95E6121C} = {2B0FF422-F027-4389-B96D-08F00AFA503C}
+		{1DC7249B-2D56-4E07-A26C-8EA1F21C8926} = {BA03957C-DBCD-4860-9A3F-4822FF861E6A}
 	EndGlobalSection
 EndGlobal

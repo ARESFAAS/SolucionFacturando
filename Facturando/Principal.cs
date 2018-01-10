@@ -24,7 +24,8 @@ namespace Facturando
         private void Principal_Load(object sender, EventArgs e)
         {
             string saveProductKey = ConfigurationManager.AppSettings["ProductKey"];
-            string validProductKey = new KeyGenData.KeyGen(string.Empty).GenerateKeyEncrypt();
+            //string validProductKey = new KeyGenData.KeyGen(string.Empty).GenerateKeyEncrypt();
+            string validProductKey = new KeyGenData.KeyGen(GetMacAddress()).GenerateKeyEncrypt();
 
             if (string.IsNullOrEmpty(saveProductKey))
             {

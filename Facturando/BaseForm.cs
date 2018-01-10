@@ -1,5 +1,6 @@
 ﻿using Facturando.Modelos;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net.NetworkInformation;
 using System.Windows.Forms;
 
@@ -20,7 +21,8 @@ namespace Facturando
         public string GetMacAddress()
         {
             string result = string.Empty;
-            result = NetworkInterface.GetAllNetworkInterfaces()[0].GetPhysicalAddress().ToString();
+            //result = NetworkInterface.GetAllNetworkInterfaces()[0].GetPhysicalAddress().ToString();
+            result = ConfigurationManager.AppSettings["MacAddress"];
             return result;
         }
     }
