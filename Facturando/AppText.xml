@@ -14,9 +14,9 @@
     <Footer2>AreSoftware - Simón Ariza - CC 80071246</Footer2>
     <Prefix></Prefix>
     <BillNote>La presente Factura de Venta se asimila en todos sus efectos a la Letra de Cambio</BillNote>
-    <TaxPercentage>16</TaxPercentage>
+    <TaxPercentage>12</TaxPercentage>
     <MoneySymbol>$</MoneySymbol>
-    <MoneyDescription>Pesos</MoneyDescription>
+    <MoneyDescription>Dólares</MoneyDescription>
   </BillData>
   <RemissionData>
     <CompanyName>Multiservicios El Claret</CompanyName>

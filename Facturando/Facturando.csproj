@@ -322,6 +322,12 @@
     <Compile Include="Modulos\VisorFactura.Designer.cs">
       <DependentUpon>VisorFactura.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\VisorFacturaA5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\VisorFacturaA5.Designer.cs">
+      <DependentUpon>VisorFacturaA5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\VisorFacturaMediaCarta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -429,6 +435,9 @@
     <EmbeddedResource Include="Modulos\VisorFactura.resx">
       <DependentUpon>VisorFactura.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\VisorFacturaA5.resx">
+      <DependentUpon>VisorFacturaA5.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\VisorFacturaMediaCarta.resx">
       <DependentUpon>VisorFacturaMediaCarta.cs</DependentUpon>
     </EmbeddedResource>
@@ -462,6 +471,7 @@
     <EmbeddedResource Include="Reportes\Facturacion.rdlc" />
     <EmbeddedResource Include="Reportes\FacturacionImpresaMediaCartaVertical.rdlc" />
     <EmbeddedResource Include="Reportes\FacturaImpresa.rdlc" />
+    <EmbeddedResource Include="Reportes\FacturaImpresaA5.rdlc" />
     <EmbeddedResource Include="Reportes\FacturaImpresaMediaCarta.rdlc" />
     <EmbeddedResource Include="Reportes\Inventario.rdlc" />
     <EmbeddedResource Include="Reportes\Productos.rdlc" />

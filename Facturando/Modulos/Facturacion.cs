@@ -536,6 +536,11 @@ namespace Facturando
                 VisorFacturaMediaCartaVertical visorFactura = new VisorFacturaMediaCartaVertical(_billSaveModel);
                 visorFactura.Show(this);
             }
+            else if (System.Configuration.ConfigurationSettings.AppSettings["PrintFormat"].ToString().ToUpper().Equals("A5VERTICAL"))
+            {
+                VisorFacturaA5 visorFactura = new VisorFacturaA5(_billSaveModel);
+                visorFactura.Show(this);
+            }
             else
             {
                 VisorFacturaMediaCarta visorFactura = new VisorFacturaMediaCarta(_billSaveModel);

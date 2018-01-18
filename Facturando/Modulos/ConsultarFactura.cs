@@ -56,7 +56,7 @@ namespace Facturando.Modulos
                 var billTemp = ((List<BillModel>)senderGrid.DataSource)[e.RowIndex];
                 ConverseNumberToText numberToTextInstance = new ConverseNumberToText();
                 billTemp.TotalInLetters = numberToTextInstance.enletras(billTemp.Total.ToString());
-                
+
                 if (System.Configuration.ConfigurationSettings.AppSettings["PrintFormat"].ToString().ToUpper().Equals("CARTA"))
                 {
                     VisorFactura visorFactura = new VisorFactura(_billData.GetBillData(billTemp), true);
@@ -65,6 +65,11 @@ namespace Facturando.Modulos
                 else if (System.Configuration.ConfigurationSettings.AppSettings["PrintFormat"].ToString().ToUpper().Equals("MEDIACARTAVERTICAL"))
                 {
                     VisorFacturaMediaCartaVertical visorFactura = new VisorFacturaMediaCartaVertical(_billData.GetBillData(billTemp), true);
+                    visorFactura.Show(this);
+                }
+                else if (System.Configuration.ConfigurationSettings.AppSettings["PrintFormat"].ToString().ToUpper().Equals("A5VERTICAL"))
+                {
+                    VisorFacturaA5 visorFactura = new VisorFacturaA5(_billData.GetBillData(billTemp), true);
                     visorFactura.Show(this);
                 }
                 else
