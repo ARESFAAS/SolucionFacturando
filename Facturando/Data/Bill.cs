@@ -31,9 +31,11 @@ namespace Facturando.Data
         public Nullable<bool> IsPaid { get; set; }
         public Nullable<System.DateTime> PaidDate { get; set; }
         public string Comments { get; set; }
+        public Nullable<System.Guid> IdUser { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual ICollection<BillDetail> BillDetail { get; set; }
         public virtual ICollection<BillTaxes> BillTaxes { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -58,6 +58,7 @@
             this.PaidDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comments = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WatchBill = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.IdUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgFactura)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,7 +163,8 @@
             this.IsPaid,
             this.PaidDate,
             this.Comments,
-            this.WatchBill});
+            this.WatchBill,
+            this.IdUser});
             this.dtgFactura.Location = new System.Drawing.Point(13, 141);
             this.dtgFactura.Name = "dtgFactura";
             this.dtgFactura.Size = new System.Drawing.Size(1071, 519);
@@ -352,6 +354,15 @@
             this.WatchBill.UseColumnTextForButtonValue = true;
             this.WatchBill.Width = 5;
             // 
+            // IdUser
+            // 
+            this.IdUser.DataPropertyName = "IdUser";
+            this.IdUser.HeaderText = "IdUser";
+            this.IdUser.Name = "IdUser";
+            this.IdUser.ReadOnly = true;
+            this.IdUser.Visible = false;
+            this.IdUser.Width = 82;
+            // 
             // ConsultarFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -414,5 +425,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PaidDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Comments;
         private System.Windows.Forms.DataGridViewButtonColumn WatchBill;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdUser;
     }
 }

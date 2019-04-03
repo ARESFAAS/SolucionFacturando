@@ -179,7 +179,8 @@ namespace Facturando.Data
                         DateEvent = remission.Remission.DateEvent,
                         IsPaid = remission.Remission.IsPaid,
                         PaidDate = remission.Remission.PaidDate,
-                        Comments = remission.Remission.Comments
+                        Comments = remission.Remission.Comments,
+                        IdUser = remission.Remission.IdUser
                     });
 
                     foreach (var item in remission.RemissionDetail)
@@ -248,7 +249,8 @@ namespace Facturando.Data
                         DateEvent = remission.Remission.DateEvent,
                         IsPaid = remission.Remission.IsPaid,
                         PaidDate = remission.Remission.PaidDate,
-                        Comments = remission.Remission.Comments
+                        Comments = remission.Remission.Comments,
+                        IdUser = remission.Remission.IdUser
                     });
 
                     foreach (var item in remission.RemissionDetail)
@@ -346,6 +348,28 @@ namespace Facturando.Data
                     }
                     context.SaveChanges();
                     return remissionList;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public decimal GetRemisionTotal(Guid idUser, DateTime movementDate)
+        {
+            try
+            {
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    DateTime movementDateTemp = new DateTime(movementDate.Year, movementDate.Month, movementDate.Day);
+                    decimal result = 0;
+                    var resultList = context.Remission
+                        .Where(x => x.DateEvent.Value >= movementDateTemp && x.DateEvent <= movementDateTemp)
+                        .Where(x => x.IsPaid.Value)
+                        .ToList();
+                    result = resultList.Sum(x => x.Total);
+                    return result;
                 }
             }
             catch (Exception)

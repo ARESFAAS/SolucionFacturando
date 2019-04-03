@@ -99,6 +99,16 @@
     <Compile Include="Data\BillTemp.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\CashBox.cs">
+      <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\CashBoxData.cs" />
+    <Compile Include="Data\CashBoxDetail.cs">
+      <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\CashBoxType.cs">
+      <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Client.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -142,6 +152,7 @@
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\IBill.cs" />
+    <Compile Include="Data\ICashBox.cs" />
     <Compile Include="Data\IClient.cs" />
     <Compile Include="Data\IConfiguration.cs" />
     <Compile Include="Data\IdentificacionType.cs">
@@ -220,12 +231,19 @@
     </Compile>
     <Compile Include="Modelos\AppTextModel.cs" />
     <Compile Include="Modelos\BillModel.cs" />
+    <Compile Include="Modelos\CashBoxModel.cs" />
     <Compile Include="Modelos\ConfigurationModel.cs" />
     <Compile Include="Modelos\InventoryModel.cs" />
     <Compile Include="Modelos\LoginModel.cs" />
     <Compile Include="Modelos\RemissionModel.cs" />
     <Compile Include="Modelos\ReportModel.cs" />
     <Compile Include="Modelos\UserModel.cs" />
+    <Compile Include="Modulos\RegistroCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\RegistroCaja.Designer.cs">
+      <DependentUpon>RegistroCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\AgregarEditarRegistroInventario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +255,12 @@
     </Compile>
     <Compile Include="Modulos\Alertas.Designer.cs">
       <DependentUpon>Alertas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\Caja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Caja.Designer.cs">
+      <DependentUpon>Caja.cs</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Cliente.cs">
       <SubType>Form</SubType>
@@ -381,11 +405,17 @@
     <EmbeddedResource Include="KeyValidate.resx">
       <DependentUpon>KeyValidate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\RegistroCaja.resx">
+      <DependentUpon>RegistroCaja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\AgregarEditarRegistroInventario.resx">
       <DependentUpon>AgregarEditarRegistroInventario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Alertas.resx">
       <DependentUpon>Alertas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Caja.resx">
+      <DependentUpon>Caja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\Cliente.resx">
       <DependentUpon>Cliente.cs</DependentUpon>
@@ -536,6 +566,7 @@
       <LastGenOutput>FacturandoEntityDataModel.cs</LastGenOutput>
     </Content>
     <Content Include="LogoInventariosyFacturacion.ico" />
+    <Content Include="Resources\cashbox.jpg" />
     <None Include="Resources\products.jpe" />
     <None Include="Resources\folder_customer_91730.jpg" />
     <None Include="Resources\consultarRemision.jpg" />

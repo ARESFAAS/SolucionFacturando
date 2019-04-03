@@ -12,25 +12,24 @@ namespace Facturando.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Remission
+    public partial class CashBox
     {
-        public Remission()
+        public CashBox()
         {
-            this.RemissionDetail = new HashSet<RemissionDetail>();
+            this.CashBoxDetail = new HashSet<CashBoxDetail>();
         }
     
         public System.Guid Id { get; set; }
+        public long CashNumber { get; set; }
         public decimal Total { get; set; }
-        public long RemissionNumber { get; set; }
-        public Nullable<System.Guid> IdClient { get; set; }
-        public Nullable<System.DateTime> DateEvent { get; set; }
-        public Nullable<bool> IsPaid { get; set; }
-        public Nullable<System.DateTime> PaidDate { get; set; }
-        public string Comments { get; set; }
+        public Nullable<System.DateTime> OpenDate { get; set; }
+        public Nullable<System.DateTime> CloseDate { get; set; }
+        public bool IsClosed { get; set; }
         public Nullable<System.Guid> IdUser { get; set; }
+        public string Comments { get; set; }
+        public Nullable<decimal> CloseTotal { get; set; }
     
-        public virtual Client Client { get; set; }
-        public virtual ICollection<RemissionDetail> RemissionDetail { get; set; }
         public virtual User User { get; set; }
+        public virtual ICollection<CashBoxDetail> CashBoxDetail { get; set; }
     }
 }

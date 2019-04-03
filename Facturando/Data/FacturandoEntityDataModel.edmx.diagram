@@ -56,6 +56,14 @@
         <AssociationConnector Association="FacturandoModel.FK_ConfigurationSystem_CurrencyType" />
         <EntityTypeShape EntityType="FacturandoModel.BillTemp" Width="1.5" PointX="13.375" PointY="0.75" />
         <EntityTypeShape EntityType="FacturandoModel.RemissionTemp" Width="1.5" PointX="13.375" PointY="3.75" />
+        <EntityTypeShape EntityType="FacturandoModel.CashBox" Width="1.5" PointX="12" PointY="17.5" />
+        <EntityTypeShape EntityType="FacturandoModel.CashBoxDetail" Width="1.5" PointX="14.25" PointY="17.75" />
+        <EntityTypeShape EntityType="FacturandoModel.CashBoxType" Width="1.5" PointX="12" PointY="22.125" />
+        <AssociationConnector Association="FacturandoModel.FK_CashBox_User" />
+        <AssociationConnector Association="FacturandoModel.FK_CashBoxDetail_CashBox" />
+        <AssociationConnector Association="FacturandoModel.FK_CashBoxDetail_CashBoxType" />
+        <AssociationConnector Association="FacturandoModel.FK_Bill_User" />
+        <AssociationConnector Association="FacturandoModel.FK_Remission_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

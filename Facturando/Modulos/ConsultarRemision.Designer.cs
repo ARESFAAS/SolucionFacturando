@@ -53,6 +53,7 @@
             this.PaidDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comments = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WatchRemission = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.IdUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRemision)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,7 +76,8 @@
             this.IsPaid,
             this.PaidDate,
             this.Comments,
-            this.WatchRemission});
+            this.WatchRemission,
+            this.IdUser});
             this.dtgRemision.Location = new System.Drawing.Point(13, 128);
             this.dtgRemision.Name = "dtgRemision";
             this.dtgRemision.Size = new System.Drawing.Size(1076, 525);
@@ -306,6 +308,15 @@
             this.WatchRemission.UseColumnTextForButtonValue = true;
             this.WatchRemission.Width = 5;
             // 
+            // IdUser
+            // 
+            this.IdUser.DataPropertyName = "IdUser";
+            this.IdUser.HeaderText = "IdUser";
+            this.IdUser.Name = "IdUser";
+            this.IdUser.ReadOnly = true;
+            this.IdUser.Visible = false;
+            this.IdUser.Width = 82;
+            // 
             // ConsultarRemision
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -363,5 +374,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PaidDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Comments;
         private System.Windows.Forms.DataGridViewButtonColumn WatchRemission;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdUser;
     }
 }

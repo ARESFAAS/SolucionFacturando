@@ -27,6 +27,7 @@
           <Property Name="IsPaid" Type="bit" />
           <Property Name="PaidDate" Type="date" />
           <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+          <Property Name="IdUser" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -55,6 +56,39 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="MacAddress" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="BillNumber" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CashBox">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CashNumber" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="OpenDate" Type="date" />
+          <Property Name="CloseDate" Type="date" />
+          <Property Name="IsClosed" Type="bit" Nullable="false" />
+          <Property Name="CloseTotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IdUser" Type="uniqueidentifier" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="CashBoxDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdCashBox" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MovementDate" Type="date" />
+          <Property Name="IdCashBoxType" Type="uniqueidentifier" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="CashBoxType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Sign" Type="nvarchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -180,6 +214,7 @@
           <Property Name="IsPaid" Type="bit" />
           <Property Name="PaidDate" Type="date" />
           <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+          <Property Name="IdUser" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="RemissionDetail">
           <Key>
@@ -277,6 +312,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Bill_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BillDetail_Bill">
           <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
           <End Role="BillDetail" Type="Self.BillDetail" Multiplicity="*" />
@@ -322,6 +369,42 @@
             </Principal>
             <Dependent Role="BillTaxes">
               <PropertyRef Name="IdTax" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CashBox_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="CashBox" Type="Self.CashBox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CashBox">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CashBoxDetail_CashBox">
+          <End Role="CashBox" Type="Self.CashBox" Multiplicity="1" />
+          <End Role="CashBoxDetail" Type="Self.CashBoxDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CashBox">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CashBoxDetail">
+              <PropertyRef Name="IdCashBox" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CashBoxDetail_CashBoxType">
+          <End Role="CashBoxType" Type="Self.CashBoxType" Multiplicity="0..1" />
+          <End Role="CashBoxDetail" Type="Self.CashBoxDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CashBoxType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CashBoxDetail">
+              <PropertyRef Name="IdCashBoxType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -445,6 +528,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Remission_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Remission" Type="Self.Remission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Remission">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_RemissionDetail_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
           <End Role="RemissionDetail" Type="Self.RemissionDetail" Multiplicity="*" />
@@ -558,6 +653,9 @@
           <EntitySet Name="BillDetail" EntityType="Self.BillDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillTaxes" EntityType="Self.BillTaxes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillTemp" EntityType="Self.BillTemp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CashBox" EntityType="Self.CashBox" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CashBoxDetail" EntityType="Self.CashBoxDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CashBoxType" EntityType="Self.CashBoxType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConfigurationSystem" EntityType="Self.ConfigurationSystem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
@@ -585,6 +683,10 @@
             <End Role="Client" EntitySet="Client" />
             <End Role="Bill" EntitySet="Bill" />
           </AssociationSet>
+          <AssociationSet Name="FK_Bill_User" Association="Self.FK_Bill_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
           <AssociationSet Name="FK_BillDetail_Bill" Association="Self.FK_BillDetail_Bill">
             <End Role="Bill" EntitySet="Bill" />
             <End Role="BillDetail" EntitySet="BillDetail" />
@@ -600,6 +702,18 @@
           <AssociationSet Name="FK_BillTaxes_Tax" Association="Self.FK_BillTaxes_Tax">
             <End Role="Tax" EntitySet="Tax" />
             <End Role="BillTaxes" EntitySet="BillTaxes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CashBox_User" Association="Self.FK_CashBox_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="CashBox" EntitySet="CashBox" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CashBoxDetail_CashBox" Association="Self.FK_CashBoxDetail_CashBox">
+            <End Role="CashBox" EntitySet="CashBox" />
+            <End Role="CashBoxDetail" EntitySet="CashBoxDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CashBoxDetail_CashBoxType" Association="Self.FK_CashBoxDetail_CashBoxType">
+            <End Role="CashBoxType" EntitySet="CashBoxType" />
+            <End Role="CashBoxDetail" EntitySet="CashBoxDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_Client_IdentificacionType" Association="Self.FK_Client_IdentificacionType">
             <End Role="IdentificacionType" EntitySet="IdentificacionType" />
@@ -639,6 +753,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Remission_Client" Association="Self.FK_Remission_Client">
             <End Role="Client" EntitySet="Client" />
+            <End Role="Remission" EntitySet="Remission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remission_User" Association="Self.FK_Remission_User">
+            <End Role="User" EntitySet="User" />
             <End Role="Remission" EntitySet="Remission" />
           </AssociationSet>
           <AssociationSet Name="FK_RemissionDetail_Product" Association="Self.FK_RemissionDetail_Product">
@@ -704,6 +822,8 @@
           <Property Name="IsPaid" Type="Boolean" />
           <Property Name="PaidDate" Type="DateTime" Precision="0" />
           <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdUser" Type="Guid" />
+          <NavigationProperty Name="User" Relationship="FacturandoModel.FK_Bill_User" FromRole="Bill" ToRole="User" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -839,6 +959,8 @@
           <Property Name="IsPaid" Type="Boolean" />
           <Property Name="PaidDate" Type="DateTime" Precision="0" />
           <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdUser" Type="Guid" />
+          <NavigationProperty Name="User" Relationship="FacturandoModel.FK_Remission_User" FromRole="Remission" ToRole="User" />
         </EntityType>
         <EntityType Name="RemissionDetail">
           <Key>
@@ -909,6 +1031,9 @@
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateEvent" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="UserRol" Relationship="Self.FK_UserRol_User" FromRole="User" ToRole="UserRol" />
+          <NavigationProperty Name="CashBox" Relationship="FacturandoModel.FK_CashBox_User" FromRole="User" ToRole="CashBox" />
+          <NavigationProperty Name="Bill" Relationship="FacturandoModel.FK_Bill_User" FromRole="User" ToRole="Bill" />
+          <NavigationProperty Name="Remission" Relationship="FacturandoModel.FK_Remission_User" FromRole="User" ToRole="Remission" />
         </EntityType>
         <EntityType Name="UserRol">
           <Key>
@@ -1292,6 +1417,29 @@
             <Parameter Name="InitDate" Mode="In" Type="DateTime" />
             <Parameter Name="EndDate" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="CashBox" EntityType="FacturandoModel.CashBox" />
+          <EntitySet Name="CashBoxDetail" EntityType="FacturandoModel.CashBoxDetail" />
+          <EntitySet Name="CashBoxType" EntityType="FacturandoModel.CashBoxType" />
+          <AssociationSet Name="FK_CashBox_User" Association="FacturandoModel.FK_CashBox_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="CashBox" EntitySet="CashBox" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CashBoxDetail_CashBox" Association="FacturandoModel.FK_CashBoxDetail_CashBox">
+            <End Role="CashBox" EntitySet="CashBox" />
+            <End Role="CashBoxDetail" EntitySet="CashBoxDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CashBoxDetail_CashBoxType" Association="FacturandoModel.FK_CashBoxDetail_CashBoxType">
+            <End Role="CashBoxType" EntitySet="CashBoxType" />
+            <End Role="CashBoxDetail" EntitySet="CashBoxDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_User" Association="FacturandoModel.FK_Bill_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Remission_User" Association="FacturandoModel.FK_Remission_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Remission" EntitySet="Remission" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="IdentificacionType">
           <Key>
@@ -1413,6 +1561,104 @@
           <Property Type="Decimal" Name="Total" Nullable="true" Precision="38" Scale="2" />
           <Property Type="String" Name="ClassT" Nullable="false" MaxLength="7" />
         </ComplexType>
+        <EntityType Name="CashBox">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CashNumber" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="OpenDate" Type="DateTime" Precision="0" />
+          <Property Name="CloseDate" Type="DateTime" Precision="0" />
+          <Property Name="IsClosed" Type="Boolean" Nullable="false" />
+          <Property Name="IdUser" Type="Guid" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="FacturandoModel.FK_CashBox_User" FromRole="CashBox" ToRole="User" />
+          <NavigationProperty Name="CashBoxDetail" Relationship="FacturandoModel.FK_CashBoxDetail_CashBox" FromRole="CashBox" ToRole="CashBoxDetail" />
+          <Property Name="CloseTotal" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="CashBoxDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="IdCashBox" Type="Guid" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="MovementDate" Type="DateTime" Precision="0" />
+          <Property Name="IdCashBoxType" Type="Guid" />
+          <NavigationProperty Name="CashBox" Relationship="FacturandoModel.FK_CashBoxDetail_CashBox" FromRole="CashBoxDetail" ToRole="CashBox" />
+          <NavigationProperty Name="CashBoxType" Relationship="FacturandoModel.FK_CashBoxDetail_CashBoxType" FromRole="CashBoxDetail" ToRole="CashBoxType" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CashBoxType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Sign" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CashBoxDetail" Relationship="FacturandoModel.FK_CashBoxDetail_CashBoxType" FromRole="CashBoxType" ToRole="CashBoxDetail" />
+        </EntityType>
+        <Association Name="FK_CashBox_User">
+          <End Type="FacturandoModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="FacturandoModel.CashBox" Role="CashBox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CashBox">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CashBoxDetail_CashBox">
+          <End Type="FacturandoModel.CashBox" Role="CashBox" Multiplicity="1" />
+          <End Type="FacturandoModel.CashBoxDetail" Role="CashBoxDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CashBox">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CashBoxDetail">
+              <PropertyRef Name="IdCashBox" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CashBoxDetail_CashBoxType">
+          <End Type="FacturandoModel.CashBoxType" Role="CashBoxType" Multiplicity="0..1" />
+          <End Type="FacturandoModel.CashBoxDetail" Role="CashBoxDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CashBoxType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CashBoxDetail">
+              <PropertyRef Name="IdCashBoxType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_User">
+          <End Type="FacturandoModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="FacturandoModel.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Remission_User">
+          <End Type="FacturandoModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="FacturandoModel.Remission" Role="Remission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Remission">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1430,6 +1676,7 @@
           <EntitySetMapping Name="Bill">
             <EntityTypeMapping TypeName="FacturandoModel.Bill">
               <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
                 <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
@@ -1556,6 +1803,7 @@
           <EntitySetMapping Name="Remission">
             <EntityTypeMapping TypeName="FacturandoModel.Remission">
               <MappingFragment StoreEntitySet="Remission">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
                 <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
@@ -1743,6 +1991,42 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="CashBox">
+            <EntityTypeMapping TypeName="FacturandoModel.CashBox">
+              <MappingFragment StoreEntitySet="CashBox">
+                <ScalarProperty Name="CloseTotal" ColumnName="CloseTotal" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IsClosed" ColumnName="IsClosed" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="CashNumber" ColumnName="CashNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CashBoxDetail">
+            <EntityTypeMapping TypeName="FacturandoModel.CashBoxDetail">
+              <MappingFragment StoreEntitySet="CashBoxDetail">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="IdCashBoxType" ColumnName="IdCashBoxType" />
+                <ScalarProperty Name="MovementDate" ColumnName="MovementDate" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IdCashBox" ColumnName="IdCashBox" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CashBoxType">
+            <EntityTypeMapping TypeName="FacturandoModel.CashBoxType">
+              <MappingFragment StoreEntitySet="CashBoxType">
+                <ScalarProperty Name="Sign" ColumnName="Sign" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

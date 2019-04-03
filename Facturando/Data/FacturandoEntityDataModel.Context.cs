@@ -56,6 +56,9 @@ namespace Facturando.Data
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<BillTemp> BillTemp { get; set; }
         public DbSet<RemissionTemp> RemissionTemp { get; set; }
+        public DbSet<CashBox> CashBox { get; set; }
+        public DbSet<CashBoxDetail> CashBoxDetail { get; set; }
+        public DbSet<CashBoxType> CashBoxType { get; set; }
     
         public virtual ObjectResult<GetBillNumber_Result> GetBillNumber(string macAddress)
         {

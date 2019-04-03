@@ -33,9 +33,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.dtgCliente = new System.Windows.Forms.DataGridView();
-            this.btnConsultar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdentificationNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdIdentificationType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +45,9 @@
             this.IsNew = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateEvent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreditDaysNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnConsultar = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCliente)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,35 +116,6 @@
             this.dtgCliente.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgCliente_CellValueChanged);
             this.dtgCliente.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dtgCliente_DataError);
             this.dtgCliente.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dtgCliente_UserAddedRow);
-            // 
-            // btnConsultar
-            // 
-            this.btnConsultar.Location = new System.Drawing.Point(795, 29);
-            this.btnConsultar.Name = "btnConsultar";
-            this.btnConsultar.Size = new System.Drawing.Size(87, 32);
-            this.btnConsultar.TabIndex = 4;
-            this.btnConsultar.Text = "Buscar";
-            this.btnConsultar.UseVisualStyleBackColor = true;
-            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Location = new System.Drawing.Point(973, 666);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(103, 32);
-            this.btnGuardar.TabIndex = 6;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 102);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(414, 20);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Ingrese o edite los datos y haga click en el botón Guardar";
             // 
             // Id
             // 
@@ -232,10 +203,40 @@
             this.CreditDaysNumber.Name = "CreditDaysNumber";
             this.CreditDaysNumber.Width = 111;
             // 
+            // btnConsultar
+            // 
+            this.btnConsultar.Location = new System.Drawing.Point(795, 29);
+            this.btnConsultar.Name = "btnConsultar";
+            this.btnConsultar.Size = new System.Drawing.Size(87, 32);
+            this.btnConsultar.TabIndex = 4;
+            this.btnConsultar.Text = "Buscar";
+            this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(973, 666);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(103, 32);
+            this.btnGuardar.TabIndex = 6;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(26, 102);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(414, 20);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Ingrese o edite los datos y haga click en el botón Guardar";
+            // 
             // Cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkKhaki;
             this.ClientSize = new System.Drawing.Size(1101, 706);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnGuardar);

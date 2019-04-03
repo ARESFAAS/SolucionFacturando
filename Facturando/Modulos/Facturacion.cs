@@ -25,6 +25,12 @@ namespace Facturando
             InitializeComponent();
         }
 
+        public Facturacion(UserModel user)
+        {
+            InitializeComponent();
+            base.User = user;
+        }
+
         private void Facturacion_Load(object sender, EventArgs e)
         {
             
@@ -422,7 +428,8 @@ namespace Facturando
         {
             _bill.IsPaid = chkPagada.Checked;
             if (chkPagada.Checked) { _bill.PaidDate = DateTime.Now; } else { _bill.PaidDate = null; }
-           _bill.Comments = txtObservaciones.Text;
+            _bill.Comments = txtObservaciones.Text;
+            _bill.IdUser = base.User.Id;
 
             _billSaveModel.Client = _client;
             _billSaveModel.Bill = _bill;

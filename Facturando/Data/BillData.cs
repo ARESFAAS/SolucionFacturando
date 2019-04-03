@@ -54,7 +54,7 @@ namespace Facturando.Data
                                DateEvent = x.DateEvent != null ? x.DateEvent.Value : DateTime.MinValue,
                                CreditDaysNumber = x.CreditDaysNumber.HasValue ? x.CreditDaysNumber.Value : 0
                            }).ToList().FirstOrDefault();
-                    }               
+                    }
                     else
                     {
                         result = context.Client
@@ -113,7 +113,7 @@ namespace Facturando.Data
                     ConfigurationSystem lastConfiguration = context.ConfigurationSystem
                         .OrderByDescending(x => x.OperationsInitDate)
                         .FirstOrDefault();
-                                        
+
                     BillModel bill = context.Bill.OrderByDescending(x => x.BillNumber).Select(x => new BillModel
                     {
                         BillNumber = x.BillNumber
@@ -150,7 +150,7 @@ namespace Facturando.Data
             {
                 long result = 0;
                 using (FacturandoEntities context = new FacturandoEntities())
-                {                    
+                {
                     BillModel bill = context.GetBillNumber(macAddress).Select(x => new BillModel
                     {
                         BillNumber = x.BillNumber
@@ -158,7 +158,7 @@ namespace Facturando.Data
 
                     if (bill != null)
                     {
-                        result = bill.BillNumber;                                         
+                        result = bill.BillNumber;
                     }
 
                     return result;
@@ -216,7 +216,8 @@ namespace Facturando.Data
                         LimitDate = bill.Bill.LimitDate,
                         IsPaid = bill.Bill.IsPaid,
                         PaidDate = bill.Bill.PaidDate,
-                        Comments = bill.Bill.Comments
+                        Comments = bill.Bill.Comments,
+                        IdUser = bill.Bill.IdUser
                     });
                     foreach (var item in bill.BillDetail)
                     {
@@ -297,7 +298,8 @@ namespace Facturando.Data
                         LimitDate = bill.Bill.LimitDate,
                         IsPaid = bill.Bill.IsPaid,
                         PaidDate = bill.Bill.PaidDate,
-                        Comments = bill.Bill.Comments
+                        Comments = bill.Bill.Comments,
+                        IdUser = bill.Bill.IdUser
                     });
                     foreach (var item in bill.BillDetail)
                     {
@@ -360,7 +362,8 @@ namespace Facturando.Data
                                 LimitDate = x.LimitDate.HasValue ? x.LimitDate.Value : DateTime.MinValue,
                                 IsPaid = x.IsPaid != null ? x.IsPaid.Value : false,
                                 PaidDate = x.PaidDate,
-                                Comments = x.Comments
+                                Comments = x.Comments,
+                                IdUser = x.IdUser
                             }).OrderBy(x => x.BillNumber).ToList();
                     }
 
@@ -384,7 +387,8 @@ namespace Facturando.Data
                                 LimitDate = x.LimitDate.HasValue ? x.LimitDate.Value : DateTime.MinValue,
                                 IsPaid = x.IsPaid != null ? x.IsPaid.Value : false,
                                 PaidDate = x.PaidDate,
-                                Comments = x.Comments
+                                Comments = x.Comments,
+                                IdUser = x.IdUser
                             }).OrderBy(x => x.BillNumber).ToList();
                     }
 
@@ -408,7 +412,8 @@ namespace Facturando.Data
                                LimitDate = x.LimitDate.HasValue ? x.LimitDate.Value : DateTime.MinValue,
                                IsPaid = x.IsPaid != null ? x.IsPaid.Value : false,
                                PaidDate = x.PaidDate,
-                               Comments = x.Comments
+                               Comments = x.Comments,
+                               IdUser = x.IdUser
                            }).OrderBy(x => x.BillNumber).ToList();
                     }
                     return result;
@@ -497,24 +502,24 @@ namespace Facturando.Data
 
                         // Simon Ariza - 10-03-2016 - inventory affect
                         if (billTemp.IsCanceled != item.IsCanceled)
-                        {   
+                        {
                             var billDetailTemp = context.BillDetail.Where(x => x.IdBill == item.Id).ToList();
                             foreach (var billProduct in billDetailTemp)
                             {
                                 InventoryModel inventoryTemp = inventoryData.GetInventoryByProductId(billProduct.IdProduct.Value);
                                 InventoryDetailModel inventoryDetailTemp = inventoryData.GetLastInventoryDetailInByProductId(billProduct.IdProduct.Value);
-                                InventorySaveModel inventorySaveTemp = new InventorySaveModel {  Inventory = inventoryTemp, InventoryDetail = inventoryDetailTemp };
+                                InventorySaveModel inventorySaveTemp = new InventorySaveModel { Inventory = inventoryTemp, InventoryDetail = inventoryDetailTemp };
                                 if (item.IsCanceled) // inventory in
                                 {
-                                    inventorySaveTemp.InventoryDetail.IdInventoryType = inventoryTypeIn.Id;                                    
+                                    inventorySaveTemp.InventoryDetail.IdInventoryType = inventoryTypeIn.Id;
                                 }
                                 else // inventory out
                                 {
-                                    inventorySaveTemp.InventoryDetail.IdInventoryType = inventoryTypeOut.Id;                                   
+                                    inventorySaveTemp.InventoryDetail.IdInventoryType = inventoryTypeOut.Id;
                                 }
                                 inventorySaveTemp.InventoryDetail.Quantity = billProduct.Quantity;
                                 inventoryData.SaveInventory(inventorySaveTemp);
-                            } 
+                            }
                         }
                         //fin cambio
 
@@ -522,7 +527,7 @@ namespace Facturando.Data
                         {
                             billTemp.IsCanceled = item.IsCanceled;
                             billTemp.CancelDate = editDate;
-                            item.CancelDate = editDate;                            
+                            item.CancelDate = editDate;
                         }
                         else
                         {
@@ -531,7 +536,8 @@ namespace Facturando.Data
                             item.CancelDate = null;
                         }
 
-                        if (item.IsPaid) {
+                        if (item.IsPaid)
+                        {
                             billTemp.IsPaid = item.IsPaid;
                             billTemp.PaidDate = editDate;
                             item.PaidDate = editDate;
@@ -545,6 +551,29 @@ namespace Facturando.Data
                     }
                     context.SaveChanges();
                     return billList;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public decimal GetBillTotal(Guid idUser, DateTime movementDate)
+        {
+            try
+            {
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    DateTime movementDateTemp = new DateTime(movementDate.Year, movementDate.Month, movementDate.Day);
+                    decimal result = 0;
+                    var resultList = context.Bill
+                        .Where(x => x.IdUser == idUser)
+                        .Where(x => x.DateEvent.Value >= movementDateTemp && x.DateEvent.Value <= movementDateTemp)
+                        .Where(x => (!x.IsCanceled.Value || x.IsCanceled == null) && x.IsPaid.Value)
+                        .ToList();
+                    result = resultList.Sum(x => x.Total);
+                    return result;
                 }
             }
             catch (Exception)

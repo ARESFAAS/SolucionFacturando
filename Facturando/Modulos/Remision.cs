@@ -26,6 +26,12 @@ namespace Facturando
             InitializeComponent();
         }
 
+        public Remision(UserModel user)
+        {
+            InitializeComponent();
+            base.User = user;
+        }
+
         private void Remision_Load(object sender, EventArgs e)
         {
             cmbTipoIdentificacion.DataSource = _billData.GetIdentificationType();
@@ -362,6 +368,7 @@ namespace Facturando
             _remission.IsPaid = chkPagada.Checked;
             if (chkPagada.Checked) { _remission.PaidDate = DateTime.Now; } else { _remission.PaidDate = null; }
             _remission.Comments = txtObservaciones.Text;
+            _remission.IdUser = base.User.Id;
 
             _remissionSaveModel.Client = _client;
             _remissionSaveModel.Remission = _remission;

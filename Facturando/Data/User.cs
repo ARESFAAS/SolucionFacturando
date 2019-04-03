@@ -17,6 +17,9 @@ namespace Facturando.Data
         public User()
         {
             this.UserRol = new HashSet<UserRol>();
+            this.CashBox = new HashSet<CashBox>();
+            this.Bill = new HashSet<Bill>();
+            this.Remission = new HashSet<Remission>();
         }
     
         public System.Guid Id { get; set; }
@@ -25,5 +28,8 @@ namespace Facturando.Data
         public System.DateTime DateEvent { get; set; }
     
         public virtual ICollection<UserRol> UserRol { get; set; }
+        public virtual ICollection<CashBox> CashBox { get; set; }
+        public virtual ICollection<Bill> Bill { get; set; }
+        public virtual ICollection<Remission> Remission { get; set; }
     }
 }

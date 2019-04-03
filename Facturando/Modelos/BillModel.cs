@@ -22,6 +22,7 @@ namespace Facturando.Modelos
         public bool IsPaid { get; set; }
         public DateTime? PaidDate { get; set; }
         public string Comments { get; set; }
+        public Guid? IdUser { get; set; }
     }
 
     public class ClientModel

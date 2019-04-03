@@ -16,5 +16,6 @@ namespace Facturando.Data
         List<BillModel> GetBillList(long billNumber, string identificationNumber, DateTime? initDate, DateTime? endDate);
         BillSaveModel GetBillData(BillModel bill);
         List<BillModel> EditBill(List<BillModel> bill);
+        decimal GetBillTotal(Guid idUser, DateTime movementDate);
     }
 }

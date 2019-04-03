@@ -40,6 +40,7 @@ namespace Facturando
             {
                 lblNombreEmpresa.Text = SystemCompany;
                 lblRol.Text = User.Roles.FirstOrDefault().RolName;
+                lblFechaSistema.Text = DateTime.Now.ToShortDateString();
                 Modules = System.Configuration.ConfigurationSettings.AppSettings["Modules"].ToString()
                     .Split('|')
                     .ToDictionary(x => x.Split('-')[0], x => x.Split('-')[1]);
@@ -62,7 +63,7 @@ namespace Facturando
                 {
                     if (module.Equals(Modules["NF"]))
                     {
-                        AddFormInPanel(new Facturacion());
+                        AddFormInPanel(new Facturacion(base.User));
                         return;
                     }
                 }
@@ -78,7 +79,7 @@ namespace Facturando
                 {
                     if (module.Equals(Modules["NR"]))
                     {
-                        AddFormInPanel(new Remision());
+                        AddFormInPanel(new Remision(base.User));
                         return;
                     }
                 }
@@ -194,6 +195,21 @@ namespace Facturando
                     if (module.Equals(Modules["PR"]))
                     {
                         AddFormInPanel(new Producto());
+                        return;
+                    }
+                }
+            }
+        }
+
+        private void picCaja_Click(object sender, EventArgs e)
+        {
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["CJ"]))
+                    {
+                        AddFormInPanel(new Caja(base.User));
                         return;
                     }
                 }
