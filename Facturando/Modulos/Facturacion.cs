@@ -1,9 +1,14 @@
 ﻿using Facturando.Data;
+using Facturando.Helper;
 using Facturando.Modelos;
 using Facturando.Modulos;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -33,11 +38,12 @@ namespace Facturando
 
         private void Facturacion_Load(object sender, EventArgs e)
         {
-            
+
             cmbTipoIdentificacion.DataSource = _billData.GetIdentificationType();
             cmbTipoIdentificacion.ValueMember = "Id";
             cmbTipoIdentificacion.DisplayMember = "Description";
-            _bill = new BillModel {
+            _bill = new BillModel
+            {
                 Id = Guid.NewGuid(),
                 BillNumber = _billData.GetBillNumber(GetMacAddress()),
                 DateEvent = DateTime.Now
@@ -168,7 +174,7 @@ namespace Facturando
                     if (((List<InventoryModel>)lstBox.DataSource).Count > 0)
                     {
                         InventoryModel inventoryItem = (InventoryModel)lstBox.SelectedItem;
-                                                
+
                         _billDetail.Add(new BillDetailModel
                         {
                             Id = Guid.NewGuid(),
@@ -419,7 +425,7 @@ namespace Facturando
                     CreditDaysNumber = !String.IsNullOrEmpty(txtDiasLimite.Text) ? int.Parse(txtDiasLimite.Text) : 0
                 };
                 _bill.IdClient = _client.Id;
-                _bill.LimitDate = dtpFechaLimite.Value;                
+                _bill.LimitDate = dtpFechaLimite.Value;
             }
             return result;
         }
@@ -465,7 +471,7 @@ namespace Facturando
                         Inventory = inventoryTemp,
                         InventoryDetail = inventoryDetailTemp
                     });
-                }                
+                }
             }
             else
             {
@@ -525,7 +531,8 @@ namespace Facturando
             ClearControls();
         }
 
-        private void PrintBill() {
+        private void PrintBill()
+        {
             ConverseNumberToText numberToTextInstance = new ConverseNumberToText();
             _bill.TotalInLetters = numberToTextInstance.enletras(_bill.Total.ToString());
             _billSaveModel.Client = _client;
@@ -563,7 +570,7 @@ namespace Facturando
         private void txtDiasLimite_TextChanged(object sender, EventArgs e)
         {
             int limitDaysTemp = 0;
-            if(!string.IsNullOrEmpty(txtDiasLimite.Text) && int.TryParse(txtDiasLimite.Text, out limitDaysTemp))
+            if (!string.IsNullOrEmpty(txtDiasLimite.Text) && int.TryParse(txtDiasLimite.Text, out limitDaysTemp))
             {
                 dtpFechaLimite.Value = DateTime.Now.AddDays(limitDaysTemp);
             }
@@ -572,10 +579,10 @@ namespace Facturando
                 dtpFechaLimite.Value = DateTime.Now;
             }
             _bill.LimitDate = dtpFechaLimite.Value;
-            if(_client != null)
+            if (_client != null)
             {
                 _client.CreditDaysNumber = limitDaysTemp;
-            }            
+            }
         }
 
         private void lstProducto_Format(object sender, ListControlConvertEventArgs e)
@@ -583,6 +590,105 @@ namespace Facturando
             string productDescription = ((InventoryModel)e.ListItem).Product;
             string quantity = ((InventoryModel)e.ListItem).Quantity.ToString();
             e.Value = productDescription + " ---> " + quantity;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var printDocument = new PrintDocument();
+            //printDocument.PrinterSettings.PrinterName = "Microsoft XPS Document Writer";
+            printDocument.PrinterSettings.PrinterName = "SAT SAT38TUSE";
+            //printDocument.PrinterSettings.DefaultPageSettings.Margins.Left = 0;
+            //printDocument.PrinterSettings.DefaultPageSettings.Margins.Top = 0;
+            //printDocument.PrinterSettings.DefaultPageSettings.Margins.Right = 0;
+            //printDocument.PrinterSettings.DefaultPageSettings.Margins.Bottom = 0;
+            //sprintDocument.DefaultPageSettings.PaperSize = new PaperSize("A4", 595, 842);
+            //printDocument.PrintPage += new PrintPageEventHandler(pd_PrintPage);
+            try
+            {
+                
+                // This sample assumes that you have a folder named "c:\temp" on your computer.
+                string filePath = @"C:\test\MyTest.txt";
+                string stringToPrint = string.Empty;
+                // Open the stream and read it back.
+                using (FileStream fs = File.Open(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    byte[] b = new byte[1024];
+                    UTF8Encoding temp = new UTF8Encoding(true);
+
+                    while (fs.Read(b, 0, b.Length) > 0)
+                    {
+                        stringToPrint += temp.GetString(b);
+                        //Console.WriteLine(temp.GetString(b));
+                    }
+
+                    try
+                    {
+                        // Try to write to the file.
+                        fs.Write(b, 0, b.Length);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Writing was disallowed, as expected: {0}", e.ToString());
+                    }
+                }
+                string GS = Convert.ToString((char)29);
+                string ESC = Convert.ToString((char)27);
+                string COMMAND = "";
+                COMMAND = ESC + "@";
+                COMMAND += GS + "V" + (char)1;
+                stringToPrint += COMMAND;
+                var commandCash =
+                Char.ConvertFromUtf32(16) +
+                Char.ConvertFromUtf32(20) +
+                Char.ConvertFromUtf32(1) +
+                Char.ConvertFromUtf32(0) +
+                Char.ConvertFromUtf32(3);
+                stringToPrint += commandCash;
+                // Print the file to the printer.
+                RawPrinterHelper.SendStringToPrinter(printDocument.PrinterSettings.PrinterName, stringToPrint);                
+                //printDocument.Print();
+            }
+            catch (InvalidPrinterException)
+            {
+            }
+            finally
+            {
+                printDocument.Dispose();
+            }
+        }
+
+        void pd_PrintPage(object sender, PrintPageEventArgs ev)
+        {
+            StringBuilder stringToPrintBuider = new StringBuilder();
+            stringToPrintBuider.AppendLine("                    TEST PRINTER!!!                            ");
+            stringToPrintBuider.AppendLine("                      HOLA MUNDO                               ");
+            stringToPrintBuider.AppendLine("            Esta es una prueba de impresion termica            ");
+            stringToPrintBuider.AppendLine("---------------------------------------------------------------");
+            stringToPrintBuider.AppendLine("Item                          Cnt. Vlr.Unit       Total        ");
+            stringToPrintBuider.AppendLine("Esta es una prueba de impres  1    1234567890.00  1234567890.00");
+            stringToPrintBuider.AppendLine("---------------------------------------------------------------");
+            stringToPrintBuider.AppendLine();
+            string stringToPrint = stringToPrintBuider.ToString();
+
+            Font printFont = new Font("Arial", 8, FontStyle.Regular);
+            
+            int charactersOnPage = 0;
+            int linesPerPage = 0;
+
+            ev.Graphics.MeasureString(stringToPrint, printFont,
+                ev.MarginBounds.Size, StringFormat.GenericDefault,
+                out charactersOnPage, out linesPerPage);
+
+            ev.Graphics.DrawString("hola", printFont, Brushes.Black,
+                ev.MarginBounds, StringFormat.GenericTypographic);
+
+
+
+            stringToPrint = stringToPrint.Substring(charactersOnPage);
+
+            ev.HasMorePages = (stringToPrint.Length > 0);
+            ev.HasMorePages = false;
+
         }
     }
 }

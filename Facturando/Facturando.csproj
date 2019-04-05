@@ -223,6 +223,7 @@
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Encrypt.cs" />
+    <Compile Include="Helper\RawFilterHelper.cs" />
     <Compile Include="KeyValidate.cs">
       <SubType>Form</SubType>
     </Compile>
