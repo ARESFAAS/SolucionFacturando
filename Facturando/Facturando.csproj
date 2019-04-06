@@ -569,6 +569,7 @@
     </Content>
     <Content Include="LogoInventariosyFacturacion.ico" />
     <Content Include="Resources\cashbox.jpg" />
+    <Content Include="ThermalPrinterBillTemplate.txt" />
     <None Include="Resources\products.jpe" />
     <None Include="Resources\folder_customer_91730.jpg" />
     <None Include="Resources\consultarRemision.jpg" />

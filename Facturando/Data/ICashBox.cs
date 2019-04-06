@@ -14,6 +14,6 @@ namespace Facturando.Data
         bool CashBoxExistsValidate(UserModel user);
         CashBoxModel CloseCashBox(CashBoxModel cashBox);
         List<CashBoxModel> GetCashBoxList();
-        List<CashBoxDetailModel> GetCashBoxDetailList(CashBoxModel cashBox);
+        List<CashBoxDetailModel> GetCashBoxDetailList(CashBoxModel cashBox);       
     }
 }

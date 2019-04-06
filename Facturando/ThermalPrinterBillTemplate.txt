@@ -1,0 +1,27 @@
+          MULTISERVICIOS EL CLARET            
+           CRUZ OCHOA JULIO CESAR             
+               NIT 79395241-0                 
+            REGIMEN SIMPLIFICADO              
+           Dir: Cra 25 43A-09 Sur             
+                Tel: 7608424                  
+Factura de Venta N: {000000000}               
+Fecha:              {111111111}               
+Nombre Cliente:     {222222222222222222222}   
+Cliente C.C/Nit:    {33333333333333}          
+----------------------------------------------
+Item           Cnt Vlr.Unit       Total       
+----------------------------------------------
+{444444444444} {5} ${6666666666} ${7777777777}
+----------------------------------------------
+   Subtotal                      ${8888888888}
+   IVA {9}%                      ${aaaaaaaaaa}
+   Total                         ${bbbbbbbbbb}
+----------------------------------------------
+Autorización de Facturación DIAN xxxxxxxxx    
+Rango: Prefijo XXX desde 1 hasta 10000        
+      AreSoftware Simón Ariza CC 80071246     
+
+
+
+
+

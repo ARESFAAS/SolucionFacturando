@@ -573,11 +573,11 @@ namespace Facturando
             _billSaveModel.Bill = _bill;
             _billSaveModel.BillDetail = _billDetail;
             _billSaveModel.BillTaxes = _billTaxes;
-            string fileTemplatePath = @"C:\test\MyTest.txt";
-            string printerName = "Microsoft XPS Document Writer";
+            string fileTemplatePath = "ThermalPrinterBillTemplate.txt";
+            string printerName = System.Configuration.ConfigurationSettings.AppSettings["ThermalPrinterName"].ToString();
             ThermalPrinterHelper thermalPrinter = new ThermalPrinterHelper(printerName, fileTemplatePath);
             thermalPrinter.printBill(_billSaveModel);
-            //NewBill();           
+            NewBill();           
         }
 
         private void dtgDetalleFactura_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)

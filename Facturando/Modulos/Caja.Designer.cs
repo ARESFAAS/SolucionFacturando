@@ -49,6 +49,7 @@
             this.TotalMovement = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdCashBoxType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CommentsCashBoxDetail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sign = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtMediosPago = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -206,7 +207,8 @@
             this.CashBoxTypeDescription,
             this.TotalMovement,
             this.IdCashBoxType,
-            this.CommentsCashBoxDetail});
+            this.CommentsCashBoxDetail,
+            this.Sign});
             this.dtgCajaDetalle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgCajaDetalle.Location = new System.Drawing.Point(3, 16);
             this.dtgCajaDetalle.Name = "dtgCajaDetalle";
@@ -265,6 +267,13 @@
             this.CommentsCashBoxDetail.Name = "CommentsCashBoxDetail";
             this.CommentsCashBoxDetail.ReadOnly = true;
             // 
+            // Sign
+            // 
+            this.Sign.DataPropertyName = "Sign";
+            this.Sign.HeaderText = "Suma/Resta";
+            this.Sign.Name = "Sign";
+            this.Sign.ReadOnly = true;
+            // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
@@ -296,6 +305,7 @@
             this.txtMediosPago.Name = "txtMediosPago";
             this.txtMediosPago.Size = new System.Drawing.Size(214, 21);
             this.txtMediosPago.TabIndex = 12;
+            this.txtMediosPago.Text = "0";
             this.txtMediosPago.Leave += new System.EventHandler(this.txtMediosPago_Leave);
             // 
             // label6
@@ -317,6 +327,7 @@
             this.txtCash.Name = "txtCash";
             this.txtCash.Size = new System.Drawing.Size(214, 21);
             this.txtCash.TabIndex = 10;
+            this.txtCash.Text = "0";
             this.txtCash.Leave += new System.EventHandler(this.txtCash_Leave);
             // 
             // label5
@@ -359,9 +370,9 @@
             this.lblTotalCaja.ForeColor = System.Drawing.Color.DarkGreen;
             this.lblTotalCaja.Location = new System.Drawing.Point(162, 80);
             this.lblTotalCaja.Name = "lblTotalCaja";
-            this.lblTotalCaja.Size = new System.Drawing.Size(41, 15);
+            this.lblTotalCaja.Size = new System.Drawing.Size(14, 15);
             this.lblTotalCaja.TabIndex = 6;
-            this.lblTotalCaja.Text = "label7";
+            this.lblTotalCaja.Text = "0";
             // 
             // lblTotalRemisiones
             // 
@@ -370,9 +381,9 @@
             this.lblTotalRemisiones.ForeColor = System.Drawing.Color.Maroon;
             this.lblTotalRemisiones.Location = new System.Drawing.Point(162, 47);
             this.lblTotalRemisiones.Name = "lblTotalRemisiones";
-            this.lblTotalRemisiones.Size = new System.Drawing.Size(41, 15);
+            this.lblTotalRemisiones.Size = new System.Drawing.Size(14, 15);
             this.lblTotalRemisiones.TabIndex = 5;
-            this.lblTotalRemisiones.Text = "label6";
+            this.lblTotalRemisiones.Text = "0";
             // 
             // lblTotalFacturas
             // 
@@ -381,9 +392,9 @@
             this.lblTotalFacturas.ForeColor = System.Drawing.Color.Blue;
             this.lblTotalFacturas.Location = new System.Drawing.Point(162, 23);
             this.lblTotalFacturas.Name = "lblTotalFacturas";
-            this.lblTotalFacturas.Size = new System.Drawing.Size(41, 15);
+            this.lblTotalFacturas.Size = new System.Drawing.Size(14, 15);
             this.lblTotalFacturas.TabIndex = 4;
-            this.lblTotalFacturas.Text = "label5";
+            this.lblTotalFacturas.Text = "0";
             // 
             // label4
             // 
@@ -447,7 +458,7 @@
             this.groupBox3.Size = new System.Drawing.Size(443, 239);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "DETALLE CAJA";
+            this.groupBox3.Text = "DETALLE CAJA ABIERTA";
             // 
             // Caja
             // 
@@ -488,13 +499,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn EditCashBox;
         private System.Windows.Forms.DataGridViewButtonColumn CloseCashBox;
         private System.Windows.Forms.DataGridView dtgCajaDetalle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdCashBoxDetail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdCashBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MovementDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CashBoxTypeDescription;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalMovement;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdCashBoxType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CommentsCashBoxDetail;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -511,5 +515,13 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtMediosPago;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdCashBoxDetail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdCashBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MovementDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CashBoxTypeDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalMovement;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdCashBoxType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CommentsCashBoxDetail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sign;
     }
 }
