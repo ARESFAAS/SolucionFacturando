@@ -53,7 +53,8 @@ namespace Facturando.Helper
             DOCINFOA di = new DOCINFOA();
             bool bSuccess = false; // Assume failure unless you specifically succeed.
 
-            di.pDocName = "RAW Document";
+            //di.pDocName = "RAW Document";
+            di.pDocName = "IyFRawBill";
             // Win7
             di.pDataType = "RAW";
 
@@ -129,5 +130,4 @@ namespace Facturando.Helper
             return true;
         }
     }
-
 }

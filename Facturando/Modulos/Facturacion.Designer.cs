@@ -54,6 +54,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnTermica = new System.Windows.Forms.Button();
             this.btnFacturar = new System.Windows.Forms.Button();
             this.dtgImpuestos = new System.Windows.Forms.DataGridView();
             this.IdBillTaxes = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,8 +87,6 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.chkPagada = new System.Windows.Forms.CheckBox();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -336,7 +335,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.btnTermica);
             this.groupBox4.Controls.Add(this.btnFacturar);
             this.groupBox4.Controls.Add(this.dtgImpuestos);
             this.groupBox4.Controls.Add(this.label16);
@@ -352,13 +351,25 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "DETALLE FACTURA";
             // 
+            // btnTermica
+            // 
+            this.btnTermica.Enabled = false;
+            this.btnTermica.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTermica.Location = new System.Drawing.Point(12, 368);
+            this.btnTermica.Name = "btnTermica";
+            this.btnTermica.Size = new System.Drawing.Size(79, 35);
+            this.btnTermica.TabIndex = 8;
+            this.btnTermica.Text = "TÉRMICA";
+            this.btnTermica.UseVisualStyleBackColor = true;
+            this.btnTermica.Click += new System.EventHandler(this.btnTermica_Click);
+            // 
             // btnFacturar
             // 
             this.btnFacturar.Enabled = false;
             this.btnFacturar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFacturar.Location = new System.Drawing.Point(12, 400);
+            this.btnFacturar.Location = new System.Drawing.Point(12, 409);
             this.btnFacturar.Name = "btnFacturar";
-            this.btnFacturar.Size = new System.Drawing.Size(69, 37);
+            this.btnFacturar.Size = new System.Drawing.Size(79, 37);
             this.btnFacturar.TabIndex = 4;
             this.btnFacturar.Text = "VISTA PREVIA";
             this.btnFacturar.UseVisualStyleBackColor = true;
@@ -665,16 +676,6 @@
             this.chkPagada.Text = "Pagada";
             this.chkPagada.UseVisualStyleBackColor = true;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(7, 304);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Facturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -771,7 +772,6 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.CheckBox chkPagada;
         private System.Windows.Forms.TextBox txtObservaciones;
-        private System.Windows.Forms.Button button1;
-        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.Button btnTermica;
     }
 }

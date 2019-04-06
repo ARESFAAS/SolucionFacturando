@@ -226,7 +226,7 @@ namespace Facturando
             }));
 
             btnFacturar.Enabled = true;
-
+            btnTermica.Enabled = true;
             ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = true;
         }
 
@@ -514,6 +514,7 @@ namespace Facturando
             lstProducto.DataSource = new List<InventoryModel>();
             btnBuscarProducto.Enabled = false;
             btnFacturar.Enabled = false;
+            btnTermica.Enabled = false;
             txtDiasLimite.Text = string.Empty;
             dtpFechaLimite.Value = DateTime.Now;
             chkPagada.Checked = true;
@@ -562,6 +563,23 @@ namespace Facturando
             }
         }
 
+        private void PrintThermalBill()
+        {
+            ConverseNumberToText numberToTextInstance = new ConverseNumberToText();
+            _bill.TotalInLetters = numberToTextInstance.enletras(_bill.Total.ToString());
+            _billSaveModel.Client = _client;
+            //Sum(Fields!Total.Value, "Bill") - Sum(Fields!Total.Value, "BillTaxes")
+            _bill.SubTotal = _bill.Total - _billTaxes.Sum(x => x.Total);            
+            _billSaveModel.Bill = _bill;
+            _billSaveModel.BillDetail = _billDetail;
+            _billSaveModel.BillTaxes = _billTaxes;
+            string fileTemplatePath = @"C:\test\MyTest.txt";
+            string printerName = "Microsoft XPS Document Writer";
+            ThermalPrinterHelper thermalPrinter = new ThermalPrinterHelper(printerName, fileTemplatePath);
+            thermalPrinter.printBill(_billSaveModel);
+            //NewBill();           
+        }
+
         private void dtgDetalleFactura_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = false;
@@ -592,103 +610,13 @@ namespace Facturando
             e.Value = productDescription + " ---> " + quantity;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnTermica_Click(object sender, EventArgs e)
         {
-            var printDocument = new PrintDocument();
-            //printDocument.PrinterSettings.PrinterName = "Microsoft XPS Document Writer";
-            printDocument.PrinterSettings.PrinterName = "SAT SAT38TUSE";
-            //printDocument.PrinterSettings.DefaultPageSettings.Margins.Left = 0;
-            //printDocument.PrinterSettings.DefaultPageSettings.Margins.Top = 0;
-            //printDocument.PrinterSettings.DefaultPageSettings.Margins.Right = 0;
-            //printDocument.PrinterSettings.DefaultPageSettings.Margins.Bottom = 0;
-            //sprintDocument.DefaultPageSettings.PaperSize = new PaperSize("A4", 595, 842);
-            //printDocument.PrintPage += new PrintPageEventHandler(pd_PrintPage);
-            try
+            DialogResult resultValidatePrintBill = MessageBox.Show("Seguro, los datos se guardarán", "Imprimir", MessageBoxButtons.OKCancel);
+            if (resultValidatePrintBill == DialogResult.OK)
             {
-                
-                // This sample assumes that you have a folder named "c:\temp" on your computer.
-                string filePath = @"C:\test\MyTest.txt";
-                string stringToPrint = string.Empty;
-                // Open the stream and read it back.
-                using (FileStream fs = File.Open(filePath, FileMode.Open, FileAccess.Read))
-                {
-                    byte[] b = new byte[1024];
-                    UTF8Encoding temp = new UTF8Encoding(true);
-
-                    while (fs.Read(b, 0, b.Length) > 0)
-                    {
-                        stringToPrint += temp.GetString(b);
-                        //Console.WriteLine(temp.GetString(b));
-                    }
-
-                    try
-                    {
-                        // Try to write to the file.
-                        fs.Write(b, 0, b.Length);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Writing was disallowed, as expected: {0}", e.ToString());
-                    }
-                }
-                string GS = Convert.ToString((char)29);
-                string ESC = Convert.ToString((char)27);
-                string COMMAND = "";
-                COMMAND = ESC + "@";
-                COMMAND += GS + "V" + (char)1;
-                stringToPrint += COMMAND;
-                var commandCash =
-                Char.ConvertFromUtf32(16) +
-                Char.ConvertFromUtf32(20) +
-                Char.ConvertFromUtf32(1) +
-                Char.ConvertFromUtf32(0) +
-                Char.ConvertFromUtf32(3);
-                stringToPrint += commandCash;
-                // Print the file to the printer.
-                RawPrinterHelper.SendStringToPrinter(printDocument.PrinterSettings.PrinterName, stringToPrint);                
-                //printDocument.Print();
-            }
-            catch (InvalidPrinterException)
-            {
-            }
-            finally
-            {
-                printDocument.Dispose();
-            }
-        }
-
-        void pd_PrintPage(object sender, PrintPageEventArgs ev)
-        {
-            StringBuilder stringToPrintBuider = new StringBuilder();
-            stringToPrintBuider.AppendLine("                    TEST PRINTER!!!                            ");
-            stringToPrintBuider.AppendLine("                      HOLA MUNDO                               ");
-            stringToPrintBuider.AppendLine("            Esta es una prueba de impresion termica            ");
-            stringToPrintBuider.AppendLine("---------------------------------------------------------------");
-            stringToPrintBuider.AppendLine("Item                          Cnt. Vlr.Unit       Total        ");
-            stringToPrintBuider.AppendLine("Esta es una prueba de impres  1    1234567890.00  1234567890.00");
-            stringToPrintBuider.AppendLine("---------------------------------------------------------------");
-            stringToPrintBuider.AppendLine();
-            string stringToPrint = stringToPrintBuider.ToString();
-
-            Font printFont = new Font("Arial", 8, FontStyle.Regular);
-            
-            int charactersOnPage = 0;
-            int linesPerPage = 0;
-
-            ev.Graphics.MeasureString(stringToPrint, printFont,
-                ev.MarginBounds.Size, StringFormat.GenericDefault,
-                out charactersOnPage, out linesPerPage);
-
-            ev.Graphics.DrawString("hola", printFont, Brushes.Black,
-                ev.MarginBounds, StringFormat.GenericTypographic);
-
-
-
-            stringToPrint = stringToPrint.Substring(charactersOnPage);
-
-            ev.HasMorePages = (stringToPrint.Length > 0);
-            ev.HasMorePages = false;
-
+                PrintThermalBill();
+            }            
         }
     }
 }
