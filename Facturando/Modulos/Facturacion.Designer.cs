@@ -293,6 +293,7 @@
             // lstProducto
             // 
             this.lstProducto.FormattingEnabled = true;
+            this.lstProducto.HorizontalScrollbar = true;
             this.lstProducto.Location = new System.Drawing.Point(15, 72);
             this.lstProducto.Name = "lstProducto";
             this.lstProducto.Size = new System.Drawing.Size(475, 186);

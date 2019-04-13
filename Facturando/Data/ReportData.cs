@@ -63,7 +63,7 @@ namespace Facturando.Data
             {
                 using (FacturandoEntities context = new FacturandoEntities())
                 {
-                    return context.Inventory.Select(x => new InventoryModel
+                    return context.Inventory.Where(x => x.Product.Active == true).Select(x => new InventoryModel
                     {
                         Id = x.Id,
                         IdProduct = x.IdProduct.Value,
@@ -108,7 +108,7 @@ namespace Facturando.Data
             {
                 using (FacturandoEntities context = new FacturandoEntities())
                 {
-                    return context.Product.Select(x => new ProductModel
+                    return context.Product.Where(x => x.Active == true).Select(x => new ProductModel
                     {
                       Description = x.Description,
                       DescriptionUnit = x.UnitMeasure.Description                          

@@ -39,14 +39,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnEditar = new System.Windows.Forms.Button();
             this.dtgProducto = new System.Windows.Forms.DataGridView();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.txtNombreProducto = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescriptionUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FreeProduct = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.txtNombreProducto = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Active = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgProducto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -155,13 +157,52 @@
             this.Description,
             this.IdUnit,
             this.DescriptionUnit,
-            this.FreeProduct});
+            this.FreeProduct,
+            this.Active});
             this.dtgProducto.Location = new System.Drawing.Point(45, 173);
             this.dtgProducto.Name = "dtgProducto";
             this.dtgProducto.ReadOnly = true;
             this.dtgProducto.Size = new System.Drawing.Size(834, 190);
             this.dtgProducto.TabIndex = 3;
             this.dtgProducto.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dtgProducto_RowHeaderMouseClick);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(633, 54);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(80, 35);
+            this.btnBuscar.TabIndex = 2;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // txtNombreProducto
+            // 
+            this.txtNombreProducto.Location = new System.Drawing.Point(228, 63);
+            this.txtNombreProducto.Name = "txtNombreProducto";
+            this.txtNombreProducto.Size = new System.Drawing.Size(351, 26);
+            this.txtNombreProducto.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(42, 69);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(160, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Descripcion Producto";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Location = new System.Drawing.Point(287, 666);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(71, 24);
+            this.checkBox2.TabIndex = 15;
+            this.checkBox2.Text = "Activo";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // Id
             // 
@@ -205,31 +246,15 @@
             this.FreeProduct.ReadOnly = true;
             this.FreeProduct.Width = 65;
             // 
-            // btnBuscar
+            // Active
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(633, 54);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(80, 35);
-            this.btnBuscar.TabIndex = 2;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
-            // txtNombreProducto
-            // 
-            this.txtNombreProducto.Location = new System.Drawing.Point(228, 63);
-            this.txtNombreProducto.Name = "txtNombreProducto";
-            this.txtNombreProducto.Size = new System.Drawing.Size(351, 26);
-            this.txtNombreProducto.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Descripcion Producto";
+            this.Active.DataPropertyName = "Active";
+            this.Active.HeaderText = "Activo";
+            this.Active.Name = "Active";
+            this.Active.ReadOnly = true;
+            this.Active.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Active.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Active.Width = 77;
             // 
             // Producto
             // 
@@ -237,6 +262,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.ClientSize = new System.Drawing.Size(1101, 706);
+            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -278,10 +304,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescriptionUnit;
         private System.Windows.Forms.DataGridViewCheckBoxColumn FreeProduct;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Active;
     }
 }

@@ -19,10 +19,10 @@ namespace Facturando.Data
                         result = new List<InventoryModel>();
 
                         InventoryDetail inventoryDetailTemp = context.InventoryDetail
-                            .Where(x => x.BarCodeData.ToLower().Equals(barCode.ToLower()))
+                            .Where(x => x.BarCodeData.ToLower().Equals(barCode.ToLower()))                           
                             .FirstOrDefault();
-                        Inventory inventoryTemp = inventoryDetailTemp != null ? inventoryDetailTemp.Inventory : null;
-
+                        Inventory inventoryTemp = inventoryDetailTemp != null && inventoryDetailTemp.Inventory.Product.Active == true ? inventoryDetailTemp.Inventory : null;
+                        
                         if (inventoryTemp != null)
                         {
                             result.Add(new InventoryModel
@@ -40,6 +40,7 @@ namespace Facturando.Data
                     {
                         result = context.Inventory
                         .Where(x => x.Product.Description.ToLower().Contains(productName.ToLower()))
+                        .Where(x => x.Product.Active == true)
                         .Select(x => new InventoryModel
                         {
                             Id = x.Id,
@@ -67,6 +68,7 @@ namespace Facturando.Data
                 {
                     return context.Inventory
                         .Where(x => x.Id == id)
+                        .Where(x => x.Product.Active == true)
                         .Select(x => new InventoryModel
                         {
                             Id = x.Id,
@@ -91,6 +93,7 @@ namespace Facturando.Data
                 {
                     return context.Inventory
                         .Where(x => x.IdProduct == id)
+                        .Where(x => x.Product.Active == true)
                         .Select(x => new InventoryModel
                         {
                             Id = x.Id,
@@ -115,6 +118,7 @@ namespace Facturando.Data
                 {
                     return context.InventoryDetail
                         .Where(x => x.Inventory.IdProduct.Value == productId)
+                        .Where(x => x.Inventory.Product.Active == true)
                         .OrderByDescending(x => x.EventDate)
                         .Take(50)
                         .Select(x => new InventoryDetailModel
@@ -155,6 +159,7 @@ namespace Facturando.Data
                     return context.InventoryDetail
                         .Where(x => x.Inventory.IdProduct.Value == productId &&
                         (x.EventDate >= initDate && x.EventDate <= endDate) && x.InventoryType.Sign.Equals(type))
+                        .Where(x => x.Inventory.Product.Active == true)
                         .OrderByDescending(x => x.EventDate)
                         .Take(50)
                         .Select(x => new InventoryDetailModel
@@ -231,6 +236,7 @@ namespace Facturando.Data
                 {
                     return context.InventoryDetail
                         .Where(x => x.Inventory.IdProduct.Value == productId && x.InventoryType.Sign.Equals("+"))
+                        .Where(x => x.Inventory.Product.Active == true)
                         .OrderByDescending(x => x.EventDate)
                         .Select(x => new InventoryDetailModel
                         {
@@ -345,7 +351,9 @@ namespace Facturando.Data
             {
                 using (FacturandoEntities context = new FacturandoEntities())
                 {
-                    return context.Product.Select(x => new ProductModel
+                    return context.Product
+                        .Where(x => x.Active == true)
+                        .Select(x => new ProductModel
                     {
                         Id = x.Id,
                         Description = string.Concat(x.Description, " ", x.UnitMeasure.Description)

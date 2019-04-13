@@ -53,6 +53,7 @@ namespace Facturando.Modelos
         public Guid IdUnit { get; set; }
         public string DescriptionUnit { get; set; }
         public bool FreeProduct { get; set; }
+        public bool Active { get; set; }
     }
     public class InventorySaveModel
     {

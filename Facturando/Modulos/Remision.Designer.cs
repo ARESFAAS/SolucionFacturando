@@ -281,6 +281,7 @@
             // lstProducto
             // 
             this.lstProducto.FormattingEnabled = true;
+            this.lstProducto.HorizontalScrollbar = true;
             this.lstProducto.Location = new System.Drawing.Point(17, 74);
             this.lstProducto.Margin = new System.Windows.Forms.Padding(2);
             this.lstProducto.Name = "lstProducto";

@@ -201,6 +201,7 @@
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
           <Property Name="IdUnit" Type="uniqueidentifier" />
           <Property Name="Free" Type="bit" />
+          <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="Remission">
           <Key>
@@ -944,6 +945,7 @@
           <NavigationProperty Name="UnitMeasure" Relationship="Self.FK_Product_UnitMeasure" FromRole="Product" ToRole="UnitMeasure" />
           <NavigationProperty Name="RemissionDetail" Relationship="Self.FK_RemissionDetail_Product" FromRole="Product" ToRole="RemissionDetail" />
           <Property Name="Free" Type="Boolean" />
+          <Property Name="Active" Type="Boolean" />
         </EntityType>
         <EntityType Name="Remission">
           <Key>
@@ -1793,6 +1795,7 @@
           <EntitySetMapping Name="Product">
             <EntityTypeMapping TypeName="FacturandoModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Free" ColumnName="Free" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

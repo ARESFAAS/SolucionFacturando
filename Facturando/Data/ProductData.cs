@@ -22,7 +22,8 @@ namespace Facturando.Data
                             Description = x.Description,
                             IdUnit = x.IdUnit.Value,
                             DescriptionUnit = x.UnitMeasure.Description,
-                            FreeProduct = x.Free == null ? false : x.Free.Value
+                            FreeProduct = x.Free == null ? false : x.Free.Value,
+                            Active = x.Active == null ? false : x.Active.Value
                         })
                         .ToList();
                 }
@@ -48,7 +49,8 @@ namespace Facturando.Data
                             Id = product.Id,
                             Description = product.Description,
                             IdUnit = product.IdUnit,
-                            Free = product.FreeProduct                            
+                            Free = product.FreeProduct,
+                            Active = product.Active                          
                         });
                     }
                     else
@@ -56,6 +58,7 @@ namespace Facturando.Data
                         productTemp.Description = product.Description;
                         productTemp.IdUnit = product.IdUnit;
                         productTemp.Free = product.FreeProduct;
+                        productTemp.Active = product.Active;
                     }
                     context.SaveChanges();
                     result.Add(product);
