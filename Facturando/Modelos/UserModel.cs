@@ -19,4 +19,15 @@ namespace Facturando.Modelos
         public List<string> ModuleList { get; set; }
         public List<string> ActionList { get; set; }
     }
+
+    public class ModuleModel {
+        public Guid Id { get; set; }
+        public string Description { get; set; }
+    }
+
+    public class RolModel2 {
+        public Guid Id { get; set; }
+        public string Description { get; set; }
+        public List<ModuleModel> ModuleList { get; set; }
+    }
 }

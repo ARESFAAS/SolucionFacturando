@@ -1,4 +1,5 @@
 ﻿using Facturando.Data;
+using Facturando.Helper;
 using Facturando.Modelos;
 using Facturando.Modulos;
 using System;
@@ -289,6 +290,7 @@ namespace Facturando
             }));
 
             btnRemitir.Enabled = true;
+            btnTermica.Enabled = true;
 
             ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = true;
         }
@@ -438,6 +440,7 @@ namespace Facturando
             txtNombreProducto.Text = string.Empty;
             lstProducto.DataSource = new List<InventoryModel>();           
             btnRemitir.Enabled = false;
+            btnTermica.Enabled = false;
             chkPagada.Checked = true;
             txtObservaciones.Text = string.Empty;
         }
@@ -473,6 +476,23 @@ namespace Facturando
             }
         }
 
+        private void PrintThermalRemission()
+        {
+            ConverseNumberToText numberToTextInstance = new ConverseNumberToText();
+            _remission.TotalInLetters = numberToTextInstance.enletras(_remission.Total.ToString());
+            _remissionSaveModel.Client = _client;
+            //Sum(Fields!Total.Value, "Bill") - Sum(Fields!Total.Value, "BillTaxes")
+            //_bill.SubTotal = _bill.Total - _billTaxes.Sum(x => x.Total);
+            _remissionSaveModel.Remission = _remission;
+            _remissionSaveModel.RemissionDetail = _remissionDetail;
+            //_remissionSaveModel.BillTaxes = _billTaxes;
+            string fileTemplatePath = "ThermalPrinterRemissionTemplate.txt";
+            string printerName = System.Configuration.ConfigurationSettings.AppSettings["ThermalPrinterName"].ToString();
+            ThermalPrinterHelper thermalPrinter = new ThermalPrinterHelper(printerName, fileTemplatePath);
+            thermalPrinter.printRemission(_remissionSaveModel);
+            NewRemission();
+        }
+
         private void dtgDetalleRemision_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = false;
@@ -483,6 +503,15 @@ namespace Facturando
             string productDescription = ((InventoryModel)e.ListItem).Product;
             string quantity = ((InventoryModel)e.ListItem).Quantity.ToString();
             e.Value = productDescription + " ---> " + quantity;
+        }
+
+        private void btnTermica_Click(object sender, EventArgs e)
+        {
+            DialogResult resultValidatePrintRemission = MessageBox.Show("Seguro, los datos se guardarán", "Imprimir", MessageBoxButtons.OKCancel);
+            if (resultValidatePrintRemission == DialogResult.OK)
+            {
+                PrintThermalRemission();
+            }
         }
     }
 }

@@ -77,6 +77,7 @@
             this.LastSalePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FreeProduct = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.GroupT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastPurchasePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -299,7 +300,8 @@
             this.Quantity,
             this.LastSalePrice,
             this.FreeProduct,
-            this.GroupT});
+            this.GroupT,
+            this.LastPurchasePrice});
             this.dataGridView2.Location = new System.Drawing.Point(305, 73);
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
@@ -556,6 +558,15 @@
             this.GroupT.Visible = false;
             this.GroupT.Width = 73;
             // 
+            // LastPurchasePrice
+            // 
+            this.LastPurchasePrice.DataPropertyName = "LastPurchasePrice";
+            this.LastPurchasePrice.HeaderText = "LastPurchasePrice";
+            this.LastPurchasePrice.Name = "LastPurchasePrice";
+            this.LastPurchasePrice.ReadOnly = true;
+            this.LastPurchasePrice.Visible = false;
+            this.LastPurchasePrice.Width = 152;
+            // 
             // Inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -652,5 +663,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LastSalePrice;
         private System.Windows.Forms.DataGridViewCheckBoxColumn FreeProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn GroupT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastPurchasePrice;
     }
 }

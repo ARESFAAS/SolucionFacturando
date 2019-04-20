@@ -78,9 +78,13 @@ namespace Facturando.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRemissionNumber_Result>("GetRemissionNumber", macAddressParameter);
         }
     
-        public virtual ObjectResult<GetInventoryFromSP_Result> GetInventoryFromSP()
+        public virtual ObjectResult<GetInventoryFromSP_Result> GetInventoryFromSP(string productDescription)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetInventoryFromSP_Result>("GetInventoryFromSP");
+            var productDescriptionParameter = productDescription != null ?
+                new ObjectParameter("productDescription", productDescription) :
+                new ObjectParameter("productDescription", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetInventoryFromSP_Result>("GetInventoryFromSP", productDescriptionParameter);
         }
     
         public virtual ObjectResult<DailyGet_Result> DailyGet(Nullable<System.DateTime> initDate, Nullable<System.DateTime> endDate)

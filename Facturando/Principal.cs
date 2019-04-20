@@ -123,22 +123,62 @@ namespace Facturando
 
         private void alertasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddFormInPanel(new Alertas());
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["R"]))
+                    {
+                        AddFormInPanel(new Alertas());
+                        return;
+                    }
+                }
+            }            
         }
 
         private void facturaciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddFormInPanel(new FacturacionReporte());
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["R"]))
+                    {
+                        AddFormInPanel(new FacturacionReporte());
+                        return;
+                    }
+                }
+            }            
         }
 
         private void remisionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddFormInPanel(new RemisionReporte());
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["R"]))
+                    {
+                        AddFormInPanel(new RemisionReporte());
+                        return;
+                    }
+                }
+            }            
         }
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddFormInPanel(new ClientesReporte());
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["R"]))
+                    {
+                        AddFormInPanel(new ClientesReporte());
+                        return;
+                    }
+                }
+            }            
         }
 
         private void picConsultarFactura_Click(object sender, EventArgs e)
@@ -218,12 +258,32 @@ namespace Facturando
 
         private void productosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddFormInPanel(new ProductosReporte());
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["R"]))
+                    {
+                        AddFormInPanel(new ProductosReporte());
+                        return;
+                    }
+                }
+            }
         }
 
         private void diarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddFormInPanel(new Diario());
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["R"]))
+                    {
+                        AddFormInPanel(new Diario());
+                        return;
+                    }
+                }
+            }
         }
 
         private void AddFormInPanel(object formHijo)
@@ -262,6 +322,21 @@ namespace Facturando
             if (formInterface != null)
             {
                 formInterface.Logout();
+            }
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["U"]))
+                    {
+                        AddFormInPanel(new Usuarios());
+                        return;
+                    }
+                }
             }
         }
     }

@@ -5,9 +5,13 @@ namespace Facturando.Modelos
 {
     public class InventoryReportModel
     {
-        public List<InventoryModel> Inventory { get; set; }
-        
+        public List<InventoryModel> Inventory { get; set; }    
     }
+
+    public class InventoryReportParamsModel {
+        public int InventoryAlert { get; set; }
+    }
+
     public class ClientViewModel
     {
         public string IdentificationType { get; set; }

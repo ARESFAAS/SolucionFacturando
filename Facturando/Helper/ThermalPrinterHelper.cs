@@ -201,7 +201,117 @@ namespace Facturando.Helper
             }
         }
 
-        public void printRemission() {
+        public void printRemission(RemissionSaveModel remission) {
+
+            var printDocument = new PrintDocument();
+            printDocument.PrinterSettings.PrinterName = _printerName;
+            try
+            {
+                string filePath = _docTemplatePath;
+                string stringToPrint = string.Empty;
+                string specifierFormat = "0,0.000";
+                using (StreamReader sr = new StreamReader(filePath))
+                {
+                    while (sr.Peek() >= 0)
+                    {
+                        string lineTemp = sr.ReadLine();
+                        if (lineTemp.Contains("{444444444444}"))
+                        {
+                            string lineDetailTemplate = lineTemp;
+                            string lineDetailAux = lineDetailTemplate;
+                            foreach (var item in remission.RemissionDetail)
+                            {
+                                lineDetailAux = lineDetailAux
+                                .Replace("{444444444444}", item.Product.Substring(0, item.Product.Length < 14 ? item.Product.Length : 14)
+                                .PadLeft(14 - item.Product.Substring(0, item.Product.Length < 14 ? item.Product.Length : 14).Length, ' ')); //product
+                                lineDetailAux = lineDetailAux
+                                .Replace("{5}", item.Quantity.ToString().Substring(0, item.Quantity.ToString().Length < 3 ? item.Quantity.ToString().Length : 3)
+                                .PadLeft(3 - item.Quantity.ToString().Substring(0, item.Quantity.ToString().Length < 3 ? item.Quantity.ToString().Length : 3).Length, ' ')); //quantity
+                                lineDetailAux = lineDetailAux
+                                .Replace("{6666666666}", item.UnitPrice.ToString(specifierFormat).Substring(0, item.UnitPrice.ToString(specifierFormat).Length < 12 ? item.UnitPrice.ToString(specifierFormat).Length : 12)
+                                .PadLeft(12 - item.UnitPrice.ToString(specifierFormat).Substring(0, item.UnitPrice.ToString(specifierFormat).Length < 12 ? item.UnitPrice.ToString(specifierFormat).Length : 12).Length, ' ')); //unit value
+                                lineDetailAux = lineDetailAux
+                                .Replace("{7777777777}", item.Total.ToString(specifierFormat).Substring(0, item.Total.ToString(specifierFormat).Length < 12 ? item.Total.ToString(specifierFormat).Length : 12)
+                                .PadLeft(12 - item.Total.ToString(specifierFormat).Substring(0, item.Total.ToString(specifierFormat).Length < 12 ? item.Total.ToString(specifierFormat).Length : 12).Length, ' ')); //total
+
+                                stringToPrint += lineDetailAux;
+                                stringToPrint += Environment.NewLine;
+                                lineDetailAux = lineDetailTemplate;
+                            }
+                        }
+                        else if (lineTemp.Contains("{9}"))
+                        {
+                            //string lineDetailTemplate = lineTemp;
+                            //string lineDetailAux = lineDetailTemplate;
+                            //foreach (var item in bill.BillTaxes)
+                            //{
+                            //    lineDetailAux = lineDetailAux
+                            //    .Replace("{9}", item.PercentageValue.ToString().Substring(0, item.PercentageValue.ToString().Length < 3 ? item.PercentageValue.ToString().Length : 3)
+                            //    .PadLeft(3 - item.PercentageValue.ToString().Substring(0, 2).Length, ' ')); //tax percent
+                            //    lineDetailAux = lineDetailAux
+                            //    .Replace("{aaaaaaaaaa}", item.Total.ToString(specifierFormat).Substring(0, item.Total.ToString(specifierFormat).Length < 12 ? item.Total.ToString(specifierFormat).Length : 12)
+                            //    .PadLeft(12 - item.Total.ToString(specifierFormat).Substring(0, item.Total.ToString(specifierFormat).Length < 12 ? item.Total.ToString(specifierFormat).Length : 12).Length, ' ')); //tax value                                
+
+                            //    stringToPrint += lineDetailAux;
+                            //    stringToPrint += Environment.NewLine;
+                            //    lineDetailAux = lineDetailTemplate;
+                            //}
+                        }
+                        else
+                        {
+                            stringToPrint += lineTemp;
+                            stringToPrint += Environment.NewLine;
+                        }
+                    }
+                }
+            
+                //replace remission values
+                stringToPrint = stringToPrint
+                    .Replace("{000000000}", remission.Remission.RemissionNumber.ToString()
+                    .Substring(0, remission.Remission.RemissionNumber.ToString().Length < 11 ? remission.Remission.RemissionNumber.ToString().Length : 11)
+                    .PadLeft(12 - remission.Remission.RemissionNumber.ToString().Substring(0, remission.Remission.RemissionNumber.ToString().Length < 12 ? remission.Remission.RemissionNumber.ToString().Length : 11).Length, '0'));//remission number
+                stringToPrint = stringToPrint
+                    .Replace("{111111111}", remission.Remission.DateEvent.ToString("dd/MM/yyyy").Substring(0, remission.Remission.DateEvent.ToString("dd/MM/yyyy").Length < 11 ? remission.Remission.DateEvent.ToString("dd/MM/yyyy").Length : 11)
+                    .PadLeft(11 - remission.Remission.DateEvent.ToString("dd/MM/yyyy").Substring(0, remission.Remission.DateEvent.ToString("dd/MM/yyyy").Length < 11 ? remission.Remission.DateEvent.ToString("dd/MM/yyyy").Length : 11).Length, ' '));//date
+                stringToPrint = stringToPrint
+                    .Replace("{222222222222222222222}", remission.Client.Name.Substring(0, remission.Client.Name.Length < 23 ? remission.Client.Name.Length : 23)
+                    .PadLeft(23 - remission.Client.Name.Substring(0, remission.Client.Name.Length < 23 ? remission.Client.Name.Length : 23).Length, ' '));//client name
+                stringToPrint = stringToPrint
+                    .Replace("{33333333333333}", remission.Client.IdentificationNumber.Substring(0, remission.Client.IdentificationNumber.Length < 16 ? remission.Client.IdentificationNumber.Length : 16)
+                    .PadLeft(16 - remission.Client.IdentificationNumber.Substring(0, remission.Client.IdentificationNumber.Length < 16 ? remission.Client.IdentificationNumber.Length : 16).Length, ' '));//client id                
+                //stringToPrint = stringToPrint
+                //    .Replace("{8888888888}", bill.Bill.SubTotal.ToString(specifierFormat).Substring(0, bill.Bill.SubTotal.ToString(specifierFormat).Length < 12 ? bill.Bill.SubTotal.ToString(specifierFormat).Length : 12)
+                //    .PadLeft(12 - bill.Bill.SubTotal.ToString(specifierFormat).Substring(0, bill.Bill.SubTotal.ToString(specifierFormat).Length < 12 ? bill.Bill.SubTotal.ToString(specifierFormat).Length : 12).Length, ' ')); //subtotal               
+                stringToPrint = stringToPrint
+                    .Replace("{bbbbbbbbbb}", remission.Remission.Total.ToString(specifierFormat).Substring(0, remission.Remission.Total.ToString(specifierFormat).Length < 12 ? remission.Remission.Total.ToString(specifierFormat).Length : 12)
+                    .PadLeft(12 - remission.Remission.Total.ToString(specifierFormat).Substring(0, remission.Remission.Total.ToString(specifierFormat).Length < 12 ? remission.Remission.Total.ToString(specifierFormat).Length : 12).Length, ' ')); //total remission
+
+                //command to cut paper
+                string GS = Convert.ToString((char)29);
+                string ESC = Convert.ToString((char)27);
+                string COMMAND = "";
+                COMMAND = ESC + "@";
+                COMMAND += GS + "V" + (char)1;
+                stringToPrint += COMMAND;
+                //command to open cash drawer
+                var commandCash =
+                Char.ConvertFromUtf32(16) +
+                Char.ConvertFromUtf32(20) +
+                Char.ConvertFromUtf32(1) +
+                Char.ConvertFromUtf32(0) +
+                Char.ConvertFromUtf32(3);
+                stringToPrint += commandCash;
+                // Print the file to the printer.
+                RawPrinterHelper.SendStringToPrinter(printDocument.PrinterSettings.PrinterName, stringToPrint);                
+            }
+            catch (InvalidPrinterException)
+            {
+            }
+            finally
+            {
+                printDocument.Dispose();
+            }
+
         }
 
         private void pd_PrintPage(object sender, PrintPageEventArgs ev)

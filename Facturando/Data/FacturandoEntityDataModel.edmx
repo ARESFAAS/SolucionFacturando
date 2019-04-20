@@ -644,7 +644,9 @@
         <Function Name="GetBillNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MacAddress" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="GetInventoryFromSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetInventoryFromSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productDescription" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="GetRemissionNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MacAddress" Type="varchar" Mode="In" />
         </Function>
@@ -1414,7 +1416,9 @@
           <FunctionImport Name="GetRemissionNumber" ReturnType="Collection(FacturandoModel.GetRemissionNumber_Result)">
           <Parameter Name="MacAddress" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetInventoryFromSP" ReturnType="Collection(FacturandoModel.GetInventoryFromSP_Result)" />
+          <FunctionImport Name="GetInventoryFromSP" ReturnType="Collection(FacturandoModel.GetInventoryFromSP_Result)" >
+            <Parameter Name="productDescription" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="DailyGet" ReturnType="Collection(FacturandoModel.DailyGet_Result)">
             <Parameter Name="InitDate" Mode="In" Type="DateTime" />
             <Parameter Name="EndDate" Mode="In" Type="DateTime" />
@@ -1556,6 +1560,7 @@
           <Property Type="String" Name="Product" Nullable="true" MaxLength="511" />
           <Property Type="Int32" Name="Quantity" Nullable="false" />
           <Property Type="String" Name="GroupT" Nullable="true" MaxLength="255" />
+          <Property Type="Decimal" Name="LastPurchasePrice" Nullable="true" Precision="18" Scale="2" />
         </ComplexType>
         <ComplexType Name="DailyGet_Result">
           <Property Type="String" Name="Description" Nullable="true" MaxLength="255" />

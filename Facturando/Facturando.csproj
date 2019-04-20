@@ -342,6 +342,12 @@
     <Compile Include="Modulos\RemisionReporte.Designer.cs">
       <DependentUpon>RemisionReporte.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modulos\Usuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\Usuarios.Designer.cs">
+      <DependentUpon>Usuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\VisorFactura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -464,6 +470,9 @@
     <EmbeddedResource Include="Modulos\Reportes.resx">
       <DependentUpon>Reportes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\Usuarios.resx">
+      <DependentUpon>Usuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modulos\VisorFactura.resx">
       <DependentUpon>VisorFactura.cs</DependentUpon>
     </EmbeddedResource>
@@ -523,6 +532,7 @@
     <None Include="Properties\DataSources\Facturando.Modelos.ClientReportModel.datasource" />
     <None Include="Properties\DataSources\Facturando.Modelos.DailyReportModel.datasource" />
     <None Include="Properties\DataSources\Facturando.Modelos.InventoryReportModel.datasource" />
+    <None Include="Properties\DataSources\Facturando.Modelos.InventoryReportParamsModel.datasource" />
     <None Include="Properties\DataSources\Facturando.Modelos.ProductReportModel.datasource" />
     <None Include="Properties\DataSources\Facturando.Modelos.RemissionPrintModel.datasource" />
     <None Include="Properties\DataSources\Facturando.Modelos.RemissionText.datasource" />
@@ -570,6 +580,7 @@
     <Content Include="LogoInventariosyFacturacion.ico" />
     <Content Include="Resources\cashbox.jpg" />
     <Content Include="ThermalPrinterBillTemplate.txt" />
+    <Content Include="ThermalPrinterRemissionTemplate.txt" />
     <None Include="Resources\products.jpe" />
     <None Include="Resources\folder_customer_91730.jpg" />
     <None Include="Resources\consultarRemision.jpg" />

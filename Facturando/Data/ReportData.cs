@@ -79,20 +79,21 @@ namespace Facturando.Data
             }
         }
 
-        public List<InventoryModel> GetInventoryFromSP()
+        public List<InventoryModel> GetInventoryFromSP(string productDescription)
         {
             try
             {
                 using (FacturandoEntities context = new FacturandoEntities())
                 {
-                    return context.GetInventoryFromSP().Select(x => new InventoryModel
+                    return context.GetInventoryFromSP(productDescription).Select(x => new InventoryModel
                     {
                         Id = x.Id,
                         IdProduct = x.IdProduct.Value,
                         LastSalePrice = x.LastSalePrice.Value,
                         Product = x.Product,
                         Quantity = x.Quantity,
-                        GroupT = x.GroupT
+                        GroupT = x.GroupT,
+                        LastPurchasePrice = x.LastPurchasePrice.Value
                     }).OrderBy(x => x.Quantity).ToList();
                 }
             }

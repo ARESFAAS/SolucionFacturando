@@ -19,5 +19,6 @@ namespace Facturando.Data
         public string Product { get; set; }
         public int Quantity { get; set; }
         public string GroupT { get; set; }
+        public Nullable<decimal> LastPurchasePrice { get; set; }
     }
 }

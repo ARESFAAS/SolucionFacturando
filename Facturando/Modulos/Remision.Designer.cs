@@ -52,6 +52,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnTermica = new System.Windows.Forms.Button();
             this.btnRemitir = new System.Windows.Forms.Button();
             this.txtDescuentoFinal = new System.Windows.Forms.TextBox();
             this.txtDescuento = new System.Windows.Forms.Label();
@@ -331,6 +332,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnTermica);
             this.groupBox3.Controls.Add(this.btnRemitir);
             this.groupBox3.Controls.Add(this.txtDescuentoFinal);
             this.groupBox3.Controls.Add(this.txtDescuento);
@@ -343,6 +345,18 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "DETALLE REMISIÓN";
+            // 
+            // btnTermica
+            // 
+            this.btnTermica.Enabled = false;
+            this.btnTermica.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTermica.Location = new System.Drawing.Point(89, 371);
+            this.btnTermica.Name = "btnTermica";
+            this.btnTermica.Size = new System.Drawing.Size(55, 39);
+            this.btnTermica.TabIndex = 12;
+            this.btnTermica.Text = "TERM";
+            this.btnTermica.UseVisualStyleBackColor = true;
+            this.btnTermica.Click += new System.EventHandler(this.btnTermica_Click);
             // 
             // btnRemitir
             // 
@@ -645,5 +659,6 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox txtObservaciones;
         private System.Windows.Forms.CheckBox chkPagada;
+        private System.Windows.Forms.Button btnTermica;
     }
 }
