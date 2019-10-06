@@ -240,6 +240,12 @@
     <Compile Include="Modelos\RemissionModel.cs" />
     <Compile Include="Modelos\ReportModel.cs" />
     <Compile Include="Modelos\UserModel.cs" />
+    <Compile Include="Modulos\CargarInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulos\CargarInventario.Designer.cs">
+      <DependentUpon>CargarInventario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulos\RegistroCaja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -412,6 +418,9 @@
     </Compile>
     <EmbeddedResource Include="KeyValidate.resx">
       <DependentUpon>KeyValidate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\CargarInventario.resx">
+      <DependentUpon>CargarInventario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modulos\RegistroCaja.resx">
       <DependentUpon>RegistroCaja.cs</DependentUpon>

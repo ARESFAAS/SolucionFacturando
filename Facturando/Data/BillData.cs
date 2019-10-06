@@ -568,7 +568,6 @@ namespace Facturando.Data
                     DateTime movementDateTemp = new DateTime(movementDate.Year, movementDate.Month, movementDate.Day);
                     decimal result = 0;
                     var resultList = context.Bill
-                        .Where(x => x.IdUser == idUser)
                         .Where(x => x.DateEvent.Value >= movementDateTemp && x.DateEvent.Value <= movementDateTemp)
                         .Where(x => (!x.IsCanceled.Value || x.IsCanceled == null) && x.IsPaid.Value)
                         .ToList();

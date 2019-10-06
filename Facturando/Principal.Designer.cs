@@ -56,6 +56,7 @@
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alertasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +64,7 @@
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.diarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cargarInventarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -369,7 +370,8 @@
             // 
             this.sistemaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.configuraciónToolStripMenuItem,
-            this.usuariosToolStripMenuItem});
+            this.usuariosToolStripMenuItem,
+            this.cargarInventarioToolStripMenuItem});
             this.sistemaToolStripMenuItem.Name = "sistemaToolStripMenuItem";
             this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.sistemaToolStripMenuItem.Text = "Sistema";
@@ -377,9 +379,16 @@
             // configuraciónToolStripMenuItem
             // 
             this.configuraciónToolStripMenuItem.Name = "configuraciónToolStripMenuItem";
-            this.configuraciónToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.configuraciónToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.configuraciónToolStripMenuItem.Text = "Configuración";
             this.configuraciónToolStripMenuItem.Click += new System.EventHandler(this.configuraciónToolStripMenuItem_Click);
+            // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
             // reportesToolStripMenuItem
             // 
@@ -436,12 +445,12 @@
             this.diarioToolStripMenuItem.Text = "Diario";
             this.diarioToolStripMenuItem.Click += new System.EventHandler(this.diarioToolStripMenuItem_Click);
             // 
-            // usuariosToolStripMenuItem
+            // cargarInventarioToolStripMenuItem
             // 
-            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.usuariosToolStripMenuItem.Text = "Usuarios";
-            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
+            this.cargarInventarioToolStripMenuItem.Name = "cargarInventarioToolStripMenuItem";
+            this.cargarInventarioToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.cargarInventarioToolStripMenuItem.Text = "Cargar Inventario";
+            this.cargarInventarioToolStripMenuItem.Click += new System.EventHandler(this.cargarInventarioToolStripMenuItem_Click);
             // 
             // Principal
             // 
@@ -515,5 +524,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox picCaja;
         private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cargarInventarioToolStripMenuItem;
     }
 }

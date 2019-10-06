@@ -339,5 +339,20 @@ namespace Facturando
                 }
             }
         }
+
+        private void cargarInventarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var rol in User.Roles)
+            {
+                foreach (var module in rol.ModuleList)
+                {
+                    if (module.Equals(Modules["CI"]))
+                    {
+                        AddFormInPanel(new CargarInventario());
+                        return;
+                    }
+                }
+            }
+        }
     }
 }
