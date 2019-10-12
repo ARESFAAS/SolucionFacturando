@@ -145,6 +145,9 @@
     <Compile Include="Data\GetBillNumber_Result.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\GetInventoryForBatchUpdate_Result.cs">
+      <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\GetInventoryFromSP_Result.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -179,6 +182,9 @@
     <Compile Include="Data\IRemission.cs" />
     <Compile Include="Data\IReport.cs" />
     <Compile Include="Data\IUser.cs" />
+    <Compile Include="Data\LoadInventory.cs">
+      <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Module.cs">
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -223,6 +229,7 @@
       <DependentUpon>FacturandoEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Encrypt.cs" />
+    <Compile Include="Helper\ExternalFileHelper.cs" />
     <Compile Include="Helper\RawFilterHelper.cs" />
     <Compile Include="Helper\ThermalPrinterHelper.cs" />
     <Compile Include="KeyValidate.cs">

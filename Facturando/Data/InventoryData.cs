@@ -19,10 +19,10 @@ namespace Facturando.Data
                         result = new List<InventoryModel>();
 
                         InventoryDetail inventoryDetailTemp = context.InventoryDetail
-                            .Where(x => x.BarCodeData.ToLower().Equals(barCode.ToLower()))                           
+                            .Where(x => x.BarCodeData.ToLower().Equals(barCode.ToLower()))
                             .FirstOrDefault();
                         Inventory inventoryTemp = inventoryDetailTemp != null && inventoryDetailTemp.Inventory.Product.Active == true ? inventoryDetailTemp.Inventory : null;
-                        
+
                         if (inventoryTemp != null)
                         {
                             result.Add(new InventoryModel
@@ -48,7 +48,7 @@ namespace Facturando.Data
                             Product = string.Concat(x.Product.Description, " ", x.Product.UnitMeasure.Description),
                             Quantity = x.Quantity,
                             LastSalePrice = x.LastSalePrice != null ? x.LastSalePrice.Value : 0,
-                            FreeProduct = x.Product.Free == null ? false : x.Product.Free.Value                           
+                            FreeProduct = x.Product.Free == null ? false : x.Product.Free.Value
                         }).ToList();
                     }
                     return result;
@@ -75,7 +75,7 @@ namespace Facturando.Data
                             IdProduct = x.IdProduct.Value,
                             Product = string.Concat(x.Product.Description, " ", x.Product.UnitMeasure.Description),
                             Quantity = x.Quantity,
-                            LastSalePrice = x.LastSalePrice != null  ? x.LastSalePrice.Value : 0
+                            LastSalePrice = x.LastSalePrice != null ? x.LastSalePrice.Value : 0
                         }).ToList();
                 }
             }
@@ -354,10 +354,10 @@ namespace Facturando.Data
                     return context.Product
                         .Where(x => x.Active == true)
                         .Select(x => new ProductModel
-                    {
-                        Id = x.Id,
-                        Description = string.Concat(x.Description, " ", x.UnitMeasure.Description)
-                    }).ToList();
+                        {
+                            Id = x.Id,
+                            Description = string.Concat(x.Description, " ", x.UnitMeasure.Description)
+                        }).ToList();
                 }
             }
             catch (Exception)
@@ -502,7 +502,7 @@ namespace Facturando.Data
                         inventoryDetail.IdInventoryType = inventory.InventoryDetail.IdInventoryType;
                         inventoryDetail.Quantity = inventory.InventoryDetail.Quantity;
                     }
-                    
+
                     context.SaveChanges();
                     return inventory;
                 }
@@ -511,6 +511,61 @@ namespace Facturando.Data
             {
                 throw;
             }
-        }        
+        }
+
+        public bool LoadInventoryTemp(List<InventoryModel> inventoryTempList)
+        {
+            try
+            {
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    context.Database.ExecuteSqlCommand("TRUNCATE TABLE LoadInventory");
+                    foreach (var item in inventoryTempList)
+                    {
+                        context.LoadInventory.Add(new LoadInventory
+                        {
+                            IdProductTemp = item.IdProduct,
+                            DescriptionTemp = item.Product,
+                            FreeTemp = item.FreeProduct,
+                            PurchasePriceTemp = item.LastPurchasePrice,
+                            QuantityTemp = item.Quantity,
+                            SalePriceTemp = item.LastSalePrice
+                        });
+                    }
+                    context.SaveChanges();
+                    context.LoadBatchInventory();
+                    context.UpdateBatchInventory();
+                    return true;                    
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<InventoryModel> GetInventoryForBatchUpdate(string productDescription)
+        {
+            try
+            {
+                using (FacturandoEntities context = new FacturandoEntities())
+                {
+                    return context.GetInventoryForBatchUpdate(productDescription).Select(x => new InventoryModel
+                    {
+                        IdProduct = x.IdProduct.Value,
+                        LastSalePrice = x.LastSalePrice.Value,
+                        Product = x.Product,
+                        Quantity = x.Quantity,
+                        LastPurchasePrice = x.LastPurchasePrice.Value,
+                        FreeProduct = x.Free.Value
+                    }).OrderBy(x => x.Quantity).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

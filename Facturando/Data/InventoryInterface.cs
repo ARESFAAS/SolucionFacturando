@@ -19,6 +19,8 @@ namespace Facturando.Data
         List<InventoryLocationModel> GetyInventoryLocation();
         List<ProductModel> GetProduct();
         InventorySaveModel SaveInventory(InventorySaveModel inventory);
-        InventorySaveModel UpdateInventory(InventorySaveModel inventory);        
+        InventorySaveModel UpdateInventory(InventorySaveModel inventory);
+        bool LoadInventoryTemp(List<InventoryModel> inventoryTempList);
+        List<InventoryModel> GetInventoryForBatchUpdate(string productDescription);
     }
 }

@@ -59,6 +59,7 @@ namespace Facturando.Data
         public DbSet<CashBox> CashBox { get; set; }
         public DbSet<CashBoxDetail> CashBoxDetail { get; set; }
         public DbSet<CashBoxType> CashBoxType { get; set; }
+        public DbSet<LoadInventory> LoadInventory { get; set; }
     
         public virtual ObjectResult<GetBillNumber_Result> GetBillNumber(string macAddress)
         {
@@ -98,6 +99,25 @@ namespace Facturando.Data
                 new ObjectParameter("EndDate", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DailyGet_Result>("DailyGet", initDateParameter, endDateParameter);
+        }
+    
+        public virtual ObjectResult<GetInventoryForBatchUpdate_Result> GetInventoryForBatchUpdate(string productDescription)
+        {
+            var productDescriptionParameter = productDescription != null ?
+                new ObjectParameter("productDescription", productDescription) :
+                new ObjectParameter("productDescription", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetInventoryForBatchUpdate_Result>("GetInventoryForBatchUpdate", productDescriptionParameter);
+        }
+    
+        public virtual int LoadBatchInventory()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("LoadBatchInventory");
+        }
+    
+        public virtual int UpdateBatchInventory()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateBatchInventory");
         }
     }
 }

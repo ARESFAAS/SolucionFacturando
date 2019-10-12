@@ -64,6 +64,7 @@
         <AssociationConnector Association="FacturandoModel.FK_CashBoxDetail_CashBoxType" />
         <AssociationConnector Association="FacturandoModel.FK_Bill_User" />
         <AssociationConnector Association="FacturandoModel.FK_Remission_User" />
+        <EntityTypeShape EntityType="FacturandoModel.LoadInventory" Width="1.5" PointX="14.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

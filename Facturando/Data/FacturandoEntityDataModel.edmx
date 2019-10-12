@@ -186,6 +186,18 @@
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
           <Property Name="Sign" Type="char" MaxLength="1" />
         </EntityType>
+        <EntityType Name="LoadInventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProductTemp" Type="uniqueidentifier" />
+          <Property Name="DescriptionTemp" Type="nvarchar" MaxLength="255" />
+          <Property Name="QuantityTemp" Type="int" Nullable="false" />
+          <Property Name="PurchasePriceTemp" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SalePriceTemp" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FreeTemp" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Module">
           <Key>
             <PropertyRef Name="Id" />
@@ -644,12 +656,17 @@
         <Function Name="GetBillNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MacAddress" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetInventoryForBatchUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productDescription" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="GetInventoryFromSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="productDescription" Type="varchar" Mode="In" />
         </Function>
         <Function Name="GetRemissionNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MacAddress" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="LoadBatchInventory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UpdateBatchInventory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="FacturandoModelStoreContainer">
           <EntitySet Name="Action" EntityType="Self.Action" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
@@ -669,6 +686,7 @@
           <EntitySet Name="InventoryDetail" EntityType="Self.InventoryDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InventoryLocation" EntityType="Self.InventoryLocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InventoryType" EntityType="Self.InventoryType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoadInventory" EntityType="Self.LoadInventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Remission" EntityType="Self.Remission" Schema="dbo" store:Type="Tables" />
@@ -1417,7 +1435,7 @@
           <Parameter Name="MacAddress" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetInventoryFromSP" ReturnType="Collection(FacturandoModel.GetInventoryFromSP_Result)" >
-            <Parameter Name="productDescription" Mode="In" Type="String" />
+          <Parameter Name="productDescription" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DailyGet" ReturnType="Collection(FacturandoModel.DailyGet_Result)">
             <Parameter Name="InitDate" Mode="In" Type="DateTime" />
@@ -1446,6 +1464,12 @@
             <End Role="User" EntitySet="User" />
             <End Role="Remission" EntitySet="Remission" />
           </AssociationSet>
+          <EntitySet Name="LoadInventory" EntityType="FacturandoModel.LoadInventory" />
+          <FunctionImport Name="GetInventoryForBatchUpdate" ReturnType="Collection(FacturandoModel.GetInventoryForBatchUpdate_Result)">
+          <Parameter Name="productDescription" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="LoadBatchInventory" />
+          <FunctionImport Name="UpdateBatchInventory" />
         </EntityContainer>
         <EntityType Name="IdentificacionType">
           <Key>
@@ -1666,6 +1690,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="LoadInventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProductTemp" Type="Guid" />
+          <Property Name="DescriptionTemp" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="QuantityTemp" Type="Int32" Nullable="false" />
+          <Property Name="PurchasePriceTemp" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SalePriceTemp" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="FreeTemp" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="GetInventoryForBatchUpdate_Result">
+          <Property Type="Guid" Name="IdProduct" Nullable="true" />
+          <Property Type="String" Name="Product" Nullable="true" MaxLength="511" />
+          <Property Type="Int32" Name="Quantity" Nullable="false" />
+          <Property Type="Decimal" Name="LastPurchasePrice" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="LastSalePrice" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="Free" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2035,6 +2079,33 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="LoadInventory">
+            <EntityTypeMapping TypeName="FacturandoModel.LoadInventory">
+              <MappingFragment StoreEntitySet="LoadInventory">
+                <ScalarProperty Name="FreeTemp" ColumnName="FreeTemp" />
+                <ScalarProperty Name="SalePriceTemp" ColumnName="SalePriceTemp" />
+                <ScalarProperty Name="PurchasePriceTemp" ColumnName="PurchasePriceTemp" />
+                <ScalarProperty Name="QuantityTemp" ColumnName="QuantityTemp" />
+                <ScalarProperty Name="DescriptionTemp" ColumnName="DescriptionTemp" />
+                <ScalarProperty Name="IdProductTemp" ColumnName="IdProductTemp" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetInventoryForBatchUpdate" FunctionName="FacturandoModel.Store.GetInventoryForBatchUpdate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FacturandoModel.GetInventoryForBatchUpdate_Result">
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="LastPurchasePrice" ColumnName="LastPurchasePrice" />
+                <ScalarProperty Name="LastSalePrice" ColumnName="LastSalePrice" />
+                <ScalarProperty Name="Free" ColumnName="Free" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LoadBatchInventory" FunctionName="FacturandoModel.Store.LoadBatchInventory" />
+          <FunctionImportMapping FunctionImportName="UpdateBatchInventory" FunctionName="FacturandoModel.Store.UpdateBatchInventory" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
