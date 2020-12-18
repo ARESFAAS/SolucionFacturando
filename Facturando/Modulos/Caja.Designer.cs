@@ -356,7 +356,7 @@
             // 
             this.lblDiferencia.AutoSize = true;
             this.lblDiferencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDiferencia.ForeColor = System.Drawing.Color.Red;
+            this.lblDiferencia.ForeColor = System.Drawing.Color.Transparent;
             this.lblDiferencia.Location = new System.Drawing.Point(162, 169);
             this.lblDiferencia.Name = "lblDiferencia";
             this.lblDiferencia.Size = new System.Drawing.Size(14, 15);
@@ -378,7 +378,7 @@
             // 
             this.lblTotalRemisiones.AutoSize = true;
             this.lblTotalRemisiones.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalRemisiones.ForeColor = System.Drawing.Color.Maroon;
+            this.lblTotalRemisiones.ForeColor = System.Drawing.Color.Transparent;
             this.lblTotalRemisiones.Location = new System.Drawing.Point(162, 47);
             this.lblTotalRemisiones.Name = "lblTotalRemisiones";
             this.lblTotalRemisiones.Size = new System.Drawing.Size(14, 15);
@@ -389,7 +389,7 @@
             // 
             this.lblTotalFacturas.AutoSize = true;
             this.lblTotalFacturas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalFacturas.ForeColor = System.Drawing.Color.Blue;
+            this.lblTotalFacturas.ForeColor = System.Drawing.Color.Transparent;
             this.lblTotalFacturas.Location = new System.Drawing.Point(162, 23);
             this.lblTotalFacturas.Name = "lblTotalFacturas";
             this.lblTotalFacturas.Size = new System.Drawing.Size(14, 15);

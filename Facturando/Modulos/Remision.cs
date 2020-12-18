@@ -89,7 +89,7 @@ namespace Facturando
         {
             if (_client == null)
             {
-                clientEntityGet();
+                clientEntityGetNew();
             }
             else
             {
@@ -136,6 +136,17 @@ namespace Facturando
                 {                    
                     decimal newTotalTemp = decimal.Parse(txtSubTotal.Text) - decimal.Parse(txtDescuentoFinal.Text);
                     _remission.Total = newTotalTemp;
+
+                    try
+                    {
+                        _remission.IdClient = _client.Id;
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("No existen datos de cliente para hacer la remisión");
+                        return;
+                    }
+
                     lblGranTotal.Text = _remission.Total.ToString("C", new System.Globalization.CultureInfo("es-EC"));
                 }
                 else
@@ -166,6 +177,17 @@ namespace Facturando
                 {                    
                     decimal newTotalTemp = decimal.Parse(txtSubTotal.Text) - decimal.Parse(txtDescuentoFinal.Text);
                     _remission.Total = newTotalTemp;
+
+                    try
+                    {
+                        _remission.IdClient = _client.Id;
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("No existen datos de cliente para hacer la remisión");
+                        return;
+                    }
+
                     lblGranTotal.Text = _remission.Total.ToString("C", new System.Globalization.CultureInfo("es-EC"));
                 }
                 else
@@ -333,6 +355,8 @@ namespace Facturando
                     Phone = txtTelefono.Text,
                     IsNew = true
                 };
+
+                _remission.IdClient = _client.Id;
             }
             else
             {
@@ -356,11 +380,42 @@ namespace Facturando
             }
         }
 
+        private bool clientEntityGetNew()
+        {
+            bool result = false;
+            if (txtIdentificacionCliente.Text.Equals(string.Empty) || txtNombreCliente.Text.Equals(string.Empty))
+            {
+                MessageBox.Show("Faltan los datos del cliente para crear la remision, identificación y nombre");
+            }
+            else
+            {
+                result = true;
+                _client = new ClientModel
+                {
+                    Id = Guid.NewGuid(),
+                    Adress = txtDireccion.Text,
+                    DiscountPercent = decimal.Parse(txtDescuentoCliente.Text),
+                    Email = txtEmail.Text,
+                    IdentificationNumber = txtIdentificacionCliente.Text,
+                    IdIdentificationType = (Guid)cmbTipoIdentificacion.SelectedValue,
+                    Name = txtNombreCliente.Text,
+                    Phone = txtTelefono.Text,
+                    IsNew = true
+                };
+
+                _remission.IdClient = _client.Id;
+            }
+            return result;
+        }
+
         private void remissionValuesCalculate()
         {
             _remission.Total = 0;
             txtSubTotal.Text = string.Format("{0:0.00}", _remissionDetail.Sum(x => x.Total));
             decimal newTotalTemp = decimal.Parse(txtSubTotal.Text) - decimal.Parse(txtDescuentoFinal.Text);
+
+            _remission.IdClient = _client.Id;
+
             _remission.Total = newTotalTemp;
             lblGranTotal.Text = _remission.Total.ToString("C", new System.Globalization.CultureInfo("es-EC"));
         }
@@ -377,10 +432,11 @@ namespace Facturando
             _remissionSaveModel.RemissionDetail = _remissionDetail;
             
             if (_remissionSaveModel.Remission.Id != null &&
+                _remission.IdClient != null &&
                 _remissionDetail.Count > 0 &&
                 _remission.Total > 0)
             {
-                // Guarda los datos de la factura
+                // Guarda los datos de la remisión
                 _remissionData.SaveRemission(_remissionSaveModel, GetMacAddress());
 
                 // Actualiza el inventario
@@ -407,7 +463,7 @@ namespace Facturando
             }
             else
             {
-                MessageBox.Show("No hay datos para facturar");
+                MessageBox.Show("No hay datos para hacer la remisión");
             }
         }
 
