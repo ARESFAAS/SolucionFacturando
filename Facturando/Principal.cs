@@ -9,6 +9,9 @@ namespace Facturando
 {
     public partial class Principal : BaseForm
     {
+
+        bool _marketMode = false;
+
         public Principal()
         {
             InitializeComponent();
@@ -18,7 +21,7 @@ namespace Facturando
         {
             InitializeComponent();
             SystemCompany = systemCompany;
-            User = user;
+            User = user;                      
         }
 
         private void Principal_Load(object sender, EventArgs e)
@@ -51,6 +54,23 @@ namespace Facturando
             else
             {
                 logOut();
+            }
+
+            _marketMode = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["MarketMode"].ToString());
+
+            if (_marketMode)
+            {
+                foreach (var rol in User.Roles)
+                {
+                    foreach (var module in rol.ModuleList)
+                    {
+                        if (module.Equals(Modules["NR"]))
+                        {
+                            AddFormInPanel(new Remision(base.User));
+                            return;
+                        }
+                    }
+                }
             }
         }
 

@@ -21,6 +21,7 @@ namespace Facturando
         ClientModel _client = null;
         InventoryInterface _inventoryData = new InventoryData();
         RemissionSaveModel _remissionSaveModel = new RemissionSaveModel();
+        bool _marketMode = false;
 
         public Remision()
         {
@@ -50,6 +51,13 @@ namespace Facturando
             txtSubTotal.Text = string.Format("{0:0.00}", 0.00);
             txtDescuentoFinal.Text = string.Format("{0:0.00}", 0.00);
             txtDescuentoCliente.Text = string.Format("{0:0.00}", 0.00);
+
+            _marketMode = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["MarketMode"].ToString());
+
+            if (_marketMode)
+            {
+                MarketModeConfig();
+            }
         }
 
         private void btnBuscarCliente_Click(object sender, EventArgs e)
@@ -73,6 +81,8 @@ namespace Facturando
                     txtTelefono.Text = _client.Phone;
                     txtIdentificacionCliente.Text = _client.IdentificationNumber;
                     cmbTipoIdentificacion.SelectedValue = _client.IdIdentificationType;
+
+                    txtCodigoBarras.Focus();
                 }
                 else
                 {
@@ -213,20 +223,78 @@ namespace Facturando
             {
                 if (((List<InventoryModel>)lstBox.DataSource).Count > 0)
                 {
-                    _remissionDetail.Add(new RemissionDetailModel
+                    RemissionDetailModel remissionDetailItem = new RemissionDetailModel
                     {
                         Id = Guid.NewGuid(),
                         IdRemission = _remission.Id,
                         IdProduct = inventoryItem.IdProduct,
                         Product = inventoryItem.Product,
-                        Quantity = 0,
+                        Quantity = 1,
                         Discount = (inventoryItem.LastSalePrice * (_client == null ? 0 : _client.DiscountPercent)) / 100,
                         Total = 0,
                         UnitPrice = inventoryItem.LastSalePrice
-                    });
+                    };
+
+                    remissionDetailItem.Total = ((remissionDetailItem.UnitPrice - remissionDetailItem.Discount) * remissionDetailItem.Quantity);
+
+                    _remissionDetail.Add(remissionDetailItem);
+
+                    remissionValuesCalculate();
 
                     dtgDetalleRemision.DataSource = new List<RemissionDetailModel>();
                     dtgDetalleRemision.DataSource = _remissionDetail;
+
+                    btnRemitir.Enabled = false;
+                    btnTermica.Enabled = true;
+
+                    ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = true;
+
+                    txtCodigoBarras.Focus();
+                    txtCodigoBarras.Text = string.Empty;
+                }
+            }
+        }
+
+        private void lstProducto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ListBox lstBox = (ListBox)sender;
+                if ((List<InventoryModel>)lstBox.DataSource != null)
+                {
+                    if (((List<InventoryModel>)lstBox.DataSource).Count > 0)
+                    {
+                        InventoryModel inventoryItem = (InventoryModel)lstBox.SelectedItem;
+
+                        RemissionDetailModel remissionDetailItem = new RemissionDetailModel
+                        {
+                            Id = Guid.NewGuid(),
+                            IdRemission = _remission.Id,
+                            IdProduct = inventoryItem.IdProduct,
+                            Product = inventoryItem.Product,
+                            Quantity = 1,
+                            Discount = (inventoryItem.LastSalePrice * (_client == null ? 0 : _client.DiscountPercent)) / 100,
+                            Total = 0,
+                            UnitPrice = inventoryItem.LastSalePrice
+                        };
+
+                        remissionDetailItem.Total = ((remissionDetailItem.UnitPrice - remissionDetailItem.Discount) * remissionDetailItem.Quantity);
+
+                        _remissionDetail.Add(remissionDetailItem);
+
+                        remissionValuesCalculate();
+
+                        dtgDetalleRemision.DataSource = new List<RemissionDetailModel>();
+                        dtgDetalleRemision.DataSource = _remissionDetail;
+
+                        btnRemitir.Enabled = false;
+                        btnTermica.Enabled = true;
+
+                        ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = true;
+
+                        txtCodigoBarras.Focus();
+                        txtCodigoBarras.Text = string.Empty;
+                    }
                 }
             }
         }
@@ -248,36 +316,6 @@ namespace Facturando
                     dtgDetalleRemision.DataSource = _remissionDetail;
 
                     remissionValuesCalculate();
-                }
-            }
-        }
-
-        private void lstProducto_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                ListBox lstBox = (ListBox)sender;
-                if ((List<InventoryModel>)lstBox.DataSource != null)
-                {
-                    if (((List<InventoryModel>)lstBox.DataSource).Count > 0)
-                    {
-                        InventoryModel inventoryItem = (InventoryModel)lstBox.SelectedItem;
-
-                        _remissionDetail.Add(new RemissionDetailModel
-                        {
-                            Id = Guid.NewGuid(),
-                            IdRemission = _remission.Id,
-                            IdProduct = inventoryItem.IdProduct,
-                            Product = inventoryItem.Product,
-                            Quantity = 0,
-                            Discount = (inventoryItem.LastSalePrice * (_client == null ? 0 : _client.DiscountPercent)) / 100,
-                            Total = 0,
-                            UnitPrice = inventoryItem.LastSalePrice
-                        });
-
-                        dtgDetalleRemision.DataSource = new List<RemissionDetailModel>();
-                        dtgDetalleRemision.DataSource = _remissionDetail;
-                    }
                 }
             }
         }
@@ -337,6 +375,83 @@ namespace Facturando
                     e.CellStyle.BackColor = System.Drawing.Color.White;
                 }
             }
+        }
+
+        private void btnTermica_Click(object sender, EventArgs e)
+        {
+            DialogResult resultValidatePrintRemission = MessageBox.Show("Seguro, los datos se guardarán", "Imprimir", MessageBoxButtons.OKCancel);
+            if (resultValidatePrintRemission == DialogResult.OK)
+            {
+                PrintThermalRemission();
+            }
+        }
+
+        private void txtCodigoBarras_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (_marketMode)
+                {
+                    lstProducto.DataSource = _inventoryData.GetInventory(txtCodigoBarras.Text, txtNombreProducto.Text);
+                    lstProducto.DisplayMember = "Product";
+                    lstProducto.ValueMember = "Id";
+
+                    if ((List<InventoryModel>)lstProducto.DataSource != null)
+                    {
+                        if (((List<InventoryModel>)lstProducto.DataSource).Count > 0)
+                        {
+                            lstProducto.SelectedIndex = 0;
+                            InventoryModel inventoryItem = (InventoryModel)lstProducto.SelectedItem;
+
+                            RemissionDetailModel remissionDetailItem = new RemissionDetailModel
+                            {
+                                Id = Guid.NewGuid(),
+                                IdRemission = _remission.Id,
+                                IdProduct = inventoryItem.IdProduct,
+                                Product = inventoryItem.Product,
+                                Quantity = 1,
+                                Discount = (inventoryItem.LastSalePrice * (_client == null ? 0 : _client.DiscountPercent)) / 100,
+                                Total = 0,
+                                UnitPrice = inventoryItem.LastSalePrice
+                            };
+
+                            remissionDetailItem.Total = ((remissionDetailItem.UnitPrice - remissionDetailItem.Discount) * remissionDetailItem.Quantity);
+
+                            _remissionDetail.Add(remissionDetailItem);
+
+                            remissionValuesCalculate();
+
+                            dtgDetalleRemision.DataSource = new List<RemissionDetailModel>();
+                            dtgDetalleRemision.DataSource = _remissionDetail;
+
+                            btnRemitir.Enabled = false;
+                            btnTermica.Enabled = true;
+
+                            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = true;
+
+                            txtCodigoBarras.Focus();
+                            txtCodigoBarras.Text = string.Empty;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void txtIdentificacionCliente_Enter(object sender, EventArgs e)
+        {
+            txtNombreCliente.Text = string.Empty;
+        }
+
+        private void dtgDetalleRemision_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = false;
+        }
+
+        private void lstProducto_Format(object sender, ListControlConvertEventArgs e)
+        {
+            string productDescription = ((InventoryModel)e.ListItem).Product;
+            string quantity = ((InventoryModel)e.ListItem).Quantity.ToString();
+            e.Value = productDescription + " ---> " + quantity;
         }
 
         private void clientEntityGet()
@@ -505,6 +620,10 @@ namespace Facturando
         {
             SaveRemission();
             ClearControls();
+            if (_marketMode)
+            {
+                MarketModeConfig();
+            }
         }
 
         private void PrintRemission()
@@ -549,25 +668,52 @@ namespace Facturando
             NewRemission();
         }
 
-        private void dtgDetalleRemision_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        private void MarketModeConfig()
         {
-            ParentForm.Controls.Find("splitContainer1", true).FirstOrDefault().Controls[0].Enabled = false;
-        }
-
-        private void lstProducto_Format(object sender, ListControlConvertEventArgs e)
-        {
-            string productDescription = ((InventoryModel)e.ListItem).Product;
-            string quantity = ((InventoryModel)e.ListItem).Quantity.ToString();
-            e.Value = productDescription + " ---> " + quantity;
-        }
-
-        private void btnTermica_Click(object sender, EventArgs e)
-        {
-            DialogResult resultValidatePrintRemission = MessageBox.Show("Seguro, los datos se guardarán", "Imprimir", MessageBoxButtons.OKCancel);
-            if (resultValidatePrintRemission == DialogResult.OK)
+            if (cmbTipoIdentificacion.Items.Count > 0)
             {
-                PrintThermalRemission();
+                IdentificationTypeModel idTemp = _billData.GetIdentificationType().Find(x => x.Description.ToUpper().Equals("CC"));
+                cmbTipoIdentificacion.SelectedValue = idTemp.Id;
+                txtIdentificacionCliente.Text = "0";
+                _client = _billData.GetClient(new ClientModel
+                {
+                    IdIdentificationType = (Guid)cmbTipoIdentificacion.SelectedValue,
+                    IdentificationNumber = txtIdentificacionCliente.Text,
+                    Name = txtNombreCliente.Text
+                });
+
+                if (_client != null)
+                {
+                    _remission.IdClient = _client.Id;
+                    txtNombreCliente.Text = _client.Name;
+                    txtDireccion.Text = _client.Adress;
+                    txtEmail.Text = _client.Email;
+                    txtDescuentoCliente.Text = _client.DiscountPercent.ToString();
+                    txtTelefono.Text = _client.Phone;
+                    txtIdentificacionCliente.Text = _client.IdentificationNumber;
+                    cmbTipoIdentificacion.SelectedValue = _client.IdIdentificationType;
+                }
+                else
+                {
+                    MessageBox.Show("No encontramos un cliente con los datos de búsqueda, verique que esten correctos o diligencie los datos para crear un nuevo cliente");
+                }
             }
+            else
+            {
+                MessageBox.Show("Error - Revise la configuración del sistema");
+            }
+
+            txtCodigoBarras.Focus();
+        }
+
+        private void txtCodigoBarras_Enter(object sender, EventArgs e)
+        {
+            txtNombreProducto.Text = string.Empty;
+        }
+        
+        private void txtNombreProducto_Enter(object sender, EventArgs e)
+        {
+            txtCodigoBarras.Text = string.Empty;
         }
     }
 }

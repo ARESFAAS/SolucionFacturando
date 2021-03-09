@@ -231,6 +231,7 @@
             this.txtIdentificacionCliente.Name = "txtIdentificacionCliente";
             this.txtIdentificacionCliente.Size = new System.Drawing.Size(193, 20);
             this.txtIdentificacionCliente.TabIndex = 16;
+            this.txtIdentificacionCliente.Enter += new System.EventHandler(this.txtIdentificacionCliente_Enter);
             // 
             // label5
             // 
@@ -299,6 +300,7 @@
             this.txtNombreProducto.Name = "txtNombreProducto";
             this.txtNombreProducto.Size = new System.Drawing.Size(193, 20);
             this.txtNombreProducto.TabIndex = 7;
+            this.txtNombreProducto.Enter += new System.EventHandler(this.txtNombreProducto_Enter);
             // 
             // txtCodigoBarras
             // 
@@ -307,6 +309,8 @@
             this.txtCodigoBarras.Name = "txtCodigoBarras";
             this.txtCodigoBarras.Size = new System.Drawing.Size(156, 20);
             this.txtCodigoBarras.TabIndex = 6;
+            this.txtCodigoBarras.Enter += new System.EventHandler(this.txtCodigoBarras_Enter);
+            this.txtCodigoBarras.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodigoBarras_KeyDown);
             // 
             // label13
             // 
